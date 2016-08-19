@@ -29,7 +29,7 @@
 
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
-                
+
                 <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
                     <div class="col-20 timeline timeline-{{isTipo(v)}}">
 
@@ -44,12 +44,12 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="padding item-footer">
                     <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
                 </div>
             </div>
-            
+
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key,v) in dados.rota_bem">
@@ -63,10 +63,11 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
-                <div ng-repeat="(key,v) in dados.geral_rac">
+
+                <!-- <div ng-repeat="(key,v) in dados.geral_rac">
                     <div class="item item-text-wrap row">
                         <div class="col-25" style="height: 100px;">
                             <pie-chart data="v.dados" options="rac_options"></pie-chart>
@@ -75,17 +76,37 @@
                             <h3>{{v.nome}}</h3>
                         </div>
                     </div>
+                </div>-->
+                <div class="item item-text-wrap row">
+                    <div class="col text-center" style="height:100px;">
+                        <pie-chart class="teste_graph" data="teste" options="options_pie"></pie-chart>
+                    </div>
+                    <div class="col text-left" style="height:100px;">
+                        <div class="padding">
+                            <i class="ion-record color-green"></i> Buddies<br>
+                            <i class="ion-record color-yellow"></i> Connoisseurs<br>
+                            <i class="ion-record color-blue"></i> Especialistas
+                        </div>
+                    </div>
                 </div>
 
-                <div ng-repeat="(k,v) in dados.clientes_rac">
-                    <div class="item item-text-wrap row">
+                <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
+                    <div class="col-10 text-center">RKG</div>
+                    <div class="col p-0">PDV</div>
+                    <div class="col-20">Pontos</div>
+                </div>
+                <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
+                    <div class="ranking-body item item-text-wrap row padding-top padding-bottom">
                         <div class="col-10 text-center">{{(k + 1)}}</div>
-                        <div class="col">{{v.nome}}</div>
+                        <div class="col p-0">{{v.nome}}</div>
                         <div class="col-20">{{forceInt(v.pontuacao)}}</div>
                     </div>
                 </div>
+                <div class="padding item-footer">
+                    <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
+                </div>
             </div>
-            
+
         </div>
 
         <!--<div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">

@@ -46,33 +46,37 @@ angular.module('starter')
                     $scope.segunda_visita = [
                         {label: "2ª Visita", value: segunda, color: "#5CB85C", suffix: ""}
                     ];
+                    
+                    $scope.teste = [
+                        {label: "T1", value: 15, color: "#5cb85c"},
+                        {label: "T2", value: 17, color: "#f0ad4e"},
+                        {label: "T3", value: 20, color: "#00aced"},
+                        {label: "T4", value: 15, color: "#d9534f"}
+                    ];
 
                     var rac_options_total = 0;
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
-                        console.log(v);
                         rac_options_total += parseInt(v.total);
                         $scope.rac_options = {
-                            thickness: 5,
+                            thickness: 7,
                             mode: "gauge",
                             total: rac_options_total
                         };
                         v.dados = [
                             {label: '', value: v.total, color: v.color, suffix: ""}
                         ];
-                    });
-
+                    }, $scope.dados.rota_bem);
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
                         v.options = {
-                            thickness: 5,
+                            thickness: 7,
                             mode: "gauge",
                             total: v.geral
                         };
                         v.dados = [
                             {label: "", value: v.total, color: "#5CB85C", suffix: ""}
                         ];
-                    });
-
+                    }, $scope.dados.rota_bem);
 
                 }
                 LoadModuloFactory.hide();

@@ -12248,10 +12248,16 @@ textarea {
   font-size: 60px; }
 
 .color-red {
-  color: red; }
+  color: #d9534f; }
 
 .color-green {
-  color: green; }
+  color: #5cb85c; }
+
+.color-yellow {
+  color: #f0ad4e; }
+
+.color-blue {
+  color: #00aced; }
 
 .color-grey {
   color: grey; }
@@ -12384,3 +12390,13 @@ progress::-webkit-progress-value {
 
 .arc:last-child {
   fill: #eee !important; }
+
+.ranking-head {
+  font-size: 12px;
+  font-weight: bold; }
+
+.ranking-body {
+  font-size: 14px; }
+
+.teste_graph text {
+  display: none !important; }
