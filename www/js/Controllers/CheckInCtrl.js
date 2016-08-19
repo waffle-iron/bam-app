@@ -8,19 +8,21 @@ angular.module('starter')
                 alias: 'c',
                 from: 'c.nome, c.endereco, c.numero, c.foto, c.url, c.id, c.checkin'
             }, function (ret) {
+                console.log('ret');
+                console.log(JSON.stringify(ret));
                 if (ret === null) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
                     ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
                 } else {
-                    angular.forEach(ret, function(v, k){
-                      if(v.checkin > 2){
-                        v.checkin_total = 2;
-                      } else if(v.checkin == 1){
-                        v.checkin_total = 1;
-                      } else {
-                        v.checkin_total = 0;
-                      }
-                      $scope.clientes.push(v);
+                    angular.forEach(ret, function (v, k) {
+                        if (v.checkin > 2) {
+                            v.checkin_total = 2;
+                        } else if (v.checkin == 1) {
+                            v.checkin_total = 1;
+                        } else {
+                            v.checkin_total = 0;
+                        }
+                        $scope.clientes.push(v);
                     });
                 }
                 LoadModuloFactory.hide();

@@ -8,51 +8,51 @@
     },
     "installed_plugins": {
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-file-opener2": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-image-picker": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-compat": {
-            "PACKAGE_NAME": "br.com.bam"
+            "PACKAGE_NAME": "br.com.bammp"
         }
     }
 }

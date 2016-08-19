@@ -11,6 +11,7 @@
         <div class="padding">
             <p class="title-page text-center m-0">Selecione um PDV abaixo para realizar o Check-in</p>
             <div class="list">
+                
                 <a ng-repeat="(key, value) in clientes" class="item item-icon-right item-avatar {{color(key)}}" ng-href="#/app/cliente/{{value.id}}">
                     <img src="{{img(value)}}">
                     <h2>{{value.nome}}</h2>
