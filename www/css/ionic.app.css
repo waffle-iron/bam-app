@@ -12381,3 +12381,6 @@ progress::-webkit-progress-value {
   min-height: 20px;
   font-size: 12px;
   padding: 0; }
+
+.arc:last-child {
+  fill: #eee !important; }

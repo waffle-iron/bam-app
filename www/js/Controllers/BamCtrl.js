@@ -40,15 +40,16 @@ angular.module('starter')
                     ];
 
                     $scope.primeira_visita = [
-                        {label: "1ª Visita", value: primeira, color: "orange", suffix: ""}
+                        {label: "1ª Visita", value: primeira, color: "#F0AD4E", suffix: ""}
                     ];
 
                     $scope.segunda_visita = [
-                        {label: "2ª Visita", value: segunda, color: "green", suffix: ""}
+                        {label: "2ª Visita", value: segunda, color: "#5CB85C", suffix: ""}
                     ];
 
                     var rac_options_total = 0;
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
+                        console.log(v);
                         rac_options_total += parseInt(v.total);
                         $scope.rac_options = {
                             thickness: 5,
@@ -68,7 +69,7 @@ angular.module('starter')
                             total: v.geral
                         };
                         v.dados = [
-                            {label: "", value: v.total, color: "green", suffix: ""}
+                            {label: "", value: v.total, color: "#5CB85C", suffix: ""}
                         ];
                     }, $scope.dados.rota_bem);
 
@@ -86,6 +87,18 @@ angular.module('starter')
                     }
                 } else {
                     return 'color-grey';
+                }
+            }
+
+            $scope.isTipo = function (value) {
+                if (value.tipo === 'Rota BAM') {
+                    return 'green';
+                } else if (value.tipo === 'Programa de Mercado - RAC') {
+                    return 'yellow';
+                } else if (value.tipo === 'Ativação 52 Semanas') {
+                    return 'grey';
+                } else if (value.tipo === 'Ocorrências') {
+                    return 'red';
                 }
             }
 

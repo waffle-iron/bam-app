@@ -11,55 +11,128 @@
         <header-logo></header-logo>
 
         <div class="padding">
-            <h3 class="padding-left">Cobertura</h3>
-            <div class="row">
-                <div class="col" style="height:150px;"><pie-chart data="total_pdv" options="options_pie"></pie-chart></div>
-                <div class="col" style="height:150px;"><pie-chart data="primeira_visita" options="options_pie"></pie-chart></div>
-                <div class="col" style="height:150px;"><pie-chart data="segunda_visita" options="options_pie"></pie-chart></div>
-            </div>
-        </div>
 
-        <div class="padding">
-            <h3 class="padding-left">Histórico</h3>
-            <div class="list">
-                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap">
-                    <h2>{{v.tipo}}</h2>
-                    <p>{{v.data_final| date}}</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="padding">
-            <h3 class="padding-left">Rota BAM</h3>
-            <div ng-repeat="(k,v) in dados.rota_bem" class="row item item-text-wrap" style="background-color:#ccccff;">
-                <div class="col-20" style="height: 100px;">
-                    <pie-chart data="v.dados" options="v.options"></pie-chart>
-                </div>
-                <div class="col col-center">
-                    <h2>{{v.nome}}</h2>
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Cobertura</h4>
+                <div class="item item-text-wrap row">
+                    <div class="col" style="height:150px;">
+                        <pie-chart data="total_pdv" options="options_pie"></pie-chart>
+                    </div>
+                    <div class="col" style="height:150px;">
+                        <pie-chart class="primeira_visita" data="primeira_visita" options="options_pie"></pie-chart>
+                    </div>
+                    <div class="col" style="height:150px;">
+                        <pie-chart data="segunda_visita" options="options_pie"></pie-chart>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="padding">
-            <h3 class="padding-left">Programa de Mercado - RAC</h3>
-            <div ng-repeat="(k,v) in dados.geral_rac" class="row item item-text-wrap" style="background-color:#ccccff;">
-                <div class="col-20" style="height: 100px;">
-                    <pie-chart data="v.dados" options="rac_options"></pie-chart>
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Histórico</h4>
+                
+                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                    <div class="col-20 timeline timeline-{{isTipo(v)}}">
+
+                    </div>
+                    <div class="col-80 padding-bottom padding-top timeline-details row">
+                        <div class="col-80">
+                            <strong class="d-block">{{v.tipo}}</strong>
+                            <small class="d-block">{{v.data_final| date}}</small>
+                        </div>
+                        <div class="col-20 text-center padding">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
                 </div>
-                <div class="col col-center">
-                    <h2>{{v.nome}}</h2>
+                
+                <div class="padding item-footer">
+                    <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
                 </div>
             </div>
             
-            <div ng-repeat="(k,v) in dados.clientes_rac" class="row item item-text-wrap" style="background-color:#ccccff;">
-                <div class="col-10">{{(k+1)}}</div>
-                <div class="col">{{v.nome}}</div>
-                <div class="col-20">{{forceInt(v.pontuacao)}}</div>
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Rota BAM</h4>
+                <div ng-repeat="(key,v) in dados.rota_bem">
+                    <div class="item item-text-wrap row">
+                        <div class="col-25" style="height: 100px;">
+                            <pie-chart data="v.dados" options="v.options"></pie-chart>
+                        </div>
+                        <div class="col padding-top padding-bottom">
+                            <h3>{{v.nome}}</h3>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Programa de Mercado - RAC</h4>
+                <div ng-repeat="(key,v) in dados.geral_rac">
+                    <div class="item item-text-wrap row">
+                        <div class="col-25" style="height: 100px;">
+                            <pie-chart data="v.dados" options="rac_options"></pie-chart>
+                        </div>
+                        <div class="col padding-top padding-bottom">
+                            <h3>{{v.nome}}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-repeat="(k,v) in dados.clientes_rac">
+                    <div class="item item-text-wrap row">
+                        <div class="col-10 text-center">{{(k + 1)}}</div>
+                        <div class="col">{{v.nome}}</div>
+                        <div class="col-20">{{forceInt(v.pontuacao)}}</div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
-        <img src="img/bam_volumes.png" style="width: 100%;" class="padding" />
+        <!--<div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Volume BAM</h4>
+
+                <div class="item item-text-wrap row m-0">
+                    <div class="col padding-top padding-bottom text-center vol-left">
+                        <strong>
+                            Total Cerveja
+                        </strong>
+                    </div>
+                    <div class="col padding-top padding-bottom text-center vol-right">
+                        <div class="row">
+                            <div class="col-50 text-left">
+                                Período
+                            </div>
+                            <div class="col-33 text-right">
+                                <strong>65HL</strong>
+                            </div>
+                            <div class="col-20">
+                                <div class="triangle-up"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 text-left">
+                                YTD
+                            </div>
+                            <div class="col-33 text-right">
+                                <strong>285HL</strong>
+                            </div>
+                            <div class="col-20">
+                                <div class="triangle-down"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding item-footer">
+                    <div class="row">
+                        <div class="col">
+                            <button class="button button-block button-balanced m-0"><i class="fa fa-thumbs-up"></i> Melhores PDVs</button>
+                        </div>
+                        <div class="col">
+                            <button class="button button-block button-assertive m-0"><i class="fa fa-thumbs-down"></i> Piores PDVs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
 
     </ion-content>
 
