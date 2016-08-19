@@ -1,0 +1,187 @@
+<ion-view view-title="PDV - Relatorio" view-cache="false"  hide-back-button="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+
+        <div class="padding">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Rota BAM</h4>
+                <div ng-repeat="(key, value) in dados.respostas">
+                    <div class="item item-text-wrap row">
+                        <div ng-if="isIcon(value)" class="col-25 padding-top padding-bottom">
+                            <div class="icon-rel text-center">
+                                <i class="{{isIcon(value)}} {{isColor(value)}}"></i>
+                            </div>
+                        </div>
+                        <div class="col padding-top padding-bottom">
+                            <h3>{{value.nome}}</h3>
+                            <p>{{value.resposta}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Programa de Mercado - RAC</h4>
+
+                <div class="item item-text-wrap">
+                    <div class="text-center">
+                        <div style="font-size: 38px; border-radius: 50%; height: 150px; line-height: 122px; border: 10px solid green; margin: 10px auto; width: 150px; text-align: center;">
+                            {{calcMedia(dados.certificacoes)}}
+                        </div>
+                        <h1 class="color-black padding">
+                            Certificação
+                            <small class="d-block">Certificado: 750pt.</small>
+                        </h1>
+
+                    </div>
+                    <div ng-repeat="(key, value) in dados.certificacoes" class="padding" >
+                        <h4 class="color-black row">
+                            <div class="col text-left">
+                                {{value.data| date}}
+                            </div>
+                            <div class="col text-right">
+                                {{value.total| currency:'R$ '}}
+                            </div>
+                        </h4>
+                        <p><progress max="1000" value="{{forceInt(value.total)}}"></progress></p>
+                    </div>
+
+                    <div class="row bg-green -bg padding">
+                        <div class="col-33 col-center text-left">Parceiro Ambev</div>
+                        <div class="col text-right" style="font-size: 30px;line-height: 28px;">{{dados.gratificacao.total| currency:'R$ '}}</div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Volume BAM</h4>
+
+                <div class="item item-text-wrap row m-0">
+                    <div class="col padding-top padding-bottom text-center vol-left">
+                        <strong>
+                            Total Cerveja
+                        </strong>
+                    </div>
+                    <div class="col padding-top padding-bottom text-center vol-right">
+                        <div class="row">
+                            <div class="col-50 text-left">
+                                Período
+                            </div>
+                            <div class="col-33 text-right">
+                                <strong>65HL</strong>
+                            </div>
+                            <div class="col-20">
+                                <div class="triangle-up"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-50 text-left">
+                                YTD
+                            </div>
+                            <div class="col-33 text-right">
+                                <strong>285HL</strong>
+                            </div>
+                            <div class="col-20">
+                                <div class="triangle-down"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding item-footer">
+                    <div class="row">
+                        <div class="col">
+                            <button class="button button-block button-balanced m-0"><i class="fa fa-thumbs-up"></i> Melhores PDVs</button>
+                        </div>
+                        <div class="col">
+                            <button class="button button-block button-assertive m-0"><i class="fa fa-thumbs-down"></i> Piores PDVs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Histórico</h4>
+
+                <div class="item item-text-wrap row m-0 p-0">
+                    <div class="col-20 timeline timeline-green">
+
+                    </div>
+                    <div class="col-80 padding-bottom padding-top timeline-details row">
+                        <div class="col-80">
+                            <strong class="d-block">Rota BAM</strong>
+                            <span>BAM: Marcelo Salgado</span>
+                            <small class="d-block">18/08/2016</small>
+                        </div>
+                        <div class="col-20 text-center padding">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-text-wrap row m-0 p-0">
+                    <div class="col-20 timeline timeline-red">
+
+                    </div>
+                    <div class="col-80 padding-bottom padding-top timeline-details row">
+                        <div class="col-80">
+                            <strong class="d-block">Ocorrências</strong>
+                            <span>BAM: Marcelo Salgado</span>
+                            <small class="d-block">18/08/2016</small>
+                        </div>
+                        <div class="col-20 text-center padding">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-text-wrap row m-0 p-0">
+                    <div class="col-20 timeline timeline-yellow">
+
+                    </div>
+                    <div class="col-80 padding-bottom padding-top timeline-details row">
+                        <div class="col-80">
+                            <strong class="d-block">Programa de Mercado - Rac</strong>
+                            <span>BAM: Marcelo Salgado</span>
+                            <small class="d-block">18/08/2016</small>
+                        </div>
+                        <div class="col-20 text-center padding">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item item-text-wrap row m-0 p-0">
+                    <div class="col-20 timeline timeline-grey">
+
+                    </div>
+                    <div class="col-80 padding-bottom padding-top timeline-details row">
+                        <div class="col-80">
+                            <strong class="d-block">Rota BAM</strong>
+                            <span>BAM: Marcelo Salgado</span>
+                            <small class="d-block">18/08/2016</small>
+                        </div>
+                        <div class="col-20 text-center padding">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="padding item-footer">
+                    <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

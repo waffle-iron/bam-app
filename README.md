@@ -1,2 +1,2 @@
-# bam-app
-BAM APP
+# bam-api
+BAM API

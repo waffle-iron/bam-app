@@ -1,0 +1,243 @@
+angular.module('starter')
+
+.controller('UploadCtrl', function ($timeout, moment, FileModuloFactory, FormulariosCamposValoresApiFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, StorageModuloFactory,
+  FormulariosCamposValoresTable, CheckinTable, ProdutosClientesApiFactory, ProdutosClientesTable, NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable, ClientesApiFactory, CheckinApiFactory) {
+
+    // LoadModuloFactory.show();
+    $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+
+    $scope._sincronizacao = {
+      geral: {
+        enviado: 0,
+        atualizado: 0
+      }
+    };
+
+    $scope.sincronizacao = {
+      clientes: {
+        nome: 'Clientes',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      },
+      ocorrencias: {
+        nome: 'Ocorrência',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      },
+      produtos_clientes: {
+        nome: 'Produtos Clientes',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      },
+      formularios_campos_valores: {
+        nome: 'Formularios Campos Valores',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      },
+      ativacao_52: {
+        nome: 'Ativação 52 semanas',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      },
+      checkin: {
+        nome: 'Checkin Realizados',
+        enviado: 0,
+        atualizado: 0,
+        start: false
+      }
+    };
+
+    var convertData = function (data) {
+      if (ValidacaoModuloFactory.isNotNull(data)) {
+        return moment(data).format('YYYY-MM-DD HH:mm:ss');
+      } else {
+        return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+      }
+    }
+
+    Ativacao52Table.all({}, function (dados) {
+      $scope.sincronizacao.ativacao_52.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.ativacao_52.enviado++;
+          Ativacao52ApiFactory.add({
+            evento: v.evento,
+            descricao: v.descricao,
+            data: v.data,
+            local: v.local,
+            cliente_id: v.cliente_id,
+            usuario_id: v.usuario_id,
+            modified: convertData(new Date()),
+            created: convertData(v.created)
+          }, function (retorno) {
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              $scope.sincronizacao.ativacao_52.atualizado++;
+              $scope._sincronizacao.geral.atualizado++;
+              FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
+                if (retornoFotosCameras !== null) {
+                  angular.forEach(retornoFotosCameras, function (value, key) {
+                    FileModuloFactory.upload('ativacao52/upload.json', value.imagem, {params: {id: retorno.data.response.result.id}}, function (ret) {
+                      FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                      });
+                    });
+                  });
+                  FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
+                  });
+                }
+                Ativacao52Table.delete('id', v.id, function (exc) {
+                });
+              });
+            }
+          });
+        });
+      }
+
+    });
+
+    FormulariosCamposValoresTable.all({}, function (dados) {
+      $scope.sincronizacao.formularios_campos_valores.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.formularios_campos_valores.enviado++;
+
+          var imagem = StorageModuloFactory.local.get('foto.' + v.id, null);
+
+          FormulariosCamposValoresApiFactory.add({
+            formulario_id: v.formulario_id,
+            formularios_campo_id: v.formularios_campo_id,
+            value: v.value,
+            cliente_id: v.cliente_id,
+            usuario_id: v.usuario_id,
+            imagem: imagem,
+            status: v.status,
+            modified: convertData(new Date()),
+            created: convertData(v.created)
+          }, function (retorno) {
+            $scope.sincronizacao.formularios_campos_valores.atualizado++;
+            $scope._sincronizacao.geral.atualizado++;
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
+                if (retornoFotosCameras !== null) {
+                  angular.forEach(retornoFotosCameras, function (value, key) {
+                    FileModuloFactory.upload('formularios-campos-valores/upload.json', value.imagem, {params: {id: retorno.data.response.result.id}}, function (ret) {
+                      FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                      });
+                    });
+                  });
+                  FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
+                  });
+                }
+                FormulariosCamposValoresTable.delete('id', v.id, function (exc) {
+                });
+              });
+            }
+          });
+        });
+      }
+
+    });
+
+    ProdutosClientesTable.all({where: 'status != 2'}, function (dados) {
+      $scope.sincronizacao.produtos_clientes.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.produtos_clientes.enviado++;
+
+          ProdutosClientesApiFactory.add({
+            cliente_id: v.cliente_id,
+            usuario_id: $scope.user.id,
+            produto_id: v.produto_id,
+            status: v.status,
+            valor: v.valor,
+            modified: convertData(new Date()),
+            created: convertData(v.created)
+          }, function (retorno) {
+            $scope.sincronizacao.produtos_clientes.atualizado++;
+            $scope._sincronizacao.geral.atualizado++;
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              ProdutosClientesTable.update({status: 2}, v.id, function (exc) {
+              });
+            }
+          });
+        });
+      }
+
+    });
+
+
+    CheckinTable.all({}, function (dados) {
+      $scope.sincronizacao.checkin.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.checkin.enviado++;
+          v.data =  moment(new Date()).format('YYYY-MM-DD');
+          v.modified = convertData(new Date());
+          v.created = convertData(v.created);
+          console.log('Chekin Envio');
+          console.log(v);
+          CheckinApiFactory.add(v, function (retorno) {
+            $scope.sincronizacao.checkin.atualizado++;
+            $scope._sincronizacao.geral.atualizado++;
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              CheckinTable.delete('id',v.id, function (exc) {
+              });
+            }
+          });
+        });
+      }
+
+    });
+
+    ClientesTable.all({where: 'status = 2'}, function (dados) {
+      $scope.sincronizacao.clientes.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.clientes.enviado++;
+          var _v = v;
+          _v.id = _v.id_integracao;
+          _v.status = 1;
+          _v.modified = convertData(new Date());
+          _v.created = convertData(_v.created);
+          ClientesApiFactory.edit(v.id_integracao, _v, function (retorno) {
+            $scope.sincronizacao.clientes.atualizado++;
+            $scope._sincronizacao.geral.atualizado++;
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              ClientesTable.replace(_v, function (exc) {
+              });
+            }
+          });
+        });
+      }
+    });
+
+    $scope._atualizar = function () {
+      $timeout(function () {
+        console.log('Passou aqui.');
+        $scope._hide();
+
+      }, 5000);
+    };
+
+    $scope._atualizar();
+
+    $scope._hide = function () {
+      if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
+        //LoadModuloFactory.hide();
+        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+      } else {
+        $scope._atualizar();
+      }
+    };
+
+
+  });

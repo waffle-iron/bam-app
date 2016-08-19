@@ -1,0 +1,23 @@
+<ion-view view-title="<i class='fa fa-spinner fa-pulse fa-fw'></i> Enviar dados" view-cache="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+        <div class="text-left white padding" style="font-size: 10px;">
+            <div ng-repeat="(key, value) in sincronizacao">
+                <strong>Sincronização {{value.nome}}</strong>
+                <div class="row" style="margin: 0; padding: 0;">
+                    <div class="col text-center" style="margin: 0; padding: 0;">Enviados {{value.enviado}}</div>
+                    <div class="col text-center" style="margin: 0; padding: 0;">Atualizados: {{value.atualizado}}</div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

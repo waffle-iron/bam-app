@@ -1,0 +1,58 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-file-opener2": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-image-picker": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "br.com.bam"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "br.com.bam"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "br.com.bam"
+        }
+    }
+}

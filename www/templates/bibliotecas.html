@@ -1,0 +1,25 @@
+<ion-view view-title="Bibliotecas" view-cache="true"  hide-back-button="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+        <div class="list padding list-elements">
+            <a ng-repeat="(key, value) in bibliotecas" ng-href="#/app/bibliotecasDetalhes/{{value.id}}" class="item item-text-wrap bordas">
+                <div style="color: #000;">{{value.nome}}</div>
+                <div class="text-right" style="color: #000; font-size:10px;">{{value.created}}</div>
+            </a>
+        </div>
+        <msg></msg>
+    </ion-content>
+    <ion-infinite-scroll
+        ng-if="proximo"
+        on-infinite="loadMore()"
+        distance="90%">
+    </ion-infinite-scroll>
+
+</ion-view>

@@ -1,0 +1,67 @@
+<ion-view view-title="PDV" view-cache="false"  hide-back-button="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+
+        <div class="padding-left padding-right">
+            <div class="list list-inset" style="border-radius: 10px; margin: 6px 0; border: none;">
+                <div ng-show="show_mapa" style="width:100%; height: 250px;" class="padding text-center">
+                <div style="width:100%; height: 100%;" class="padding-left padding-right text-center" id="map_canvas"></div>
+            </div>
+            <div class="clearfix"></div>
+                <div class="item" ng-if="cliente.endereco" style="font-size: 12px; padding:15px 30px;">
+                    <span ng-if="cliente.endereco">{{cliente.endereco}}</span>
+                    <span ng-if="cliente.numero">, {{cliente.numero}}</span>
+                    <span ng-if="cliente.bairro" class="d-block">{{cliente.bairro}}</span>
+                    <span ng-if="cliente.cidade" class="d-block">{{cliente.cidade}}/{{cliente.estado}}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="padding-left padding-right">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">O que você deseja fazer hoje?</h4>
+                <ion-list>
+                    <ion-radio ng-model="tipo_formulario" value="1" ng-change="serverSideChange(1)">Rota BAM</ion-radio>
+                    <ion-radio ng-model="tipo_formulario" value="2" ng-change="serverSideChange(2)">Programa de Mercado</ion-radio>
+                    <ion-radio ng-model="tipo_formulario" value="3" ng-change="serverSideChange(3)">Ativação 52</ion-radio>
+                </ion-list>
+
+                <div class="padding item-footer">
+                    <button class="button button-block button-balanced m-0" ng-click="selecionado(cliente)">
+                        Confirmar Check-in
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="padding-left padding-right">
+            <a class="button button-block button-positive" href="#/app/cliente_relatorio/{{cliente.id}}">
+                <i class="fa fa-line-chart" aria-hidden="true"></i> Relatorio PDV
+            </a>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="button button-block button-stable" ng-click="go('app.checkin')">
+                    <i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar
+                </button>
+            </div>
+            <div class="col">
+                <a class="button button-block button-positive" href="#/app/ocorrencias/{{cliente.id}}">
+                    <i class="fa fa-bell-o" aria-hidden="true"></i> Ocorrências
+                </a>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

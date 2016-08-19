@@ -1,0 +1,75 @@
+<ion-view view-title="Rota BAM" view-cache="false"  hide-back-button="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-icon button-clear ion-android-arrow-back" ng-href="#/app/cliente/{{cliente.id}}"></a>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+        <msg></msg>
+        <div ng-if="produtos > 0">
+            <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
+        </div>
+        
+        <div class="padding" ng-repeat="(key, value) in formularios" ng-if="sequencia(value) > 0">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">{{value.nome}}</h4>
+                <h5 class="padding text-center">{{value.subtitulo}}</h5>
+                <div class="item-input" style="border:none;">
+
+                    <div ng-if="value.tipo === 'radio'" style="width: 100%">
+                        <ion-list>
+                            <ion-radio name="seq_radio_{{value.id}}"  ng-repeat="(k, v) in value.opcoes" value="" ng-model="value[k]" ng-change="atualizar(value, v, k)">{{v}}</ion-checkbox>
+                        </ion-list>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div ng-if="value.tipo === 'checkbox'" style="width: 100%">
+                        <ion-list>
+                            <ion-checkbox ng-repeat="(k, v) in value.opcoes" ng-model="value[k]" value="" ng-change="atualizar(value, v, k)">{{v}}</ion-checkbox>
+                        </ion-list>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div ng-if="value.tipo === 'select'" style="width: 100%">
+                        <div>
+                            <label class="item item-input">
+                                <select name="seq_select_{{value.id}}">
+                                    <option ng-repeat="(k, v) in value.opcoes" ng-model="valor_selecionado" value="{{v}}" ng-change="atualizar(value, valor_selecionado)">{{v}}</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div ng-if="value.tipo === 'text'" style="width: 100%">
+                        <input type="text" class="text-form" name="seq_text_{{value.id}}" ng-model="valor_selecionado" value="{{value.valor}}" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta">
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div ng-if="value.tipo === 'textarea'" style="width: 100%">
+                        <textarea ng-model="valor_selecionado" name="seq_textarea_{{value.id}}" rows="8" class="text-form" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta">{{value.valor}}</textarea>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+                <div class="padding item-footer">
+                    <button ng-if="btn_camera > 0" class="button button-block button-royal m-0" ng-click="tirarFoto(value)"><i class="fa fa-camera"></i> Tirar Foto</button>
+                    <button class="button button-block button-positive m-0" ng-click="proximo(value)">Próximo <i class="ion-android-arrow-forward"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="padding">
+
+            <a ng-show="msg" class="button button-block button-stable" ng-href="#/app/cliente/{{cliente.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Concluir</a>
+        </div>
+
+    </ion-content>
+
+</ion-view>

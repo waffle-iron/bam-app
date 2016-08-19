@@ -1,0 +1,32 @@
+<ion-view view-title="Notiifcações Detalhes" view-cache="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="padding">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">{{dados.notificaco.msg}}</h4>
+
+                <div class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                    <div>{{dados.notificaco.data_inicio}}</div>
+                </div>
+
+                <div class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                    <div>{{dados.notificaco.data_fim}}</div>
+                </div>
+
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,40 @@
+<ion-view view-title="Orientação Detalhes" view-cache="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="padding">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">{{dados.nome}}</h4>
+
+                <div class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                    <div>{{dados.descricao}}</div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="padding">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Arquivos</h4>
+
+                <ul>
+                    <li ng-repeat="(key, value) in dados.bibliotecas_arquivos" class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                        <a href="{{myLink(value)}}" target="_blank">{{myLink(value)}}</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>

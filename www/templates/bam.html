@@ -1,0 +1,66 @@
+<ion-view view-title="BAM - Relatorios Minha Base" view-cache="false"  hide-back-button="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="padding">
+            <h3 class="padding-left">Cobertura</h3>
+            <div class="row">
+                <div class="col" style="height:150px;"><pie-chart data="total_pdv" options="options_pie"></pie-chart></div>
+                <div class="col" style="height:150px;"><pie-chart data="primeira_visita" options="options_pie"></pie-chart></div>
+                <div class="col" style="height:150px;"><pie-chart data="segunda_visita" options="options_pie"></pie-chart></div>
+            </div>
+        </div>
+
+        <div class="padding">
+            <h3 class="padding-left">Histórico</h3>
+            <div class="list">
+                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap">
+                    <h2>{{v.tipo}}</h2>
+                    <p>{{v.data_final| date}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="padding">
+            <h3 class="padding-left">Rota BAM</h3>
+            <div ng-repeat="(k,v) in dados.rota_bem" class="row item item-text-wrap" style="background-color:#ccccff;">
+                <div class="col-20" style="height: 100px;">
+                    <pie-chart data="v.dados" options="v.options"></pie-chart>
+                </div>
+                <div class="col col-center">
+                    <h2>{{v.nome}}</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="padding">
+            <h3 class="padding-left">Programa de Mercado - RAC</h3>
+            <div ng-repeat="(k,v) in dados.geral_rac" class="row item item-text-wrap" style="background-color:#ccccff;">
+                <div class="col-20" style="height: 100px;">
+                    <pie-chart data="v.dados" options="rac_options"></pie-chart>
+                </div>
+                <div class="col col-center">
+                    <h2>{{v.nome}}</h2>
+                </div>
+            </div>
+            
+            <div ng-repeat="(k,v) in dados.clientes_rac" class="row item item-text-wrap" style="background-color:#ccccff;">
+                <div class="col-10">{{(k+1)}}</div>
+                <div class="col">{{v.nome}}</div>
+                <div class="col-20">{{forceInt(v.pontuacao)}}</div>
+            </div>
+        </div>
+
+        <img src="img/bam_volumes.png" style="width: 100%;" class="padding" />
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view view-title="Login" hide-nav-bar="true" view-cache="false">
+
+    <ion-nav-bar class="bar-purple">
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="text-justify white" style="padding: 10% 5% 5% 5%;">
+            <form ng-submit="logar()">
+                <div class="list login-form">
+                    <label class="item item-input input-border">
+                        <input type="text" placeholder="Login" ng-model="user.login">
+                    </label>
+                    <label class="item item-input input-border">
+                        <input type="password" placeholder="Senha" ng-model="user.senha">
+                    </label>
+                </div>
+                <button type="submit" class="button button-full btn-purple input-border">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
+                </button>
+                <div class="text-center white">
+                    Esqueci minha senha
+                </div>
+
+            </form>
+        </div>
+    </ion-content>
+
+</ion-view>
