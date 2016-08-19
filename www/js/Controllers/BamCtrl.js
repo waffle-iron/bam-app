@@ -59,7 +59,7 @@ angular.module('starter')
                         v.dados = [
                             {label: '', value: v.total, color: v.color, suffix: ""}
                         ];
-                    }, $scope.dados.rota_bem);
+                    });
 
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
@@ -71,7 +71,7 @@ angular.module('starter')
                         v.dados = [
                             {label: "", value: v.total, color: "#5CB85C", suffix: ""}
                         ];
-                    }, $scope.dados.rota_bem);
+                    });
 
 
                 }

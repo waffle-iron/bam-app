@@ -55,6 +55,7 @@ angular.module('starter')
             $scope.show_mapa = 1;
 
             $scope.loadMapa = function (cliente) {
+                console.log('Carregar Mapa');
                 if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                     var div = document.getElementById("map_canvas");
                     var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
@@ -94,6 +95,7 @@ angular.module('starter')
 
                 if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                     GoogleApiFactory.buscaEndereco(result, function (cliente) {
+                        console.log('Buscando endereço.');
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             result.latitude = cliente.latitude;
                             result.longitude = cliente.longitude;

@@ -48,6 +48,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "br.com.bammp"
+        },
+        "cordova-plugin-crosswalk-webview": {
+            "PACKAGE_NAME": "br.com.bammp"
         }
     },
     "dependent_plugins": {
