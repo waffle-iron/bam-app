@@ -13,9 +13,6 @@
         "cordova-plugin-console": {
             "PACKAGE_NAME": "br.com.bammp"
         },
-        "cordova-plugin-crosswalk-webview": {
-            "PACKAGE_NAME": "br.com.bammp"
-        },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "br.com.bammp"
         },
