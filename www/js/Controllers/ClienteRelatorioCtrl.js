@@ -30,6 +30,18 @@ angular.module('starter')
                     return 'color-grey';
                 }
             }
+            
+            $scope.isTipo = function (value) {
+                if (value.tipo === 'Rota BAM') {
+                    return 'green';
+                } else if (value.tipo === 'Programa de Mercado - RAC') {
+                    return 'yellow';
+                } else if (value.tipo === 'Ativação 52 Semanas') {
+                    return 'grey';
+                } else if (value.tipo === 'Ocorrências') {
+                    return 'red';
+                }
+            }
 
             $scope.isIcon = function (value) {
                 if (value.tipo === 'radio') {

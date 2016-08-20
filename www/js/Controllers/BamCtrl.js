@@ -8,11 +8,19 @@ angular.module('starter')
                 return ExtraModuloFactory.img(dados);
             };
 
+
+
+
             $scope.dados = {};
             $scope.total_pdv = [];
             $scope.primeira_visita = [];
             $scope.segunda_visita = [];
             $scope.options_pie = {};
+            $scope.programa_rac = [];
+            $scope.rac_options = [];
+            $scope.rac_colors = [];
+
+            $scope.pie_open = 0;
 
             UsuariosApiFactory.relatorios($scope.user.id, function (result) {
                 if (ValidacaoModuloFactory.isOk(result.status)) {
@@ -46,26 +54,41 @@ angular.module('starter')
                     $scope.segunda_visita = [
                         {label: "2ª Visita", value: segunda, color: "#5CB85C", suffix: ""}
                     ];
-                    
-                    $scope.teste = [
-                        {label: "T1", value: 15, color: "#5cb85c"},
-                        {label: "T2", value: 17, color: "#f0ad4e"},
-                        {label: "T3", value: 20, color: "#00aced"},
-                        {label: "T4", value: 15, color: "#d9534f"}
-                    ];
 
-                    var rac_options_total = 0;
+                    var _programa_rac = [];
+                    _programa_rac.push(['teste a', 'teste b']);
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
-                        rac_options_total += parseInt(v.total);
-                        $scope.rac_options = {
-                            thickness: 7,
-                            mode: "gauge",
-                            total: rac_options_total
-                        };
-                        v.dados = [
-                            {label: '', value: v.total, color: v.color, suffix: ""}
+                        _programa_rac.push([v.nome, parseInt(v.total)]);
+                    });
+
+                    google.charts.load("current", {packages: ["corechart"]});
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                        var d = [
+                            ['Task', 'Hours per Day'],
+                            ['Work', 11],
+                            ['Eat', 2],
+                            ['Commute', 2],
+                            ['Watch TV', 2],
+                            ['Sleep', 7]
                         ];
-                    }, $scope.dados.rota_bem);
+
+                        var data = google.visualization.arrayToDataTable(_programa_rac);
+
+                        console.log(d);
+
+                        var options = {
+                            title: '',
+                            pieHole: 0.4,
+                            legend: 'none'
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                        chart.draw(data, options);
+                    }
+
+                    console.log($scope.programa_rac);
+                    $scope.pie_open = 1;
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
                         v.options = {

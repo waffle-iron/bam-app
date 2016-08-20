@@ -67,28 +67,15 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
-                <!-- <div ng-repeat="(key,v) in dados.geral_rac">
-                    <div class="item item-text-wrap row">
-                        <div class="col-25" style="height: 100px;">
-                            <pie-chart data="v.dados" options="rac_options"></pie-chart>
-                        </div>
-                        <div class="col padding-top padding-bottom">
-                            <h3>{{v.nome}}</h3>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="item item-text-wrap row">
-                    <div class="col text-center" style="height:100px;">
-                        <pie-chart class="teste_graph" data="teste" options="options_pie"></pie-chart>
-                    </div>
-                    <div class="col text-left" style="height:100px;">
-                        <div class="padding">
-                            <i class="ion-record color-green"></i> Buddies<br>
-                            <i class="ion-record color-yellow"></i> Connoisseurs<br>
-                            <i class="ion-record color-blue"></i> Especialistas
+                <div class="row">
+                    <div class="col">
+                        <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap">
+                            <h3><i class="ion-record color-green" style="color:{{v.color}};"></i> {{v.nome}}</h3>
                         </div>
                     </div>
                 </div>
+                
+                <div id="donutchart" style="width: 100%; height: 250px;"></div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
                     <div class="col-10 text-center">RKG</div>
