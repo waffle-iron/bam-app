@@ -75,12 +75,13 @@ angular.module('starter')
 
                         var data = google.visualization.arrayToDataTable(_programa_rac);
 
-                        console.log(d);
-
                         var options = {
                             title: '',
                             pieHole: 0.4,
-                            legend: 'none'
+                            legend: 'none',
+                            chartArea: {left: 0, top: 0, width: "100%", height: "100%"},
+                            backgroundColor: {stroke: "#5A5A5A", strokeWidth: 5, fill: "#5A5A5A"},
+                            pieSliceBorderColor: "#5A5A5A"
                         };
 
                         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
