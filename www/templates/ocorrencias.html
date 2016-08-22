@@ -1,28 +1,27 @@
 <ion-view view-title="Ocorrências" view-cache="false"  hide-back-button="false">
 
-  <ion-nav-bar class="bar-stable bar-purple">
-    <ion-nav-buttons side="left">
-      <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
-    </ion-nav-buttons>
-  </ion-nav-bar>
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left"></button>
+        </ion-nav-buttons>
+    </ion-nav-bar>
 
-
-  <ion-content class="fundo">
-    <header-logo-mini></header-logo-mini>
-    <div class="list padding">
-      <div ng-repeat="(key, value) in ocorrencias" class="item item-text-wrap {{color(key)}} bordas">
-        <a>
-          <div style="color: #000;">{{value.descricao}}</div>
-          <div class="text-right" style="color: #000; font-size:10px;">{{value.created}}</div>
-        </a>
-      </div>
-    </div>
-    <msg></msg>
-  </ion-content>
-  <ion-infinite-scroll
-  ng-if="proximo"
-  on-infinite="loadMore()"
-  distance="90%">
-</ion-infinite-scroll>
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+        <div class="list padding">
+            <div ng-repeat="(key, value) in ocorrencias" class="item item-text-wrap m-b-10 m-t-10 bordas">
+                <a>
+                    <div style="color: #000;">{{value.descricao}}</div>
+                    <div class="text-right" style="color: #000; font-size:10px;">{{value.created}}</div>
+                </a>
+            </div>
+        </div>
+        <msg></msg>
+    </ion-content>
+    <ion-infinite-scroll
+        ng-if="proximo"
+        on-infinite="loadMore()"
+        distance="90%">
+    </ion-infinite-scroll>
 
 </ion-view>

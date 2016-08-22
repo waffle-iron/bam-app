@@ -12003,7 +12003,7 @@ a.button {
   clip: auto; }
 
 .fundo {
-  background: #53314f; }
+  background: #432461; }
 
 .text-justify {
   text-align: justify; }
@@ -12400,3 +12400,21 @@ progress::-webkit-progress-value {
 
 .teste_graph text {
   display: none !important; }
+
+.backdrop {
+  background-color: rgba(67, 36, 97, 0.5); }
+
+.loading-container .loading {
+  background-color: rgba(67, 36, 97, 0.9); }
+
+.m-b-5 {
+  margin-bottom: 5px; }
+
+.m-t-5 {
+  margin-top: 5px; }
+
+.m-b-10 {
+  margin-bottom: 10px; }
+
+.m-t-10 {
+  margin-top: 10px; }

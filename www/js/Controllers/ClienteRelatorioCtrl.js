@@ -11,10 +11,23 @@ angular.module('starter')
             };
 
             $scope.dados = {};
+            $scope.pie_open = 0;
+            $scope.options_pie = {};
 
             ClientesApiFactory.relatorios($stateParams.id, function (result) {
                 if (ValidacaoModuloFactory.isOk(result.status)) {
                     $scope.dados = result.data.response.result;
+
+                    $scope.options_pie = {
+                        thickness: 10,
+                        mode: "gauge",
+                        total: 1000
+                    };
+                    
+                    $scope.total_pdv = [
+                        {label: "Média", value: calcMedia($scope.dados.certificacoes), color: "green", suffix: "pt."}
+                    ];
+
                 }
                 LoadModuloFactory.hide();
             });
@@ -57,8 +70,7 @@ angular.module('starter')
                 return parseInt(value);
             }
 
-
-            $scope.calcMedia = function (value) {
+            var calcMedia = function (value) {
                 var total = 0;
                 var linha = 0;
                 angular.forEach(value, function (v, k) {
@@ -66,7 +78,7 @@ angular.module('starter')
                     linha++;
                 });
                 var t = (total / linha); 
-                return (t || 0)+'pt.';
+                return (t || 0);
             }
 
         });

@@ -67,15 +67,11 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
-                <div class="row">
-                    <div class="col">
-                        <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap">
-                            <h3><i class="ion-record color-green" style="color:{{v.color}};"></i> {{v.nome}}</h3>
-                        </div>
-                    </div>
+                <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap">
+                    <h3><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h3>
                 </div>
-                
-                <div id="donutchart" style="width: 100%; height: 250px;"></div>
+
+                <div id="donutchart" class="item item-text-wrap" style="width: 100%; height: 350px;"></div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
                     <div class="col-10 text-center">RKG</div>

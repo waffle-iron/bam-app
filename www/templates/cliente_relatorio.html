@@ -10,7 +10,7 @@
         <header-logo-mini></header-logo-mini>
 
         <div class="padding">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <!--<div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key, value) in dados.respostas">
                     <div class="item item-text-wrap row">
@@ -25,17 +25,19 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
+            </div>-->
 
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
                 <div class="item item-text-wrap">
                     <div class="text-center">
-                        <div style="font-size: 38px; border-radius: 50%; height: 150px; line-height: 122px; border: 10px solid green; margin: 10px auto; width: 150px; text-align: center;">
-                            {{calcMedia(dados.certificacoes)}}
+                        <div style="height:200px;">
+                            <pie-chart data="total_pdv" options="options_pie"></pie-chart>
                         </div>
+                        <!--<div style="font-size: 38px; border-radius: 50%; height: 150px; line-height: 122px; border: 10px solid green; margin: 10px auto; width: 150px; text-align: center;">
+                            {{calcMedia(dados.certificacoes)}}
+                        </div>-->
                         <h1 class="color-black padding">
                             Certificação
                             <small class="d-block">Certificado: 750pt.</small>
