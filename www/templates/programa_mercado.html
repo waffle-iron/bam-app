@@ -1,12 +1,12 @@
 <ion-view view-title="Programa de Mercado" view-cache="false"  hide-back-button="false">
 
     <ion-nav-bar class="bar-stable bar-purple">
-      <ion-nav-buttons side="right">
-          <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
-      </ion-nav-buttons>
-      <ion-nav-buttons side="right">
-          <a class="button button-icon button-clear ion-android-arrow-back" ng-href="#/app/cliente/{{cliente.id}}"></a>
-      </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-buttons side="right">
+            <a class="button button-icon button-clear ion-android-arrow-back" ng-href="#/app/cliente/{{cliente.id}}"></a>
+        </ion-nav-buttons>
     </ion-nav-bar>
 
     <ion-content class="fundo">
@@ -19,7 +19,7 @@
         <div class="padding-left padding-right" ng-repeat="(key, value) in formularios" ng-if="sequencia(value) > 0">
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">{{value.nome}}</h4>
-                <h5 class="padding text-center">{{value.subtitulo}}</h5>
+                <h5 ng-if="value.subtitulo" class="padding text-center">{{value.subtitulo}}</h5>
                 <div class="item-input" style="border:none;">
 
                     <div ng-if="value.tipo === 'radio'" style="width: 100%">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="padding item-footer">
                     <button ng-if="btn_camera > 0" class="button button-block button-royal m-0" ng-click="tirarFoto(value)">Tirar Foto</button>
-                    <button class="button button-block button-positive m-0" ng-click="proximo(value)">Próximo</button>
+                    <button class="button button-block button-positive m-0" ng-click="proximo(value)">Próximo <i class="ion-arrow-right-c"></i></button>
                 </div>
             </div>
         </div>

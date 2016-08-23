@@ -8,23 +8,30 @@
         </ion-nav-back-button>
     </ion-nav-bar>
 
-
     <ion-content class="fundo">
         <header-logo></header-logo>
 
         <div class="padding">
-
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura</h4>
-                <div class="item item-text-wrap p-0">
-                    <div class="w-33 d-iblock h-150">
+                <div class="item item-text-wrap pl-0 pr-0 cobertura-graph">
+                    <div class="wp-32 d-iblock h-100">
                         <pie-chart data="total_pdv" options="options_pie"></pie-chart>
+                        <span class="text-center d-block color-grey">
+                            Total PDVs
+                        </span>
                     </div>
-                    <div class="w-33 d-iblock h-150">
+                    <div class="wp-32 d-iblock h-100">
                         <pie-chart class="primeira_visita" data="primeira_visita" options="options_pie"></pie-chart>
+                        <span class="text-center d-block color-yellow">
+                            1ª Visita
+                        </span>
                     </div>
-                    <div class="w-33 d-iblock h-150">
+                    <div class="wp-32 d-iblock h-100">
                         <pie-chart data="segunda_visita" options="options_pie"></pie-chart>
+                        <span class="text-center d-block color-green">
+                            2ª Visita
+                        </span>
                     </div>
                 </div>
             </div>
@@ -33,15 +40,16 @@
                 <h4 class="padding text-center">Histórico</h4>
 
                 <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
-                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t w-20p">
+                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
                         &nbsp;
                     </div>
-                    <div class="timeline-details padding-top padding-bottom d-iblock va-t w-78p">
-                        <div class="d-iblock va-t w-78p">
+                    <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
+                        <div class="d-iblock va-t wp-78">
                             <strong class="d-block">{{v.tipo}}</strong>
+                            <span class="d-block">{{v.nome}}</span>
                             <small class="d-block">{{v.data_final| date}}</small>
                         </div>
-                        <div class="text-center d-iblock va-t w-20p">
+                        <div class="text-center d-iblock va-t wp-20">
                             <i class="ion-chevron-right color-grey"></i>
                         </div>
                     </div>
@@ -55,11 +63,11 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key,v) in dados.rota_bem">
-                    <div class="item item-text-wrap row">
-                        <div class="col-25" style="height: 100px;">
+                    <div class="item item-text-wrap row rota-graph">
+                        <div class="wp-25 h-100">
                             <pie-chart data="v.dados" options="v.options"></pie-chart>
                         </div>
-                        <div class="col padding-top padding-bottom">
+                        <div class="wp-75 padding-top padding-bottom">
                             <h3>{{v.nome}}</h3>
                         </div>
                     </div>
@@ -73,7 +81,7 @@
                     <h3><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h3>
                 </div>
 
-                <div id="donutchart" class="item item-text-wrap h-250 w-100p"></div>
+                <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
                     <div class="col-10 text-center">RKG</div>
