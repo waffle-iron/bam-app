@@ -12402,7 +12402,7 @@ progress::-webkit-progress-value {
   display: none !important; }
 
 .backdrop {
-  background-color: rgba(67, 36, 97, 0.5); }
+  background-color: rgba(0, 0, 0, 0.5); }
 
 .loading-container .loading {
   background-color: rgba(67, 36, 97, 0.9); }
@@ -12418,3 +12418,18 @@ progress::-webkit-progress-value {
 
 .m-t-10 {
   margin-top: 10px; }
+
+.m-10 {
+  margin: 10px; }
+
+progress {
+  border: 1px solid rgba(0, 0, 0, 0.3); }
+
+progress::-webkit-progress-bar {
+  background: #eee; }
+
+progress::-webkit-progress-value {
+  background: rgba(67, 36, 97, 0.9); }
+
+progress::-moz-progress-bar {
+  background: #eee; }

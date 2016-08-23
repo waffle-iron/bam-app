@@ -317,7 +317,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     border-top:10px solid red;
 }
 .vol-left{
-    
+
 }
 .vol-right{
     font-size:12px;
@@ -333,7 +333,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     content:"";
     position:absolute;
     left:50%;
-    
+
 }
 .timeline:before{
     width:2px;
@@ -370,7 +370,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     font-size:11px;
 }
 .list-striped .item:nth-child(odd) {
-   background-color: #f1f1f1;
+    background-color: #f1f1f1;
 }
 .btn-vermais{
     width:100%;
@@ -381,7 +381,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     padding:0;
 }
 .arc:last-child{
-  fill: #eee!important;
+    fill: #eee!important;
 }
 .ranking-head{
     font-size:12px;
@@ -394,7 +394,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     display:none!important;
 }
 .backdrop {
-    background-color:rgba(67,36,97,0.5);
+    background-color:rgba(0,0,0,0.5);
 }
 .loading-container .loading{
     background-color:rgba(67,36,97,0.9);
@@ -410,4 +410,19 @@ progress::-webkit-progress-value { background: #0063a6; }
 }
 .m-t-10{
     margin-top:10px;
+}
+.m-10{
+    margin:10px;
+}
+progress {
+    border:1px solid rgba(0,0,0,.3)
+}
+progress::-webkit-progress-bar {
+    background:#eee;
+}
+progress::-webkit-progress-value {
+    background:rgba(67,36,97,0.9);
+} 
+progress::-moz-progress-bar {
+    background:#eee;
 }

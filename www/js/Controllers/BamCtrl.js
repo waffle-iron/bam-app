@@ -8,9 +8,6 @@ angular.module('starter')
                 return ExtraModuloFactory.img(dados);
             };
 
-
-
-
             $scope.dados = {};
             $scope.total_pdv = [];
             $scope.primeira_visita = [];
@@ -79,9 +76,18 @@ angular.module('starter')
                             title: '',
                             pieHole: 0.4,
                             legend: 'none',
-                            chartArea: {left: 0, top: 0, width: "100%", height: "100%"},
-                            backgroundColor: {stroke: "#5A5A5A", strokeWidth: 5, fill: "#5A5A5A"},
-                            pieSliceBorderColor: "#5A5A5A"
+                            chartArea: {
+                                left:0,
+                                top: 0,
+                                width: "100%",
+                                height: "100%"
+                            },
+                            backgroundColor: {
+                                stroke: "#fff",
+                                strokeWidth: 0,
+                                fill: "#fff"
+                            },
+                            pieSliceBorderColor: "#fff"
                         };
 
                         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
