@@ -12447,15 +12447,6 @@ progress::-moz-progress-bar {
 .va-t {
   vertical-align: top; }
 
-.w-20p {
-  width: 20%; }
-
-.w-80p {
-  width: 80%; }
-
-.w-78p {
-  width: 78%; }
-
 .header-block {
   border-radius: 10px;
   margin: 6px 0;
@@ -12465,5 +12456,302 @@ progress::-moz-progress-bar {
 .h-250 {
   height: 250px; }
 
-.w-100p {
+.wp-1 {
+  width: 1%; }
+
+.wp-2 {
+  width: 2%; }
+
+.wp-3 {
+  width: 3%; }
+
+.wp-4 {
+  width: 4%; }
+
+.wp-5 {
+  width: 5%; }
+
+.wp-6 {
+  width: 6%; }
+
+.wp-7 {
+  width: 7%; }
+
+.wp-8 {
+  width: 8%; }
+
+.wp-9 {
+  width: 9%; }
+
+.wp-10 {
+  width: 10%; }
+
+.wp-11 {
+  width: 11%; }
+
+.wp-12 {
+  width: 12%; }
+
+.wp-13 {
+  width: 13%; }
+
+.wp-14 {
+  width: 14%; }
+
+.wp-15 {
+  width: 15%; }
+
+.wp-16 {
+  width: 16%; }
+
+.wp-17 {
+  width: 17%; }
+
+.wp-18 {
+  width: 18%; }
+
+.wp-19 {
+  width: 19%; }
+
+.wp-20 {
+  width: 20%; }
+
+.wp-21 {
+  width: 21%; }
+
+.wp-22 {
+  width: 22%; }
+
+.wp-23 {
+  width: 23%; }
+
+.wp-24 {
+  width: 24%; }
+
+.wp-25 {
+  width: 25%; }
+
+.wp-26 {
+  width: 26%; }
+
+.wp-27 {
+  width: 27%; }
+
+.wp-28 {
+  width: 28%; }
+
+.wp-29 {
+  width: 29%; }
+
+.wp-30 {
+  width: 30%; }
+
+.wp-31 {
+  width: 31%; }
+
+.wp-32 {
+  width: 32%; }
+
+.wp-33 {
+  width: 33%; }
+
+.wp-34 {
+  width: 34%; }
+
+.wp-35 {
+  width: 35%; }
+
+.wp-36 {
+  width: 36%; }
+
+.wp-37 {
+  width: 37%; }
+
+.wp-38 {
+  width: 38%; }
+
+.wp-39 {
+  width: 39%; }
+
+.wp-40 {
+  width: 40%; }
+
+.wp-41 {
+  width: 41%; }
+
+.wp-42 {
+  width: 42%; }
+
+.wp-43 {
+  width: 43%; }
+
+.wp-44 {
+  width: 44%; }
+
+.wp-45 {
+  width: 45%; }
+
+.wp-46 {
+  width: 46%; }
+
+.wp-47 {
+  width: 47%; }
+
+.wp-48 {
+  width: 48%; }
+
+.wp-49 {
+  width: 49%; }
+
+.wp-50 {
+  width: 50%; }
+
+.wp-51 {
+  width: 51%; }
+
+.wp-52 {
+  width: 52%; }
+
+.wp-53 {
+  width: 53%; }
+
+.wp-54 {
+  width: 54%; }
+
+.wp-55 {
+  width: 55%; }
+
+.wp-56 {
+  width: 56%; }
+
+.wp-57 {
+  width: 57%; }
+
+.wp-58 {
+  width: 58%; }
+
+.wp-59 {
+  width: 59%; }
+
+.wp-60 {
+  width: 60%; }
+
+.wp-61 {
+  width: 61%; }
+
+.wp-62 {
+  width: 62%; }
+
+.wp-63 {
+  width: 63%; }
+
+.wp-64 {
+  width: 64%; }
+
+.wp-65 {
+  width: 65%; }
+
+.wp-66 {
+  width: 66%; }
+
+.wp-67 {
+  width: 67%; }
+
+.wp-68 {
+  width: 68%; }
+
+.wp-69 {
+  width: 69%; }
+
+.wp-70 {
+  width: 70%; }
+
+.wp-71 {
+  width: 71%; }
+
+.wp-72 {
+  width: 72%; }
+
+.wp-73 {
+  width: 73%; }
+
+.wp-74 {
+  width: 74%; }
+
+.wp-75 {
+  width: 75%; }
+
+.wp-76 {
+  width: 76%; }
+
+.wp-77 {
+  width: 77%; }
+
+.wp-78 {
+  width: 78%; }
+
+.wp-79 {
+  width: 79%; }
+
+.wp-80 {
+  width: 80%; }
+
+.wp-81 {
+  width: 81%; }
+
+.wp-82 {
+  width: 82%; }
+
+.wp-83 {
+  width: 83%; }
+
+.wp-84 {
+  width: 84%; }
+
+.wp-85 {
+  width: 85%; }
+
+.wp-86 {
+  width: 86%; }
+
+.wp-87 {
+  width: 87%; }
+
+.wp-88 {
+  width: 88%; }
+
+.wp-89 {
+  width: 89%; }
+
+.wp-90 {
+  width: 90%; }
+
+.wp-91 {
+  width: 91%; }
+
+.wp-92 {
+  width: 92%; }
+
+.wp-93 {
+  width: 93%; }
+
+.wp-94 {
+  width: 94%; }
+
+.wp-95 {
+  width: 95%; }
+
+.wp-96 {
+  width: 96%; }
+
+.wp-97 {
+  width: 97%; }
+
+.wp-98 {
+  width: 98%; }
+
+.wp-99 {
+  width: 99%; }
+
+.wp-100 {
   width: 100%; }

@@ -439,15 +439,6 @@ progress::-moz-progress-bar {
 .va-t{
     vertical-align: top;
 }
-.w-20p{
-    width:20%;
-}
-.w-80p{
-    width:80%;
-}
-.w-78p{
-    width:78%;
-}
 .header-block{
     border-radius: 10px;
     margin: 6px 0;
@@ -457,6 +448,7 @@ progress::-moz-progress-bar {
 .h-250{
     height:250px
 }
-.w-100p{
-    width:100%;
+
+@for $i from 1 through 100 {
+  .wp-#{$i} { width: 0% + $i; }
 }
