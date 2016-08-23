@@ -132,10 +132,6 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.img = function (dados) {
-                    return ExtraModuloFactory.img(dados);
-                };
-
                 $scope.concluir = function () {
                     ValidacaoModuloFactory.alert('Rota BAM finalizada com sucesso.');
                     $timeout(function () {

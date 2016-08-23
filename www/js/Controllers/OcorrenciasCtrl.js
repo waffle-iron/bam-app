@@ -12,6 +12,7 @@ angular.module('starter')
     };
     $scope.proximo = true;
     ClientesTable.get('id',$stateParams.id, function(result){
+      result.url = ExtraModuloFactory.img(result);
       $scope.cliente = result;
     });
 
@@ -36,10 +37,6 @@ angular.module('starter')
 
     $scope.color = function (key) {
       return ExtraModuloFactory.color(key);
-    };
-
-    $scope.img = function (dados) {
-      return ExtraModuloFactory.img(dados);
     };
 
     $scope.loadMore = function () {

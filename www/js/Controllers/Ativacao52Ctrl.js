@@ -15,7 +15,7 @@ angular.module('starter')
         local: null
       }
 
-        
+
 
       $scope.btn_imagem = 0;
       $scope.btn_ok = {
@@ -23,10 +23,6 @@ angular.module('starter')
         ok_2: '',
         ok_3: '',
       }
-
-      $scope.img = function (dados) {
-        return ExtraModuloFactory.img(dados);
-      };
 
       $scope.salvar = function () {
         LoadModuloFactory.show();
@@ -62,7 +58,7 @@ angular.module('starter')
                 $scope.btn_imagem = 1;
                 LoadModuloFactory.hide();
                 ExtraModuloFactory.console.success($scope, 'Todas as perguntas já foram respondidas.');
-                
+
               });
             }
 

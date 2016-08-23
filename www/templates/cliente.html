@@ -1,4 +1,4 @@
-<ion-view view-title="PDV" view-cache="false">
+<ion-view view-title="PDV - {{cliente.nome}}" view-cache="false">
 
     <ion-nav-bar class="bar-stable bar-purple">
         <ion-nav-buttons side="right">
@@ -51,19 +51,11 @@
             <a class="button button-block button-positive" href="#/app/cliente_relatorio/{{cliente.id}}">
                 <i class="fa fa-line-chart" aria-hidden="true"></i> Relatorio PDV
             </a>
+            <a class="button button-block button-positive" href="#/app/ocorrencias/{{cliente.id}}">
+                <i class="fa fa-bell-o" aria-hidden="true"></i> Ocorrências
+            </a>
         </div>
-        <div class="row">
-            <div class="col">
-                <button class="button button-block button-stable" ng-click="go('app.checkin')">
-                    <i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar
-                </button>
-            </div>
-            <div class="col">
-                <a class="button button-block button-positive" href="#/app/ocorrencias/{{cliente.id}}">
-                    <i class="fa fa-bell-o" aria-hidden="true"></i> Ocorrências
-                </a>
-            </div>
-        </div>
+
     </ion-content>
 
 </ion-view>

@@ -7,6 +7,7 @@ angular.module('starter')
 
             $scope.selecionado = function (cliente) {
                 if (ValidacaoModuloFactory.isNotNull($scope.tipo_formulario)) {
+                    cliente.url = ExtraModuloFactory.img(cliente);
                     LoadModuloFactory.show();
                     StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
                     StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, cliente);
@@ -43,10 +44,6 @@ angular.module('starter')
                 }
             };
 
-            $scope.img = function (dados) {
-                return ExtraModuloFactory.img(dados);
-            };
-
             $scope.serverSideChange = function (val) {
                 $scope.tipo_formulario = val;
             }
@@ -80,7 +77,6 @@ angular.module('starter')
                 }
             }
 
-
             ClientesTable.first(
                     {
                         from: 'c.*, cd.cidade, e.estado',
@@ -89,6 +85,7 @@ angular.module('starter')
                         where: 'c.id =' + $stateParams.id
                     }, function (result) {
                 $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
                 StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, result);
                 LoadModuloFactory.hide();

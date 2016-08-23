@@ -5,10 +5,7 @@ angular.module('starter')
 
             LoadModuloFactory.show();
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
-
-            $scope.img = function (dados) {
-                return ExtraModuloFactory.img(dados);
-            };
+            $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
 
             $scope.dados = {};
             $scope.pie_open = 0;
@@ -23,7 +20,7 @@ angular.module('starter')
                         mode: "gauge",
                         total: 1000
                     };
-                    
+
                     $scope.total_pdv = [
                         {label: "Média", value: calcMedia($scope.dados.certificacoes), color: "green", suffix: "pt."}
                     ];
@@ -43,7 +40,7 @@ angular.module('starter')
                     return 'color-grey';
                 }
             }
-            
+
             $scope.isTipo = function (value) {
                 if (value.tipo === 'Rota BAM') {
                     return 'green';
@@ -77,7 +74,7 @@ angular.module('starter')
                     total += parseInt(v.total);
                     linha++;
                 });
-                var t = (total / linha); 
+                var t = (total / linha);
                 return (t || 0);
             }
 

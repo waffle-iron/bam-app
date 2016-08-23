@@ -99,10 +99,6 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.img = function (dados) {
-                    return ExtraModuloFactory.img(dados);
-                };
-
                 $scope.sequencia = function (dados) {
                     if ($scope.perguntas.atual >= $scope.perguntas.total) {
                         NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cervejas);

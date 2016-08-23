@@ -100,10 +100,6 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.img = function (dados) {
-                    return ExtraModuloFactory.img(dados);
-                };
-
                 $scope.sequencia = function (dados) {
                     if ($scope.perguntas.atual >= $scope.perguntas.total) {
                         ExtraModuloFactory.success($scope, 'Todas as perguntas já foram respondidas.');

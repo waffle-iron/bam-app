@@ -33,10 +33,6 @@ angular.module('starter')
       return ExtraModuloFactory.color(key);
     };
 
-    $scope.img = function (dados) {
-      return ExtraModuloFactory.img(dados);
-    };
-
     $scope.loadMore = function () {
       if ($scope.proximo) {
         LoadModuloFactory.show();
@@ -57,7 +53,7 @@ angular.module('starter')
       $scope.dados = result.data.response.result;
       LoadModuloFactory.hide();
     });
-    
+
     $scope.myLink=function(dados){
         if (!dados.url){
             return dados.link;

@@ -36,10 +36,6 @@ angular.module('starter')
       return ExtraModuloFactory.color(key);
     };
 
-    $scope.img = function (dados) {
-      return ExtraModuloFactory.img(dados);
-    };
-
     $scope.loadMore = function () {
       if ($scope.proximo) {
         LoadModuloFactory.show();

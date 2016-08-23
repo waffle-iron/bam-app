@@ -4,10 +4,6 @@ angular.module('starter')
             LoadModuloFactory.show();
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
-            $scope.img = function (dados) {
-                return ExtraModuloFactory.img(dados);
-            };
-
             $scope.dados = {};
             $scope.total_pdv = [];
             $scope.primeira_visita = [];
@@ -149,7 +145,6 @@ angular.module('starter')
             $scope.forceInt = function (value) {
                 return parseInt(value);
             }
-
 
             $scope.calcMedia = function (value) {
                 var total = 0;

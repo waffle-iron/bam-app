@@ -1,9 +1,11 @@
-<ion-view view-title="BAM - Relatórios Minha Base" view-cache="false"  hide-back-button="true">
+<ion-view view-title="BAM - Relatorios Minha Base" view-cache="true">
 
     <ion-nav-bar class="bar-stable bar-purple">
         <ion-nav-buttons side="right">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
         </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
     </ion-nav-bar>
 
 
@@ -14,14 +16,14 @@
 
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura</h4>
-                <div class="item item-text-wrap row">
-                    <div class="col" style="height:150px;">
+                <div class="item item-text-wrap">
+                    <div style="height:150px;width: 32%;display: inline-block;">
                         <pie-chart data="total_pdv" options="options_pie"></pie-chart>
                     </div>
-                    <div class="col" style="height:150px;">
-                        <pie-chart data="primeira_visita" options="options_pie"></pie-chart>
+                    <div style="height:150px;width: 32%;display: inline-block;">
+                        <pie-chart class="primeira_visita" data="primeira_visita" options="options_pie"></pie-chart>
                     </div>
-                    <div class="col" style="height:150px;">
+                    <div style="height:150px;width: 32%;display: inline-block;">
                         <pie-chart data="segunda_visita" options="options_pie"></pie-chart>
                     </div>
                 </div>
