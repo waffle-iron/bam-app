@@ -16,32 +16,32 @@
 
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura</h4>
-                <div class="item item-text-wrap">
-                    <div style="height:150px;width: 32%;display: inline-block;">
+                <div class="item item-text-wrap p-0">
+                    <div class="w-33 d-iblock h-150">
                         <pie-chart data="total_pdv" options="options_pie"></pie-chart>
                     </div>
-                    <div style="height:150px;width: 32%;display: inline-block;">
+                    <div class="w-33 d-iblock h-150">
                         <pie-chart class="primeira_visita" data="primeira_visita" options="options_pie"></pie-chart>
                     </div>
-                    <div style="height:150px;width: 32%;display: inline-block;">
+                    <div class="w-33 d-iblock h-150">
                         <pie-chart data="segunda_visita" options="options_pie"></pie-chart>
                     </div>
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico</h4>
 
                 <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
-                    <div class="timeline timeline-{{isTipo(v)}}" style="width:20%;display:inline-block;vertical-align:top">
+                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t w-20p">
                         &nbsp;
                     </div>
-                    <div class="timeline-details padding-top padding-bottom" style="width:78%;display:inline-block;vertical-align:top">
-                        <div style="width:78%;display:inline-block;vertical-align:top">
+                    <div class="timeline-details padding-top padding-bottom d-iblock va-t w-78p">
+                        <div class="d-iblock va-t w-78p">
                             <strong class="d-block">{{v.tipo}}</strong>
                             <small class="d-block">{{v.data_final| date}}</small>
                         </div>
-                        <div class="text-center" style="width:19%;display:inline-block;vertical-align:top">
+                        <div class="text-center d-iblock va-t w-20p">
                             <i class="ion-chevron-right color-grey"></i>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key,v) in dados.rota_bem">
                     <div class="item item-text-wrap row">
@@ -66,14 +66,14 @@
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
                 <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap">
                     <h3><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h3>
                 </div>
 
-                <div id="donutchart" class="item item-text-wrap" style="width: 100%; height: 350px;"></div>
+                <div id="donutchart" class="item item-text-wrap h-250 w-100p"></div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
                     <div class="col-10 text-center">RKG</div>
@@ -94,7 +94,7 @@
 
         </div>
 
-        <!--<div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+        <!--<div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Volume BAM</h4>
 
                 <div class="item item-text-wrap row m-0">
