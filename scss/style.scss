@@ -328,6 +328,7 @@ progress::-webkit-progress-value { background: #0063a6; }
 }
 .timeline{
     position:relative;
+    height:50px
 }
 .timeline:before,.timeline:after{
     content:"";

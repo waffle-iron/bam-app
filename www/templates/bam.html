@@ -32,16 +32,16 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
-                    <div class="col-20 timeline timeline-{{isTipo(v)}}">
-
+                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                    <div class="timeline timeline-{{isTipo(v)}}" style="width:20%;display:inline-block;vertical-align:top">
+                        &nbsp;
                     </div>
-                    <div class="col-80 padding-bottom padding-top timeline-details row">
-                        <div class="col-80">
+                    <div class="timeline-details padding-top padding-bottom" style="width:78%;display:inline-block;vertical-align:top">
+                        <div style="width:78%;display:inline-block;vertical-align:top">
                             <strong class="d-block">{{v.tipo}}</strong>
                             <small class="d-block">{{v.data_final| date}}</small>
                         </div>
-                        <div class="col-20 text-center padding">
+                        <div class="text-center" style="width:19%;display:inline-block;vertical-align:top">
                             <i class="ion-chevron-right color-grey"></i>
                         </div>
                     </div>

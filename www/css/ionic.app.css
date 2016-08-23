@@ -12336,7 +12336,8 @@ progress::-webkit-progress-value {
   background: transparent; }
 
 .timeline {
-  position: relative; }
+  position: relative;
+  height: 50px; }
 
 .timeline:before, .timeline:after {
   content: "";
