@@ -43,12 +43,20 @@ angular.module('starter')
                     TableModuloFactory.all('ocorrencias', options, retorno);
                 };
 
+                services.insert = function (options, retorno) {
+                    TableModuloFactory.insert('ocorrencias', options, retorno);
+                };
+
                 services.replace = function (options, retorno) {
                     TableModuloFactory.replace('ocorrencias', options, retorno);
                 };
 
                 services.first = function (options, retorno) {
                     TableModuloFactory.first('ocorrencias', options, retorno);
+                };
+
+                services.delete = function (key, val, retorno) {
+                  TableModuloFactory.delete('ocorrencias', key, val, retorno);
                 };
 
                 services.get = function (key, val, retorno) {

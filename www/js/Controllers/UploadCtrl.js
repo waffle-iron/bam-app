@@ -1,7 +1,10 @@
 angular.module('starter')
 
-.controller('UploadCtrl', function ($timeout, moment, FileModuloFactory, FormulariosCamposValoresApiFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, StorageModuloFactory,
-  FormulariosCamposValoresTable, CheckinTable, ProdutosClientesApiFactory, ProdutosClientesTable, NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable, ClientesApiFactory, CheckinApiFactory) {
+.controller('UploadCtrl', function ($timeout, moment, FileModuloFactory, FormulariosCamposValoresApiFactory,
+  $scope, LoadModuloFactory, ValidacaoModuloFactory, StorageModuloFactory,
+  FormulariosCamposValoresTable, CheckinTable, ProdutosClientesApiFactory, ProdutosClientesTable,
+  NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable,
+  ClientesApiFactory, CheckinApiFactory, OcorrenciasTable, OcorrenciasApiFactory) {
 
     // LoadModuloFactory.show();
     $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
@@ -60,6 +63,35 @@ angular.module('starter')
       }
     }
 
+    OcorrenciasTable.all({}, function (dados) {
+      $scope.sincronizacao.ocorrencias.start = true;
+      if (dados !== null) {
+        angular.forEach(dados, function (v, k) {
+          $scope._sincronizacao.geral.enviado++;
+          $scope.sincronizacao.ocorrencias.enviado++;
+          OcorrenciasApiFactory.add(
+            {
+                cliente_id: v.cliente_id,
+                usuario_id: v.usuario_id,
+                descricao: v.descricao,
+                id_pai: 0,
+                tipo: null,
+                tabela: null,
+                id_referencia: null,
+                modified: convertData(v.modified),
+                created: convertData(v.created)
+            }, function (retorno) {
+            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+              $scope.sincronizacao.ocorrencias.atualizado++;
+              $scope._sincronizacao.geral.atualizado++;
+              OcorrenciasTable.delete('id', v.id, function (exc) {
+              });
+            }
+          });
+        });
+      }
+    });
+
     Ativacao52Table.all({}, function (dados) {
       $scope.sincronizacao.ativacao_52.start = true;
       if (dados !== null) {
@@ -97,7 +129,6 @@ angular.module('starter')
           });
         });
       }
-
     });
 
     FormulariosCamposValoresTable.all({}, function (dados) {

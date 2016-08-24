@@ -70,7 +70,7 @@ angular.module('starter')
                         return !!val;
                     };
 
-                    services.empty = function (val) {
+                    /*services.empty = function (val) {
                         if(val === null){
                           return true;
                         } else if(val === ''){
@@ -82,7 +82,7 @@ angular.module('starter')
                         } else {
                           return false;
                         }
-                    };
+                    };*/
 
                     services.alert = function (msg) {
                         var alertPopup = $ionicPopup.alert({

@@ -37,13 +37,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         })
 
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
+            $ionicConfigProvider.backButton.previousTitleText(false);
             $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
             if (ionic.Platform.isAndroid()) {
                 $ionicConfigProvider.scrolling.jsScrolling(true);
             }
-            $ionicConfigProvider.views.forwardCache(true);
-            $ionicConfigProvider.views.maxCache(0);
-            $ionicConfigProvider.views.transition('none');
+            //$ionicConfigProvider.views.forwardCache(true);
+            //$ionicConfigProvider.views.maxCache(0);
+            //$ionicConfigProvider.views.transition('none');
             $stateProvider
 
                     .state('app', {
@@ -229,6 +230,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                             'menuContent': {
                                 templateUrl: 'templates/cliente.html',
                                 controller: 'ClienteCtrl'
+                            }
+                        }
+                    })
+                    
+                    .state('app.cliente_edit', {
+                        url: '/cliente_edit/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/cliente_edit.html',
+                                controller: 'ClienteEditCtrl'
                             }
                         }
                     })
