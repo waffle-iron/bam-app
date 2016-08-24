@@ -38,7 +38,6 @@ angular.module('starter')
             return ddo;
 
         })
-
         .directive('stringToNumber', function () {
             return {
                 require: 'ngModel',
@@ -51,6 +50,4 @@ angular.module('starter')
                     });
                 }
             };
-        })
-
-        ;
+        });

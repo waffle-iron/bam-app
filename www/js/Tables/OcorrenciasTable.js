@@ -56,7 +56,7 @@ angular.module('starter')
                 };
 
                 services.delete = function (key, val, retorno) {
-                  TableModuloFactory.delete('ocorrencias', key, val, retorno);
+                    TableModuloFactory.delete('ocorrencias', key, val, retorno);
                 };
 
                 services.get = function (key, val, retorno) {

@@ -16,8 +16,8 @@ angular.module('starter')
                             console.log("Finalizando o loading.");
                         });
                     };
-                    
-                    services.mapa = function(cliente){
+
+                    services.mapa = function (cliente) {
                         console.log('Carregar Mapa');
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             var div = document.getElementById("map_canvas");

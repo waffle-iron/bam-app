@@ -238,7 +238,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         url: '/cliente_edit/:id',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/cliente_edit.html',
+                                templateUrl: 'templates/cliente-edit.html',
                                 controller: 'ClienteEditCtrl'
                             }
                         }

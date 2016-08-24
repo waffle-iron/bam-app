@@ -66,7 +66,7 @@ angular.module('starter')
                 services.get = function (key, val, retorno) {
                     TableModuloFactory.get('clientes', key, val, retorno);
                 };
-                
+
                 services.update = function (options, id, retorno) {
                     TableModuloFactory.update('clientes', options, id, retorno);
                 };

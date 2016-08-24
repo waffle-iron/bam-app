@@ -1,2 +1,4 @@
 # bam-api
-BAM API
+BAMMP
+
+Aplicativo para gerenciamento de BAMMP

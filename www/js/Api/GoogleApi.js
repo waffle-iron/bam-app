@@ -61,7 +61,7 @@ angular.module('starter')
                                 }
                             });
                         });
-                        
+
                         listener(ret);
                     } else {
                         listener(ret);

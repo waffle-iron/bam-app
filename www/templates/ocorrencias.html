@@ -40,22 +40,22 @@
     </ion-infinite-scroll>
 
     <script id="modalAddOcorrencias.html" type="text/ng-template">
-      <ion-modal-view>
+        <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-positive">
-          <h1 class="title">Nova Ocorrência</h1>
-          <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        <h1 class="title">Nova Ocorrência</h1>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
         </ion-header-bar>
         <ion-content class="padding">
-          <div class="list">
-            <label class="item item-input">
-              <textarea class="padding" id="textarea_ocorrencia" rows="15" style="border: 1px solid #000;" ng-model="formulario.ocorrencia" placeholder="Descreva a Ocorrência"></textarea>
-            </label>
-          </div>
+        <div class="list">
+        <label class="item item-input">
+        <textarea class="padding" id="textarea_ocorrencia" rows="15" style="border: 1px solid #000;" ng-model="formulario.ocorrencia" placeholder="Descreva a Ocorrência"></textarea>
+        </label>
+        </div>
         </ion-content>
         <div class="bar button-bar bar-footer" style="height:80px">
-          <button class="button button-full button-positive" ng-click="closeModal(formulario)">Salvar</button>
+        <button class="button button-full button-positive" ng-click="closeModal(formulario)">Salvar</button>
         </div>
-      </ion-modal-view>
+        </ion-modal-view>
     </script>
 
 </ion-view>

@@ -249,9 +249,9 @@ angular.module('n3-pie-utils', [])
                     updateGaugeLegend: function (svg, data, dimensions, options) {
                         options = angular.merge({
                             mode: null,
-                            thickness:null,
-                            total:null,
-                            legendValue:1.5
+                            thickness: null,
+                            total: null,
+                            legendValue: 1.5
                         }, options)
                         var size = (this.getRadius(dimensions) - options.thickness) / 2;
 

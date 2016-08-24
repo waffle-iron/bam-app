@@ -5,7 +5,7 @@ angular.module('starter')
                 var services = {};
 
                 services.busca = function (cep, retorno) {
-                    $http.get('http://cep.agenciavoxel.com.br/'+cep+'.json', {}).then(function (response) {
+                    $http.get('http://cep.agenciavoxel.com.br/' + cep + '.json', {}).then(function (response) {
                         retorno(response);
                     }).catch(function (response) {
                         retorno(response);

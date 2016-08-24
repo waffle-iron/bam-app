@@ -71,18 +71,18 @@ angular.module('starter')
                     };
 
                     /*services.empty = function (val) {
-                        if(val === null){
-                          return true;
-                        } else if(val === ''){
-                          return true;
-                        } else if(val === 'undefined'){
-                          return true;
-                        } else if(val === undefined){
-                          return true;
-                        } else {
-                          return false;
-                        }
-                    };*/
+                     if(val === null){
+                     return true;
+                     } else if(val === ''){
+                     return true;
+                     } else if(val === 'undefined'){
+                     return true;
+                     } else if(val === undefined){
+                     return true;
+                     } else {
+                     return false;
+                     }
+                     };*/
 
                     services.alert = function (msg) {
                         var alertPopup = $ionicPopup.alert({

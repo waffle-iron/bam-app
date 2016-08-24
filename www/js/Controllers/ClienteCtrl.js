@@ -99,7 +99,7 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory) {
+        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory) {
             $scope.cliente = {};
             ClientesTable.first(
                     {
@@ -125,7 +125,7 @@ angular.module('starter')
                     }
                 });
             }
-            
+
             $scope.tirarFoto = function () {
                 CameraModuloFactory.capturarFotoFile(function (img) {
                     if (img !== null) {
@@ -137,8 +137,8 @@ angular.module('starter')
                     }
                 });
             }
-            
-            $scope.salvar = function (cliente){
+
+            $scope.salvar = function (cliente) {
                 var c = cliente;
                 c.latitude = null;
                 c.longitude = null;
@@ -149,7 +149,7 @@ angular.module('starter')
                 delete c.estado;
                 delete c.url;
                 ClientesTable.update(c, id, function (a) {
-                    
+
                 });
             }
 

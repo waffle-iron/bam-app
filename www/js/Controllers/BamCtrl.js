@@ -73,7 +73,7 @@ angular.module('starter')
                             pieHole: 0.4,
                             legend: 'none',
                             chartArea: {
-                                left:0,
+                                left: 0,
                                 top: 0,
                                 width: "100%",
                                 height: "100%"

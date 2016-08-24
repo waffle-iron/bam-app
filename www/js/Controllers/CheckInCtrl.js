@@ -26,7 +26,7 @@ angular.module('starter')
                         } else {
                             v.checkin_total = 0;
                         }
-                        v.url= ExtraModuloFactory.img(v);
+                        v.url = ExtraModuloFactory.img(v);
 
                         $scope.clientes.push(v);
                     });
