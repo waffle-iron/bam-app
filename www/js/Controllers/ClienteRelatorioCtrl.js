@@ -18,13 +18,13 @@ angular.module('starter')
                     $scope.options_pie = {
                         thickness: 10,
                         mode: "gauge",
-                        total: 1000
+                        total: 1000,
+                        legendValue: 3
                     };
 
                     $scope.total_pdv = [
                         {label: "Média", value: calcMedia($scope.dados.certificacoes), color: "green", suffix: "pt."}
                     ];
-
                 }
                 LoadModuloFactory.hide();
             });

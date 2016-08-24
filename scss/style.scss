@@ -117,8 +117,14 @@ button.input-border{
 .pl-0{
     padding-left:0!important;
 }
+.pl-5{
+    padding-left:5px!important;
+}
 .pr-0{
     padding-right:0!important;
+}
+.pr-5{
+    padding-right:5px!important;
 }
 .label{
     font-size:12px;
@@ -465,7 +471,7 @@ progress::-moz-progress-bar {
 }
 //Width Porcentagem
 @for $i from 1 through 100 {
-    .wp-#{$i} { width: 0% + $i; }
+    .wp-#{$i} { width: 0% + $i;float:left; }
 }
 svg .legend-title{
     display:none;

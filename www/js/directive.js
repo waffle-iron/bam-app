@@ -30,6 +30,14 @@ angular.module('starter')
             return ddo;
 
         })
+        .directive('mapa', function () {
+            var ddo = {};
+            ddo.restrict = "AE";
+            ddo.transclude = true;
+            ddo.templateUrl = ('templates/directive/mapa.html');
+            return ddo;
+
+        })
 
         .directive('stringToNumber', function () {
             return {

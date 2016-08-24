@@ -1,0 +1,49 @@
+<ion-view view-title="{{cliente.nome}} - Editar" view-cache="false"  hide-back-button="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+        <msg></msg>
+        <div class="list padding list-atv">
+            <div class="padding" style="background-color: #fff;border-radius:10px;">
+                <div class="item item-input" style="border:none;">
+                    <input type="text" placeholder="Nome do Cliente" value="{{cliente.nome}}" style="border: 1px solid #ccc;">
+                </div>
+                <div class="item item-input" style="border:none;">
+                    <input type="text" placeholder="CEP" ng-blur="buscaCep(cliente.cep)" ng-model="cliente.cep" value="{{cliente.cep}}" style="border: 1px solid #ccc;">
+                </div>
+                <div class="wp-70 pr-5 item item-input" style="border:none;">
+                    <input type="text" placeholder="Endereço" value="{{cliente.endereco}}" ng-model="cliente.endereco" style="border: 1px solid #ccc;">
+                </div>
+                <div class="wp-30 pl-5 item item-input" style="border:none;">
+                    <input type="text" placeholder="Número" value="{{cliente.numero}}" ng-model="cliente.numero" style="border: 1px solid #ccc;">
+                </div>
+                <div class="item item-input" style="border:none;">
+                    <input type="text" placeholder="Complemento" value="{{cliente.complemento}}" ng-model="cliente.complemento" style="border: 1px solid #ccc;">
+                </div>
+                <div class="item item-input" style="border:none;">
+                    <input type="text" placeholder="Bairro" value="{{cliente.bairro}}" ng-model="cliente.bairro" style="border: 1px solid #ccc;">
+                </div>
+                <div class="item item-input" style="border:none;">
+                    <input type="text" value="{{cliente.cidade}} - {{cliente.estado}}" style="border: 1px solid #ccc;" disable>
+                </div>
+                <div class="item item-input" style="border:none;">
+                    <button class="button button-block button-royal" ng-click="tirarFoto()"><i class="fa fa-camera" aria-hidden="true"></i> Alterar Foto</button>
+                </div>
+            </div>
+
+            <button class="button button-block button-positive" ng-click="salvar(cliente)">Salvar</button>
+
+        </div>
+
+    </ion-content>
+
+
+</ion-view>
