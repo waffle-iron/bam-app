@@ -52,29 +52,7 @@ angular.module('starter')
             $scope.show_mapa = 1;
 
             $scope.loadMapa = function (cliente) {
-                console.log('Carregar Mapa');
-                if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
-                    var div = document.getElementById("map_canvas");
-                    var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
-                    var mapOptions = {
-                        center: latLong,
-                        zoom: 18,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-                                //streetViewControl: false,
-                                //mapTypeControl: false
-                    };
-
-                    var map = new google.maps.Map(div, mapOptions);
-                    var marker = new google.maps.Marker({
-                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
-                        position: latLong,
-                        map: map
-                    });
-
-                } else {
-                    $scope.show_mapa = 0;
-                    ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
-                }
+                LoadModuloFactory.mapa(cliente);
             }
 
             ClientesTable.first(
@@ -118,4 +96,61 @@ angular.module('starter')
                     $scope.loadMapa(result);
                 }
             });
+        })
+
+
+        .controller('ClienteEditCtrl', function (CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory) {
+            $scope.cliente = {};
+            ClientesTable.first(
+                    {
+                        from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        where: 'c.id =' + $stateParams.id
+                    }, function (result) {
+                $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                LoadModuloFactory.hide();
+                $scope.loadMapa(result);
+            });
+
+            $scope.loadMapa = function (cliente) {
+                LoadModuloFactory.mapa(cliente);
+            }
+            $scope.buscaCep = function (cep) {
+                CepApiFactory.busca(cep, function (ret) {
+                    if (ret.data.result.status === 'OK') {
+                        $scope.cliente.endereco = ret.data.result.Cep.logradouro;
+                        $scope.cliente.bairro = ret.data.result.Cep.bairro;
+                    }
+                });
+            }
+            
+            $scope.tirarFoto = function () {
+                CameraModuloFactory.capturarFotoFile(function (img) {
+                    if (img !== null) {
+                        FotosCamerasTable.save({tabela: 'Clientes',
+                            id_referencia: $scope.cliente.id,
+                            sequencia: 0,
+                            imagem: img}, function (retorno) {
+                        });
+                    }
+                });
+            }
+            
+            $scope.salvar = function (cliente){
+                var c = cliente;
+                c.latitude = null;
+                c.longitude = null;
+                c.status = 2;
+                var id = c.id;
+                delete c.id;
+                delete c.cidade;
+                delete c.estado;
+                delete c.url;
+                ClientesTable.update(c, id, function (a) {
+                    
+                });
+            }
+
         });

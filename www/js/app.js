@@ -233,6 +233,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.cliente_edit', {
+                        url: '/cliente_edit/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/cliente-edit.html',
+                                controller: 'ClienteEditCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.cliente_relatorio', {
                         url: '/cliente_relatorio/:id',
                         views: {

@@ -247,6 +247,12 @@ angular.module('n3-pie-utils', [])
                         items.exit().remove();
                     },
                     updateGaugeLegend: function (svg, data, dimensions, options) {
+                        options = angular.merge({
+                            mode: null,
+                            thickness:null,
+                            total:null,
+                            legendValue:1.5
+                        }, options)
                         var size = (this.getRadius(dimensions) - options.thickness) / 2;
 
                         if (size < 0) {
@@ -255,7 +261,7 @@ angular.module('n3-pie-utils', [])
 
                         var legend = svg.selectAll("#n3-pie-legend");
 
-                        /*var title = legend.selectAll(".legend-title")
+                        var title = legend.selectAll(".legend-title")
                                 .data(data.filter(function (s) {
                                     return !s.__isComplement;
                                 }));
@@ -280,7 +286,7 @@ angular.module('n3-pie-utils', [])
                             return d.label;
                         });
 
-                        title.exit().remove();*/
+                        title.exit().remove();
 
                         var value = legend.selectAll(".legend-value")
                                 .data(data.filter(function (s) {
@@ -292,7 +298,7 @@ angular.module('n3-pie-utils', [])
                                 .attr({
                                     "class": "legend-value",
                                     "text-anchor": "middle",
-                                    "y": size / 8 + "px"
+                                    "y": size / options.legendValue + "px"
                                 })
                                 .style({
                                     "font-size": size + "px",

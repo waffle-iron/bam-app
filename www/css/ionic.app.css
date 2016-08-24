@@ -12131,8 +12131,14 @@ button.input-border {
 .pl-0 {
   padding-left: 0 !important; }
 
+.pl-5 {
+  padding-left: 5px !important; }
+
 .pr-0 {
   padding-right: 0 !important; }
+
+.pr-5 {
+  padding-right: 5px !important; }
 
 .label {
   font-size: 12px;
@@ -12472,304 +12478,404 @@ progress::-moz-progress-bar {
   background: #eee; }
 
 .wp-1 {
-  width: 1%; }
+  width: 1%;
+  float: left; }
 
 .wp-2 {
-  width: 2%; }
+  width: 2%;
+  float: left; }
 
 .wp-3 {
-  width: 3%; }
+  width: 3%;
+  float: left; }
 
 .wp-4 {
-  width: 4%; }
+  width: 4%;
+  float: left; }
 
 .wp-5 {
-  width: 5%; }
+  width: 5%;
+  float: left; }
 
 .wp-6 {
-  width: 6%; }
+  width: 6%;
+  float: left; }
 
 .wp-7 {
-  width: 7%; }
+  width: 7%;
+  float: left; }
 
 .wp-8 {
-  width: 8%; }
+  width: 8%;
+  float: left; }
 
 .wp-9 {
-  width: 9%; }
+  width: 9%;
+  float: left; }
 
 .wp-10 {
-  width: 10%; }
+  width: 10%;
+  float: left; }
 
 .wp-11 {
-  width: 11%; }
+  width: 11%;
+  float: left; }
 
 .wp-12 {
-  width: 12%; }
+  width: 12%;
+  float: left; }
 
 .wp-13 {
-  width: 13%; }
+  width: 13%;
+  float: left; }
 
 .wp-14 {
-  width: 14%; }
+  width: 14%;
+  float: left; }
 
 .wp-15 {
-  width: 15%; }
+  width: 15%;
+  float: left; }
 
 .wp-16 {
-  width: 16%; }
+  width: 16%;
+  float: left; }
 
 .wp-17 {
-  width: 17%; }
+  width: 17%;
+  float: left; }
 
 .wp-18 {
-  width: 18%; }
+  width: 18%;
+  float: left; }
 
 .wp-19 {
-  width: 19%; }
+  width: 19%;
+  float: left; }
 
 .wp-20 {
-  width: 20%; }
+  width: 20%;
+  float: left; }
 
 .wp-21 {
-  width: 21%; }
+  width: 21%;
+  float: left; }
 
 .wp-22 {
-  width: 22%; }
+  width: 22%;
+  float: left; }
 
 .wp-23 {
-  width: 23%; }
+  width: 23%;
+  float: left; }
 
 .wp-24 {
-  width: 24%; }
+  width: 24%;
+  float: left; }
 
 .wp-25 {
-  width: 25%; }
+  width: 25%;
+  float: left; }
 
 .wp-26 {
-  width: 26%; }
+  width: 26%;
+  float: left; }
 
 .wp-27 {
-  width: 27%; }
+  width: 27%;
+  float: left; }
 
 .wp-28 {
-  width: 28%; }
+  width: 28%;
+  float: left; }
 
 .wp-29 {
-  width: 29%; }
+  width: 29%;
+  float: left; }
 
 .wp-30 {
-  width: 30%; }
+  width: 30%;
+  float: left; }
 
 .wp-31 {
-  width: 31%; }
+  width: 31%;
+  float: left; }
 
 .wp-32 {
-  width: 32%; }
+  width: 32%;
+  float: left; }
 
 .wp-33 {
-  width: 33%; }
+  width: 33%;
+  float: left; }
 
 .wp-34 {
-  width: 34%; }
+  width: 34%;
+  float: left; }
 
 .wp-35 {
-  width: 35%; }
+  width: 35%;
+  float: left; }
 
 .wp-36 {
-  width: 36%; }
+  width: 36%;
+  float: left; }
 
 .wp-37 {
-  width: 37%; }
+  width: 37%;
+  float: left; }
 
 .wp-38 {
-  width: 38%; }
+  width: 38%;
+  float: left; }
 
 .wp-39 {
-  width: 39%; }
+  width: 39%;
+  float: left; }
 
 .wp-40 {
-  width: 40%; }
+  width: 40%;
+  float: left; }
 
 .wp-41 {
-  width: 41%; }
+  width: 41%;
+  float: left; }
 
 .wp-42 {
-  width: 42%; }
+  width: 42%;
+  float: left; }
 
 .wp-43 {
-  width: 43%; }
+  width: 43%;
+  float: left; }
 
 .wp-44 {
-  width: 44%; }
+  width: 44%;
+  float: left; }
 
 .wp-45 {
-  width: 45%; }
+  width: 45%;
+  float: left; }
 
 .wp-46 {
-  width: 46%; }
+  width: 46%;
+  float: left; }
 
 .wp-47 {
-  width: 47%; }
+  width: 47%;
+  float: left; }
 
 .wp-48 {
-  width: 48%; }
+  width: 48%;
+  float: left; }
 
 .wp-49 {
-  width: 49%; }
+  width: 49%;
+  float: left; }
 
 .wp-50 {
-  width: 50%; }
+  width: 50%;
+  float: left; }
 
 .wp-51 {
-  width: 51%; }
+  width: 51%;
+  float: left; }
 
 .wp-52 {
-  width: 52%; }
+  width: 52%;
+  float: left; }
 
 .wp-53 {
-  width: 53%; }
+  width: 53%;
+  float: left; }
 
 .wp-54 {
-  width: 54%; }
+  width: 54%;
+  float: left; }
 
 .wp-55 {
-  width: 55%; }
+  width: 55%;
+  float: left; }
 
 .wp-56 {
-  width: 56%; }
+  width: 56%;
+  float: left; }
 
 .wp-57 {
-  width: 57%; }
+  width: 57%;
+  float: left; }
 
 .wp-58 {
-  width: 58%; }
+  width: 58%;
+  float: left; }
 
 .wp-59 {
-  width: 59%; }
+  width: 59%;
+  float: left; }
 
 .wp-60 {
-  width: 60%; }
+  width: 60%;
+  float: left; }
 
 .wp-61 {
-  width: 61%; }
+  width: 61%;
+  float: left; }
 
 .wp-62 {
-  width: 62%; }
+  width: 62%;
+  float: left; }
 
 .wp-63 {
-  width: 63%; }
+  width: 63%;
+  float: left; }
 
 .wp-64 {
-  width: 64%; }
+  width: 64%;
+  float: left; }
 
 .wp-65 {
-  width: 65%; }
+  width: 65%;
+  float: left; }
 
 .wp-66 {
-  width: 66%; }
+  width: 66%;
+  float: left; }
 
 .wp-67 {
-  width: 67%; }
+  width: 67%;
+  float: left; }
 
 .wp-68 {
-  width: 68%; }
+  width: 68%;
+  float: left; }
 
 .wp-69 {
-  width: 69%; }
+  width: 69%;
+  float: left; }
 
 .wp-70 {
-  width: 70%; }
+  width: 70%;
+  float: left; }
 
 .wp-71 {
-  width: 71%; }
+  width: 71%;
+  float: left; }
 
 .wp-72 {
-  width: 72%; }
+  width: 72%;
+  float: left; }
 
 .wp-73 {
-  width: 73%; }
+  width: 73%;
+  float: left; }
 
 .wp-74 {
-  width: 74%; }
+  width: 74%;
+  float: left; }
 
 .wp-75 {
-  width: 75%; }
+  width: 75%;
+  float: left; }
 
 .wp-76 {
-  width: 76%; }
+  width: 76%;
+  float: left; }
 
 .wp-77 {
-  width: 77%; }
+  width: 77%;
+  float: left; }
 
 .wp-78 {
-  width: 78%; }
+  width: 78%;
+  float: left; }
 
 .wp-79 {
-  width: 79%; }
+  width: 79%;
+  float: left; }
 
 .wp-80 {
-  width: 80%; }
+  width: 80%;
+  float: left; }
 
 .wp-81 {
-  width: 81%; }
+  width: 81%;
+  float: left; }
 
 .wp-82 {
-  width: 82%; }
+  width: 82%;
+  float: left; }
 
 .wp-83 {
-  width: 83%; }
+  width: 83%;
+  float: left; }
 
 .wp-84 {
-  width: 84%; }
+  width: 84%;
+  float: left; }
 
 .wp-85 {
-  width: 85%; }
+  width: 85%;
+  float: left; }
 
 .wp-86 {
-  width: 86%; }
+  width: 86%;
+  float: left; }
 
 .wp-87 {
-  width: 87%; }
+  width: 87%;
+  float: left; }
 
 .wp-88 {
-  width: 88%; }
+  width: 88%;
+  float: left; }
 
 .wp-89 {
-  width: 89%; }
+  width: 89%;
+  float: left; }
 
 .wp-90 {
-  width: 90%; }
+  width: 90%;
+  float: left; }
 
 .wp-91 {
-  width: 91%; }
+  width: 91%;
+  float: left; }
 
 .wp-92 {
-  width: 92%; }
+  width: 92%;
+  float: left; }
 
 .wp-93 {
-  width: 93%; }
+  width: 93%;
+  float: left; }
 
 .wp-94 {
-  width: 94%; }
+  width: 94%;
+  float: left; }
 
 .wp-95 {
-  width: 95%; }
+  width: 95%;
+  float: left; }
 
 .wp-96 {
-  width: 96%; }
+  width: 96%;
+  float: left; }
 
 .wp-97 {
-  width: 97%; }
+  width: 97%;
+  float: left; }
 
 .wp-98 {
-  width: 98%; }
+  width: 98%;
+  float: left; }
 
 .wp-99 {
-  width: 99%; }
+  width: 99%;
+  float: left; }
 
 .wp-100 {
-  width: 100%; }
+  width: 100%;
+  float: left; }
 
 svg .legend-title {
   display: none; }
