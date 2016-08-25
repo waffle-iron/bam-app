@@ -3,7 +3,6 @@ npm update
 bower update --force
 ionic setup sass
 gulp
-
 ionic plugin add cordova-plugin-dialogs
 ionic plugin add cordova-plugin-globalization
 ionic plugin add cordova-plugin-media
@@ -22,8 +21,6 @@ ionic plugin add cordova-plugin-vibration
 ionic plugin add cordova-plugin-splashscreen
 ionic plugin add cordova-plugin-console
 ionic plugin add cordova-plugin-whitelist
-
 ionic platform rm android
 ionic platform add android
-
 ionic serve -cs
