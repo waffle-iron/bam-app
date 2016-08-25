@@ -15,8 +15,8 @@
             <div class="list list-inset" style="border-radius: 10px; margin: 6px 0; border: none;">
                 <mapa></mapa>
                 <div class="clearfix"></div>
-                <div class="item" ng-if="cliente.endereco" style="font-size: 12px; padding:15px 30px;">
-                    <a class="button button-balanced pull-right" href="#/app/cliente_edit/{{cliente.id}}">
+                <div class="item" ng-if="cliente.endereco" style="font-size: 12px; padding:5px 11px 15px;">
+                    <a class="button button-grey pull-right" href="#/app/cliente_edit/{{cliente.id}}">
                         <i class="fa fa-edit" aria-hidden="true"></i>
                     </a>
                     <span ng-if="cliente.endereco">{{cliente.endereco}}</span>
@@ -49,12 +49,12 @@
         <div class="clearfix"></div>
 
         <div class="padding-left padding-right">
-            <div class="wp-50 pr-5">
+            <div class="wp-50 pr-5 pull-left">
                 <a class="button button-block button-royal" href="#/app/cliente_relatorio/{{cliente.id}}">
                     <i class="fa fa-line-chart" aria-hidden="true"></i> Relatório PDV
                 </a>
             </div>
-            <div class="wp-50 pl-5">
+            <div class="wp-50 pl-5 pull-right">
                 <a class="button button-block button-assertive" href="#/app/ocorrencias/{{cliente.id}}">
                     <i class="fa fa-bell-o" aria-hidden="true"></i> Ocorrências
                 </a>

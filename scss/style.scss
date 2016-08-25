@@ -283,11 +283,11 @@ progress::-webkit-progress-value { background: #0063a6; }
     background:#af94ca;
     color:#fff;
 }
-.bg-green{
+.background-green,.bg-green{
     background:green;
     color:#fff;
 }
-.background-white{
+.background-white,.bg-white{
     background:#fff;
 }
 .color-purple{
@@ -322,6 +322,14 @@ progress::-webkit-progress-value { background: #0063a6; }
 .button-purple-o{
     color:#896da5;
     background:transparent;
+}
+.button-grey{
+    color:#fff;
+    background:#c3c3c3;
+}
+.button-grey:hover,.button-grey:focus,.button-grey:active{
+    color:#fff;
+    background:#ccc;
 }
 .timeline{
     position:relative;
@@ -397,7 +405,7 @@ progress::-webkit-progress-value { background: #0063a6; }
 .teste_graph text{
     display:none!important;
 }
-.backdrop {
+.backdrop,.platform-android .action-sheet-backdrop.active {
     background-color:rgba(0,0,0,0.5);
 }
 .loading-container .loading{
@@ -456,7 +464,7 @@ progress::-moz-progress-bar {
 }
 //Width Porcentagem
 @for $i from 1 through 100 {
-    .wp-#{$i} { width: 0% + $i;float:left; }
+    .wp-#{$i} { width: 0% + $i; }
 }
 svg .legend-title{
     display:none;
@@ -476,4 +484,16 @@ svg .legend-title{
 }
 .platform-android .bar .title{
     font-size:14px;
+}
+input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], select[readonly], textarea[disabled], textarea[readonly]:not(.cloned-text-input){
+    background:transparent;
+}
+.no-border{
+    border:none;
+}
+.border-form{
+    border: 1px solid #ccc;
+}
+.br-10{
+    border-radius:10px;
 }

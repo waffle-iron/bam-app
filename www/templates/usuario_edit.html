@@ -1,0 +1,48 @@
+<ion-view view-title="Editar - Usuário" view-cache="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <msg></msg>
+        <div class="list padding list-atv">
+            <div class="padding bg-white br-10">
+                <div class="item item-input no-border">
+                    <input type="text" class="border-form" placeholder="Nome" value="{{user.nome}}" ng-model="user.nome" required>
+                </div>
+                <div class="item item-input no-border">
+                    <input type="text" class="border-form" placeholder="Sobrenome" value="{{user.sobrenome}}" ng-model="user.sobrenome" required>
+                </div>
+                <div class="item item-input no-border">
+                    <input type="email" class="border-form" placeholder="E-mail" value="{{user.email}}" ng-model="user.email">
+                </div>
+                <div class="item item-input no-border">
+                    <input type="tel" class="border-form" placeholder="Celular" value="{{user.celular}}" ng-model="user.celular">
+                </div>
+                <div class="item item-input no-border">
+                    <input type="text" class="border-form" placeholder="CPF" value="{{user.documento}}" ng-model="user.documento">
+                </div>
+                <div class="item item-input no-border">
+                    <input type="text" class="border-form" placeholder="Login" value="{{user.login}}" ng-model="user.login" required>
+                </div>
+                <div class="item item-input no-border">
+                    <input type="password" class="border-form" placeholder="Senha" value="{{user.senha}}" ng-model="user.senha">
+                </div>
+                <div class="item item-input no-border">
+                    <button class="button button-block button-royal" ng-click="userFoto()"><i class="fa fa-camera" aria-hidden="true"></i> Foto</button>
+                </div>
+            </div>
+
+            <button class="button button-block button-balanced" ng-click="salvar(cliente)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
+
+        </div>
+
+    </ion-content>
+
+
+</ion-view>

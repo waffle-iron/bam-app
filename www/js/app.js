@@ -244,6 +244,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.usuario_edit', {
+                        url: '/usuario_edit',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/usuario_edit.html',
+                                controller: 'UsuarioCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.cliente_relatorio', {
                         url: '/cliente_relatorio/:id',
                         views: {
