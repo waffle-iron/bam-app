@@ -11,12 +11,12 @@ angular.module('starter')
                 // Show the action sheet
                 var hideSheet = $ionicActionSheet.show({
                     buttons: [
-                        {text: '<b>Share</b> This'},
-                        {text: 'Move'}
+                        {text: '<i class="fa fa-camera"></i> Tirar nova foto'},
+                        {text: '<i class="fa fa-photo"></i> Escolher na Galeria'}
                     ],
-                    destructiveText: 'Delete',
-                    titleText: 'Modify your album',
-                    cancelText: 'Cancel',
+                    //destructiveText: 'Delete',
+                    titleText: 'Modifique sua foto de perfil',
+                    cancelText: 'Cancelar',
                     cancel: function () {
                         // add cancel code..
                     },

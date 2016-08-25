@@ -82,7 +82,6 @@ button.input-border{
 .item.item-avatar p{
     margin: 0 0 2px 10px; font-size:11px;
 }
-
 .logo-app{
     max-width: 35%; padding : 30px 0px 10px 0px;
 }
@@ -92,24 +91,6 @@ button.input-border{
 }
 .text-center{
     text-align: center;
-}
-.m-0{
-    margin:0!important;
-}
-.p-0{
-    padding:0!important;
-}
-.pl-0{
-    padding-left:0!important;
-}
-.pl-5{
-    padding-left:5px!important;
-}
-.pr-0{
-    padding-right:0!important;
-}
-.pr-5{
-    padding-right:5px!important;
 }
 .label{
     font-size:12px;
@@ -466,6 +447,30 @@ progress::-moz-progress-bar {
 @for $i from 1 through 100 {
     .wp-#{$i} { width: 0% + $i; }
 }
+//Margin Pixels
+@for $i from 0 through 50 {
+    .m-#{$i} { margin: 0px+$i+!important; }
+}
+//Margin-top Pixels
+@for $i from 0 through 50 {
+    .mt-#{$i} { margin-top: 0px+$i+!important; }
+}
+//Margin-bottom Pixels
+@for $i from 0 through 50 {
+    .mb-#{$i} { margin-bottom: 0px+$i+!important; }
+}
+//Padding Pixels
+@for $i from 0 through 50 {
+    .p-#{$i} { padding: 0px+$i+!important; }
+}
+//Padding-left Pixels
+@for $i from 0 through 20 {
+    .pl-#{$i} { padding-left: 0px+$i+!important; }
+}
+//Padding-right Pixels
+@for $i from 0 through 20 {
+    .pr-#{$i} { padding-right: 0px+$i+!important; }
+}
 svg .legend-title{
     display:none;
 }
@@ -496,4 +501,66 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 }
 .br-10{
     border-radius:10px;
+}
+.platform-android .action-sheet .action-sheet-title,
+.action-sheet-group.action-sheet-options button.button{
+    padding:10px;
+    line-height:inherit;
+}
+.action-sheet-group.action-sheet-options button.button{
+    border-top:1px solid #ccc;
+}
+.mini-button.button{
+    min-height: 42px;
+    max-height: 42px;
+    min-width: 42px;
+}
+.avatar{
+    max-width:150px;
+}
+.avatar-button{
+    background:transparent;
+    margin:0 auto;
+    box-shadow:0 0 15px rgba(0,0,0,0.2) inset;
+    position:relative;
+}
+.avatar-footer{
+    color:#fff;
+    background:rgba(0,0,0,.4);
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:25px;
+    line-height:25px
+}
+.avatar-round{
+    overflow:hidden;
+    border-radius:50%;
+}
+.avatar-square{
+    overflow:hidden;
+    border-radius:10px;
+}
+.avatar-round{
+    overflow:hidden;
+    border-radius:50%;
+}
+.list-atv input, .list-atv textarea{
+    font-weight: lighter;
+}
+.list-atv span.input{
+    border: 1px solid rgba(0,0,0,.1)!important;
+    border-top: 0!important;
+    border-left: 0!important;
+    border-right: 0!important;
+    width: 100%;
+    font-size:14px;
+    font-weight: lighter;
+}
+.input-label{
+    font-size:14px;
+}
+.input-label {
+    width: 30%;
 }

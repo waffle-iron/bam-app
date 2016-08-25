@@ -11,37 +11,50 @@
     <ion-content class="fundo">
         <header-logo-mini></header-logo-mini>
         <msg></msg>
-        <div class="list padding list-atv">
-            <div class="padding bg-white br-10"
-                    <input type="text" class="border-form" placeholder="Nome do Cliente" value="{{cliente.nome}}" disabled>
+        <div class="padding-left padding-right">
+            <div class="list list-inset borda-grey header-block">
+                <h4 class="padding text-center">Editar dados de Cliente</h4>
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Nome</span>
+                    <span class="input">{{cliente.nome}}</span>
                 </div>
-                <div class="item item-input no-border">
-                    <input type="number" class="border-form" placeholder="CEP" ng-blur="buscaCep(cliente.cep)" ng-model="cliente.cep" value="{{cliente.cep}}">
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">CEP</span>
+                    <input type="number" placeholder="CEP" ng-blur="buscaCep(cliente.cep)" ng-model="cliente.cep" value="{{cliente.cep}}">
                 </div>
-                <div class="wp-70 pr-5 item item-input no-border">
-                    <input type="text" class="border-form" placeholder="Endereço" value="{{cliente.endereco}}" ng-model="cliente.endereco">
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Endereço</span>
+                    <input type="text" placeholder="Endereço" value="{{cliente.endereco}}" ng-model="cliente.endereco">
                 </div>
-                <div class="wp-30 pl-5 item item-input no-border">
-                    <input type="text" class="border-form text-center" placeholder="Número" value="{{cliente.numero}}" ng-model="cliente.numero">
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Número</span>
+                    <input type="text" placeholder="Número" value="{{cliente.numero}}" ng-model="cliente.numero">
                 </div>
-                <div class="item item-input no-border">
-                    <input type="text" class="border-form" placeholder="Complemento" value="{{cliente.complemento}}" ng-model="cliente.complemento">
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Comp.</span>
+                    <input type="text" placeholder="Complemento" value="{{cliente.complemento}}" ng-model="cliente.complemento">
                 </div>
-                <div class="item item-input no-border">
-                    <input type="text" class="border-form" placeholder="Bairro" value="{{cliente.bairro}}" ng-model="cliente.bairro">
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Bairro</span>
+                    <input type="text" placeholder="Bairro" value="{{cliente.bairro}}" ng-model="cliente.bairro">
                 </div>
-                <div class="item item-input no-border">
-                    <input type="text" class="border-form" value="{{cliente.cidade}} - {{cliente.estado}}" disabled>
+                <div class="item item-input m-0 p-10">
+                    <span class="input-label">Cidade</span>
+                    <span class="input">{{cliente.cidade}} - {{cliente.estado}}</span>
                 </div>
-                <div class="item item-input no-border">
-                    <button class="button button-block button-royal" ng-click="tirarFoto()"><i class="fa fa-camera" aria-hidden="true"></i> Alterar Foto</button>
+                <div class="item item-input m-0 p-10">
+                    <button class="avatar-button avatar-square p-0 no-border" ng-click="tirarFoto()">
+                        <img src="{{cliente.url}}" class="wp-100 d-block avatar m-15">
+                        <div class="avatar-footer">
+                            <i class="fa fa-camera"></i> Alterar Foto
+                        </div>
+                    </button>
+                    <!--<button class="button button-block button-royal" ng-click="tirarFoto()"><i class="fa fa-camera" aria-hidden="true"></i> Alterar Foto</button>-->
+                </div>
+                <div class="padding item-footer">
+                    <button class="button button-block button-balanced m-0" ng-click="salvar(cliente)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
                 </div>
             </div>
-
-            <button class="button button-block button-balanced" ng-click="salvar(cliente)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
-
         </div>
-
     </ion-content>
-
 </ion-view>
