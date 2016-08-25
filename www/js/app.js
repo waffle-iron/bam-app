@@ -12,7 +12,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
-            database: 'bam'
+            database: 'bam',
+            debug: false
         })
         .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, Config) {
             $ionicPlatform.ready(function () {

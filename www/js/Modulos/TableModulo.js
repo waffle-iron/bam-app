@@ -295,7 +295,9 @@ angular.module('starter')
                 };
 
                 services.debug = function (val) {
-                    console.log(val);
+                    if (Config.debug === true) {
+                        console.log(val);
+                    }
                 };
 
                 services.addslashes = function (str) {
