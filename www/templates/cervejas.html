@@ -19,7 +19,7 @@
                 <h4 class="padding text-center">Coleta de Produtos</h4>
 
                 <a ng-repeat="(key, value) in produtos_1" ng-click="busca(value.id, 2, false)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <p>{{value.nome}}</p>
+                    <p style="font-size:11px;">{{value.nome}}</p>
                     <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -30,7 +30,7 @@
                 <h4 class="padding text-center">{{titulos}}</h4>
 
                 <a ng-repeat="(key, value) in produtos_2" ng-click="busca(value.id, 3, true)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <p>{{value.nome}}</p>
+                    <p style="font-size:11px;">{{value.nome}}</p>
                     <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
                 </a>
             </div>
@@ -43,12 +43,12 @@
 
                 <label class="row item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
                     <span class="input-label col table-pad">&nbsp;</span>
-                    <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 24%; height: 50px;">Valor R$</span>
+                    <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
                 </label>
 
                 <label class="row item item-input {{color(key)}}" ng-repeat="(key, value) in produtos_3" style="position: relative; border-bottom: 1px solid #efe8e8; border:none;">
-                    <span class="input-label col table-left table-pad" style="">{{value.nome}}</span>
-                    <input type="number" class="col table-pad" string-to-number ng-model="value.valor" value="{{value.valor}}" ng-change="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 24%; height: 50px;">
+                    <span class="input-label col table-left table-pad" style="font-size:11px;">{{value.nome}}</span>
+                    <input type="number" class="col table-pad" string-to-number ng-model="value.valor" value="{{value.valor}}" ng-blur="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
                 </label>
                 <div class="padding item-footer">
                     <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
