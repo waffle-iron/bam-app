@@ -6,7 +6,10 @@ angular.module('starter')
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             if (ValidacaoModuloFactory.isNotNull($scope.cliente)) {
+
                 LoadModuloFactory.show();
+                var ignorado = null;
+
                 $scope.formularios = [];
                 $scope.btn_camera = 0;
                 $scope.valor_selecionado = null;
@@ -31,7 +34,7 @@ angular.module('starter')
                                         alias: 'fg',
                                         where: 'fg.formulario_id = ' + v.id,
                                         join: 'INNER JOIN formularios_grupos_campos AS fgc ON fgc.formularios_grupo_id = fg.id\n\
-                                         INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
+                                               INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
                                         order: 'fc.ordem ASC'
                                     }, function (retGrupo) {
                                         angular.forEach(retGrupo, function (v1, k1) {
@@ -74,7 +77,7 @@ angular.module('starter')
                                 alias: 'fg',
                                 where: 'fg.formulario_id = ' + v.id,
                                 join: 'INNER JOIN formularios_grupos_campos AS fgc ON fgc.formularios_grupo_id = fg.id\n\
-                                       INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
+              INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
                                 order: 'fc.ordem ASC'
                             }, function (retGrupo) {
                                 angular.forEach(retGrupo, function (v1, k1) {
@@ -100,21 +103,26 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.sequencia = function (dados) {
+                $scope.sequencia = function (dados, key) {
                     if ($scope.perguntas.atual >= $scope.perguntas.total) {
                         ExtraModuloFactory.success($scope, 'Todas as perguntas já foram respondidas.');
                     }
-                    return (dados.sequencia === $scope.perguntas.atual ? 1 : 0);
+                    if (ignorado === dados.id) {
+                        $scope.perguntas.atual++;
+                        return ((dados.sequencia + 1) === $scope.perguntas.atual ? 1 : 0);
+                    } else {
+                        return (dados.sequencia === $scope.perguntas.atual ? 1 : 0);
+                    }
                 };
 
-                $scope.proximo = function (dados) {
+                $scope.proximo = function (dados, key) {
                     if (dados.required > 0) {
                         if (!ValidacaoModuloFactory.empty(dados.valor)) {
                             $scope.getSubFormulario(dados.valor, dados.id, function () {
                                 $scope.btn_camera = 0;
                                 $scope.valor_selecionado = null;
                                 $scope.perguntas.atual++;
-                                $scope.sequencia(dados);
+                                $scope.sequencia(dados, key);
                             });
                         } else {
                             ValidacaoModuloFactory.alert('Informe uma resposta.');
@@ -124,13 +132,13 @@ angular.module('starter')
                             $scope.btn_camera = 0;
                             $scope.valor_selecionado = null;
                             $scope.perguntas.atual++;
-                            $scope.sequencia(dados);
+                            $scope.sequencia(dados, key);
                         });
                     }
                 };
 
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
-                    LoadModuloFactory.show();
+                    //LoadModuloFactory.show();
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
                         dados.valor = dados.opcoes[sequencia_dados];
@@ -153,24 +161,14 @@ angular.module('starter')
                             resp.created = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             FormulariosCamposValoresTable.insert(resp, function (a) {
-                                $scope.id_resposta = a.id;
-                                LoadModuloFactory.hide();
-                                $scope.btn_camera = 0;
-                                if (dados.value == dados.valor) {
-                                    $scope.btn_camera = dados.contem_imagem;
-                                }
+                                saveResposta(a, dados);
 
                             });
                         } else {
                             resp.value = dados.valor;
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             FormulariosCamposValoresTable.update(resp, resp.id, function (a) {
-                                $scope.id_resposta = a.id;
-                                LoadModuloFactory.hide();
-                                $scope.btn_camera = 0;
-                                if (dados.value == dados.valor) {
-                                    $scope.btn_camera = dados.contem_imagem;
-                                }
+                                saveResposta(a, dados);
                             });
                         }
 
@@ -178,9 +176,30 @@ angular.module('starter')
 
                 };
 
+                var saveResposta = function (a, dados) {
+                    ignorado = null;
+                    if (dados.tipo === 'radio' && dados.valor != dados.value && dados.atributos > 0) {
+                        ignorado = parseInt(dados.atributos);
+                    }
+                    $scope.id_resposta = a.id;
+                    //LoadModuloFactory.hide();
+                    $scope.btn_camera = 0;
+                    if (dados.value == dados.valor) {
+                        $scope.btn_camera = dados.contem_imagem;
+                    } else {
+                        $scope.btn_camera = 0;
+                    }
+                }
+
                 $scope.tirarFoto = function () {
-                    CameraModuloFactory.capturarFoto(function (img) {
-                        StorageModuloFactory.local.set('foto.' + $scope.id_resposta, img);
+                    CameraModuloFactory.capturarFotoFile(function (img) {
+                        if (img !== null) {
+                            FotosCamerasTable.save({tabela: 'FormulariosCamposValoresTable',
+                                id_referencia: $scope.id_resposta,
+                                sequencia: 0,
+                                imagem: img}, function (retorno) {
+                            });
+                        }
                     });
                 }
 

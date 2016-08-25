@@ -42,8 +42,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             if (ionic.Platform.isAndroid()) {
                 $ionicConfigProvider.scrolling.jsScrolling(true);
             }
-            //$ionicConfigProvider.views.forwardCache(true);
-            //$ionicConfigProvider.views.maxCache(0);
+            $ionicConfigProvider.views.forwardCache(true);
+            $ionicConfigProvider.views.maxCache(0);
             //$ionicConfigProvider.views.transition('none');
             $stateProvider
 

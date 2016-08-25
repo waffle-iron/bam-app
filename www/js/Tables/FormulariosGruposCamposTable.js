@@ -23,7 +23,8 @@ angular.module('starter')
                             formulario_id: null,
                             formularios_campo_id: null,
                             formularios_grupo_id: null,
-                            status: null, ordem: null,
+                            status: null,
+                            ordem: null,
                             created: null,
                             modified: null
                         }, options);

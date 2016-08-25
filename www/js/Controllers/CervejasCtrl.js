@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('CervejasCtrl', function ($state, $timeout, $ionicScrollDelegate, ExtraModuloFactory, $scope, $rootScope, moment, StorageModuloFactory, ProdutosTable, ProdutosClientesTable, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory) {
+        .controller('CervejasCtrl', function ($filter, $state, $timeout, $ionicScrollDelegate, ExtraModuloFactory, $scope, $rootScope, moment, StorageModuloFactory, ProdutosTable, ProdutosClientesTable, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory) {
 
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
             if (ValidacaoModuloFactory.isNotNull($scope.cliente)) {
@@ -59,6 +59,7 @@ angular.module('starter')
                                 $scope._buscaProduto(id_pai, seq);
                             } else {
                                 angular.forEach(ret, function (v, k) {
+                                    v.valor = $filter('inputMoeda')(parseFloat(v.valor));
                                     $scope["produtos_" + seq].push(v);
                                 });
                                 LoadModuloFactory.hide();
@@ -79,7 +80,7 @@ angular.module('starter')
                             ExtraModuloFactory.info($scope, 'Nenhum produto localizado.');
                         } else {
                             angular.forEach(ret, function (v, k) {
-                                v.valor = '';
+                                v.valor = $filter('inputMoeda')(parseFloat(v.valor));
                                 $scope["produtos_" + seq].push(v);
                             });
                         }
@@ -91,6 +92,8 @@ angular.module('starter')
                 $scope.busca(0, 1, false);
 
                 $scope.atualizar = function (produto, produto_valor) {
+                    produto_valor = $filter('inputMoeda')(parseFloat(produto_valor));
+                    produto.valor = produto_valor;
                     ProdutosClientesTable.first(
                             {where: 'cliente_id = ' + $scope.cliente.id + ' AND produto_id = ' + produto.id}
                     , function (resp) {
@@ -121,6 +124,7 @@ angular.module('starter')
                             });
                         }
                     });
+                    return produto;
                 };
 
                 $scope.salvar = function () {

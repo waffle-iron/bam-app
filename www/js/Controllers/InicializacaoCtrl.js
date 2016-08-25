@@ -298,7 +298,7 @@ angular.module('starter')
                                                         });
                                                         if (vGruposCampos.formularios_campo !== null) {
                                                             var dadosCampos = {
-                                                                atributos: vGruposCampos.formularios_campo.atributos,
+                                                                atributos: vGruposCampos.formularios_campo.formularios_campos_id_ignore,
                                                                 contem_imagem: vGruposCampos.formularios_campo.contem_imagem,
                                                                 formulario_id: vGruposCampos.formularios_campo.formulario_id,
                                                                 id: vGruposCampos.formularios_campo.id,
