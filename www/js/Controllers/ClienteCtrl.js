@@ -52,7 +52,7 @@ angular.module('starter')
             $scope.show_mapa = 1;
 
             $scope.loadMapa = function (cliente) {
-                LoadModuloFactory.mapa(cliente);
+                LoadModuloFactory.mapa(cliente, $scope);
             }
 
             ClientesTable.first(
@@ -99,24 +99,23 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory) {
+        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet) {
             $scope.cliente = {};
-            ClientesTable.first(
-                    {
-                        from: 'c.*, cd.cidade, e.estado',
-                        alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
-                        where: 'c.id =' + $stateParams.id
-                    }, function (result) {
-                $scope.cliente = result;
-                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
-                LoadModuloFactory.hide();
-                $scope.loadMapa(result);
-            });
-
-            $scope.loadMapa = function (cliente) {
-                LoadModuloFactory.mapa(cliente);
+            var loadClientes = function(){
+                ClientesTable.first(
+                        {
+                            from: 'c.*, cd.cidade, e.estado',
+                            alias: 'c',
+                            join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                            where: 'c.id =' + $stateParams.id
+                        }, function (result) {
+                    $scope.cliente = result;
+                    $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                    LoadModuloFactory.hide();
+                });
             }
+            loadClientes();
+            
             $scope.buscaCep = function (cep) {
                 CepApiFactory.busca(cep, function (ret) {
                     if (ret.data.result.status === 'OK') {
@@ -125,18 +124,53 @@ angular.module('starter')
                     }
                 });
             }
-
+            
+            // Triggered on a button click, or some other target
             $scope.tirarFoto = function () {
-                CameraModuloFactory.capturarFotoFile(function (img) {
-                    if (img !== null) {
-                        FotosCamerasTable.save({tabela: 'Clientes',
-                            id_referencia: $scope.cliente.id,
-                            sequencia: 0,
-                            imagem: img}, function (retorno) {
-                        });
+
+                // Show the action sheet
+                var hideSheet = $ionicActionSheet.show({
+                    buttons: [
+                        {text: '<i class="fa fa-camera"></i> Tirar nova foto'},
+                        {text: '<i class="fa fa-photo"></i> Escolher na Galeria'}
+                    ],
+                    //destructiveText: 'Delete',
+                    titleText: 'Modifique sua foto de perfil',
+                    cancelText: 'Cancelar',
+                    cancel: function () {
+                        // add cancel code..
+                    },
+                    buttonClicked: function (index) {
+                        console.log(index);
+                        switch (index) {
+                            case 0:
+                                CameraModuloFactory.capturarFotoFile(function (img) {
+                                    if (img !== null) {
+                                        FotosCamerasTable.save({tabela: 'Clientes',
+                                            id_referencia: $scope.cliente.id,
+                                            sequencia: 0,
+                                            imagem: img}, function (retorno) {
+                                        });
+                                    }
+                                });
+                                break;
+                            case 1:
+                                CameraModuloFactory.selecionarFotoFile(function (img) {
+                                    if (img !== null) {
+                                        FotosCamerasTable.save({tabela: 'Clientes',
+                                            id_referencia: $scope.cliente.id,
+                                            sequencia: 0,
+                                            imagem: img}, function (retorno) {
+                                        });
+                                    }
+                                });
+                                break;
+                        }
+                        return true;
                     }
                 });
-            }
+
+            };
 
             $scope.salvar = function (cliente) {
                 var c = cliente;
@@ -149,7 +183,7 @@ angular.module('starter')
                 delete c.estado;
                 delete c.url;
                 ClientesTable.update(c, id, function (a) {
-
+                    loadClientes();
                 });
             }
 

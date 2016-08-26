@@ -13,45 +13,47 @@
         <div class="padding-left padding-right">
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Editar meus Dados</h4>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">Nome</span>
-                    <input type="text" class="border-form" placeholder="Nome" value="{{user.nome}}" ng-model="user.nome" required>
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">Sobrenome</span>
-                    <input type="text" class="border-form" placeholder="Sobrenome" value="{{user.sobrenome}}" ng-model="user.sobrenome" required>
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">E-mail</span>
-                    <input type="email" class="border-form" placeholder="E-mail" value="{{user.email}}" ng-model="user.email">
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">Celular</span>
-                    <input type="tel" class="border-form" placeholder="Celular" value="{{user.celular}}" ng-model="user.celular">
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">CPF</span>
-                    <input type="text" class="border-form" placeholder="CPF" value="{{user.documento}}" ng-model="user.documento">
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">Login</span>
-                    <input type="text" class="border-form" placeholder="Login" value="{{user.login}}" ng-model="user.login" required>
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <span class="input-label">Senha</span>
-                    <input type="password" class="border-form" placeholder="Senha" value="{{user.senha}}" ng-model="user.senha">
-                </div>
-                <div class="item item-input m-0 p-10">
-                    <button class="avatar-button avatar-square p-0 no-border" ng-click="userFoto()">
-                        <img src="{{user.url}}" class="wp-100 d-block avatar m-15">
-                        <div class="avatar-footer">
-                            <i class="fa fa-camera"></i> Alterar Foto
-                        </div>
-                    </button>
-                </div>
-                <div class="padding item-footer">
-                    <button class="button button-block button-balanced m-0" ng-click="salvar(usuario)"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
-                </div>
+                <form name="usuario" ng-submit="salvar(user)" novalidate>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">Nome</span>
+                        <input type="text" class="border-form" placeholder="Nome" value="{{user.nome}}" ng-model="user.nome" required>
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">Sobrenome</span>
+                        <input type="text" class="border-form" placeholder="Sobrenome" value="{{user.sobrenome}}" ng-model="user.sobrenome" required>
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">E-mail</span>
+                        <input type="email" class="border-form" placeholder="E-mail" value="{{user.email}}" ng-model="user.email">
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">Celular</span>
+                        <input type="tel" class="border-form" placeholder="Celular" value="{{user.celular}}" ng-model="user.celular">
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">CPF</span>
+                        <span class="input">{{user.documento}}</span>
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">Login</span>
+                        <input type="text" class="border-form" placeholder="Login" value="{{user.login}}" ng-model="user.login" required>
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <span class="input-label">Senha</span>
+                        <input type="password" class="border-form" placeholder="Senha" value="{{user.senha}}" ng-model="user.senha">
+                    </div>
+                    <div class="item item-input m-0 p-10">
+                        <button class="avatar-button avatar-square p-0 no-border" ng-click="userFoto()" type="button">
+                            <img src="{{user.url}}" class="wp-100 d-block avatar m-15">
+                            <div class="avatar-footer">
+                                <i class="fa fa-camera"></i> Alterar Foto
+                            </div>
+                        </button>
+                    </div>
+                    <div class="padding item-footer">
+                        <button class="button button-block button-balanced m-0" type="submit"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </ion-content>

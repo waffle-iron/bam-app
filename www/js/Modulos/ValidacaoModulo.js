@@ -275,6 +275,11 @@ angular.module('starter')
 
                         return whitespace.indexOf(str.charAt(0)) === -1 ? str : ''
                     };
+                    
+                    services.isEmail = function(email){
+                        re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+                        return (services.isNotNull(email) && re.test(email));
+                    }
 
                     return services;
                 }

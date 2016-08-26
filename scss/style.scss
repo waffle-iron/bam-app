@@ -255,12 +255,13 @@ textarea{
 progress::-webkit-progress-bar { background: #fff; }
 progress::-webkit-progress-value { background: #0063a6; }
 
-.btn-purple{
+.button.button-positive,.btn-purple{
     background:#896da5;
     color:#fff;
 }
 
-.btn-purple:hover,.btn-purple:focus,.btn-purple:active{
+.btn-purple:hover,.btn-purple:focus,.btn-purple:active,
+.button.button-positive:hover,.button.button-positive:focus,.button.button-positive:active{
     background:#af94ca;
     color:#fff;
 }

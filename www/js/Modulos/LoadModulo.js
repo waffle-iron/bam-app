@@ -17,7 +17,7 @@ angular.module('starter')
                         });
                     };
 
-                    services.mapa = function (cliente) {
+                    services.mapa = function (cliente, scope) {
                         console.log('Carregar Mapa');
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             var div = document.getElementById("map_canvas");
@@ -38,7 +38,7 @@ angular.module('starter')
                             });
 
                         } else {
-                            $scope.show_mapa = 0;
+                            scope.show_mapa = 0;
                             ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
                         }
                     }
