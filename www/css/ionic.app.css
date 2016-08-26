@@ -13570,20 +13570,12 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
   overflow: hidden;
   border-radius: 50%; }
 
-.list-atv input, .list-atv textarea {
-  font-weight: lighter; }
-
-.list-atv span.input {
-  border: 1px solid rgba(0, 0, 0, 0.1) !important;
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
+.list-atv input, .list-atv textarea, .list-atv span.input {
+  border: 0 !important;
   width: 100%;
   font-size: 14px;
   font-weight: lighter; }
 
 .input-label {
-  font-size: 14px; }
-
-.input-label {
+  font-size: 14px;
   width: 30%; }

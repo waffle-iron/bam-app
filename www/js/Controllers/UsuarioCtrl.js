@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('UsuarioCtrl', function ($scope, $stateParams, ValidacaoModuloFactory, StorageModuloFactory, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet) {
+        .controller('UsuarioCtrl', function ($scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             $scope.user.senha = "";
@@ -55,6 +55,7 @@ angular.module('starter')
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
                                             imagem: img}, function (retorno) {
+                                            $scope.user.url = img;
                                         });
                                     }
                                 });
@@ -66,6 +67,7 @@ angular.module('starter')
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
                                             imagem: img}, function (retorno) {
+                                            $scope.user.url = img;
                                         });
                                     }
                                 });

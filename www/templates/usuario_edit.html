@@ -11,7 +11,7 @@
     <ion-content class="fundo">
         <msg></msg>
         <div class="padding-left padding-right">
-            <div class="list list-inset borda-grey header-block">
+            <div class="list list-inset list-atv borda-grey header-block">
                 <h4 class="padding text-center">Editar meus Dados</h4>
                 <form name="usuario" ng-submit="salvar(user)" novalidate>
                     <div class="item item-input m-0 p-10">
@@ -44,7 +44,7 @@
                     </div>
                     <div class="item item-input m-0 p-10">
                         <button class="avatar-button avatar-square p-0 no-border" ng-click="userFoto()" type="button">
-                            <img src="{{user.url}}" class="wp-100 d-block avatar m-15">
+                            <img ng-src="{{user.url}}" class="wp-100 d-block avatar m-15">
                             <div class="avatar-footer">
                                 <i class="fa fa-camera"></i> Alterar Foto
                             </div>

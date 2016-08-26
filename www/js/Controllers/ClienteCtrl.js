@@ -99,9 +99,9 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet) {
+        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet) {
             $scope.cliente = {};
-            var loadClientes = function(){
+            var loadClientes = function () {
                 ClientesTable.first(
                         {
                             from: 'c.*, cd.cidade, e.estado',
@@ -115,7 +115,7 @@ angular.module('starter')
                 });
             }
             loadClientes();
-            
+
             $scope.buscaCep = function (cep) {
                 CepApiFactory.busca(cep, function (ret) {
                     if (ret.data.result.status === 'OK') {
@@ -124,7 +124,7 @@ angular.module('starter')
                     }
                 });
             }
-            
+
             // Triggered on a button click, or some other target
             $scope.tirarFoto = function () {
 
@@ -173,6 +173,10 @@ angular.module('starter')
             };
 
             $scope.salvar = function (cliente) {
+                if (!ValidacaoModuloFactory.isNotNull(cliente.cep)){
+                    ValidacaoModuloFactory.alert('Informe o seu CEP');
+                    return;
+                }
                 var c = cliente;
                 c.latitude = null;
                 c.longitude = null;
@@ -184,6 +188,7 @@ angular.module('starter')
                 delete c.url;
                 ClientesTable.update(c, id, function (a) {
                     loadClientes();
+                    ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso');
                 });
             }
 
