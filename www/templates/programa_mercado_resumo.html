@@ -1,0 +1,36 @@
+<ion-view view-title="Programa de Mercado - Resumo" view-cache="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+        <msg></msg>
+        <div ng-if="produtos > 0">
+            <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
+        </div>
+
+        <div class="padding" ng-repeat="(key, value) in formularios">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">{{value.nome}}</h4>
+                <h5 ng-show="value.subtitulo" class="padding text-center">{{value.subtitulo}}</h5>
+                <div>
+                    <div class="item item-text-wrap">
+                      {{value.fcv_resposta}}
+                      <div ng-repeat="(keyImage, valueImage) in imagens" class="text-center">
+                        <img ng-src="{{valueImage.imagem}}" class="max-width: 95%" />
+                      </div>
+                    </div>
+                </div>
+                <div class="padding item-footer">
+                </div>
+            </div>
+        </div>
+    </ion-content>
+
+</ion-view>
