@@ -13544,6 +13544,7 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
   background: transparent;
   margin: 0 auto;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2) inset;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   position: relative; }
 
 .avatar-footer {

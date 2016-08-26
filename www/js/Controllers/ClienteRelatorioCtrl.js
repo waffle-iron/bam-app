@@ -75,7 +75,7 @@ angular.module('starter')
                     linha++;
                 });
                 var t = (total / linha);
-                return (t || 0);
+                return (t || 0).toFixed(0);
             }
 
         });

@@ -89,7 +89,7 @@ angular.module('starter')
                 };
 
                 services.relatorios = function (id, retorno) {
-                    RequestModuloFactory.put('clientes/relatorios/' + id + '.json', null, function (response) {
+                    RequestModuloFactory.get('clientes/relatorios/' + id + '.json', null, function (response) {
                         retorno(response);
                     });
                 };
