@@ -99,7 +99,7 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet) {
+        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
             $scope.cliente = {};
             var loadClientes = function () {
                 ClientesTable.first(
@@ -189,6 +189,9 @@ angular.module('starter')
                 ClientesTable.update(c, id, function (a) {
                     loadClientes();
                     ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso');
+                    $timeout(function () {
+                        $state.go('app.cliente', {id: $scope.cliente.id});
+                    }, 3000);
                 });
             }
 

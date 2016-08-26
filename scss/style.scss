@@ -1,3 +1,6 @@
+$green: #5cb85c;
+$yellow: #f0ad4e;
+
 .fundo {
     background: #432461;
 }
@@ -8,16 +11,16 @@
 }
 .white{color: #ffffff;}
 .grey{color: #ccc;}
-.black{color: #ffffff !important; background-color: #111 !important;}
-.purple{color: #ffffff !important; background-color: #896da5 !important;}
-.item-complex .item-content, .purple .item{color: #ffffff !important; background-color: #896da5 !important;}
+.black{color: #ffffff!important; background-color: #111!important;}
+.purple{color: #ffffff!important; background-color: #896da5!important;}
+.item-complex .item-content, .purple .item{color: #ffffff!important; background-color: #896da5!important;}
 
 .bar.bar-black,
 .tabs.tabs-black {
-    border-color: #000 !important;
-    background-color: #111 !important;
-    background-image: none !important;
-    color: #fff !important;
+    border-color: #000!important;
+    background-color: #111!important;
+    background-image: none!important;
+    color: #fff!important;
 }
 .bar.bar-purple,
 .tabs.tabs-purple {
@@ -217,10 +220,10 @@ textarea{
     color:#d9534f;
 }
 .color-green{
-    color:#5cb85c;
+    color:$green;
 }
 .color-yellow{
-    color:#f0ad4e;
+    color:$yellow;
 }
 .color-blue{
     color:#00aced;
@@ -261,12 +264,12 @@ progress::-webkit-progress-value { background: #0063a6; }
 }
 
 .btn-purple:hover,.btn-purple:focus,.btn-purple:active,
-.button.button-positive:hover,.button.button-positive:focus,.button.button-positive:active{
+.button.button-positive:hover,.button.button-positive:focus,.button.button-positive:active,.button.button-positive.activated{
     background:#af94ca;
     color:#fff;
 }
 .background-green,.bg-green{
-    background:green;
+    background:$green;
     color:#fff;
 }
 .background-white,.bg-white{
@@ -306,12 +309,14 @@ progress::-webkit-progress-value { background: #0063a6; }
     background:transparent;
 }
 .button-grey{
-    color:#fff;
-    background:#c3c3c3;
+    color:#896da5;
+    border:1px solid #ddd;
+    background:#eee;
 }
 .button-grey:hover,.button-grey:focus,.button-grey:active{
-    color:#fff;
-    background:#ccc;
+    color:#896da5;
+    border:1px solid #ddd;
+    background:#ddd;
 }
 .timeline{
     position:relative;
@@ -337,13 +342,13 @@ progress::-webkit-progress-value { background: #0063a6; }
     margin-top:-5px;
 }
 .timeline-green:before,.timeline-green:after{
-    background:#5cb85c;
+    background:$green;
 }
 .timeline-red:before,.timeline-red:after{
     background:#d9534f;
 }
 .timeline-yellow:before,.timeline-yellow:after{
-    background:#f0ad4e;
+    background:$yellow;
 }
 .timeline-grey:before,.timeline-grey:after{
     background:#ccc;
@@ -409,7 +414,7 @@ progress::-webkit-progress-value { background: #0063a6; }
     margin:10px;
 }
 progress {
-    border:1px solid rgba(0,0,0,.3)
+    border:1px solid rgba(0,0,0,.15)
 }
 progress::-webkit-progress-bar {
     background:#eee;
@@ -421,19 +426,25 @@ progress::-moz-progress-bar {
     background:#eee;
 }
 .d-iblock{
-    display:inline-block
+    display:inline-block;
+}
+.h-40{
+    height:40px!important;
+}
+.h-50{
+    height:50px!important;
 }
 .h-100{
-    height:100px;
+    height:100px!important;
 }
 .h-150{
-    height:150px
+    height:150px!important;
 }
 .h-200{
-    height:200px;
+    height:200px!important;
 }
 .h-250{
-    height:250px
+    height:250px!important;
 }
 .va-t{
     vertical-align: top;
@@ -483,10 +494,8 @@ svg .legend-title{
     font-size:22px!important;
     font-weight:bold!important;
 }
-.rac-graph svg .legend-value{
-    font-size:40px!important;
-    font-weight:bold!important;
-    margin-top:-20px;
+.rac-graph svg .legend-value:after{
+    content:"pt."
 }
 .platform-android .bar .title{
     font-size:14px;
@@ -549,10 +558,19 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
     border-radius:50%;
 }
 .list-atv input, .list-atv textarea,.list-atv span.input{
-    border: 0!important;
     width: 100%;
     font-size:14px;
     font-weight: lighter;
+    padding:5px;
+}
+.list-atv input, .list-atv textarea,.list-atv span.input{
+    border: 0!important;
+}
+.list-atv input.bd-bottom, .list-atv span.input.bd-bottom, .list-atv textarea.bd-bottom{
+    border:1px solid #ccc!important;
+    border-left:0!important;
+    border-right:0!important;
+    border-top:0!important;
 }
 .input-label{
     font-size:14px;

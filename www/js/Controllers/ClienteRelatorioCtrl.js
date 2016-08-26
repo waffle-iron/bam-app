@@ -23,7 +23,7 @@ angular.module('starter')
                     };
 
                     $scope.total_pdv = [
-                        {label: "Média", value: calcMedia($scope.dados.certificacoes), color: "green", suffix: "pt."}
+                        {label: "Média", value: calcMedia($scope.dados.certificacoes), color: corMedia(calcMedia($scope.dados.certificacoes)), suffix: "pt."}
                     ];
                 }
                 LoadModuloFactory.hide();
@@ -76,6 +76,14 @@ angular.module('starter')
                 });
                 var t = (total / linha);
                 return (t || 0).toFixed(0);
+            }
+            
+            var corMedia = function (media) {
+                if (media >= 750){
+                    return "#5cb85c";
+                }else{
+                    return "#d9534f";
+                }
             }
 
         });

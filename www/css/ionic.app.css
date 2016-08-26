@@ -12277,12 +12277,12 @@ progress::-webkit-progress-value {
   color: #fff; }
 
 .btn-purple:hover, .btn-purple:focus, .btn-purple:active,
-.button.button-positive:hover, .button.button-positive:focus, .button.button-positive:active {
+.button.button-positive:hover, .button.button-positive:focus, .button.button-positive:active, .button.button-positive.activated {
   background: #af94ca;
   color: #fff; }
 
 .background-green, .bg-green {
-  background: green;
+  background: #5cb85c;
   color: #fff; }
 
 .background-white, .bg-white {
@@ -12319,12 +12319,14 @@ progress::-webkit-progress-value {
   background: transparent; }
 
 .button-grey {
-  color: #fff;
-  background: #c3c3c3; }
+  color: #896da5;
+  border: 1px solid #ddd;
+  background: #eee; }
 
 .button-grey:hover, .button-grey:focus, .button-grey:active {
-  color: #fff;
-  background: #ccc; }
+  color: #896da5;
+  border: 1px solid #ddd;
+  background: #ddd; }
 
 .timeline {
   position: relative;
@@ -12421,7 +12423,7 @@ progress::-webkit-progress-value {
   margin: 10px; }
 
 progress {
-  border: 1px solid rgba(0, 0, 0, 0.3); }
+  border: 1px solid rgba(0, 0, 0, 0.15); }
 
 progress::-webkit-progress-bar {
   background: #eee; }
@@ -12435,17 +12437,23 @@ progress::-moz-progress-bar {
 .d-iblock {
   display: inline-block; }
 
+.h-40 {
+  height: 40px !important; }
+
+.h-50 {
+  height: 50px !important; }
+
 .h-100 {
-  height: 100px; }
+  height: 100px !important; }
 
 .h-150 {
-  height: 150px; }
+  height: 150px !important; }
 
 .h-200 {
-  height: 200px; }
+  height: 200px !important; }
 
 .h-250 {
-  height: 250px; }
+  height: 250px !important; }
 
 .va-t {
   vertical-align: top; }
@@ -13505,10 +13513,8 @@ svg .legend-title {
   font-size: 22px !important;
   font-weight: bold !important; }
 
-.rac-graph svg .legend-value {
-  font-size: 40px !important;
-  font-weight: bold !important;
-  margin-top: -20px; }
+.rac-graph svg .legend-value:after {
+  content: "pt."; }
 
 .platform-android .bar .title {
   font-size: 14px; }
@@ -13571,10 +13577,19 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
   border-radius: 50%; }
 
 .list-atv input, .list-atv textarea, .list-atv span.input {
-  border: 0 !important;
   width: 100%;
   font-size: 14px;
-  font-weight: lighter; }
+  font-weight: lighter;
+  padding: 5px; }
+
+.list-atv input, .list-atv textarea, .list-atv span.input {
+  border: 0 !important; }
+
+.list-atv input.bd-bottom, .list-atv span.input.bd-bottom, .list-atv textarea.bd-bottom {
+  border: 1px solid #ccc !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-top: 0 !important; }
 
 .input-label {
   font-size: 14px;

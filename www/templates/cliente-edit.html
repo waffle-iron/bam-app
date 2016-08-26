@@ -15,35 +15,35 @@
             <div class="list list-inset list-atv borda-grey header-block">
                 <h4 class="padding text-center">Editar dados de Cliente</h4>
                 <form name="clientes" ng-submit="salvar(cliente)" novalidate>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Nome</span>
-                        <span class="input">{{cliente.nome}}</span>
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Nome</span>
+                        <span class="input m-0 h-40 p-10">{{cliente.nome}}</span>
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">CEP</span>
-                        <input type="text" placeholder="CEP" ng-blur="buscaCep(cliente.cep)" ng-model="cliente.cep" value="{{cliente.cep}}">
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">CEP</span>
+                        <input class="m-0 h-40 p-10" type="text" placeholder="CEP" ng-blur="buscaCep(cliente.cep)" ng-model="cliente.cep" value="{{cliente.cep}}">
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Endereço</span>
-                        <input type="text" placeholder="Endereço" value="{{cliente.endereco}}" ng-model="cliente.endereco">
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Endereço</span>
+                        <input class="m-0 h-40 p-10" type="text" placeholder="Endereço" value="{{cliente.endereco}}" ng-model="cliente.endereco">
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Número</span>
-                        <input type="text" placeholder="Número" value="{{cliente.numero}}" ng-model="cliente.numero">
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Número</span>
+                        <input class="m-0 h-40 p-10" type="text" placeholder="Número" value="{{cliente.numero}}" ng-model="cliente.numero">
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Comp.</span>
-                        <input type="text" placeholder="Complemento" value="{{cliente.complemento}}" ng-model="cliente.complemento">
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Comp.</span>
+                        <input class="m-0 h-40 p-10" type="text" placeholder="Complemento" value="{{cliente.complemento}}" ng-model="cliente.complemento">
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Bairro</span>
-                        <input type="text" placeholder="Bairro" value="{{cliente.bairro}}" ng-model="cliente.bairro">
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Bairro</span>
+                        <input class="m-0 h-40 p-10" type="text" placeholder="Bairro" value="{{cliente.bairro}}" ng-model="cliente.bairro">
                     </div>
-                    <div class="item item-input m-0 p-10">
-                        <span class="input-label">Cidade</span>
-                        <span class="input">{{cliente.cidade}} - {{cliente.estado}}</span>
+                    <div class="item item-input m-0">
+                        <span class="input-label p-10">Cidade</span>
+                        <span class="input m-0 h-40 p-10">{{cliente.cidade}} - {{cliente.estado}}</span>
                     </div>
-                    <div class="item item-input m-0 p-10">
+                    <div class="item item-input p-20 m-0">
                         <button class="avatar-button avatar-square p-0 no-border" ng-click="tirarFoto()">
                             <img src="{{cliente.url}}" class="wp-100 d-block avatar m-15">
                             <div class="avatar-footer">
