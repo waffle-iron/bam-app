@@ -13,7 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             userSenha: '123456',
             timeout: 15000,
             database: 'bam',
-            debug: false
+            debug: true
         })
         .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, Config) {
             $ionicPlatform.ready(function () {
@@ -195,6 +195,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.rota_bam_resumo', {
+                        url: '/rota_bam_resumo',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/rota_bam_resumo.html',
+                                controller: 'RotaBamResumoCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.ativacao_52', {
                         url: '/ativacao_52',
                         views: {
@@ -211,6 +221,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                             'menuContent': {
                                 templateUrl: 'templates/programa_mercado.html',
                                 controller: 'ProgramaMercadoCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.programa_mercado_resumo', {
+                        url: '/programa_mercado_resumo',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/programa_mercado_resumo.html',
+                                controller: 'ProgramaMercadoResumoCtrl'
                             }
                         }
                     })
