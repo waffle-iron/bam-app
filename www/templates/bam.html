@@ -77,11 +77,11 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
-                <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap">
+                <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
+
+                <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap" style="font-size: 12px;">
                     <h3><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h3>
                 </div>
-
-                <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
                     <div class="col-10 text-center">RKG</div>
