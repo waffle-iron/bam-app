@@ -12,6 +12,7 @@
         <header-logo></header-logo>
 
         <div class="padding">
+            
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura</h4>
                 <div class="item item-text-wrap pl-0 pr-0 cobertura-graph">
@@ -39,13 +40,13 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                <a ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
                         &nbsp;
                     </div>
                     <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
                         <div class="d-iblock va-t wp-78">
-                            <strong class="d-block">{{v.tipo}}</strong>
+                            <strong class="d-block">{{v.tipo}}-{{v.cliente_id}}</strong>
                             <span class="d-block">{{v.nome}}</span>
                             <small class="d-block">{{v.data_final| date}}</small>
                         </div>
@@ -53,7 +54,7 @@
                             <i class="ion-chevron-right color-grey"></i>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="padding item-footer">
                     <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
@@ -77,22 +78,29 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
-                <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
-
                 <div ng-repeat="(key,v) in dados.geral_rac" class="item item-text-wrap" style="font-size: 12px;">
-                    <h3><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h3>
+                    <h5 class="color-black"><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h5>
+                </div>
+
+                <div class="relative">
+                    <span class="absolute wp-100 text-center h-250 fw-b lh-250 z-10 fs-40">
+                        {{total_prog_rac}}
+                    </span>
+                    <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
                 </div>
 
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
-                    <div class="col-10 text-center">RKG</div>
-                    <div class="col p-0">PDV</div>
-                    <div class="col-20">Pontos</div>
+                    <div class="wp-10 text-center">RKG</div>
+                    <div class="wp-45 p-0">PDV</div>
+                    <div class="wp-20">Pontos</div>
+                    <div class="wp-25">Valor</div>
                 </div>
                 <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
                     <div class="ranking-body item item-text-wrap row padding-top padding-bottom">
-                        <div class="col-10 text-center">{{(k + 1)}}</div>
-                        <div class="col p-0">{{v.nome}}</div>
-                        <div class="col-20">{{forceInt(v.pontuacao)}}</div>
+                        <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
+                        <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
+                        <div class="wp-20 fs-12">{{forceInt(v.pontuacao)}}</div>
+                        <div class="wp-25 fs-12">{{100| currency:'R$ '}} </div>
                     </div>
                 </div>
                 <div class="padding item-footer">

@@ -49,7 +49,7 @@
                                 {{value.data| date}}
                             </div>
                             <div class="col text-right">
-                                {{value.total| currency:'R$ '}}
+                                {{forceInt(value.total)}}pt.
                             </div>
                         </h4>
                         <progress class="m-0" max="1000" value="{{forceInt(value.total)}}"></progress>
@@ -114,7 +114,7 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <div ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                <a href="#/app/cliente_relatorio/{{cliente.id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
 
                     </div>
@@ -128,7 +128,7 @@
                             <i class="ion-chevron-right color-grey"></i>
                         </div>
                     </div>
-                </div>
+                </a>
 
                 <div class="padding item-footer">
                     <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>

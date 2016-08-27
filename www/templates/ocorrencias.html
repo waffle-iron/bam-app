@@ -4,29 +4,24 @@
         <ion-nav-buttons side="right">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
         </ion-nav-buttons>
-        <ion-nav-buttons side="left">
-            <button class="button button-icon button-clear ion-plus-circled" ng-click="openModal()"></button>
-        </ion-nav-buttons>
         <ion-nav-back-button>
         </ion-nav-back-button>
     </ion-nav-bar>
 
-    <ion-content class="fundo">
+    <ion-content class="fundo has-Button">
         <header-logo-mini></header-logo-mini>
-        <div class="list padding">
+        <div class="list padding-left padding-right m-0 pb-0">
             <div ng-repeat="(key, value) in ocorrenciasLocais" class="item item-text-wrap m-b-10 m-t-10 bordas">
                 <a>
-                    <div style="color: #000;">{{value.descricao}}</div>
-                    <div class="text-right" style="color: #000; font-size:10px;">{{value.created}}</div>
+                    <div class="color-black">{{value.descricao}}</div>
+                    <div class="text-right color-black fs-10">{{value.created}}</div>
                 </a>
             </div>
-        </div>
-
-        <div class="list padding">
+            
             <div ng-repeat="(key, value) in ocorrencias" class="item item-text-wrap m-b-10 m-t-10 bordas">
                 <a>
-                    <div style="color: #000;">{{value.descricao}}</div>
-                    <div class="text-right" style="color: #000; font-size:10px;">{{value.created}}</div>
+                    <div class="color-black">{{value.descricao}}</div>
+                    <div class="text-right color-black fs-10">{{value.created}}</div>
                 </a>
             </div>
         </div>
@@ -38,22 +33,26 @@
         on-infinite="loadMore()"
         distance="90%">
     </ion-infinite-scroll>
-
+    
+    <button class="button button-round button-royal button-fixed m-0 p-0" ng-click="openModal()">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    
     <script id="modalAddOcorrencias.html" type="text/ng-template">
         <ion-modal-view>
-        <ion-header-bar class="bar bar-header bar-positive">
+        <ion-header-bar class="bar bar-header bar-purple">
         <h1 class="title">Nova Ocorrência</h1>
-        <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
+        <button class="button button-clear button-primary" ng-click="modal.hide()"><i class="fa fa-close"></i></button>
         </ion-header-bar>
         <ion-content class="padding">
         <div class="list">
         <label class="item item-input">
-        <textarea class="padding" id="textarea_ocorrencia" rows="15" style="border: 1px solid #000;" ng-model="formulario.ocorrencia" placeholder="Descreva a Ocorrência"></textarea>
+        <textarea class="padding" id="textarea_ocorrencia" rows="15" ng-model="formulario.ocorrencia" placeholder="Descreva a Ocorrência"></textarea>
         </label>
         </div>
         </ion-content>
-        <div class="bar button-bar bar-footer" style="height:80px">
-        <button class="button button-full button-positive" ng-click="closeModal(formulario)">Salvar</button>
+        <div class="bar button-bar bar-footer padding">
+        <button class="button button-full button-purple m-0 p-0" ng-click="closeModal(formulario)">Salvar</button>
         </div>
         </ion-modal-view>
     </script>

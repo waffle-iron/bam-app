@@ -12314,6 +12314,10 @@ progress::-webkit-progress-value {
 .vol-right {
   font-size: 12px; }
 
+.button-purple {
+  color: #fff;
+  background: #896da5; }
+
 .button-purple-o {
   color: #896da5;
   background: transparent; }
@@ -12463,6 +12467,9 @@ progress::-moz-progress-bar {
   margin: 6px 0;
   border: none;
   background: #eee; }
+
+.pb-0 {
+  padding-bottom: 0; }
 
 .wp-1 {
   width: 1%; }
@@ -12765,157 +12772,157 @@ progress::-moz-progress-bar {
   width: 100%; }
 
 .m-0 {
-  margin: 0px!important; }
+  margin: 0px; }
 
 .m-1 {
-  margin: 1px!important; }
+  margin: 1px; }
 
 .m-2 {
-  margin: 2px!important; }
+  margin: 2px; }
 
 .m-3 {
-  margin: 3px!important; }
+  margin: 3px; }
 
 .m-4 {
-  margin: 4px!important; }
+  margin: 4px; }
 
 .m-5 {
-  margin: 5px!important; }
+  margin: 5px; }
 
 .m-6 {
-  margin: 6px!important; }
+  margin: 6px; }
 
 .m-7 {
-  margin: 7px!important; }
+  margin: 7px; }
 
 .m-8 {
-  margin: 8px!important; }
+  margin: 8px; }
 
 .m-9 {
-  margin: 9px!important; }
+  margin: 9px; }
 
 .m-10 {
-  margin: 10px!important; }
+  margin: 10px; }
 
 .m-11 {
-  margin: 11px!important; }
+  margin: 11px; }
 
 .m-12 {
-  margin: 12px!important; }
+  margin: 12px; }
 
 .m-13 {
-  margin: 13px!important; }
+  margin: 13px; }
 
 .m-14 {
-  margin: 14px!important; }
+  margin: 14px; }
 
 .m-15 {
-  margin: 15px!important; }
+  margin: 15px; }
 
 .m-16 {
-  margin: 16px!important; }
+  margin: 16px; }
 
 .m-17 {
-  margin: 17px!important; }
+  margin: 17px; }
 
 .m-18 {
-  margin: 18px!important; }
+  margin: 18px; }
 
 .m-19 {
-  margin: 19px!important; }
+  margin: 19px; }
 
 .m-20 {
-  margin: 20px!important; }
+  margin: 20px; }
 
 .m-21 {
-  margin: 21px!important; }
+  margin: 21px; }
 
 .m-22 {
-  margin: 22px!important; }
+  margin: 22px; }
 
 .m-23 {
-  margin: 23px!important; }
+  margin: 23px; }
 
 .m-24 {
-  margin: 24px!important; }
+  margin: 24px; }
 
 .m-25 {
-  margin: 25px!important; }
+  margin: 25px; }
 
 .m-26 {
-  margin: 26px!important; }
+  margin: 26px; }
 
 .m-27 {
-  margin: 27px!important; }
+  margin: 27px; }
 
 .m-28 {
-  margin: 28px!important; }
+  margin: 28px; }
 
 .m-29 {
-  margin: 29px!important; }
+  margin: 29px; }
 
 .m-30 {
-  margin: 30px!important; }
+  margin: 30px; }
 
 .m-31 {
-  margin: 31px!important; }
+  margin: 31px; }
 
 .m-32 {
-  margin: 32px!important; }
+  margin: 32px; }
 
 .m-33 {
-  margin: 33px!important; }
+  margin: 33px; }
 
 .m-34 {
-  margin: 34px!important; }
+  margin: 34px; }
 
 .m-35 {
-  margin: 35px!important; }
+  margin: 35px; }
 
 .m-36 {
-  margin: 36px!important; }
+  margin: 36px; }
 
 .m-37 {
-  margin: 37px!important; }
+  margin: 37px; }
 
 .m-38 {
-  margin: 38px!important; }
+  margin: 38px; }
 
 .m-39 {
-  margin: 39px!important; }
+  margin: 39px; }
 
 .m-40 {
-  margin: 40px!important; }
+  margin: 40px; }
 
 .m-41 {
-  margin: 41px!important; }
+  margin: 41px; }
 
 .m-42 {
-  margin: 42px!important; }
+  margin: 42px; }
 
 .m-43 {
-  margin: 43px!important; }
+  margin: 43px; }
 
 .m-44 {
-  margin: 44px!important; }
+  margin: 44px; }
 
 .m-45 {
-  margin: 45px!important; }
+  margin: 45px; }
 
 .m-46 {
-  margin: 46px!important; }
+  margin: 46px; }
 
 .m-47 {
-  margin: 47px!important; }
+  margin: 47px; }
 
 .m-48 {
-  margin: 48px!important; }
+  margin: 48px; }
 
 .m-49 {
-  margin: 49px!important; }
+  margin: 49px; }
 
 .m-50 {
-  margin: 50px!important; }
+  margin: 50px; }
 
 .mt-0 {
   margin-top: 0px!important; }
@@ -13564,7 +13571,7 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
   height: 25px;
   line-height: 25px; }
 
-.avatar-round {
+.button-round, .avatar-round {
   overflow: hidden;
   border-radius: 50%; }
 
@@ -13594,3 +13601,54 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 .input-label {
   font-size: 14px;
   width: 30%; }
+
+.button-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  min-height: 40px; }
+
+.button-fixed i {
+  display: block; }
+
+.modal textarea, .modal input {
+  border: 1px solid #ddd; }
+
+.modal textarea:focus, .modal input:focus {
+  background: #eee; }
+
+.modal .bar-footer {
+  height: 70px; }
+
+.fs-10 {
+  font-size: 10px; }
+
+.fundo.has-Button .scroll {
+  padding-bottom: 60px; }
+
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.z-10 {
+  z-index: 10; }
+
+.fs-12 {
+  font-size: 12px; }
+
+.fs-40 {
+  font-size: 40px; }
+
+.lh-250 {
+  line-height: 250px; }
+
+.fw-b {
+  font-weight: bold; }
+
+.z-10 {
+  z-index: 10; }

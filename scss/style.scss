@@ -304,6 +304,10 @@ progress::-webkit-progress-value { background: #0063a6; }
 .vol-right{
     font-size:12px;
 }
+.button-purple{
+    color:#fff;
+    background:#896da5;
+}
 .button-purple-o{
     color:#896da5;
     background:transparent;
@@ -455,13 +459,16 @@ progress::-moz-progress-bar {
     border: none;
     background: #eee;
 }
+.pb-0{
+    padding-bottom:0;
+}
 //Width Porcentagem
 @for $i from 1 through 100 {
     .wp-#{$i} { width: 0% + $i; }
 }
 //Margin Pixels
 @for $i from 0 through 50 {
-    .m-#{$i} { margin: 0px+$i+!important; }
+    .m-#{$i} { margin: 0px+$i; }
 }
 //Margin-top Pixels
 @for $i from 0 through 50 {
@@ -545,7 +552,7 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
     height:25px;
     line-height:25px
 }
-.avatar-round{
+.button-round, .avatar-round{
     overflow:hidden;
     border-radius:50%;
 }
@@ -575,4 +582,55 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 .input-label{
     font-size:14px;
     width: 30%;
+}
+.button-fixed{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:40px;
+    min-width:40px;
+    height:40px;
+    min-height:40px;
+}
+.button-fixed i{
+    display: block;
+}
+.modal textarea,.modal input{
+    border:1px solid #ddd;
+}
+.modal textarea:focus,.modal input:focus{
+    background:#eee;
+}
+.modal .bar-footer{
+    height:70px;
+}
+.fs-10{
+    font-size:10px;
+}
+.fundo.has-Button .scroll{
+    padding-bottom:60px;
+}
+.relative{
+    position:relative;
+}
+.absolute{
+    position:absolute;
+}
+.z-10{
+    z-index:10;
+}
+.fs-12{
+    font-size:12px;
+}
+.fs-40{
+    font-size:40px;
+}
+.lh-250{
+    line-height:250px;
+}
+.fw-b{
+    font-weight:bold;
+}
+.z-10{
+    z-index:10;
 }

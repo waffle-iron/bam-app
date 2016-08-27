@@ -12,6 +12,7 @@ angular.module('starter')
             $scope.programa_rac = [];
             $scope.rac_options = [];
             $scope.rac_colors = [];
+            $scope.total_prog_rac = 0;
 
             $scope.pie_open = 0;
 
@@ -94,6 +95,7 @@ angular.module('starter')
                     $scope.pie_open = 1;
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
+                        $scope.total_prog_rac += parseInt(v.total);
                         v.options = {
                             thickness: 7,
                             mode: "gauge",
