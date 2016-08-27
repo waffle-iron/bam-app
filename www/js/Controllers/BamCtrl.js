@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('BamCtrl', function (ValidacaoModuloFactory, ExtraModuloFactory, $scope, LoadModuloFactory, StorageModuloFactory, UsuariosApiFactory) {
+        .controller('BamCtrl', function (ValidacaoModuloFactory, Config, $scope, LoadModuloFactory, StorageModuloFactory, UsuariosApiFactory) {
             LoadModuloFactory.show();
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
@@ -71,7 +71,7 @@ angular.module('starter')
 
                         var options = {
                             title: '',
-                            pieHole: 0.4,
+                            pieHole: 0.6,
                             legend: 'none',
                             chartArea: {
                                 left: 0,
@@ -95,7 +95,7 @@ angular.module('starter')
                     $scope.pie_open = 1;
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
-                        $scope.total_prog_rac += parseInt(v.total);
+                        $scope.total_prog_rac = parseInt($scope.dados.clientes_total.total);
                         v.options = {
                             thickness: 7,
                             mode: "gauge",
@@ -105,9 +105,12 @@ angular.module('starter')
                             {label: "", value: v.total, color: "#5CB85C", suffix: ""}
                         ];
                     }, $scope.dados.rota_bem);
-
+                    LoadModuloFactory.hide();
+                } else {
+                    LoadModuloFactory.hide();
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
+
             });
 
             $scope.isColor = function (value) {

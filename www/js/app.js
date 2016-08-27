@@ -13,7 +13,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             userSenha: '123456',
             timeout: 15000,
             database: 'bam',
-            debug: false
+            debug: false,
+            avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.'
         })
         .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, Config) {
             $ionicPlatform.ready(function () {

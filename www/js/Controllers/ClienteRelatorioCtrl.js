@@ -25,8 +25,10 @@ angular.module('starter')
                     $scope.total_pdv = [
                         {label: "Média", value: calcMedia($scope.dados.certificacoes), color: corMedia(calcMedia($scope.dados.certificacoes)), suffix: "pt."}
                     ];
+                    LoadModuloFactory.hide();
                 }
                 LoadModuloFactory.hide();
+                ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
             });
 
             $scope.isColor = function (value) {
@@ -77,11 +79,11 @@ angular.module('starter')
                 var t = (total / linha);
                 return (t || 0).toFixed(0);
             }
-            
+
             var corMedia = function (media) {
-                if (media >= 750){
+                if (media >= 750) {
                     return "#5cb85c";
-                }else{
+                } else {
                     return "#d9534f";
                 }
             }

@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="relative">
-                    <span class="absolute wp-100 text-center h-250 fw-b lh-250 z-10 fs-40">
+                    <span class="absolute wp-100 text-center color-grey h-250 fw-b lh-250 z-10 fs-40">
                         {{total_prog_rac}}
                     </span>
                     <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
@@ -96,12 +96,12 @@
                     <div class="wp-25">Valor</div>
                 </div>
                 <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
-                    <div class="ranking-body item item-text-wrap row padding-top padding-bottom">
+                    <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
                         <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
                         <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
                         <div class="wp-20 fs-12">{{forceInt(v.pontuacao)}}</div>
                         <div class="wp-25 fs-12">{{100| currency:'R$ '}} </div>
-                    </div>
+                    </a>
                 </div>
                 <div class="padding item-footer">
                     <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
