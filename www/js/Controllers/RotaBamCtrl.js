@@ -32,7 +32,7 @@ angular.module('starter')
                                         alias: 'fg',
                                         where: 'fg.formulario_id = ' + v.id,
                                         join: 'INNER JOIN formularios_grupos_campos AS fgc ON fgc.formularios_grupo_id = fg.id\n\
-                  INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
+                                               INNER JOIN formularios_campos AS fc ON fgc.formularios_campo_id = fc.id AND fc.status = 1',
                                         order: 'fc.ordem ASC'
                                     }, function (retGrupo) {
                                         angular.forEach(retGrupo, function (v1, k1) {
@@ -115,24 +115,28 @@ angular.module('starter')
                 };
 
                 $scope.proximo = function (dados, key) {
-                    if (dados.required > 0) {
-                        if (!ValidacaoModuloFactory.empty(dados.valor)) {
+                    if ($scope.btn_camera > 0) {
+                        ValidacaoModuloFactory.alert('Foto obrigatoria.');
+                    } else {
+                        if (dados.required > 0) {
+                            if (!ValidacaoModuloFactory.empty(dados.valor)) {
+                                $scope.getSubFormulario(dados.valor, dados.id, function () {
+                                    $scope.btn_camera = 0;
+                                    $scope.valor_selecionado = null;
+                                    $scope.perguntas.atual++;
+                                    $scope.sequencia(dados, key);
+                                });
+                            } else {
+                                ValidacaoModuloFactory.alert('Informe uma resposta.');
+                            }
+                        } else {
                             $scope.getSubFormulario(dados.valor, dados.id, function () {
                                 $scope.btn_camera = 0;
                                 $scope.valor_selecionado = null;
                                 $scope.perguntas.atual++;
                                 $scope.sequencia(dados, key);
                             });
-                        } else {
-                            ValidacaoModuloFactory.alert('Informe uma resposta.');
                         }
-                    } else {
-                        $scope.getSubFormulario(dados.valor, dados.id, function () {
-                            $scope.btn_camera = 0;
-                            $scope.valor_selecionado = null;
-                            $scope.perguntas.atual++;
-                            $scope.sequencia(dados, key);
-                        });
                     }
                 };
 
@@ -196,7 +200,9 @@ angular.module('starter')
                             FotosCamerasTable.save({tabela: 'FormulariosCamposValoresTable',
                                 id_referencia: $scope.id_resposta,
                                 sequencia: 0,
-                                imagem: img}, function (retorno) {
+                                imagem: img
+                            }, function (retorno) {
+                                $scope.btn_camera = 0;
                             });
                         }
                     });

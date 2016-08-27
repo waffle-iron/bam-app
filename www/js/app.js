@@ -13,7 +13,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             userSenha: '123456',
             timeout: 15000,
             database: 'bam',
-            debug: true
+            debug: false
         })
         .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, Config) {
             $ionicPlatform.ready(function () {
