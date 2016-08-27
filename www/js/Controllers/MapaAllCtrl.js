@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('CheckInCtrl', function (ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
+        .controller('MapaAllCtrl', function (ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory) {
             LoadModuloFactory.show();
             $scope.clientes = [];
             ClientesTable.all({
@@ -30,10 +30,9 @@ angular.module('starter')
 
                         $scope.clientes.push(v);
                     });
+                    LoadModuloFactory.mapaAll($scope.clientes, $scope);
                 }
                 LoadModuloFactory.hide();
             });
-            $scope.selecionado = function (cliente) {
-                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.ocorrencias);
-            };
+
         });

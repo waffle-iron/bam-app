@@ -51,10 +51,6 @@ angular.module('starter')
             $scope.cliente = {};
             $scope.show_mapa = 1;
 
-            $scope.loadMapa = function (cliente) {
-                LoadModuloFactory.mapa(cliente, $scope);
-            }
-
             ClientesTable.first(
                     {
                         from: 'c.*, cd.cidade, e.estado',
@@ -85,7 +81,7 @@ angular.module('starter')
                                 bairro: result.bairro,
                                 status: 2
                             }, result.id, function (a) {
-                                $scope.loadMapa(result);
+                                LoadModuloFactory.mapa(result, $scope);
                             });
                         } else {
                             $scope.show_mapa = 0;
@@ -93,7 +89,7 @@ angular.module('starter')
                         }
                     });
                 } else {
-                    $scope.loadMapa(result);
+                    LoadModuloFactory.mapa(result, $scope);
                 }
             });
         })

@@ -246,6 +246,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.mapa_all', {
+                        url: '/mapa_all',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/mapa_all.html',
+                                controller: 'MapaAllCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.cliente', {
                         url: '/cliente/:id',
                         views: {
