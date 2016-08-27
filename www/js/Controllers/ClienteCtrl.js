@@ -173,7 +173,7 @@ angular.module('starter')
             };
 
             $scope.salvar = function (cliente) {
-                if (!ValidacaoModuloFactory.isNotNull(cliente.cep)){
+                if (!ValidacaoModuloFactory.isNotNull(cliente.cep)) {
                     ValidacaoModuloFactory.alert('Informe o seu CEP');
                     return;
                 }
