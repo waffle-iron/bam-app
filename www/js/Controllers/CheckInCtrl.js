@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('CheckInCtrl', function ($filter, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
+        .controller('CheckInCtrl', function (Config, ValidacaoModuloFactory, $filter, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
             LoadModuloFactory.show();
             var lat = 0;
             var lng = 0;
@@ -9,13 +9,16 @@ angular.module('starter')
             var _clientes = [];
 
             if (!navigator) {
+                ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
                 listaClientes();
+
             } else {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     lat = position.coords.latitude;
                     lng = position.coords.longitude;
                     listaClientes();
                 }, function () {
+                    ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
                     listaClientes();
                 });
             }
