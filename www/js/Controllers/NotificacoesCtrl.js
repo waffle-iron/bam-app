@@ -1,7 +1,7 @@
 angular.module('starter')
 
         .controller('NotificacoesCtrl', function (moment, ExtraModuloFactory, $scope, $rootScope,
-                StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory, NotificacoesApiFactory) {
+                StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, Config, NotificacoesApiFactory) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
@@ -25,12 +25,14 @@ angular.module('starter')
                         $scope.notificacoes.push(v);
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                    LoadModuloFactory.hide();
                 } else {
+                    LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.console.error($scope, 'Nenhuma notificação localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
+
             }
 
             $scope.color = function (key) {

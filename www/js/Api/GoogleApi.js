@@ -41,8 +41,6 @@ angular.module('starter')
                 RequestModuloFactory.post('util/endereco.json', cliente, function (response) {
                     var r = response.data.response.result;
                     if (r.status === 'OK') {
-                        console.log('r google');
-
                         ret.latitude = (r.results[0].geometry.location.lat || ret.latitude);
                         ret.longitude = (r.results[0].geometry.location.lng || ret.longitude);
 

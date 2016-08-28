@@ -10,7 +10,6 @@ angular.module('starter')
                         return false;
                     }
                 } catch (err) {
-                    console.log(err);
                     return false;
                 }
             }

@@ -79,7 +79,6 @@ angular.module('starter')
 
             $scope.openModal = function () {
                 $scope.modal.show();
-                console.log(window.screen.height);
                 document.getElementById("textarea_ocorrencia").style.height = (window.screen.height - 140) + "px";
             };
 

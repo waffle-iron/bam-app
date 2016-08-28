@@ -1,7 +1,7 @@
 angular.module('starter')
 
         .controller('OrientacaoCtrl', function (ExtraModuloFactory, $scope, $rootScope,
-                StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory, BibliotecasApiFactory) {
+                StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, Config, BibliotecasApiFactory) {
             $scope.options = {
                 sort: 'created',
                 page: 1,
@@ -21,12 +21,14 @@ angular.module('starter')
                         $scope.bibliotecas.push(v);
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                    LoadModuloFactory.hide();
                 } else {
+                    LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.console.error($scope, 'Nenhuma orientação localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
+
             }
 
             $scope.color = function (key) {

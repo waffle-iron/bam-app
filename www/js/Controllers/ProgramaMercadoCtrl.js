@@ -26,7 +26,6 @@ angular.module('starter')
                         FormulariosTable.all({
                             where: 'status = 1 AND sub_formulario_id = 2 AND argumento="' + ValidacaoModuloFactory.trim(argumento) + '" AND formularios_pergunta_id = ' + pergunta_id + ''
                         }, function (ret) {
-                            console.log(ret);
                             if (ret !== null) {
                                 angular.forEach(ret, function (v, k) {
                                     FormulariosGruposTable.all({

@@ -91,7 +91,6 @@ angular.module('starter')
                         chart.draw(data, options);
                     }
 
-                    console.log($scope.programa_rac);
                     $scope.pie_open = 1;
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {

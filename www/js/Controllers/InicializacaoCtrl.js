@@ -346,7 +346,6 @@ angular.module('starter')
 
             $scope._atualizar = function () {
                 $timeout(function () {
-                    console.log('Passou aqui.');
                     $scope._hide();
 
                 }, 5000);
@@ -355,8 +354,6 @@ angular.module('starter')
             $scope._atualizar();
 
             $scope._hide = function () {
-                console.log($scope._sincronizacao.requisicao);
-                console.log($scope._sincronizacao.geral);
                 if ($scope._sincronizacao.requisicao.atualizado === $scope._sincronizacao.requisicao.baixado && $scope._sincronizacao.geral.baixado === $scope._sincronizacao.geral.atualizado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, moment(new Date()).format("YYYY-MM-DD"));
                     //LoadModuloFactory.hide();

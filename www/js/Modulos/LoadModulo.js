@@ -8,21 +8,16 @@ angular.module('starter')
                         $ionicLoading.show({
                             template: '<div><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i><div class="padding-top">Aguarde ...</div></div>'
                         }).then(function () {
-                            console.log("Iniciando o loading.");
                         });
                     };
                     services.hide = function () {
                         $ionicLoading.hide().then(function () {
-                            console.log("Finalizando o loading.");
                         });
                     };
 
                     services.mapa = function (cliente, scope) {
-                        console.log('Carregar Mapa');
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             navigator.geolocation.getCurrentPosition(function (position) {
-                                console.log('Pegando posição do Device.');
-                                console.log(JSON.stringify(position));
                                 var div = document.getElementById("map_canvas");
                                 // var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
                                 var mapOptions = {
@@ -67,8 +62,6 @@ angular.module('starter')
                                 scope.show_mapa = 1;
 
                             }, function (error) {
-                                console.log('Não foi possivel pegar a posição do Device.');
-                                console.log(JSON.stringify(error));
                                 var div = document.getElementById("map_canvas");
                                 var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
                                 var mapOptions = {
@@ -94,10 +87,7 @@ angular.module('starter')
                         }
                     }
                     services.mapaAll = function (clientes, scope) {
-                        console.log('Carregar Mapa');
                         navigator.geolocation.getCurrentPosition(function (position) {
-                            console.log('Pegando posição do Device.');
-                            console.log(JSON.stringify(position));
                             var div = document.getElementById("map_canvas");
                             div.style.height = (($window.innerHeight - 80)) + 'px';
                             var mapOptions = {

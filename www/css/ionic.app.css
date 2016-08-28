@@ -12087,7 +12087,7 @@ button.input-border {
 
 .item.item-avatar img {
   max-width: 75px;
-  max-height: 75px;
+  max-height: 100px;
   top: 0;
   left: 0; }
 

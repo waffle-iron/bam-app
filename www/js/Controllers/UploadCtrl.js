@@ -213,8 +213,6 @@ angular.module('starter')
                         v.data = moment(new Date()).format('YYYY-MM-DD');
                         v.modified = convertData(new Date());
                         v.created = convertData(v.created);
-                        console.log('Chekin Envio');
-                        console.log(v);
                         CheckinApiFactory.add(v, function (retorno) {
                             $scope.sincronizacao.checkin.atualizado++;
                             $scope._sincronizacao.geral.atualizado++;
@@ -253,7 +251,6 @@ angular.module('starter')
 
             $scope._atualizar = function () {
                 $timeout(function () {
-                    console.log('Passou aqui.');
                     $scope._hide();
 
                 }, 5000);
@@ -264,7 +261,7 @@ angular.module('starter')
             $scope._hide = function () {
                 if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
                     //LoadModuloFactory.hide();
-                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
                 } else {
                     $scope._atualizar();
                 }

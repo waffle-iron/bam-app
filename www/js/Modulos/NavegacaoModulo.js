@@ -12,12 +12,12 @@ angular.module('starter')
                             ativacao52: 'app.ativacao_52',
                             inicializacao: 'app.inicializacao',
                             ocorrencias: 'app.ocorrencias',
-                            cervejas: 'app.cervejas'
+                            cervejas: 'app.cervejas',
+                            upload: 'app.upload'
                         }
                     };
 
                     services.go = function (url) {
-                        console.log(url);
                         $state.go(url);
                     };
 

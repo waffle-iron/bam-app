@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('ClienteRelatorioCtrl', function ($stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
+        .controller('ClienteRelatorioCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
 
 
             LoadModuloFactory.show();
@@ -26,9 +26,11 @@ angular.module('starter')
                         {label: "Média", value: calcMedia($scope.dados.certificacoes), color: corMedia(calcMedia($scope.dados.certificacoes)), suffix: "pt."}
                     ];
                     LoadModuloFactory.hide();
+                } else {
+                    LoadModuloFactory.hide();
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
-                ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
+
             });
 
             $scope.isColor = function (value) {

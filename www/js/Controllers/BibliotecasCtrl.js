@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('BibliotecasCtrl', function (moment, $stateParams, ExtraModuloFactory, $scope, $rootScope,
+        .controller('BibliotecasCtrl', function (Config, $stateParams, ExtraModuloFactory, $scope, $rootScope,
                 StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory, BibliotecasApiFactory) {
             $scope.options = {
                 sort: 'created',
@@ -22,12 +22,14 @@ angular.module('starter')
                         $scope.bibliotecas.push(v);
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                    LoadModuloFactory.hide();
                 } else {
+                    LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.console.error($scope, 'Nenhuma biblioteca localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
+
             }
 
             $scope.color = function (key) {

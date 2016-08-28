@@ -66,7 +66,6 @@ angular.module('starter')
 
                 if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                     GoogleApiFactory.buscaEndereco(result, function (cliente) {
-                        console.log('Buscando endereço.');
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             result.latitude = cliente.latitude;
                             result.longitude = cliente.longitude;
@@ -137,7 +136,6 @@ angular.module('starter')
                         // add cancel code..
                     },
                     buttonClicked: function (index) {
-                        console.log(index);
                         switch (index) {
                             case 0:
                                 CameraModuloFactory.capturarFotoFile(function (img) {

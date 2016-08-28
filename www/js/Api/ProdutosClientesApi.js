@@ -30,7 +30,6 @@ angular.module('starter')
                         modified: '',
                         created: ''
                     }, options);
-                    console.log(options);
                     RequestModuloFactory.post('produtos-clientes/add.json', options, function (response) {
                         retorno(response);
                     });

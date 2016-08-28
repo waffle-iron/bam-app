@@ -15,7 +15,6 @@ angular.module('starter')
           where: ' status = 1 AND (sub_formulario_id = 2 OR id = 2)'
         }, function(ret){
           angular.forEach(ret, function (v, k) {
-            console.log(v);
             FormulariosGruposTable.all({
               from: 'fc.*, fg.nome AS fg_nome, fg.id AS fg_id, fcv.id AS fcv_id, fcv.value AS fcv_resposta',
               alias: 'fg',
@@ -25,7 +24,6 @@ angular.module('starter')
               INNER JOIN formularios_campos_valores AS fcv ON (fcv.formularios_campo_id = fc.id AND fcv.cliente_id = '+$scope.cliente.id+' )',
               order: 'fc.ordem ASC'
             }, function (retGrupo) {
-              console.log(retGrupo);
               angular.forEach(retGrupo, function (v1, k1) {
                 v1 = angular.merge({imagens : []},v1);
                 FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v1.fcv_id}, function (retornoFotosCameras) {
@@ -37,7 +35,6 @@ angular.module('starter')
                   } else {
                     $scope.formularios.push(v1);
                   }
-                  console.log($scope.formularios);
                 });
               });
             });

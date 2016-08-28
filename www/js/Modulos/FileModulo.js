@@ -18,7 +18,6 @@ angular.module('starter')
                 }, function (err) {
                     listener(null);
                 }, function (progress) {
-                    console.log("PROGRESS: " + JSON.stringify(progress));
                 });
             };
 

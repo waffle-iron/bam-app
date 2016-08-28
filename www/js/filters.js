@@ -2,9 +2,7 @@ angular.module('starter')
         .filter('inputMoeda', function () {
             return function (input) {
                 function number_format(number, decimals, decPoint, thousandsSep) { // eslint-disable-line camelcase
-                    console.log(number);
                     number = (number + '').replace(/[^0-9+\-Ee.]/g, '')
-                    console.log(number);
                     var n = !isFinite(+number) ? 0 : +number
                     var prec = !isFinite(+decimals) ? 0 : Math.abs(decimals)
                     var sep = (typeof thousandsSep === 'undefined') ? ',' : thousandsSep

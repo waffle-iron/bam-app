@@ -46,7 +46,6 @@ angular.module('starter')
                         // add cancel code..
                     },
                     buttonClicked: function (index) {
-                        console.log(index);
                         switch (index) {
                             case 0:
                                 CameraModuloFactory.capturarFotoFile(function (img) {
