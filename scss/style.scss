@@ -468,27 +468,27 @@ progress::-moz-progress-bar {
 }
 //Margin Pixels
 @for $i from 0 through 50 {
-    .m-#{$i} { margin: 0px+$i; }
+    .m-#{$i} { margin: 0px+$i!important; }
 }
 //Margin-top Pixels
 @for $i from 0 through 50 {
-    .mt-#{$i} { margin-top: 0px+$i+!important; }
+    .mt-#{$i} { margin-top: 0px+$i!important; }
 }
 //Margin-bottom Pixels
 @for $i from 0 through 50 {
-    .mb-#{$i} { margin-bottom: 0px+$i+!important; }
+    .mb-#{$i} { margin-bottom: 0px+$i!important; }
 }
 //Padding Pixels
 @for $i from 0 through 50 {
-    .p-#{$i} { padding: 0px+$i+!important; }
+    .p-#{$i} { padding: 0px+$i!important; }
 }
 //Padding-left Pixels
 @for $i from 0 through 20 {
-    .pl-#{$i} { padding-left: 0px+$i+!important; }
+    .pl-#{$i} { padding-left: 0px+$i!important; }
 }
 //Padding-right Pixels
 @for $i from 0 through 20 {
-    .pr-#{$i} { padding-right: 0px+$i+!important; }
+    .pr-#{$i} { padding-right: 0px+$i!important; }
 }
 svg .legend-title{
     display:none;
@@ -633,4 +633,14 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 }
 .z-10{
     z-index:10;
+}
+.pt-9{
+    padding-top:9px!important;
+}
+.pb-9{
+    padding-bottom:9px!important;
+}
+.item .item-content.activated, .item .item-content.activated.item-complex>.item-content, .item .item-content.active, .item .item-content.active.item-complex>.item-content, .item-complex.activated .item-content, .item-complex.activated .item-content.item-complex>.item-content, .item-complex.active .item-content, .item-complex.active .item-content.item-complex>.item-content, .item.activated, .item.activated.item-complex>.item-content, .item.active, .item.active.item-complex>.item-content{
+    border-color: #ccc;
+    background-color: #f5f5f5;
 }

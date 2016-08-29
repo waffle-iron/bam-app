@@ -13,11 +13,11 @@
         <div class="padding">
             <p class="title-page text-center m-0">Selecione um PDV abaixo para realizar o Check-in</p>
             <div class="list">
-                <a ng-repeat="(key, value) in clientes" class="item item-icon-right item-avatar" href="#/app/cliente/{{value.id}}">
+                <a ng-repeat="(key, value) in clientes" class="item item-icon-right item-avatar pt-9 pb-9" href="#/app/cliente/{{value.id}}">
                     <img ng-src="{{value.url}}">
-                    <h2>{{value.nome}}</h2>
-                    <p>{{value.endereco}}, {{value.numero}}</p>
-                    <p>Distancia: {{value.distance}}</p>
+                    <h2 class="mb-0">{{value.nome}}</h2>
+                    <p class="mb-0">{{value.endereco}}, {{value.numero}}</p>
+                    <p class="mb-0">Distância: {{value.distance}}</p>
                     <i class="grey icon ion-android-checkmark-circle"></i>
                     <span ng-if="value.isShow2" class="label label-verde">{{value.checkin}}</span>
                     <span ng-if="value.isShow1" class="label label-amarelo">{{value.checkin}}</span>
