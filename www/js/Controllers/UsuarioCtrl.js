@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('UsuarioCtrl', function ($scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet) {
+        .controller('UsuarioCtrl', function ($scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             $scope.user.senha = "";
