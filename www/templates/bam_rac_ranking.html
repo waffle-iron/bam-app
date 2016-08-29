@@ -1,0 +1,41 @@
+<ion-view view-title="BAM - Relatorios Minha Base" view-cache="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="padding">
+
+            <div class="list list-inset borda-grey header-block">
+                <h4 class="padding text-center">Programa de Mercado - RAC</h4>
+
+                <div class="item item-text-wrap ranking-head row padding-top padding-bottom bg-header">
+                    <div class="wp-10 text-center">RKG</div>
+                    <div class="wp-45 p-0">PDV</div>
+                    <div class="wp-20">Pontos</div>
+                    <div class="wp-25">Valor</div>
+                </div>
+                <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
+                    <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
+                        <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
+                        <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
+                        <div class="wp-20 fs-12">{{forceInt(v.pontuacao)}}</div>
+                        <div class="wp-25 fs-12">{{100| currency:'R$ '}} </div>
+                    </a>
+                </div>
+                <div class="padding item-footer">
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

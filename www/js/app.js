@@ -297,11 +297,41 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.cliente_relatorio_historico', {
+                        url: '/cliente_relatorio_historico/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/cliente_relatorio_historico.html',
+                                controller: 'ClienteRelatorioCtrl'
+                            }
+                        }
+                    })
+
                     .state('app.bam', {
                         url: '/bam',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/bam.html',
+                                controller: 'BamCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.bam_historico', {
+                        url: '/bam_historico',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/bam_historico.html',
+                                controller: 'BamCtrl'
+                            }
+                        }
+                    })
+
+                    .state('app.bam_rac_ranking', {
+                        url: '/bam_rac_ranking',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/bam_rac_ranking.html',
                                 controller: 'BamCtrl'
                             }
                         }

@@ -12288,6 +12288,14 @@ progress::-webkit-progress-value {
 .background-white, .bg-white {
   background: #fff; }
 
+.background-purple, .bg-purple {
+  background: #896da5;
+  color: #fff; }
+
+.background-header, .bg-header {
+  background: #eee;
+  color: #896da5; }
+
 .color-purple {
   color: #896da5; }
 
@@ -13626,6 +13634,9 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 .fs-10 {
   font-size: 10px; }
 
+.fs-30 {
+  font-size: 30px; }
+
 .fundo.has-Button .scroll {
   padding-bottom: 60px; }
 
@@ -13643,6 +13654,9 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 
 .fs-40 {
   font-size: 40px; }
+
+.lh-28 {
+  line-height: 28px; }
 
 .lh-250 {
   line-height: 250px; }

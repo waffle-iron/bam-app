@@ -1,0 +1,40 @@
+<ion-view view-title="BAM - Relatorios Minha Base" view-cache="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo></header-logo>
+
+        <div class="padding">
+
+            <div class="list list-inset borda-grey header-block">
+                <h4 class="padding text-center">Histórico</h4>
+
+                <a href="#/app/cliente_relatorio/{{v.cliente_id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
+                        &nbsp;
+                    </div>
+                    <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
+                        <div class="d-iblock va-t wp-100">
+                            <strong class="d-block">{{v.tipo}}</strong>
+                            <span class="d-block">{{v.nome}}</span>
+                            <small class="d-block">{{v.data_final| date}}</small>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="padding item-footer">
+                </div>
+            </div>
+
+        </div>
+
+    </ion-content>
+
+</ion-view>

@@ -1,0 +1,42 @@
+<ion-view view-title="PDV - Relatorio" view-cache="true">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <header-logo-mini></header-logo-mini>
+
+        <div class="padding">
+
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">Histórico</h4>
+
+                <a href="#/app/cliente_relatorio/{{cliente.id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
+
+                    </div>
+                    <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
+                        <div class="d-iblock va-t wp-78">
+                            <strong class="d-block">{{v.tipo}}</strong>
+                            <span class="d-block">{{v.nome}}</span>
+                            <small class="d-block">{{v.data_final| date}}</small>
+                        </div>
+                        <div class="text-center d-iblock va-t wp-20">
+                            <i class="ion-chevron-right color-grey"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <div class="padding item-footer">
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+
+</ion-view>

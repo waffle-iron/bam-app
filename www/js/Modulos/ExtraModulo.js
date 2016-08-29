@@ -63,9 +63,9 @@ angular.module('starter')
                         if (hora < 12)
                             return 'Bom dia';
                         else if (hora >= 12 && hora < 18)
-                            return 'Bom tarde';
+                            return 'Boa tarde';
                         else if (hora >= 18 && hora < 24)
-                            return 'Bom noite';
+                            return 'Boa noite';
                     };
 
                     return services;

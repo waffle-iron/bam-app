@@ -40,13 +40,13 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <a ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                <a href="#/app/cliente_relatorio/{{v.cliente_id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
                         &nbsp;
                     </div>
                     <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
                         <div class="d-iblock va-t wp-78">
-                            <strong class="d-block">{{v.tipo}}-{{v.cliente_id}}</strong>
+                            <strong class="d-block">{{v.tipo}}</strong>
                             <span class="d-block">{{v.nome}}</span>
                             <small class="d-block">{{v.data_final| date}}</small>
                         </div>
@@ -57,7 +57,7 @@
                 </a>
 
                 <div class="padding item-footer">
-                    <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
+                    <a href="#/app/bam_historico" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
                 </div>
             </div>
 
@@ -89,7 +89,7 @@
                     <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
                 </div>
 
-                <div class="item item-text-wrap ranking-head row padding-top padding-bottom">
+                <div class="item item-text-wrap ranking-head row padding-top padding-bottom bg-header">
                     <div class="wp-10 text-center">RKG</div>
                     <div class="wp-45 p-0">PDV</div>
                     <div class="wp-20">Pontos</div>
@@ -104,7 +104,7 @@
                     </a>
                 </div>
                 <div class="padding item-footer">
-                    <button class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></button>
+                    <a href="#/app/bam_rac_ranking" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
                 </div>
             </div>
 
