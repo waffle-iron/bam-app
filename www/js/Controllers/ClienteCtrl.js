@@ -80,6 +80,7 @@ angular.module('starter')
                                 bairro: result.bairro,
                                 status: 2
                             }, result.id, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                                 LoadModuloFactory.mapa(result, $scope);
                             });
                         } else {
@@ -181,6 +182,7 @@ angular.module('starter')
                 delete c.estado;
                 delete c.url;
                 ClientesTable.update(c, id, function (a) {
+                    StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                     loadClientes();
                     ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso');
                     $timeout(function () {

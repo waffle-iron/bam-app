@@ -10,7 +10,9 @@ angular.module('starter')
                             sincronizacaoInicial: 'sincronizacao_inicial',
                             home: 'home',
                             inicializacao: 'inicializacao',
-                            pdvAtivo: 'pdv_ativo'
+                            upload: 'upload',
+                            pdvAtivo: 'pdv_ativo',
+                            hasSincronizacao: 'has_sincronizacao'
                         }
                     };
 
@@ -28,9 +30,7 @@ angular.module('starter')
                         return null;
                     };
                     services.local.destroy = function () {
-                        angular.forEach(window.localStorage, function (v, k) {
-                            window.localStorage.removeItem(k);
-                        });
+                        window.localStorage.clear();
                         return null;
                     };
 
@@ -58,9 +58,7 @@ angular.module('starter')
                         return null;
                     };
                     services.session.destroy = function () {
-                        angular.forEach(window.sessionStorage, function (v, k) {
-                            window.sessionStorage.removeItem(k);
-                        });
+                        window.sessionStorage.clear();
                         return null;
                     };
 

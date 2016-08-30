@@ -115,6 +115,7 @@ angular.module('starter')
                             resp.created = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             ProdutosClientesTable.insert(resp, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                             });
                         } else {
                             resp.valor = produto_valor;
@@ -125,6 +126,7 @@ angular.module('starter')
                             }
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             ProdutosClientesTable.update(resp, resp.id, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                             });
                         }
                     });

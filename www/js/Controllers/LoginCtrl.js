@@ -106,6 +106,7 @@ angular.module('starter')
                             StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.Inicializacao, retorno.data.response.result);
                             LoadModuloFactory.show();
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, false);
                             $scope.drop();
                         } else {
 

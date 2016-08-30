@@ -42,6 +42,7 @@ angular.module('starter')
                             Ativacao52Table.insert(resp, function (a) {
                                 $scope.ativacao.id_resposta = a.id;
                                 $scope.btn_imagem = 1;
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                                 LoadModuloFactory.hide();
                                 ExtraModuloFactory.console.success($scope, 'Todas as perguntas já foram respondidas.');
                             });
@@ -56,6 +57,7 @@ angular.module('starter')
                             Ativacao52Table.update(resp, resp.id, function (a) {
                                 $scope.ativacao.id_resposta = a.id;
                                 $scope.btn_imagem = 1;
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                                 LoadModuloFactory.hide();
                                 ExtraModuloFactory.console.success($scope, 'Todas as perguntas já foram respondidas.');
 

@@ -164,6 +164,7 @@ angular.module('starter')
                             resp.created = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             FormulariosCamposValoresTable.insert(resp, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                                 saveResposta(a, dados);
 
                             });
@@ -171,6 +172,7 @@ angular.module('starter')
                             resp.value = dados.valor;
                             resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
                             FormulariosCamposValoresTable.update(resp, resp.id, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, true);
                                 saveResposta(a, dados);
                             });
                         }
