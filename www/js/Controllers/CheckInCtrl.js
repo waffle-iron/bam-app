@@ -20,6 +20,9 @@ angular.module('starter')
                 }, function () {
                     ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
                     listaClientes();
+                }, {
+                    timeout: 10000,
+                    enableHighAccuracy: false
                 });
             }
 

@@ -70,7 +70,7 @@ angular.module('starter')
                 };
 
                 $scope.convertNumber = function (value, valor) {
-                    value.valor = parseInt(valor.toString().replace(',', '').replace('.', ''));
+                    return $filter('inputMoeda')(parseFloat(value.valor));
                 }
 
                 $scope._buscaProduto = function (id_pai, seq) {
@@ -128,7 +128,7 @@ angular.module('starter')
                             });
                         }
                     });
-                    return produto;
+                    return produto_valor;
                 };
 
                 $scope.salvar = function () {

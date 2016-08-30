@@ -23,7 +23,7 @@
                     <div class="item item-text-wrap">
                       {{value.fcv_resposta}}
                       <div ng-repeat="(keyImage, valueImage) in imagens" class="text-center">
-                        <img ng-src="{{valueImage.imagem}}" class="max-width: 95%" />
+                        <img ng-src="{{urlForImage(valueImage)}}" class="max-width: 95%" />
                       </div>
                     </div>
                 </div>

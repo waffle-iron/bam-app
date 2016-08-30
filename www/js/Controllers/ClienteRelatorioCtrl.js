@@ -4,8 +4,19 @@ angular.module('starter')
 
 
             LoadModuloFactory.show();
-            $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
-            $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+            $scope.cliente = {};
+            ClientesTable.first(
+                    {
+                        from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        where: 'c.id =' + $stateParams.id
+                    }, function (result) {
+                $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                LoadModuloFactory.hide();
+
+            });
 
             $scope.dados = {};
             $scope.pie_open = 0;
@@ -14,6 +25,7 @@ angular.module('starter')
             ClientesApiFactory.relatorios($stateParams.id, function (result) {
                 if (ValidacaoModuloFactory.isOk(result.status)) {
                     $scope.dados = result.data.response.result;
+                    $scope.totalGeral = calcMedia($scope.dados.certificacoes);
 
                     $scope.options_pie = {
                         thickness: 10,
@@ -23,7 +35,7 @@ angular.module('starter')
                     };
 
                     $scope.total_pdv = [
-                        {label: "Média", value: calcMedia($scope.dados.certificacoes), color: corMedia(calcMedia($scope.dados.certificacoes)), suffix: "pt."}
+                        {label: "Média", value: calcMedia($scope.dados.certificacoes), color: corMedia(calcMedia($scope.dados.certificacoes)), suffix: ""}
                     ];
                     LoadModuloFactory.hide();
                 } else {

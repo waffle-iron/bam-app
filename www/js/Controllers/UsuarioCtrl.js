@@ -1,35 +1,44 @@
 angular.module('starter')
 
-        .controller('UsuarioCtrl', function ($scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
+        .controller('UsuarioCtrl', function (FileModuloFactory, FotosCamerasTable, NavegacaoModuloFactory, $scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             $scope.user.senha = "";
-            
+
             $scope.salvar = function (user) {
-                if (!ValidacaoModuloFactory.isNotNull(user.nome)){
+                if (!ValidacaoModuloFactory.isNotNull(user.nome)) {
                     ValidacaoModuloFactory.alert('Informe o seu nome');
                     return;
                 }
-                if (!ValidacaoModuloFactory.isNotNull(user.sobrenome)){
+                if (!ValidacaoModuloFactory.isNotNull(user.sobrenome)) {
                     ValidacaoModuloFactory.alert('Informe o seu sobrenome');
                     return;
                 }
-                if (!ValidacaoModuloFactory.isEmail(user.email)){
+                if (!ValidacaoModuloFactory.isEmail(user.email)) {
                     ValidacaoModuloFactory.alert('Informe um endereço de e-mail valido');
                     return;
                 }
-                if (!ValidacaoModuloFactory.isNotNull(user.celular)){
+                if (!ValidacaoModuloFactory.isNotNull(user.celular)) {
                     ValidacaoModuloFactory.alert('Informe o seu número de celular');
                     return;
                 }
-                if (!ValidacaoModuloFactory.isNotNull(user.login)){
+                if (!ValidacaoModuloFactory.isNotNull(user.login)) {
                     ValidacaoModuloFactory.alert('Informe o seu Login de usuário');
                     return;
                 }
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, user);
                 $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
-                ValidacaoModuloFactory.alert('Dados de usuário alterados com sucesso.', 'Sucesso');
+                ValidacaoModuloFactory.alert('Dados de usuário alterados com sucesso.', 'Sucesso', function (r) {
+                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                });
             }
+
+            var urlForImage = function (imageName) {
+                FileModuloFactory.asUrl(imageName, function (r) {
+                    $scope.user.url = r;
+                })
+            }
+
             // Triggered on a button click, or some other target
             $scope.userFoto = function () {
 
@@ -50,24 +59,32 @@ angular.module('starter')
                             case 0:
                                 CameraModuloFactory.capturarFotoFile(function (img) {
                                     if (img !== null) {
-                                        FotosCamerasTable.save({tabela: 'Usuarios',
+                                        FotosCamerasTable.save({
+                                            tabela: 'Usuarios',
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
-                                            imagem: img}, function (retorno) {
-                                            $scope.user.url = img;
-                                        });
+                                            imagem: img
+                                        },
+                                                function (retorno) {
+                                                    urlForImage(img);
+                                                }
+                                        );
                                     }
                                 });
                                 break;
                             case 1:
                                 CameraModuloFactory.selecionarFotoFile(function (img) {
                                     if (img !== null) {
-                                        FotosCamerasTable.save({tabela: 'Usuarios',
+                                        FotosCamerasTable.save({
+                                            tabela: 'Usuarios',
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
-                                            imagem: img}, function (retorno) {
-                                            $scope.user.url = img;
-                                        });
+                                            imagem: img
+                                        },
+                                                function (retorno) {
+                                                    urlForImage(img);
+                                                }
+                                        );
                                     }
                                 });
                                 break;

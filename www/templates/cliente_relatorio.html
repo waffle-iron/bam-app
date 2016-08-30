@@ -40,7 +40,7 @@
                         </div>
                         <h1 class="color-black padding">
                             Certificação
-                            <small class="d-block">Certificado: 750pt.</small>
+                            <small class="d-block">Certificado: {{totalGeral}}pt.</small>
                         </h1>
 
                     </div>
@@ -50,7 +50,7 @@
                                 {{value.data| date}}
                             </div>
                             <div class="col text-right">
-                                {{forceInt(value.total)}}pt.
+                                {{forceInt(value.total)}}
                             </div>
                         </h4>
                         <progress class="m-0" max="1000" value="{{forceInt(value.total)}}"></progress>
