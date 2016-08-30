@@ -59,6 +59,7 @@ angular.module('starter')
                                                                     FotosCamerasTable.drop(function (e) {
                                                                         CheckinTable.drop(function (e) {
                                                                             StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
+                                                                            $scope.redirecionar();
                                                                         });
                                                                     });
                                                                 });
@@ -105,7 +106,7 @@ angular.module('starter')
                             StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.Inicializacao, retorno.data.response.result);
                             LoadModuloFactory.show();
-                            $scope.redirecionar();
+                            $scope.drop();
                         } else {
 
                             ValidacaoModuloFactory.alert('Não foi possivel fazer o login tente novamente.');
