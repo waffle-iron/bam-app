@@ -9,33 +9,38 @@
     </ion-nav-bar>
 
     <ion-content class="fundo">
-        <header-logo-mini></header-logo-mini>
-        <msg></msg>
-        <div class="list padding list-atv">
-            <div class="padding" style="background-color: #fff;border-radius:10px;">
-                <div class="item item-input m-0" style="border:none;">
-                    <input class="bd-bottom" type="text" ng-model="ativacao.evento" placeholder="Evento" value="{{ativacao.evento}}">
-                </div>
+        <div class="padding">
 
-                <div class="item item-input m-0" style="border:none;">
-                    <textarea class="bd-bottom" ng-model="ativacao.descricao" rows="4" placeholder="Descrição">{{ativacao.descricao}}</textarea>
-                </div>
+            <header-logo-mini></header-logo-mini>
+            <msg></msg>
+            <div>
+                <div class="list list-atv m-b-10 m-t-10">
+                    <div class="padding" style="background-color: #fff;border-radius:10px;">
+                        <div class="item item-input m-0" style="border:none;">
+                            <input class="bd-bottom" type="text" ng-model="ativacao.evento" placeholder="Evento" value="{{ativacao.evento}}">
+                        </div>
 
-                <div class="item item-input m-0" style="border:none;">
-                    <input class="bd-bottom" type="date" ng-model="ativacao.data" placeholder="Data" value="{{ativacao.data}}">
-                </div>
+                        <div class="item item-input m-0" style="border:none;">
+                            <textarea class="bd-bottom" ng-model="ativacao.descricao" rows="4" placeholder="Descrição">{{ativacao.descricao}}</textarea>
+                        </div>
 
-                <div class="item item-input m-0" style="border:none;">
-                    <input class="bd-bottom" type="text" ng-model="ativacao.local" placeholder="Local" value="{{ativacao.local}}">
+                        <div class="item item-input m-0" style="border:none;">
+                            <input class="bd-bottom" type="date" ng-model="ativacao.data" placeholder="Data" value="{{ativacao.data}}">
+                        </div>
+
+                        <div class="item item-input m-0" style="border:none;">
+                            <input class="bd-bottom" type="text" ng-model="ativacao.local" placeholder="Local" value="{{ativacao.local}}">
+                        </div>
+                    </div>
+
+                    <button class="button button-block button-positive" ng-click="salvar()">Salvar</button>
+
+                    <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(1)"><i class="{{btn_ok.ok_1}}" aria-hidden="true"></i> Tirar Foto 1</button>
+                    <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(2)"><i class="{{btn_ok.ok_2}}" aria-hidden="true"></i> Tirar Foto 2</button>
+                    <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(3)"><i class="{{btn_ok.ok_3}}" aria-hidden="true"></i> Tirar Foto 3</button>
+
                 </div>
             </div>
-
-            <button class="button button-block button-positive" ng-click="salvar()">Salvar</button>
-
-            <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(1)"><i class="{{btn_ok.ok_1}}" aria-hidden="true"></i> Tirar Foto 1</button>
-            <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(2)"><i class="{{btn_ok.ok_2}}" aria-hidden="true"></i> Tirar Foto 2</button>
-            <button ng-show="btn_imagem > 0" class="button button-block button-royal" ng-click="tirarFoto(3)"><i class="{{btn_ok.ok_3}}" aria-hidden="true"></i> Tirar Foto 3</button>
-
         </div>
 
     </ion-content>

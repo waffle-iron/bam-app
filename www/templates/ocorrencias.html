@@ -9,15 +9,15 @@
     </ion-nav-bar>
 
     <ion-content class="fundo has-Button">
-        <header-logo-mini></header-logo-mini>
-        <div class="list padding-left padding-right m-0 pb-0">
+        <div class="list padding m-0 pb-0">
+            <header-logo-mini></header-logo-mini>
             <div ng-repeat="(key, value) in ocorrenciasLocais" class="item item-text-wrap m-b-10 m-t-10 bordas">
                 <a>
                     <div class="color-black">{{value.descricao}}</div>
                     <div class="text-right color-black fs-10">{{value.created}}</div>
                 </a>
             </div>
-            
+
             <div ng-repeat="(key, value) in ocorrencias" class="item item-text-wrap m-b-10 m-t-10 bordas">
                 <a>
                     <div class="color-black">{{value.descricao}}</div>
@@ -33,11 +33,11 @@
         on-infinite="loadMore()"
         distance="90%">
     </ion-infinite-scroll>
-    
+
     <button class="button button-round button-royal button-fixed m-0 p-0" ng-click="openModal()">
         <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
-    
+
     <script id="modalAddOcorrencias.html" type="text/ng-template">
         <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-purple">

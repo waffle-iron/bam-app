@@ -486,6 +486,14 @@ progress::-moz-progress-bar {
 @for $i from 0 through 50 {
     .mb-#{$i} { margin-bottom: 0px+$i!important; }
 }
+//Margin-left Pixels
+@for $i from 0 through 20 {
+    .ml-#{$i} { margin-left: 0px+$i!important; }
+}
+//Margin-right Pixels
+@for $i from 0 through 20 {
+    .mr-#{$i} { margin-right: 0px+$i!important; }
+}
 //Padding Pixels
 @for $i from 0 through 50 {
     .p-#{$i} { padding: 0px+$i!important; }

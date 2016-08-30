@@ -9,51 +9,54 @@
     </ion-nav-bar>
 
     <ion-content class="fundo">
-        <header-logo-mini></header-logo-mini>
+        <div class="padding">
+            <header-logo-mini></header-logo-mini>
 
-        <msg></msg>
-        <div class="padding-left padding-right" ng-if="ativos.produtos_1 > 0">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">Coleta de Produtos</h4>
+            <msg></msg>
+            <div ng-if="ativos.produtos_1 > 0">
+                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                    <h4 class="padding text-center">Coleta de Produtos</h4>
 
-                <a ng-repeat="(key, value) in produtos_1" ng-click="busca(value.id, 2, false)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <p style="font-size:11px;">{{value.nome}}</p>
-                    <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="padding-left padding-right" ng-if="ativos.produtos_2 > 0">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">{{titulos}}</h4>
-
-                <a ng-repeat="(key, value) in produtos_2" ng-click="busca(value.id, 3, true)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <p style="font-size:11px;">{{value.nome}}</p>
-                    <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
-                </a>
-            </div>
-            <button class="button button-block button-stable m-0" ng-click="busca(0, 1, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
-        </div>
-
-        <div class="padding-left padding-right" ng-if="ativos.produtos_3 > 0">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">{{titulos}}</h4>
-
-                <label class="row item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
-                    <span class="input-label col table-pad">&nbsp;</span>
-                    <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
-                </label>
-
-                <label class="row item item-input {{color(key)}}" ng-repeat="(key, value) in produtos_3" style="position: relative; border-bottom: 1px solid #efe8e8; border:none;">
-                    <span class="input-label col table-left table-pad" style="font-size:11px;">{{value.nome}}</span>
-                    <input type="text" class="col table-pad" ng-model="value.valor" value="{{value.valor}}" ng-focus="convertNumber(value, value.valor)" ng-blur="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
-                </label>
-                <div class="padding item-footer">
-                    <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
+                    <a ng-repeat="(key, value) in produtos_1" ng-click="busca(value.id, 2, false)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                        <p style="font-size:11px;">{{value.nome}}</p>
+                        <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
                 </div>
             </div>
-            <button class="button button-block button-stable m-0" ng-click="busca(0, 1, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
+ 
+            <div ng-if="ativos.produtos_2 > 0">
+                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                    <h4 class="padding text-center">{{titulos}}</h4>
+
+                    <a ng-repeat="(key, value) in produtos_2" ng-click="busca(value.id, 3, true)" class="item item-icon-right item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
+                        <p style="font-size:11px;">{{value.nome}}</p>
+                        <i class="grey icon fa fa-chevron-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+                <button class="button button-block button-stable m-0" ng-click="busca(0, 1, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
+            </div>
+
+            <div ng-if="ativos.produtos_3 > 0">
+                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                    <h4 class="padding text-center">{{titulos}}</h4>
+
+                    <label class="row item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
+                        <span class="input-label col table-pad">&nbsp;</span>
+                        <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
+                    </label>
+
+                    <label class="row item item-input {{color(key)}}" ng-repeat="(key, value) in produtos_3" style="position: relative; border-bottom: 1px solid #efe8e8; border:none;">
+                        <span class="input-label col table-left table-pad" style="font-size:11px;">{{value.nome}}</span>
+                        <input type="text" class="col table-pad" ng-model="value.valor" value="{{value.valor}}" ng-focus="convertNumber(value, value.valor)" ng-blur="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
+                    </label>
+                    <div class="padding item-footer">
+                        <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
+                    </div>
+                </div>
+                <button class="button button-block button-stable m-0" ng-click="busca(0, 1, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
+            </div>
         </div>
+
 
         <div class="padding">
             <a class="button button-block button-balanced" ng-click="concluir()"><i class="fa fa-check-square-o" aria-hidden="true"></i> Concluir Rota BAM</a>
