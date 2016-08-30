@@ -13,7 +13,7 @@ angular.module('starter')
             $scope.rac_options = [];
             $scope.rac_colors = [];
             $scope.total_prog_rac = 0;
-
+            var _programa_rac = [];
             $scope.pie_open = 0;
 
             UsuariosApiFactory.relatorios($scope.user.id, function (result) {
@@ -49,47 +49,13 @@ angular.module('starter')
                         {label: "2ª Visita", value: segunda, color: "#5CB85C", suffix: ""}
                     ];
 
-                    var _programa_rac = [];
+                    _programa_rac = [];
                     _programa_rac.push(['teste a', 'teste b']);
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
                         _programa_rac.push([v.nome, parseInt(v.total)]);
                     });
 
-                    google.charts.load("current", {packages: ["corechart"]});
-                    google.charts.setOnLoadCallback(drawChart);
-                    function drawChart() {
-                        var d = [
-                            ['Task', 'Hours per Day'],
-                            ['Work', 11],
-                            ['Eat', 2],
-                            ['Commute', 2],
-                            ['Watch TV', 2],
-                            ['Sleep', 7]
-                        ];
-
-                        var data = google.visualization.arrayToDataTable(_programa_rac);
-
-                        var options = {
-                            title: '',
-                            pieHole: 0.6,
-                            legend: 'none',
-                            chartArea: {
-                                left: 0,
-                                top: 0,
-                                width: "100%",
-                                height: "100%"
-                            },
-                            backgroundColor: {
-                                stroke: "#fff",
-                                strokeWidth: 0,
-                                fill: "#fff"
-                            },
-                            pieSliceBorderColor: "#fff"
-                        };
-
-                        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-                        chart.draw(data, options);
-                    }
+                    //loadMapaGoogle(_programa_rac);
 
                     $scope.pie_open = 1;
 
@@ -105,6 +71,7 @@ angular.module('starter')
                         ];
                     }, $scope.dados.rota_bem);
                     LoadModuloFactory.hide();
+                    loadMapaGoogle();
                 } else {
                     LoadModuloFactory.hide();
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
@@ -159,6 +126,53 @@ angular.module('starter')
                 });
                 return (total / linha) + 'pt.';
             }
+            
+            var loadMapaGoogle = function(){
+                try{
+                    google.charts.setOnLoadCallback(drawChart);
+                    function drawChart() {
+                        var d = [
+                            ['Task', 'Hours per Day'],
+                            ['Work', 11],
+                            ['Eat', 2],
+                            ['Commute', 2],
+                            ['Watch TV', 2],
+                            ['Sleep', 7]
+                        ];
+
+                        var data = google.visualization.arrayToDataTable(_programa_rac);
+
+                        var options = {
+                            title: '',
+                            pieHole: 0.6,
+                            legend: 'none',
+                            chartArea: {
+                                left: 0,
+                                top: 0,
+                                width: "100%",
+                                height: "100%"
+                            },
+                            backgroundColor: {
+                                stroke: "#fff",
+                                strokeWidth: 0,
+                                fill: "#fff"
+                            },
+                            pieSliceBorderColor: "#fff"
+                        };
+
+                        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                        chart.draw(data, options);
+                    }
+                }
+                catch(e){
+                    console.log(e);
+                }
+                
+            }
+            
+            $scope.$on('$stateChangeComplete', function () {
+                loadMapaGoogle();
+            });
 
 
         });
