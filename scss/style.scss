@@ -249,12 +249,26 @@ textarea{
 .text-left{
     text-align:left;
 }
-
+.login-form .item{
+    background:transparent;
+}
 .login-form input{
     padding:5px 10px !important;
-    color:#896da5;
+    color:#fff;
+    border:1px solid #fff;
+    background:rgba(255,255,255,.15);
+    height:40px;
 }
-
+.login-form input:focus,.login-form input:active,.login-form input:hover{
+    color:#432461;
+    background:rgba(255,255,255,.7);
+}
+.login-form input::-webkit-input-placeholder {
+  color: #fff;
+}
+.login-form input:focus::-webkit-input-placeholder,.login-form input:active::-webkit-input-placeholder,.login-form input:hover::-webkit-input-placeholder {
+  color: #432461;
+}
 progress::-webkit-progress-bar { background: #fff; }
 progress::-webkit-progress-value { background: #0063a6; }
 
@@ -283,8 +297,14 @@ progress::-webkit-progress-value { background: #0063a6; }
     background:#eee;
     color:#896da5;
 }
+.background-transparent,.bg-transparent{
+    background:transparent;
+}
 .color-purple{
     color:#896da5;
+}
+.color-white{
+    color:#fff;
 }
 .item-footer .col .button{
     font-size:14px;
@@ -665,4 +685,10 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 .item .item-content.activated, .item .item-content.activated.item-complex>.item-content, .item .item-content.active, .item .item-content.active.item-complex>.item-content, .item-complex.activated .item-content, .item-complex.activated .item-content.item-complex>.item-content, .item-complex.active .item-content, .item-complex.active .item-content.item-complex>.item-content, .item.activated, .item.activated.item-complex>.item-content, .item.active, .item.active.item-complex>.item-content{
     border-color: #ccc;
     background-color: #f5f5f5;
+}
+.fw-l{
+    font-weight: lighter;
+}
+.fw-b{
+    font-weight: 500;
 }

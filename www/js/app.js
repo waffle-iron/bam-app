@@ -302,7 +302,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/cliente_relatorio_historico.html',
-                                controller: 'ClienteRelatorioCtrl'
+                                controller: 'ClienteHistoricoCtrl'
                             }
                         }
                     })

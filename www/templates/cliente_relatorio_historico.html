@@ -9,9 +9,9 @@
     </ion-nav-bar>
 
     <ion-content class="fundo">
-        <header-logo-mini></header-logo-mini>
-
         <div class="padding">
+    
+            <header-logo-mini></header-logo-mini>
 
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
@@ -31,12 +31,13 @@
                         </div>
                     </div>
                 </a>
-
-                <div class="padding item-footer">
-                </div>
             </div>
         </div>
 
     </ion-content>
-
+    <ion-infinite-scroll
+        ng-if="proximo"
+        on-infinite="loadMore()"
+        distance="90%">
+    </ion-infinite-scroll>
 </ion-view>

@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('ClienteRelatorioCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
+        .controller('ClienteRelatorioCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
 
 
             LoadModuloFactory.show();
@@ -100,6 +100,66 @@ angular.module('starter')
                 } else {
                     return "#d9534f";
                 }
+            }
+
+        })
+        
+        .controller('ClienteHistoricoCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, ClientesTable, LoadModuloFactory) {
+
+
+            LoadModuloFactory.show();
+            $scope.cliente = {};
+            ClientesTable.first(
+                    {
+                        from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        where: 'c.id =' + $stateParams.id
+                    }, function (result) {
+                $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                LoadModuloFactory.hide();
+
+            });
+
+            $scope.dados = {};
+
+            ClientesApiFactory.relatorios($stateParams.id, function (result) {
+                if (ValidacaoModuloFactory.isOk(result.status)) {
+                    $scope.dados = result.data.response.result;
+                    LoadModuloFactory.hide();
+                } else {
+                    LoadModuloFactory.hide();
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
+                }
+
+            });
+
+            $scope.isTipo = function (value) {
+                if (value.tipo === 'Rota BAM') {
+                    return 'green';
+                } else if (value.tipo === 'Programa de Mercado - RAC') {
+                    return 'yellow';
+                } else if (value.tipo === 'Ativação 52 Semanas') {
+                    return 'grey';
+                } else if (value.tipo === 'Ocorrências') {
+                    return 'red';
+                }
+            }
+
+            $scope.loadMore = function () {
+                if ($scope.proximo) {
+                    LoadModuloFactory.show();
+                    ClientesApiFactory.index($scope.options, conteudo);
+                }
+            };
+
+            $scope.$on('$stateChangeComplete', function () {
+                $scope.loadMore();
+            });
+
+            $scope.forceInt = function (value) {
+                return parseInt(value);
             }
 
         });

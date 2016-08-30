@@ -1,7 +1,6 @@
 angular.module('starter')
 
-        .controller('BibliotecasCtrl', function (Config, $stateParams, ExtraModuloFactory, $scope, $rootScope,
-                StorageModuloFactory, LoadModuloFactory, ValidacaoModuloFactory, NavegacaoModuloFactory, BibliotecasApiFactory) {
+        .controller('BibliotecasCtrl', function (Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, BibliotecasApiFactory) {
             $scope.options = {
                 sort: 'created',
                 page: 1,
@@ -11,7 +10,6 @@ angular.module('starter')
             };
             $scope.proximo = true;
             $scope.bibliotecas = [];
-
 
             var conteudo = function (retorno) {
                 $scope.proximo = true;

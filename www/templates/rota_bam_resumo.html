@@ -9,27 +9,29 @@
     </ion-nav-bar>
 
     <ion-content class="fundo">
-        <header-logo-mini></header-logo-mini>
-        <msg></msg>
-        <div ng-if="produtos > 0">
-            <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
-        </div>
+        <div class="padding">
+            <header-logo-mini></header-logo-mini>
+            <msg></msg>
+            <div ng-if="produtos > 0">
+                <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
+            </div>
 
-        <div class="padding" ng-repeat="(key, value) in formularios">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">{{value.nome}}</h4>
-                <h5 ng-show="value.subtitulo" class="padding text-center">{{value.subtitulo}}</h5>
-                <div>
-                    <div class="item item-text-wrap">
-                      {{value.fcv_resposta}}
-                      <div ng-repeat="(keyImage, valueImage) in imagens" class="text-center">
-                        <img ng-src="{{urlForImage(valueImage)}}" class="max-width: 95%" />
-                      </div>
+            <div ng-repeat="(key, value) in formularios">
+                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                    <h4 class="padding text-center">{{value.nome}}</h4>
+                    <h5 ng-show="value.subtitulo" class="padding text-center">{{value.subtitulo}}</h5>
+                    <div>
+                        <div class="item item-text-wrap m-0">
+                            {{value.fcv_resposta}}
+                            <div ng-repeat="(keyImage, valueImage) in imagens" class="text-center">
+                                <img ng-src="{{valueImage.imagem}}" class="max-width: 95%" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="padding item-footer">
-                </div>
             </div>
+            
+            <a class="button button-block button-royal" ng-href="#/app/cliente/{{cliente.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Concluir</a>
         </div>
     </ion-content>
 

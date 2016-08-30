@@ -17,7 +17,7 @@
                     <img ng-src="{{value.url}}">
                     <h2 class="mb-0">{{value.nome}}</h2>
                     <p class="mb-0">{{value.endereco}}, {{value.numero}}</p>
-                    <p class="mb-0">Distância: {{value.distance}}</p>
+                    <p class="mb-0">Distância: {{setDistance(value.distance)}}</p>
                     <i class="grey icon ion-android-checkmark-circle"></i>
                     <span ng-if="value.isShow2" class="label label-verde">{{value.checkin}}</span>
                     <span ng-if="value.isShow1" class="label label-amarelo">{{value.checkin}}</span>

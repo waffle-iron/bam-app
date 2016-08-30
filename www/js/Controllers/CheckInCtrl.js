@@ -77,4 +77,14 @@ angular.module('starter')
             $scope.selecionado = function (cliente) {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.ocorrencias);
             };
+            
+            $scope.setDistance = function (value) {
+                if (value == 0){
+                    return 'Não calculada';
+                }else if (value !=0 && value < 1){
+                    return value*1000 + ' m';
+                }else{
+                    return parseInt(value)+' km';
+                }
+            }
         });

@@ -60,11 +60,11 @@ angular.module('starter')
                         var data = new Date();
                         var hora = data.getHours();
 
-                        if (hora < 12)
+                        if (hora >= 6 && hora < 12)
                             return 'Bom dia';
                         else if (hora >= 12 && hora < 18)
                             return 'Boa tarde';
-                        else if (hora >= 18 && hora < 24)
+                        else if (hora < 6 && hora >= 18 && hora < 24)
                             return 'Boa noite';
                     };
 
