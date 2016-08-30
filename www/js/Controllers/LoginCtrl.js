@@ -4,7 +4,7 @@ angular.module('starter')
                 CheckinTable, ClientesTable, CidadesTable, EstadosTable, ProgramasTable, OcorrenciasTable, ProdutosTable, ProdutosClientesTable, Ativacao52Table,
                 FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable) {
 
-            $scope.redirecionar = function () {
+            var redirecionar = function () {
                 ClientesTable.create(function (e) {
                     CidadesTable.create(function (e) {
                         FormulariosCamposTable.create(function (e) {
@@ -42,7 +42,7 @@ angular.module('starter')
             };
 
 
-            $scope.drop = function () {
+            var drop = function () {
                 ClientesTable.drop(function (e) {
                     CidadesTable.drop(function (e) {
                         FormulariosCamposTable.drop(function (e) {
@@ -59,7 +59,7 @@ angular.module('starter')
                                                                     FotosCamerasTable.drop(function (e) {
                                                                         CheckinTable.drop(function (e) {
                                                                             StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
-                                                                            $scope.redirecionar();
+                                                                            redirecionar();
                                                                         });
                                                                     });
                                                                 });
@@ -86,7 +86,7 @@ angular.module('starter')
 
             if (ValidacaoModuloFactory.isNotNull(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user))) {
                 LoadModuloFactory.show();
-                $scope.redirecionar();
+                redirecionar();
             }
 
             $scope.logar = function () {
@@ -104,10 +104,9 @@ angular.module('starter')
                         if (ValidacaoModuloFactory.is('OK', retorno.status)) {
                             retorno.data.response.result.senha = $scope.user.senha;
                             StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
-                            StorageModuloFactory.local.set(StorageModuloFactory.enum.Inicializacao, retorno.data.response.result);
                             LoadModuloFactory.show();
-                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, false);
-                            $scope.drop();
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
+                            drop();
                         } else {
 
                             ValidacaoModuloFactory.alert('Não foi possivel fazer o login tente novamente.');

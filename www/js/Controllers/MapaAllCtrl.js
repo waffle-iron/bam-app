@@ -1,18 +1,22 @@
 angular.module('starter')
 
-        .controller('MapaAllCtrl', function (ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory) {
+        .controller('MapaAllCtrl', function (GoogleApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory) {
             LoadModuloFactory.show();
-            $scope.clientes = [];
+            var listaClientes = [];
+            var total = 0;
             ClientesTable.all({
                 order: 'c.nome asc',
                 alias: 'c',
-                from: 'c.nome, c.endereco, c.numero, c.foto, c.url, c.id, c.checkin, c.latitude, c.longitude'
+                from: 'c.*'
             }, function (ret) {
                 if (ret === null) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
                     ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
                 } else {
+                    total = (ret.length - 1);
+                    console.log(total);
                     angular.forEach(ret, function (v, k) {
+                        console.log(k);
                         v = angular.merge({
                             isShow1: 0,
                             isShow2: 0
@@ -27,12 +31,40 @@ angular.module('starter')
                             v.checkin_total = 0;
                         }
                         v.url = ExtraModuloFactory.img(v);
-
-                        $scope.clientes.push(v);
+                        if (!ValidacaoModuloFactory.isNotNull(v.latitude) || !ValidacaoModuloFactory.isNotNull(v.longitude)) {
+                            GoogleApiFactory.buscaEndereco(v, function (cliente) {
+                                if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
+                                    v.latitude = cliente.latitude;
+                                    v.longitude = cliente.longitude;
+                                    v.cep = cliente.cep;
+                                    v.endereco = cliente.endereco;
+                                    v.bairro = cliente.bairro;
+                                    ClientesTable.update({
+                                        latitude: v.latitude,
+                                        longitude: v.longitude,
+                                        cep: v.cep,
+                                        endereco: v.endereco,
+                                        bairro: v.bairro,
+                                        status: 2
+                                    }, v.id, function (a) {
+                                        StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                                        listaClientes.push(v);
+                                    });
+                                } else {
+                                    listaClientes.push(v);
+                                }
+                            });
+                        } else {
+                            listaClientes.push(v);
+                        }
+                        if (k >= total) {
+                            LoadModuloFactory.hide();
+                            LoadModuloFactory.mapaAll(listaClientes, $scope);
+                        }
                     });
-                    LoadModuloFactory.mapaAll($scope.clientes, $scope);
+
                 }
-                LoadModuloFactory.hide();
+                
             });
 
         });
