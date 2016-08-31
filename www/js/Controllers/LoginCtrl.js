@@ -22,6 +22,7 @@ angular.module('starter')
                                                                         CheckinTable.create(function (e) {
                                                                             LoadModuloFactory.hide();
                                                                             //NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
+                                                                            StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
                                                                             NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
                                                                         });
                                                                     });

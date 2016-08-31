@@ -10,9 +10,9 @@
 
     <ion-content class="fundo">
         <div class="padding">
-            
+
             <header-logo-mini></header-logo-mini>
-            
+
             <msg></msg>
             <div ng-if="produtos > 0">
                 <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
@@ -61,11 +61,13 @@
 
                     </div>
                     <div class="padding item-footer">
-                        <button ng-if="btn_camera > 0" class="button button-block button-royal m-0" ng-click="tirarFoto(value)">Tirar Foto</button>
+                        <div ng-if="btn_camera > 0" ng-repeat="(keyFoto, valueFoto) in qtd_btn_camera">
+                            <button class="button button-block button-royal" ng-click="tirarFoto(value, valueFoto.seq_foto)"><i class="{{valueFoto.tirado}}" aria-hidden="true"></i> Tirar Foto {{valueFoto.seq_foto}}</button>    
+                        </div>
                         <button class="button button-block button-positive m-0" ng-click="proximo(value, key)">Próximo <i class="ion-arrow-right-c"></i></button>
                     </div>
                 </div>
-                
+
                 <a ng-show="msg" class="button button-block button-stable" ng-href="#/app/programa_mercado_resumo"><i class="fa fa-check-square-o" aria-hidden="true"></i> Verificar dados</a>
             </div>
         </div>

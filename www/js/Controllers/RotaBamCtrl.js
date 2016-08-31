@@ -10,6 +10,7 @@ angular.module('starter')
                 var ignorado = null;
 
                 $scope.formularios = [];
+                $scope.qtd_btn_camera = [];
                 $scope.btn_camera = 0;
                 $scope.valor_selecionado = null;
                 $scope.id_resposta = null;
@@ -19,11 +20,11 @@ angular.module('starter')
                     total: 0
                 };
 
-                $scope.getSubFormulario = function (argumento, pergunta_id, redireciona) {
-                    if (!ValidacaoModuloFactory.empty(argumento)) {
+                $scope.getSubFormulario = function (argumento, redireciona) {
+                    if (!ValidacaoModuloFactory.empty(argumento.valor)) {
                         LoadModuloFactory.show();
                         FormulariosTable.all({
-                            where: 'status = 1 AND sub_formulario_id = 1 AND argumento="' + ValidacaoModuloFactory.trim(argumento) + '" AND formularios_pergunta_id = ' + pergunta_id + ''
+                            where: 'status = 1 AND sub_formulario_id = ' + argumento.formulario_id + ' AND argumento="' + ValidacaoModuloFactory.trim(argumento.valor) + '" AND formularios_pergunta_id = ' + argumento.id + ''
                         }, function (ret) {
                             if (ret !== null) {
                                 angular.forEach(ret, function (v, k) {
@@ -120,7 +121,7 @@ angular.module('starter')
                     } else {
                         if (dados.required > 0) {
                             if (!ValidacaoModuloFactory.empty(dados.valor)) {
-                                $scope.getSubFormulario(dados.valor, dados.id, function () {
+                                $scope.getSubFormulario(dados, function () {
                                     $scope.btn_camera = 0;
                                     $scope.valor_selecionado = null;
                                     $scope.perguntas.atual++;
@@ -130,7 +131,7 @@ angular.module('starter')
                                 ValidacaoModuloFactory.alert('Informe uma resposta.');
                             }
                         } else {
-                            $scope.getSubFormulario(dados.valor, dados.id, function () {
+                            $scope.getSubFormulario(dados, function () {
                                 $scope.btn_camera = 0;
                                 $scope.valor_selecionado = null;
                                 $scope.perguntas.atual++;
@@ -141,6 +142,7 @@ angular.module('starter')
                 };
 
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
+                    $scope.btn_camera = 0;
                     //LoadModuloFactory.show();
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
@@ -189,22 +191,41 @@ angular.module('starter')
                     $scope.id_resposta = a.id;
                     //LoadModuloFactory.hide();
                     $scope.btn_camera = 0;
+                    $scope.qtd_btn_camera = [];
+                    console.log($scope.qtd_btn_camera);
                     if (dados.value == dados.valor) {
                         $scope.btn_camera = dados.contem_imagem;
+                        for (var i = 1; i <= dados.contem_imagem; i++) {
+                            $scope.qtd_btn_camera.push({
+                                seq_foto: i,
+                                tirado: null
+                            });
+                        }
+                        console.log($scope.qtd_btn_camera);
+                    } else if (dados.contem_imagem > 0 && !ValidacaoModuloFactory.isNotNull(dados.value)) {
+                        $scope.btn_camera = dados.contem_imagem;
+                        for (var i = 1; i <= dados.contem_imagem; i++) {
+                            $scope.qtd_btn_camera.push({
+                                seq_foto: i,
+                                tirado: null
+                            });
+                        }
+                        console.log($scope.qtd_btn_camera);
                     } else {
                         $scope.btn_camera = 0;
                     }
                 }
 
-                $scope.tirarFoto = function () {
+                $scope.tirarFoto = function (value, valueFoto) {
                     CameraModuloFactory.capturarFoto(function (img) {
                         if (img !== null) {
-                            FotosCamerasTable.save({tabela: 'FormulariosCamposValoresTable',
+                            FotosCamerasTable.save({
+                                tabela: 'FormulariosCamposValoresTable',
                                 id_referencia: $scope.id_resposta,
-                                sequencia: 0,
+                                sequencia: valueFoto.seq_foto,
                                 imagem: img
                             }, function (retorno) {
-                                $scope.btn_camera = 0;
+                                valueFoto.tirado = 'fa fa-check-square-o';
                             });
                         }
                     });
