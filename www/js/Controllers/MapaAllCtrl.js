@@ -49,27 +49,31 @@ angular.module('starter')
                                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                         listaClientes.push(v);
                                         sequencia++;
+                                        execMapa();
                                     });
                                 } else {
                                     listaClientes.push(v);
                                     sequencia++;
+                                    execMapa();
                                 }
                             });
                         } else {
                             listaClientes.push(v);
                             sequencia++;
+                            execMapa();
                         }
-                        console.log(sequencia);
-                        console.log(total);
-                        if (sequencia >= total) {
-                            LoadModuloFactory.hide();
-                            LoadModuloFactory.mapaAll(listaClientes, $scope);
-                        }
-                    });
 
+                    });
                 }
-                
+
             });
+
+            var execMapa = function () {
+                if (sequencia >= total) {
+                    LoadModuloFactory.hide();
+                    LoadModuloFactory.mapaAll(listaClientes, $scope);
+                }
+            }
 
         });
 

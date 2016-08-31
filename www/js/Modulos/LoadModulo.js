@@ -1,6 +1,6 @@
 angular.module('starter')
         .factory('LoadModuloFactory',
-                function ($ionicLoading, ValidacaoModuloFactory, $window, StorageModuloFactory) {
+                function ($ionicLoading, ValidacaoModuloFactory, $window, StorageModuloFactory, Config) {
 
                     var services = {};
 
@@ -36,7 +36,7 @@ angular.module('starter')
                                 var marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                                     map: map,
-                                    icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                                    icon: Config.url + 'img/icon-mapas/ico_bam.png'
                                 });
 
                                 markers.push(marker);
@@ -44,7 +44,7 @@ angular.module('starter')
                                 marker = new google.maps.Marker({
                                     position: new google.maps.LatLng(cliente.latitude, cliente.longitude),
                                     map: map,
-                                    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+                                    icon: Config.url + 'img/icon-mapas/icon_pdv.png'
                                 });
 
                                 markers.push(marker);
@@ -67,12 +67,14 @@ angular.module('starter')
                                 var div = document.getElementById("map_canvas");
                                 var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
                                 var mapOptions = {
+                                    center: latLong,
+                                    zoom: 18,
                                     mapTypeId: google.maps.MapTypeId.ROADMAP
                                 };
 
                                 var map = new google.maps.Map(div, mapOptions);
                                 var marker = new google.maps.Marker({
-                                    icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                    icon: Config.url + 'img/icon-mapas/icon_pdv.png',
                                     position: latLong,
                                     map: map
                                 });
@@ -107,7 +109,7 @@ angular.module('starter')
                             var marker = new google.maps.Marker({
                                 position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
                                 map: map,
-                                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+                                icon: Config.url + 'img/icon-mapas/ico_bam.png'
                             });
 
                             google.maps.event.addListener(marker, 'click', (function (marker, i) {
@@ -118,14 +120,23 @@ angular.module('starter')
                             })(marker, i));
                             markers.push(marker);
 
+                            var selectIcon = function (total) {
+                                console.log(total);
+                                if (total >= 2) {
+                                    return 'icon_green.png';
+                                } else if (total > 0) {
+                                    return 'icon_yellow.png';
+                                } else {
+                                    return 'icon_grey.png';
+                                }
+                            }
+
                             angular.forEach(clientes, function (v, k) {
                                 if (ValidacaoModuloFactory.isNotNull(v.latitude) && ValidacaoModuloFactory.isNotNull(v.longitude)) {
-
-
                                     marker = new google.maps.Marker({
                                         position: new google.maps.LatLng(v.latitude, v.longitude),
                                         map: map,
-                                        icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                                        icon: Config.url + 'img/icon-mapas/' + selectIcon(v.checkin),
                                         title: v.nome
                                     });
                                     google.maps.event.addListener(marker, 'click', (function (marker, i) {
