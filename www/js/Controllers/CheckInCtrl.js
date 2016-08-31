@@ -79,12 +79,12 @@ angular.module('starter')
             };
             
             $scope.setDistance = function (value) {
-                if (value == 0){
+                if (value === 0){
                     return 'Não calculada';
-                }else if (value !=0 && value < 1){
-                    return value*1000 + ' m';
+                }else if (value < 1){
+                    return value + ' m';
                 }else{
-                    return parseInt(value)+' km';
+                    return parseFloat(value/1000).toFixed(2) +' km';
                 }
             }
         });
