@@ -47,7 +47,7 @@
 
                     <label class="row item item-input {{color(key)}}" ng-repeat="(key, value) in produtos_3" style="position: relative; border-bottom: 1px solid #efe8e8; border:none;">
                         <span class="input-label col table-left table-pad" style="font-size:11px;">{{value.nome}}</span>
-                        <input type="number" class="col table-pad" string-to-number ng-model="valor_produto" value="{{value.valor | inputMoeda}}" ng-focus="convertNumber(value, valor_produto)" ng-blur="atualizar(value, valor_produto)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
+                        <input type="text" class="col table-pad" ng-model="value.valor" value="{{value.valor | inputMoeda}}" ng-blur="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
                     </label>
                     <div class="padding item-footer">
                         <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>

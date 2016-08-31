@@ -59,7 +59,7 @@ angular.module('starter')
                                 $scope._buscaProduto(id_pai, seq);
                             } else {
                                 angular.forEach(ret, function (v, k) {
-                                    v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                    //v.valor = $filter('inputMoeda')(parseFloat(v.valor));
                                     $scope["produtos_" + seq].push(v);
                                 });
                                 LoadModuloFactory.hide();

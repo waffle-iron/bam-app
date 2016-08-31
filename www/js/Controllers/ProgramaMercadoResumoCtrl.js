@@ -18,10 +18,10 @@ angular.module('starter')
                             FormulariosGruposTable.all({
                                 from: 'fc.*, fg.nome AS fg_nome, fg.id AS fg_id, fcv.id AS fcv_id, fcv.value AS fcv_resposta',
                                 alias: 'fg',
-                                where: 'fg.formulario_id = ' + v.id,
+                                where: 'fg.formulario_id = ' + v.id + ' AND fcv.cliente_id = ' + $scope.cliente.id,
                                 join: 'INNER JOIN formularios_grupos_campos AS fgc ON fgc.formularios_grupo_id = fg.id\n\
                                         INNER JOIN formularios_campos AS fc ON (fgc.formularios_campo_id = fc.id AND fc.status = 1)\n\
-                                        INNER JOIN formularios_campos_valores AS fcv ON (fcv.formularios_campo_id = fc.id AND fcv.cliente_id = ' + $scope.cliente.id + ' )',
+                                        INNER JOIN formularios_campos_valores AS fcv ON fcv.formularios_campo_id = fc.id',
                                 order: 'fc.ordem ASC'
                             }, function (retGrupo) {
                                 angular.forEach(retGrupo, function (v1, k1) {

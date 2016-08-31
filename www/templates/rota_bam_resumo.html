@@ -12,10 +12,7 @@
         <div class="padding">
             <header-logo-mini></header-logo-mini>
             <msg></msg>
-            <div ng-if="produtos > 0">
-                <button class="button button-block button-royal" ng-click="go('app.cervejas')">Produtos</button>
-            </div>
-
+            
             <div ng-repeat="(key, value) in formularios">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">{{value.nome}}</h4>
@@ -30,7 +27,20 @@
                     </div>
                 </div>
             </div>
-            
+
+            <div ng-repeat="(key, value) in cervejas">
+                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                    <div class="padding">
+                        <div class="wp-70 d-iblock">
+                            {{value.nome}}    
+                        </div>
+                        <div class="wp-20 d-iblock text-right">
+                            {{value.valor}}    
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <a class="button button-block button-royal" ng-href="#/app/cliente/{{cliente.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Concluir</a>
         </div>
     </ion-content>

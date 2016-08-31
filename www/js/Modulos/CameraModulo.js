@@ -20,7 +20,7 @@ angular.module('starter')
                         quality: 50,
                         destinationType: Camera.DestinationType.DATA_URL,
                         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                        allowEdit: true,
+                        allowEdit: false,
                         encodingType: Camera.EncodingType.JPEG,
                         targetWidth: 800,
                         targetHeight: 600,
@@ -30,7 +30,11 @@ angular.module('starter')
                     }, options);
                     $cordovaCamera.getPicture(options).then(function (imageData) {
                         if (options.destinationType === Camera.DestinationType.DATA_URL) {
-                            listener("data:image/jpeg;base64," + imageData);
+                            if (Camera.EncodingType.JPEG === options.encodingType) {
+                                listener("data:image/jpeg;base64," + imageData);
+                            } else {
+                                listener("data:image/png;base64," + imageData);
+                            }
                         } else {
                             listener(imageData);
                         }
