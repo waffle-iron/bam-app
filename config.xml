@@ -7,7 +7,7 @@
   <author email="bammp@bammp.com.br" href="http://bammp.com.br/">
         BAMMP
     </author>
-  <content src="http://192.168.0.43:8100" original-src="index.html"/>
+  <content src="index.html"/>
   <access origin="*"/>
   <access origin="*" subdomains="true"/>
   <allow-intent href="http://*/*"/>

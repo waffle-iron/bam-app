@@ -237,6 +237,8 @@ angular.module('starter')
                         _v.status = 1;
                         _v.modified = convertData(new Date());
                         _v.created = convertData(_v.created);
+                        delete v.url;
+                        delete v.foto;
                         ClientesApiFactory.edit(v.id_integracao, _v, function (retorno) {
                             $scope.sincronizacao.clientes.atualizado++;
                             $scope._sincronizacao.geral.atualizado++;

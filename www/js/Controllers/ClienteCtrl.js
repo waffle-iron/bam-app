@@ -141,24 +141,40 @@ angular.module('starter')
                     buttonClicked: function (index) {
                         switch (index) {
                             case 0:
-                                CameraModuloFactory.capturarFotoFile(function (img) {
+                                CameraModuloFactory.capturarFoto(function (img) {
                                     if (img !== null) {
-                                        FotosCamerasTable.save({tabela: 'Clientes',
+                                        LoadModuloFactory.show();
+                                        FotosCamerasTable.save({
+                                            tabela: 'Clientes',
                                             id_referencia: $scope.cliente.id,
                                             sequencia: 0,
-                                            imagem: img}, function (retorno) {
-                                        });
+                                            imagem: img
+                                        },
+                                                function (retorno) {
+                                                    $scope.cliente.url = img;
+                                                    $scope.cliente.foto = 'img';
+                                                    LoadModuloFactory.hide();
+                                                }
+                                        );
                                     }
                                 });
                                 break;
                             case 1:
-                                CameraModuloFactory.selecionarFotoFile(function (img) {
+                                CameraModuloFactory.selecionarFoto(function (img) {
                                     if (img !== null) {
-                                        FotosCamerasTable.save({tabela: 'Clientes',
+                                        LoadModuloFactory.show();
+                                        FotosCamerasTable.save({
+                                            tabela: 'Clientes',
                                             id_referencia: $scope.cliente.id,
                                             sequencia: 0,
-                                            imagem: img}, function (retorno) {
-                                        });
+                                            imagem: img
+                                        },
+                                                function (retorno) {
+                                                    $scope.cliente.url = img;
+                                                    $scope.cliente.foto = 'img';
+                                                    LoadModuloFactory.hide();
+                                                }
+                                        );
                                     }
                                 });
                                 break;
@@ -182,15 +198,11 @@ angular.module('starter')
                 delete c.id;
                 delete c.cidade;
                 delete c.estado;
-                delete c.url;
+                //delete c.url;
                 ClientesTable.update(c, id, function (a) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                     loadClientes();
-                    console.log('dados do cliente');
-                    console.log(JSON.stringify(c));
-                    console.log('--------   ');
                     GoogleApiFactory.buscaEndereco(c, function (cliente) {
-                        console.log(JSON.stringify(cliente));
                         c.latitude = cliente.latitude;
                         c.longitude = cliente.longitude;
                         c.cep = cliente.cep;
