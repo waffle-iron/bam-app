@@ -45,6 +45,13 @@ angular.module('starter')
                     });
                 };
 
+                services.historico = function (id, options, retorno) {
+                    options = angular.merge({}, options);
+                    RequestModuloFactory.get('usuarios/historico/' + id + '.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
+
                 services.relatorios = function (id, retorno) {
                     RequestModuloFactory.post('usuarios/relatorios/' + id + '.json', null, function (response) {
                         retorno(response);
