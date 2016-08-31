@@ -10,7 +10,7 @@ angular.module('starter')
                     });
                 };
                 services.create = function (retorno) {
-                    var sql = 'CREATE TABLE IF NOT EXISTS formularios_campos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(255), subtitulo VARCHAR(255), tipo VARCHAR(50), value TEXT, opcoes TEXT, required INTEGER(1), contem_imagem INTEGER(1), atributos TEXT, status INTEGER(1), ordem INTEGER(11), formulario_id INTEGER(11), created DATETIME, modified DATETIME);';
+                    var sql = 'CREATE TABLE IF NOT EXISTS formularios_campos (id INTEGER PRIMARY KEY AUTOINCREMENT, nome VARCHAR(1000), subtitulo VARCHAR(1000), tipo VARCHAR(50), value TEXT, opcoes TEXT, required INTEGER(1), contem_imagem INTEGER(1), atributos TEXT, status INTEGER(1), ordem INTEGER(11), formulario_id INTEGER(11), created DATETIME, modified DATETIME);';
                     TableModuloFactory.query(sql, function (e) {
                         retorno(e);
                     });
