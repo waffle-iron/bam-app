@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             }
             $ionicConfigProvider.views.forwardCache(true);
             $ionicConfigProvider.views.maxCache(0);
-            //$ionicConfigProvider.views.transition('none');
+            $ionicConfigProvider.views.transition('none');
             $stateProvider
 
                     .state('app', {

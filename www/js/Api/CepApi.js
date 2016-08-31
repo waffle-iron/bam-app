@@ -1,17 +1,14 @@
 angular.module('starter')
-        .factory('CepApiFactory', ['$http',
-            function ($http) {
+        .factory('CepApiFactory', ['RequestModuloFactory',
+            function (RequestModuloFactory) {
 
                 var services = {};
 
                 services.busca = function (cep, retorno) {
-                    $http.get('http://cep.agenciavoxel.com.br/' + cep + '.json', {}).then(function (response) {
-                        retorno(response);
-                    }).catch(function (response) {
+                    RequestModuloFactory.get('util/cep/' + cep + '.json', null, function (response) {
                         retorno(response);
                     });
                 };
-
 
                 return services;
             }

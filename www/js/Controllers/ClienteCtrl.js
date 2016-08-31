@@ -66,18 +66,19 @@ angular.module('starter')
 
                 if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                     GoogleApiFactory.buscaEndereco(result, function (cliente) {
+                        console.log(JSON.stringify(cliente));
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             result.latitude = cliente.latitude;
                             result.longitude = cliente.longitude;
                             result.cep = cliente.cep;
-                            result.endereco = cliente.endereco;
-                            result.bairro = cliente.bairro;
+                            //result.endereco = cliente.endereco;
+                            //result.bairro = cliente.bairro;
                             ClientesTable.update({
                                 latitude: result.latitude,
                                 longitude: result.longitude,
                                 cep: result.cep,
-                                endereco: result.endereco,
-                                bairro: result.bairro,
+                                //endereco: result.endereco,
+                                //bairro: result.bairro,
                                 status: 2
                             }, result.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
@@ -95,7 +96,7 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
+        .controller('ClienteEditCtrl', function (GoogleApiFactory, StorageModuloFactory, CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
             $scope.cliente = {};
             var loadClientes = function () {
                 ClientesTable.first(
@@ -114,9 +115,10 @@ angular.module('starter')
 
             $scope.buscaCep = function (cep) {
                 CepApiFactory.busca(cep, function (ret) {
-                    if (ret.data.result.status === 'OK') {
-                        $scope.cliente.endereco = ret.data.result.Cep.logradouro;
-                        $scope.cliente.bairro = ret.data.result.Cep.bairro;
+                    console.log(JSON.stringify(ret));
+                    if (ret.data.retorno.status === 'OK') {
+                        $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;
+                        $scope.cliente.bairro = ret.data.retorno.Cep.bairro;
                     }
                 });
             }
@@ -184,10 +186,30 @@ angular.module('starter')
                 ClientesTable.update(c, id, function (a) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                     loadClientes();
-                    ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso');
-                    $timeout(function () {
-                        $state.go('app.cliente', {id: $scope.cliente.id});
-                    }, 3000);
+                    console.log('dados do cliente');
+                    console.log(JSON.stringify(c));
+                    console.log('--------   ');
+                    GoogleApiFactory.buscaEndereco(c, function (cliente) {
+                        console.log(JSON.stringify(cliente));
+                        c.latitude = cliente.latitude;
+                        c.longitude = cliente.longitude;
+                        c.cep = cliente.cep;
+                        c.endereco = cliente.endereco;
+                        //c.bairro = cliente.bairro;
+                        ClientesTable.update({
+                            latitude: c.latitude,
+                            longitude: c.longitude,
+                            cep: c.cep,
+                            //endereco: c.endereco,
+                            //bairro: c.bairro,
+                            status: 2
+                        }, c.id, function (a) {
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                            ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso', function (r) {
+                                $state.go('app.cliente', {id: $scope.cliente.id});
+                            });
+                        });
+                    });
                 });
             }
 
