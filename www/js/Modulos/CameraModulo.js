@@ -20,13 +20,13 @@ angular.module('starter')
                         quality: 50,
                         destinationType: Camera.DestinationType.DATA_URL,
                         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-                        allowEdit: false,
+                        allowEdit: true,
                         encodingType: Camera.EncodingType.JPEG,
                         targetWidth: 800,
                         targetHeight: 600,
                         popoverOptions: CameraPopoverOptions,
                         saveToPhotoAlbum: false,
-                        correctOrientation: false
+                        correctOrientation: true
                     }, options);
                     $cordovaCamera.getPicture(options).then(function (imageData) {
                         if (options.destinationType === Camera.DestinationType.DATA_URL) {
