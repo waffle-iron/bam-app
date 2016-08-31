@@ -152,7 +152,7 @@ angular.module('starter')
                     }
                     dados.valor = ValidacaoModuloFactory.trim(dados.valor);
                     FormulariosCamposValoresTable.first(
-                            {where: 'cliente_id = ' + $scope.cliente.id + ' AND formularios_campo_id = ' + dados.id + ' AND value = "' + dados.valor + '"'}
+                            {where: 'cliente_id = ' + $scope.cliente.id + ' AND formularios_campo_id = ' + dados.id}
                     , function (resp) {
                         if (resp === null) {
                             resp = {};

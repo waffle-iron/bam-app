@@ -13,7 +13,7 @@ angular.module('starter')
 
                 var loadRespostas = function () {
                     FormulariosTable.all({
-                        where: ' status = 1 AND (sub_formulario_id = 1 OR id = 1)'
+                        where: ' status = 1 AND tipo = 1'
                     }, function (ret) {
                         angular.forEach(ret, function (v, k) {
                             FormulariosGruposTable.all({
@@ -55,8 +55,6 @@ angular.module('starter')
                 }
 
                 loadRespostas();
-
-
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);

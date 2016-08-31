@@ -12,7 +12,7 @@ angular.module('starter')
 
                 var loadRespostas = function () {
                     FormulariosTable.all({
-                        where: ' status = 1 AND (sub_formulario_id = 2 OR id = 2)'
+                        where: ' status = 1 AND tipo = 2'
                     }, function (ret) {
                         angular.forEach(ret, function (v, k) {
                             FormulariosGruposTable.all({
