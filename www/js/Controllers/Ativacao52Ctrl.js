@@ -68,7 +68,7 @@ angular.module('starter')
                 };
 
                 $scope.tirarFoto = function (id) {
-                    CameraModuloFactory.capturarFotoFile(function (img) {
+                    CameraModuloFactory.capturarFoto(function (img) {
                         if (img !== null) {
                             FotosCamerasTable.save({tabela: 'Ativacao52Table',
                                 id_referencia: $scope.ativacao.id_resposta,

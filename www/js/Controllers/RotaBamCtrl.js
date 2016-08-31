@@ -197,7 +197,7 @@ angular.module('starter')
                 }
 
                 $scope.tirarFoto = function () {
-                    CameraModuloFactory.capturarFotoFile(function (img) {
+                    CameraModuloFactory.capturarFoto(function (img) {
                         if (img !== null) {
                             FotosCamerasTable.save({tabela: 'FormulariosCamposValoresTable',
                                 id_referencia: $scope.id_resposta,
