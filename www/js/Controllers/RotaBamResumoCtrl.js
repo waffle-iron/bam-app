@@ -1,12 +1,11 @@
 angular.module('starter')
 
         .controller('RotaBamResumoCtrl', function (ProdutosClientesTable, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
-                FotosCamerasTable, FormulariosTable, FormulariosGruposTable, LoadModuloFactory) {
+                FotosCamerasTable, FormulariosTable, FormulariosCamposValoresTable, LoadModuloFactory) {
 
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             if (ValidacaoModuloFactory.isNotNull($scope.cliente)) {
-                LoadModuloFactory.show();
 
                 $scope.formularios = [];
                 $scope.cervejas = [];
@@ -16,13 +15,11 @@ angular.module('starter')
                         where: ' status = 1 AND tipo = 1'
                     }, function (ret) {
                         angular.forEach(ret, function (v, k) {
-                            FormulariosGruposTable.all({
-                                from: 'fc.*, fg.nome AS fg_nome, fg.id AS fg_id, fcv.id AS fcv_id, fcv.value AS fcv_resposta',
-                                alias: 'fg',
-                                where: 'fg.formulario_id = ' + v.id + ' AND fcv.cliente_id = ' + $scope.cliente.id,
-                                join: 'INNER JOIN formularios_grupos_campos AS fgc ON fgc.formularios_grupo_id = fg.id\n\
-                                        INNER JOIN formularios_campos AS fc ON (fgc.formularios_campo_id = fc.id AND fc.status = 1)\n\
-                                        INNER JOIN formularios_campos_valores AS fcv ON fcv.formularios_campo_id = fc.id',
+                            FormulariosCamposValoresTable.all({
+                                from: 'fc.*, fcv.id AS fcv_id, fcv.value AS fcv_resposta',
+                                alias: 'fcv',
+                                where: 'fcv.formulario_id = ' + v.id + ' AND fcv.cliente_id = ' + $scope.cliente.id,
+                                join: 'INNER JOIN formularios_campos AS fc ON fc.id = fcv.formularios_campo_id',
                                 order: 'fc.ordem ASC'
                             }, function (retGrupo) {
                                 angular.forEach(retGrupo, function (v1, k1) {
@@ -40,13 +37,12 @@ angular.module('starter')
                                 });
                             });
                         });
-                        LoadModuloFactory.hide();
                     });
 
                     ProdutosClientesTable.all({
                         from: '*',
                         alias: 'pc',
-                        where: 'pc.valor > 0 AND pc.cliente_id = ' + $scope.cliente.id,
+                        where: 'pc.cliente_id = ' + $scope.cliente.id,
                         join: 'INNER JOIN produtos AS p ON p.id = pc.produto_id'
                     }, function (ret) {
                         $scope.cervejas = ret;
