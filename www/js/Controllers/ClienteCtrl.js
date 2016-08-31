@@ -190,6 +190,8 @@ angular.module('starter')
                     ValidacaoModuloFactory.alert('Informe o seu CEP');
                     return;
                 }
+                cliente.url = $scope.cliente.url;
+                cliente.foto = $scope.cliente.foto;
                 var c = cliente;
                 c.latitude = null;
                 c.longitude = null;

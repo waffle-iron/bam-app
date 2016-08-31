@@ -49,15 +49,15 @@ angular.module('starter')
                         angular.forEach(r.results[0].address_components, function (v, k) {
                             angular.forEach(v.types, function (v1, k1) {
                                 if (v1 === 'postal_code') {
-                                    ret.cep = (v.long_name || ret.cep);
+                                    ret.cep = (v.long_name.toString() || ret.cep);
                                 }
 
                                 if (v1 === 'route') {
-                                    ret.endereco = (v.long_name || ret.endereco);
+                                    ret.endereco = (v.long_name.toString() || ret.endereco);
                                 }
 
                                 if (v1 === 'sublocality_level_1') {
-                                    ret.bairro = (v.long_name || ret.bairro);
+                                    ret.bairro = (v.long_name.toString() || ret.bairro);
                                 }
                             });
                         });
