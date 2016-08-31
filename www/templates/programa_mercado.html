@@ -19,8 +19,10 @@
 
             <div ng-repeat="(key, value) in formularios" ng-if="sequencia(value, key) > 0">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                    <h4 class="padding text-center">{{value.nome}}</h4>
-                    <h5 ng-show="value.subtitulo" class="padding text-center">{{value.subtitulo}}</h5>
+                    <h4 class="padding text-center">
+                        {{value.nome}}
+                        <small ng-show="value.subtitulo" class="d-block p-0 text-center">{{value.subtitulo}}</small>
+                    </h4>
                     <div class="item-input" style="border:none;">
 
                         <div ng-if="value.tipo === 'radio'" style="width: 100%">

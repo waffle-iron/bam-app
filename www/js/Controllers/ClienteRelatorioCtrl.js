@@ -106,21 +106,15 @@ angular.module('starter')
         
         .controller('ClienteHistoricoCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, ClientesTable, LoadModuloFactory) {
 
-
-            LoadModuloFactory.show();
-            $scope.cliente = {};
-            ClientesTable.first(
-                    {
-                        from: 'c.*, cd.cidade, e.estado',
-                        alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
-                        where: 'c.id =' + $stateParams.id
-                    }, function (result) {
-                $scope.cliente = result;
-                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
-                LoadModuloFactory.hide();
-
-            });
+            $scope.options = {
+                sort: 'created',
+                page: 1,
+                tipo: 2,
+                limit: 10,
+                direction: 'desc'
+            };
+            $scope.proximo = true;
+            $scope.bibliotecas = [];
 
             $scope.dados = {};
 

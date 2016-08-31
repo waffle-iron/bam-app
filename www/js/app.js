@@ -131,7 +131,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         url: '/orientacaoDetalhes/:id',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/orientacao-detalhes.html',
+                                templateUrl: 'templates/orientacao_detalhes.html',
                                 controller: 'OrientacaoDetalhesCtrl'
                             }
                         }
@@ -271,7 +271,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         url: '/cliente_edit/:id',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/cliente-edit.html',
+                                templateUrl: 'templates/cliente_edit.html',
                                 controller: 'ClienteEditCtrl'
                             }
                         }
@@ -302,6 +302,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/cliente_relatorio_historico.html',
+                                controller: 'ClienteHistoricoCtrl'
+                            }
+                        }
+                    })
+                    
+                    .state('app.cliente_relatorio_historico_respostas', {
+                        url: '/cliente_relatorio_historico_respostas/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/cliente_relatorio_historico_respostas.html',
                                 controller: 'ClienteHistoricoCtrl'
                             }
                         }
