@@ -4,6 +4,7 @@ angular.module('starter')
             LoadModuloFactory.show();
             var listaClientes = [];
             var total = 0;
+            var sequencia = 0;
             ClientesTable.all({
                 order: 'c.nome asc',
                 alias: 'c',
@@ -14,9 +15,7 @@ angular.module('starter')
                     ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
                 } else {
                     total = (ret.length - 1);
-                    console.log(total);
                     angular.forEach(ret, function (v, k) {
-                        console.log(k);
                         v = angular.merge({
                             isShow1: 0,
                             isShow2: 0
@@ -49,15 +48,20 @@ angular.module('starter')
                                     }, v.id, function (a) {
                                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                         listaClientes.push(v);
+                                        sequencia++;
                                     });
                                 } else {
                                     listaClientes.push(v);
+                                    sequencia++;
                                 }
                             });
                         } else {
                             listaClientes.push(v);
+                            sequencia++;
                         }
-                        if (k >= total) {
+                        console.log(sequencia);
+                        console.log(total);
+                        if (sequencia >= total) {
                             LoadModuloFactory.hide();
                             LoadModuloFactory.mapaAll(listaClientes, $scope);
                         }

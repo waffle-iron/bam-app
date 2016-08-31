@@ -21,6 +21,12 @@ angular.module('starter')
                     });
                 };
 
+                services.uploadImage = function (id, image, retorno) {
+                    RequestModuloFactory.post('formularios-campos-valores/upload-image/' + id + '.json', {image: image}, function (response) {
+                        retorno(response);
+                    });
+                };
+
 
                 return services;
             }

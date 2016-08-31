@@ -33,7 +33,7 @@ angular.module('starter')
                         modified: '',
                         created: ''
                     }, options);
-                    RequestModuloFactory.put('ocorrencias/add.json', options, function (response) {
+                    RequestModuloFactory.post('ocorrencias/add.json', options, function (response) {
                         retorno(response);
                     });
                 };

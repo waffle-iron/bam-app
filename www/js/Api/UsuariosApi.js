@@ -14,8 +14,39 @@ angular.module('starter')
                     });
                 };
 
+                services.edit = function (id, options, retorno) {
+                    options = angular.merge({
+                        id: '',
+                        nome: '',
+                        sobrenome: '',
+                        email: '',
+                        celular: '',
+                        login: '',
+                        senha: '',
+                        status: '',
+                        token: '',
+                        documento: '',
+                        created: '',
+                        modified: '',
+                        tipo: '',
+                        foto: '',
+                        url: ''
+                    }, options);
+                    delete options.foto;
+                    delete options.url;
+                    RequestModuloFactory.post('usuarios/edit/' + id + '.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
+
+                services.uploadImage = function (id, image, retorno) {
+                    RequestModuloFactory.post('usuarios/upload-image/' + id + '.json', {image: image}, function (response) {
+                        retorno(response);
+                    });
+                };
+
                 services.relatorios = function (id, retorno) {
-                    RequestModuloFactory.put('usuarios/relatorios/' + id + '.json', null, function (response) {
+                    RequestModuloFactory.post('usuarios/relatorios/' + id + '.json', null, function (response) {
                         retorno(response);
                     });
                 };

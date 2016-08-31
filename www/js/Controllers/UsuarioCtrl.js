@@ -33,12 +33,7 @@ angular.module('starter')
                 });
             }
 
-            var urlForImage = function (imageName) {
-                FileModuloFactory.asUrl(imageName, function (r) {
-                    $scope.user.url = r;
-                })
-            }
-
+            
             // Triggered on a button click, or some other target
             $scope.userFoto = function () {
 
@@ -61,7 +56,7 @@ angular.module('starter')
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
-                                            tabela: 'Usuarios',
+                                            tabela: 'UsuariosTable',
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
                                             imagem: img
@@ -79,7 +74,7 @@ angular.module('starter')
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
-                                            tabela: 'Usuarios',
+                                            tabela: 'UsuariosTable',
                                             id_referencia: $scope.user.id,
                                             sequencia: 0,
                                             imagem: img

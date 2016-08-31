@@ -145,7 +145,7 @@ angular.module('starter')
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
-                                            tabela: 'Clientes',
+                                            tabela: 'ClientesTable',
                                             id_referencia: $scope.cliente.id,
                                             sequencia: 0,
                                             imagem: img
@@ -164,7 +164,7 @@ angular.module('starter')
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
-                                            tabela: 'Clientes',
+                                            tabela: 'ClientesTable',
                                             id_referencia: $scope.cliente.id,
                                             sequencia: 0,
                                             imagem: img

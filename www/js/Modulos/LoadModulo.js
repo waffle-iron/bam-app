@@ -152,7 +152,7 @@ angular.module('starter')
 
                         }, function (error) {
                             scope.show_mapa = 0;
-                            ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
+                            ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa, Verifique se o GPS de seu aparelho esta ativo e com conexão com a Internet.');
                         },
                                 {
                                     timeout: 10000,

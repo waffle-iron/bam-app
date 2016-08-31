@@ -83,7 +83,13 @@ angular.module('starter')
                         created: '',
                         url: ''
                     }, options);
-                    RequestModuloFactory.put('clientes/edit/' + id + '.json', options, function (response) {
+                    RequestModuloFactory.post('clientes/edit/' + id + '.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
+
+                services.uploadImage = function (id, image, retorno) {
+                    RequestModuloFactory.post('clientes/upload-image/' + id + '.json', {image: image}, function (response) {
                         retorno(response);
                     });
                 };

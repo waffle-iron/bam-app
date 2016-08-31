@@ -29,7 +29,7 @@ angular.module('starter')
                                     FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v1.fcv_id}, function (retornoFotosCameras) {
                                         if (retornoFotosCameras !== null) {
                                             angular.forEach(retornoFotosCameras, function (value, key) {
-                                                v1.imagens.push(value.imagem);
+                                                v1.imagens.push({image: value.imagem});
                                             });
                                             $scope.formularios.push(v1);
                                         } else {
@@ -45,11 +45,7 @@ angular.module('starter')
 
                 loadRespostas();
 
-                $scope.urlForImage = function (value) {
-                    FileModuloFactory.asUrl(value.image, function (r) {
-                        value.image = r;
-                    })
-                }
+                
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);
