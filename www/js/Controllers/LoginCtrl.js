@@ -78,7 +78,7 @@ angular.module('starter')
                 });
             };
 
-            //$scope.drop();
+            //drop();
 
             $scope.user = {
                 login: null,
