@@ -37,14 +37,14 @@ angular.module('starter')
                                     v.latitude = cliente.latitude;
                                     v.longitude = cliente.longitude;
                                     v.cep = cliente.cep;
-                                    v.endereco = cliente.endereco;
-                                    v.bairro = cliente.bairro;
+                                    //v.endereco = cliente.endereco;
+                                    //v.bairro = cliente.bairro;
                                     ClientesTable.update({
                                         latitude: v.latitude,
                                         longitude: v.longitude,
                                         cep: v.cep,
-                                        endereco: v.endereco,
-                                        bairro: v.bairro,
+                                        //endereco: v.endereco,
+                                        //bairro: v.bairro,
                                         status: 2
                                     }, v.id, function (a) {
                                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
@@ -68,3 +68,6 @@ angular.module('starter')
             });
 
         });
+
+
+//https://maps.googleapis.com/maps/api/geocode/json?address=0=Avenida+Independ%C3%AAncia&1=2887&2=Jardim+Sumar%C3%A9&3=Brasil&language=br&sensor=false

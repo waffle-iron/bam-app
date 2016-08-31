@@ -38,7 +38,9 @@ angular.module('starter')
                     endereco: cliente.endereco,
                     bairro: cliente.bairro
                 };
+                console.log(JSON.stringify(cliente));
                 RequestModuloFactory.post('util/endereco.json', cliente, function (response) {
+                    console.log(JSON.stringify(response));
                     var r = response.data.response.result;
                     if (r.status === 'OK') {
                         ret.latitude = (r.results[0].geometry.location.lat || ret.latitude);

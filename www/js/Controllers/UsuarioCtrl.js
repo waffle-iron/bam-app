@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('UsuarioCtrl', function (FileModuloFactory, FotosCamerasTable, NavegacaoModuloFactory, $scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
+        .controller('UsuarioCtrl', function (LoadModuloFactory, FileModuloFactory, FotosCamerasTable, NavegacaoModuloFactory, $scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             $scope.user.senha = "";
@@ -57,8 +57,9 @@ angular.module('starter')
                     buttonClicked: function (index) {
                         switch (index) {
                             case 0:
-                                CameraModuloFactory.capturarFotoFile(function (img) {
+                                CameraModuloFactory.capturarFoto(function (img) {
                                     if (img !== null) {
+                                        LoadModuloFactory.show();
                                         FotosCamerasTable.save({
                                             tabela: 'Usuarios',
                                             id_referencia: $scope.user.id,
@@ -66,15 +67,17 @@ angular.module('starter')
                                             imagem: img
                                         },
                                                 function (retorno) {
-                                                    urlForImage(img);
+                                                    $scope.user.url = img;
+                                                    LoadModuloFactory.hide();
                                                 }
                                         );
                                     }
                                 });
                                 break;
                             case 1:
-                                CameraModuloFactory.selecionarFotoFile(function (img) {
+                                CameraModuloFactory.selecionarFoto(function (img) {
                                     if (img !== null) {
+                                        LoadModuloFactory.show();
                                         FotosCamerasTable.save({
                                             tabela: 'Usuarios',
                                             id_referencia: $scope.user.id,
@@ -82,7 +85,8 @@ angular.module('starter')
                                             imagem: img
                                         },
                                                 function (retorno) {
-                                                    urlForImage(img);
+                                                    $scope.user.url = img;
+                                                    LoadModuloFactory.hide();
                                                 }
                                         );
                                     }
