@@ -136,7 +136,7 @@ angular.module('starter')
                         {text: '<i class="fa fa-photo"></i> Escolher na Galeria'}
                     ],
                     //destructiveText: 'Delete',
-                    titleText: 'Modifique sua foto de perfil',
+                    titleText: 'Modifique a foto do PDV',
                     cancelText: 'Cancelar',
                     cancel: function () {
                         // add cancel code..

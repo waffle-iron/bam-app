@@ -50,13 +50,13 @@
                                 {{value.data| date}}
                             </div>
                             <div class="col text-right">
-                                {{forceInt(value.total)}}
+                                {{forceInt(value.total)}}pt.
                             </div>
                         </h4>
                         <progress class="m-0" max="1000" value="{{forceInt(value.total)}}"></progress>
                     </div>
 
-                    <div class="padding">
+                    <div ng-show="dados.gratificacao.total" class="padding">
                         <div class="bg-green margin padding">
                             <div class="d-block col-center text-center">Bateu Ganhou</div>
                             <div class="d-block text-center lh-28 fs-30">{{dados.gratificacao.total| currency:'R$ '}}</div>
@@ -115,7 +115,7 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <a href="#/app/cliente_relatorio/{{v.cliente_id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
 
                     </div>

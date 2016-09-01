@@ -9,47 +9,56 @@
     </ion-nav-bar>
 
     <ion-content class="fundo">
-        <msg></msg>
-        <div class="padding-left padding-right">
+        <div class="padding">
+            <msg></msg>
             <div class="list list-inset list-atv borda-grey header-block">
                 <h4 class="padding text-center">Editar meus Dados</h4>
                 <form name="usuario" ng-submit="salvar(user)" novalidate>
-                    <div class="item item-input m-0">
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">Nome</span>
                         <input class="m-0 h-40 p-10" type="text" class="border-form" placeholder="Nome" value="{{user.nome}}" ng-model="user.nome" required>
-                    </div>
-                    <div class="item item-input m-0">
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">Sobrenome</span>
                         <input class="m-0 h-40 p-10" type="text" class="border-form" placeholder="Sobrenome" value="{{user.sobrenome}}" ng-model="user.sobrenome" required>
-                    </div>
-                    <div class="item item-input m-0">
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">E-mail</span>
                         <input class="m-0 h-40 p-10" type="email" class="border-form" placeholder="E-mail" value="{{user.email}}" ng-model="user.email">
-                    </div>
-                    <div class="item item-input m-0">
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">Celular</span>
                         <input class="m-0 h-40 p-10" type="tel" class="border-form" placeholder="Celular" value="{{user.celular}}" ng-model="user.celular">
-                    </div>
-                    <div class="item item-input m-0">
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">CPF</span>
-                        <span class="input m-0 h-40 p-10">{{user.documento}}</span>
-                    </div>
-                    <div class="item item-input m-0">
+                        <input class="m-0 h-40 p-10" type="text" class="text-right" ng-model="user.documento" disabled>
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">Login</span>
                         <input class="m-0 h-40 p-10" type="text" class="border-form" placeholder="Login" value="{{user.login}}" ng-model="user.login" required>
-                    </div>
-                    <div class="item item-input m-0">
+                    </label>
+
+                    <label class="item item-input m-0">
                         <span class="input-label p-10">Senha</span>
                         <input class="m-0 h-40 p-10" type="password" class="border-form" placeholder="Senha" value="{{user.senha}}" ng-model="user.senha">
-                    </div>
-                    <div class="item item-input p-20 m-0">
+                    </label>
+
+                    <label class="item item-input p-20 m-0">
                         <button class="avatar-button avatar-square p-0 no-border" ng-click="userFoto()" type="button">
                             <img ng-src="{{user.url}}" class="wp-100 d-block avatar m-15">
                             <div class="avatar-footer">
                                 <i class="fa fa-camera"></i> Alterar Foto
                             </div>
                         </button>
-                    </div>
+                    </label>
+
                     <div class="padding item-footer">
                         <button class="button button-block button-balanced m-0" type="submit"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
                     </div>

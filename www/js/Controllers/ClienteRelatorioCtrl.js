@@ -101,6 +101,10 @@ angular.module('starter')
                     return "#d9534f";
                 }
             }
+            
+            $scope.converteNome = function(str){
+                return ExtraModuloFactory.conversaoDeHistoricos(str);
+            }
 
         })
         

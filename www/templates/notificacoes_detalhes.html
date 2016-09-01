@@ -13,15 +13,14 @@
         <header-logo></header-logo>
 
         <div class="padding">
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">{{dados.notificaco.msg}}</h4>
+            <div class="list list-inset borda-grey br-10 header-block">
 
-                <div class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <div>{{dados.notificaco.data_inicio}}</div>
+                <div class="item item-text-wrap">
+                    <div class="color-purple">{{dados.notificaco.msg}}</div>
                 </div>
 
-                <div class="item item-text-wrap" style="border-bottom: 1px solid #efe8e8; border:none;">
-                    <div>{{dados.notificaco.data_fim}}</div>
+                <div class="item item-text-wrap text-center">
+                    <small class="fs-12">{{dados.notificaco.data_inicio}}<!-- - {{dados.notificaco.data_fim}}--></small>
                 </div>
 
             </div>
