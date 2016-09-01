@@ -13,7 +13,7 @@
 
         <div class="padding">
             
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <!--<div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura</h4>
                 <div class="item item-text-wrap pl-0 pr-0 cobertura-graph">
                     <div class="wp-32 d-iblock h-100">
@@ -59,16 +59,16 @@
                 <div class="padding item-footer">
                     <a href="#/app/bam_historico" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
                 </div>
-            </div>
+            </div>-->
 
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key,v) in dados.rota_bem">
                     <div class="item item-text-wrap row rota-graph">
-                        <div class="wp-25 h-100">
+                        <div class="wp-40 h-100">
                             <pie-chart data="v.dados" options="v.options"></pie-chart>
                         </div>
-                        <div class="wp-75 padding-top padding-bottom">
+                        <div class="wp-60 padding-top padding-bottom">
                             <h3>{{v.nome}}</h3>
                         </div>
                     </div>

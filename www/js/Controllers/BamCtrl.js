@@ -20,6 +20,8 @@ angular.module('starter')
                 if (ValidacaoModuloFactory.isOk(result.status)) {
                     $scope.dados = result.data.response.result;
 
+                    $scope.total_prog_rac = parseInt($scope.dados.clientes_total.total);
+
                     var primeira = 0;
                     var segunda = 0;
 
@@ -54,6 +56,7 @@ angular.module('starter')
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
                         _programa_rac.push([v.nome, parseInt(v.total)]);
                     });
+
                     angular.forEach($scope.dados.clientes_rac, function (v, k) {
                         $scope.dados.clientes_rac[k].pontuacao = parseInt(v.pontuacao);
                     });
@@ -63,14 +66,14 @@ angular.module('starter')
                     $scope.pie_open = 1;
 
                     angular.forEach($scope.dados.rota_bem, function (v, k) {
-                        $scope.total_prog_rac = parseInt($scope.dados.clientes_total.total);
                         v.options = {
                             thickness: 7,
                             mode: "gauge",
-                            total: v.geral
+                            //total: v.geral
+                            total: 100
                         };
                         v.dados = [
-                            {label: "", value: v.total, color: "#5CB85C", suffix: ""}
+                            {label: "", value: parseFloat((v.geral / v.total)).toFixed(1), color: "#5CB85C", suffix: "%"}
                         ];
                     }, $scope.dados.rota_bem);
                     LoadModuloFactory.hide();
@@ -129,9 +132,9 @@ angular.module('starter')
                 });
                 return (total / linha) + 'pt.';
             }
-            
-            var loadMapaGoogle = function(){
-                try{
+
+            var loadMapaGoogle = function () {
+                try {
                     google.charts.setOnLoadCallback(drawChart);
                     function drawChart() {
                         var d = [
@@ -166,13 +169,12 @@ angular.module('starter')
                         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
                         chart.draw(data, options);
                     }
-                }
-                catch(e){
+                } catch (e) {
                     console.log(e);
                 }
-                
+
             }
-            
+
             $scope.$on('$stateChangeComplete', function () {
                 loadMapaGoogle();
             });
