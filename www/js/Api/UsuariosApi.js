@@ -52,9 +52,8 @@ angular.module('starter')
                     });
                 };
                 
-                services.historicoRac = function (id, options, retorno) {
-                    options = angular.merge({}, options);
-                    RequestModuloFactory.get('usuarios/range-all/' + id + '.json', options, function (response) {
+                services.historicoRac = function (id, retorno) {
+                    RequestModuloFactory.get('usuarios/range-all/' + id + '.json', null, function (response) {
                         retorno(response);
                     });
                 };
