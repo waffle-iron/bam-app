@@ -54,6 +54,9 @@ angular.module('starter')
                     angular.forEach($scope.dados.geral_rac, function (v, k) {
                         _programa_rac.push([v.nome, parseInt(v.total)]);
                     });
+                    angular.forEach($scope.dados.clientes_rac, function (v, k) {
+                        $scope.dados.clientes_rac[k].pontuacao = parseInt(v.pontuacao);
+                    });
 
                     //loadMapaGoogle(_programa_rac);
 

@@ -1,4 +1,4 @@
-<ion-view view-title="PDV - Relatorio" view-cache="false">
+<ion-view view-title="PDV - Resumo" view-cache="false">
 
     <ion-nav-bar class="bar-stable bar-purple">
         <ion-nav-buttons side="right">
@@ -16,7 +16,7 @@
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <a href="#/app/cliente_relatorio_historico_respostas/{{cliente.id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{v.tipo_id}}" ng-repeat="(k,v) in historico" class="item item-text-wrap row m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
 
                     </div>
@@ -38,6 +38,6 @@
     <ion-infinite-scroll
         ng-if="proximo"
         on-infinite="loadMore()"
-        distance="90%">
+        distance="1%">
     </ion-infinite-scroll>
 </ion-view>

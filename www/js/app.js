@@ -151,7 +151,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         url: '/bibliotecasDetalhes/:id',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/bibliotecas-detalhes.html',
+                                templateUrl: 'templates/bibliotecas_detalhes.html',
                                 controller: 'BibliotecasDetalhesCtrl'
                             }
                         }
@@ -171,7 +171,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         url: '/notificacoesDetalhes/:id',
                         views: {
                             'menuContent': {
-                                templateUrl: 'templates/notificacoes-detalhes.html',
+                                templateUrl: 'templates/notificacoes_detalhes.html',
                                 controller: 'NotificacoesDetalhesCtrl'
                             }
                         }
@@ -308,11 +308,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                     })
                     
                     .state('app.cliente_relatorio_historico_respostas', {
-                        url: '/cliente_relatorio_historico_respostas/:id',
+                        url: '/cliente_relatorio_historico_respostas/:id/:data/:tipo',
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/cliente_relatorio_historico_respostas.html',
-                                controller: 'ClienteHistoricoCtrl'
+                                controller: 'ClienteHistoricoRespostasCtrl'
                             }
                         }
                     })

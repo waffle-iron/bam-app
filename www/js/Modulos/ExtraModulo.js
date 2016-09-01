@@ -69,6 +69,40 @@ angular.module('starter')
                         else
                             return 'Boa noite';
                     };
+                    
+                    services.conversaoDeHistoricos = function (str){
+                        switch(str){
+                            case 'Rota BAM':
+                                return 1;
+                                break;
+                            case 'Programa de Mercado - RAC':
+                                return 2;
+                                break;
+                            case 'Ativação 52 Semanas':
+                                return 3;
+                                break;
+                            default:
+                                return 0;
+                                break;
+                        }
+                    }
+                    
+                    services.desconversaoDeHistoricos = function (str){
+                        switch(parseInt(str)){
+                            case 1:
+                                return 'Rota BAM';
+                                break;
+                            case 2:
+                                return 'Programa de Mercado - RAC';
+                                break;
+                            case 3:
+                                return 'Ativação 52 Semanas';
+                                break;
+                            default:
+                                return 'Nome não localizado';
+                                break;
+                        }
+                    }
 
                     return services;
                 }

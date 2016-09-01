@@ -104,31 +104,59 @@ angular.module('starter')
 
         })
         
-        .controller('ClienteHistoricoCtrl', function (Config, $stateParams, ClientesApiFactory, ValidacaoModuloFactory, ExtraModuloFactory, $scope, ClientesTable, LoadModuloFactory) {
+        .controller('ClienteHistoricoCtrl', function (Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, ClientesApiFactory, $stateParams, ClientesTable) {
 
+            $scope.cliente = {};
+            ClientesTable.first(
+                    {
+                        from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        where: 'c.id =' + $stateParams.id
+                    }, function (result) {
+                $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                LoadModuloFactory.hide();
+
+            });
+            
             $scope.options = {
                 sort: 'created',
                 page: 1,
                 tipo: 2,
-                limit: 10,
+                limit: 5,
                 direction: 'desc'
             };
             $scope.proximo = true;
-            $scope.bibliotecas = [];
-
-            $scope.dados = {};
-
-            ClientesApiFactory.relatorios($stateParams.id, function (result) {
-                if (ValidacaoModuloFactory.isOk(result.status)) {
-                    $scope.dados = result.data.response.result;
+            $scope.historico = [];
+            
+            var conteudo = function (retorno) {
+                $scope.proximo = true;
+                if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                    $scope.proximo = retorno.data.response.paging.nextPage;
+                    $scope.options.page = (retorno.data.response.paging.page + 1);
+                    angular.forEach(retorno.data.response.result, function (v, k) {
+                        v.tipo_id = converteNome(v.tipo);
+                        $scope.historico.push(v);
+                    });
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
                     LoadModuloFactory.hide();
                 } else {
                     LoadModuloFactory.hide();
+                    $scope.proximo = false;
+                    ExtraModuloFactory.console.error($scope, 'Nenhum item de histórico localizado.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 
-            });
-
+            }
+            
+            $scope.loadMore = function () {
+                if ($scope.proximo) {
+                    LoadModuloFactory.show();
+                    ClientesApiFactory.historico($stateParams.id, $scope.options, conteudo);
+                }
+            };
+            
             $scope.isTipo = function (value) {
                 if (value.tipo === 'Rota BAM') {
                     return 'green';
@@ -141,19 +169,36 @@ angular.module('starter')
                 }
             }
 
-            $scope.loadMore = function () {
-                if ($scope.proximo) {
-                    LoadModuloFactory.show();
-                    ClientesApiFactory.index($scope.options, conteudo);
-                }
-            };
-
             $scope.$on('$stateChangeComplete', function () {
                 $scope.loadMore();
             });
-
-            $scope.forceInt = function (value) {
-                return parseInt(value);
+            
+            var converteNome = function(str){
+                return ExtraModuloFactory.conversaoDeHistoricos(str);
             }
 
+        })
+        
+        .controller('ClienteHistoricoRespostasCtrl', function (Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, ClientesApiFactory, $stateParams, ClientesTable) {
+            
+            $scope.cliente = {};
+            $scope.tipo = '';
+            $scope.data = '';
+            
+            ClientesTable.first(
+                    {
+                        from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        where: 'c.id =' + $stateParams.id
+                    }, function (result) {
+                $scope.cliente = result;
+                $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
+                LoadModuloFactory.hide();
+
+            });
+            
+            $scope.tipo = ExtraModuloFactory.desconversaoDeHistoricos($stateParams.tipo);
+            $scope.data = $stateParams.data;
+            
         });

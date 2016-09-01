@@ -36,5 +36,10 @@
         </div>
 
     </ion-content>
+    <ion-infinite-scroll
+        ng-if="proximo"
+        on-infinite="loadMore()"
+        distance="50%">
+    </ion-infinite-scroll>
 
 </ion-view>
