@@ -11,6 +11,7 @@ angular.module('starter')
                 from: 'c.*'
             }, function (ret) {
                 if (ret === null) {
+                    LoadModuloFactory.hide();
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
                     ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
                 } else {
@@ -76,6 +77,3 @@ angular.module('starter')
             }
 
         });
-
-
-//https://maps.googleapis.com/maps/api/geocode/json?address=0=Avenida+Independ%C3%AAncia&1=2887&2=Jardim+Sumar%C3%A9&3=Brasil&language=br&sensor=false

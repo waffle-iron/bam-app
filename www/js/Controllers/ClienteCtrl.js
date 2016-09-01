@@ -7,6 +7,7 @@ angular.module('starter')
 
             $scope.selecionado = function (cliente) {
                 if (ValidacaoModuloFactory.isNotNull($scope.tipo_formulario)) {
+                    StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                     cliente.url = ExtraModuloFactory.img(cliente);
                     LoadModuloFactory.show();
                     StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);

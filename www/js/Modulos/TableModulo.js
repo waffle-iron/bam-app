@@ -281,8 +281,15 @@ angular.module('starter')
                                     services.debug(query);
                                     services.debug(tx);
                                     services.debug(params);
-                                    services.debug(result);
                                     retorno(result);
+                                    /*try {
+                                     services.debug(result);
+                                     retorno(result);
+                                     } catch (error) {
+                                     services.debug(error);
+                                     retorno(null);
+                                     }*/
+
                                 },
                                 function (error) {
                                     services.debug('ERRO DO SQL');
@@ -296,7 +303,14 @@ angular.module('starter')
 
                 services.debug = function (val) {
                     if (Config.debug === true) {
-                        console.log(val);
+                        if (angular.isObject(val) !== null) {
+                            console.log(JSON.stringify(val));
+                        } else if (angular.isArray(val) !== null) {
+                            console.log(JSON.stringify(val));
+                        } else {
+                            console.log(val);
+                        }
+                        //console.log(val);
                     }
                 };
 

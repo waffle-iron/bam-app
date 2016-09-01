@@ -23,7 +23,7 @@
                     </a>
                 </div>
             </div>
- 
+
             <div ng-if="ativos.produtos_2 > 0">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">{{titulos}}</h4>
@@ -40,15 +40,16 @@
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">{{titulos}}</h4>
 
-                    <label class="row item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
+                    <label class="item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
                         <span class="input-label col table-pad">&nbsp;</span>
                         <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
                     </label>
 
-                    <label class="row item item-input {{color(key)}}" ng-repeat="(key, value) in produtos_3" style="position: relative; border-bottom: 1px solid #efe8e8; border:none;">
-                        <span class="input-label col table-left table-pad" style="font-size:11px;">{{value.nome}}</span>
-                        <input type="text" class="col table-pad" ng-model="value.valor" value="{{value.valor | inputMoeda}}" ng-blur="atualizar(value, value.valor)" style="text-align: right; position: absolute; right: 0px; border-left: 1px solid #ccc; width: 35%; height: 50px;">
+                    <label class="item item-input" ng-repeat="(key, value) in produtos_3">
+                        <span class="input-label" style="display: inline-block;">{{value.nome}}</span>
+                        <input type="number" string-to-number class="text-right" ng-model="value.produto_valor" value="{{value.valor| inputMoeda}}" ng-blur="atualizar(value)">
                     </label>
+
                     <div class="padding item-footer">
                         <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
                     </div>

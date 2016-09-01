@@ -59,7 +59,8 @@ angular.module('starter')
                                 $scope._buscaProduto(id_pai, seq);
                             } else {
                                 angular.forEach(ret, function (v, k) {
-                                    //v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                    v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                    v.produto_valor = v.valor;
                                     $scope["produtos_" + seq].push(v);
                                 });
                                 LoadModuloFactory.hide();
@@ -70,7 +71,7 @@ angular.module('starter')
                 };
 
                 $scope.convertNumber = function (value, valor) {
-                    return $filter('inputMoeda')(parseFloat(value.valor));
+                    return $filter('inputMoeda')(parseFloat(valor));
                 }
 
                 $scope._buscaProduto = function (id_pai, seq) {
@@ -85,6 +86,7 @@ angular.module('starter')
                         } else {
                             angular.forEach(ret, function (v, k) {
                                 v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                v.produto_valor = v.valor;
                                 $scope["produtos_" + seq].push(v);
                             });
                         }
@@ -95,42 +97,45 @@ angular.module('starter')
 
                 $scope.busca(0, 1, false);
 
-                $scope.atualizar = function (produto, produto_valor) {
-                    produto_valor = $filter('inputMoeda')(parseFloat(produto_valor));
-                    produto.valor = produto_valor;
+                $scope.atualizar = function (produto) {
+                    var produto_valor = $filter('inputMoeda')(produto.produto_valor);
+                    produto.valor = produto.produto_valor = produto_valor;
+                    console.log(JSON.stringify($scope.cliente));
+                    var _save = {
+                        cliente_id: 0,
+                        produto_id: produto.id,
+                        valor: produto.produto_valor,
+                        status: 1,
+                        modified: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                        created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+                    };
+                    _save.cliente_id = $scope.cliente.id;
+                    console.log(JSON.stringify(_save));
+
                     ProdutosClientesTable.first(
                             {where: 'cliente_id = ' + $scope.cliente.id + ' AND produto_id = ' + produto.id}
                     , function (resp) {
 
+                        console.log('retorno SQL');
+                        console.log(produto_valor);
+                        console.log(JSON.stringify(produto));
+                        console.log(JSON.stringify(resp));
+                        console.log(JSON.stringify(_save));
+
                         if (resp === null) {
-                            resp = {};
-                            resp.valor = produto_valor;
-                            if (resp.valor > 0) {
-                                resp.status = 1;
-                            } else {
-                                resp.status = 0;
-                            }
-                            resp.produto_id = produto.id;
-                            resp.cliente_id = $scope.cliente.id;
-                            resp.created = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            ProdutosClientesTable.insert(resp, function (a) {
+                            var save = angular.merge({}, _save);
+                            console.log(JSON.stringify(save));
+                            ProdutosClientesTable.insert(save, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                             });
                         } else {
-                            resp.valor = produto_valor;
-                            if (resp.valor > 0) {
-                                resp.status = 1;
-                            } else {
-                                resp.status = 0;
-                            }
-                            resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            ProdutosClientesTable.update(resp, resp.id, function (a) {
+                            var save = angular.merge({}, resp, _save);
+                            console.log(JSON.stringify(save));
+                            ProdutosClientesTable.update(save, resp.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                             });
                         }
                     });
-                    return produto_valor;
                 };
 
                 $scope.salvar = function () {
