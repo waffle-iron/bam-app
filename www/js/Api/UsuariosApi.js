@@ -51,6 +51,13 @@ angular.module('starter')
                         retorno(response);
                     });
                 };
+                
+                services.historicoRac = function (id, options, retorno) {
+                    options = angular.merge({}, options);
+                    RequestModuloFactory.get('usuarios/range-all/' + id + '.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
 
                 services.relatorios = function (id, retorno) {
                     RequestModuloFactory.post('usuarios/relatorios/' + id + '.json', null, function (response) {

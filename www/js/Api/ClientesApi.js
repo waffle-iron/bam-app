@@ -93,10 +93,16 @@ angular.module('starter')
                         retorno(response);
                     });
                 };
-                
+
                 services.historico = function (id, options, retorno) {
                     options = angular.merge({}, options);
                     RequestModuloFactory.get('clientes/historico/' + id + '.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
+
+                services.detalhesHistorico = function (usuario_id, data, tipo, retorno) {
+                    RequestModuloFactory.get('clientes/detalhes-historico/' + usuario_id + '/' + data + '/' + tipo + '.json', null, function (response) {
                         retorno(response);
                     });
                 };
