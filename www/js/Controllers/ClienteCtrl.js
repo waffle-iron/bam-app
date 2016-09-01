@@ -107,7 +107,7 @@ angular.module('starter')
                             join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
                             where: 'c.id =' + $stateParams.id
                         }, function (result) {
-                    $scope.cliente = result;
+                    $scope.cliente = angular.merge($scope.cliente, result);
                     $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
                     LoadModuloFactory.hide();
                 });
@@ -117,9 +117,11 @@ angular.module('starter')
             $scope.buscaCep = function (cep) {
                 CepApiFactory.busca(cep, function (ret) {
                     console.log(JSON.stringify(ret));
-                    if (ret.data.retorno.status === 'OK') {
-                        $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;
-                        $scope.cliente.bairro = ret.data.retorno.Cep.bairro;
+                    if (ValidacaoModuloFactory.isNotNull(ret.data)) {
+                        if (ret.data.retorno.status === 'OK') {
+                            $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;
+                            $scope.cliente.bairro = ret.data.retorno.Cep.bairro;
+                        }
                     }
                 });
             }
