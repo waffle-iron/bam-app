@@ -264,19 +264,21 @@ angular.module('starter')
                 }
             });
 
-            FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
-                if (retornoFotosCameras !== null) {
-                    angular.forEach(retornoFotosCameras, function (value, key) {
-                        ClientesApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
-                            FotosCamerasTable.delete('id_referencia', $scope.user.id, function (retornoFotos) {
+            UsuariosApiFactory.edit($scope.user.id, $scope.user, function (e) {
+                $scope._sincronizacao.geral.enviado++;
+                FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
+                    if (retornoFotosCameras !== null) {
+                        angular.forEach(retornoFotosCameras, function (value, key) {
+                            ClientesApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
+                                FotosCamerasTable.delete('id_referencia', $scope.user.id, function (retornoFotos) {
+                                    $scope._sincronizacao.geral.atualizado++;
+                                });
                             });
                         });
-                    });
-                }
-            });
-
-            UsuariosApiFactory.edit($scope.user.id, $scope.user, function (e) {
-                console.log(e);
+                    } else {
+                        $scope._sincronizacao.geral.atualizado++;
+                    }
+                });
             });
 
             $scope._atualizar = function () {
