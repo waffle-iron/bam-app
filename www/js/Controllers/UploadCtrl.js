@@ -6,7 +6,6 @@ angular.module('starter')
                 NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable,
                 ClientesApiFactory, CheckinApiFactory, OcorrenciasTable, OcorrenciasApiFactory, UsuariosApiFactory) {
 
-            // LoadModuloFactory.show();
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
             $scope._sincronizacao = {
@@ -114,7 +113,10 @@ angular.module('starter')
                                 FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
+                                            console.log('Ativacao52Table');
+                                            console.log(JSON.stringify(value));
                                             Ativacao52ApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                                console.log(JSON.stringify(ret));
                                                 FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
                                                 });
                                             });
@@ -156,7 +158,10 @@ angular.module('starter')
                                 FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
+                                            console.log('FormulariosCamposValoresTable');
+                                            console.log(JSON.stringify(value));
                                             FormulariosCamposValoresApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                                console.log(JSON.stringify(ret));
                                                 FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
                                                 });
                                             });
@@ -247,7 +252,10 @@ angular.module('starter')
                                     FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                         if (retornoFotosCameras !== null) {
                                             angular.forEach(retornoFotosCameras, function (value, key) {
+                                                console.log('ClientesTable');
+                                                console.log(JSON.stringify(value));
                                                 ClientesApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                                    console.log(JSON.stringify(ret));
                                                     FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
                                                     });
                                                 });
@@ -267,9 +275,11 @@ angular.module('starter')
                 FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
                     if (retornoFotosCameras !== null) {
                         angular.forEach(retornoFotosCameras, function (value, key) {
-                            ClientesApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
+                            console.log('UsuariosTable');
+                            console.log(JSON.stringify(value));
+                            UsuariosApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
+                                console.log(JSON.stringify(ret));
                                 FotosCamerasTable.delete('id_referencia', $scope.user.id, function (retornoFotos) {
-                                    $scope._sincronizacao.geral.atualizado++;
                                 });
                             });
                         });

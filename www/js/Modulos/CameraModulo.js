@@ -22,8 +22,8 @@ angular.module('starter')
                         sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
                         allowEdit: false,
                         encodingType: Camera.EncodingType.JPEG,
-                        targetWidth: 800,
-                        targetHeight: 600,
+                        targetWidth: 600,
+                        targetHeight: 400,
                         popoverOptions: CameraPopoverOptions,
                         saveToPhotoAlbum: false,
                         correctOrientation: true

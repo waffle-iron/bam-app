@@ -18,7 +18,7 @@ angular.module('starter')
                 };
 
                 services.save = function (options, retorno) {
-                    TableModuloFactory.get('fotos_cameras', 'id', options.id, function (res) {
+                    TableModuloFactory.first('fotos_cameras', {where: 'tabela="' + options.tabela + '" AND id_referencia="' + options.id_referencia + '" AND sequencia="' + options.sequencia + '"'}, function (res) {
                         var forceCreate = true;
                         options = angular.merge({
                             tabela: null,

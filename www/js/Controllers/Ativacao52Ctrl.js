@@ -13,16 +13,14 @@ angular.module('starter')
                     descricao: null,
                     data: new Date(),
                     local: null
-                }
-
-
+                };
 
                 $scope.btn_imagem = 0;
                 $scope.btn_ok = {
                     ok_1: '',
                     ok_2: '',
-                    ok_3: '',
-                }
+                    ok_3: ''
+                };
 
                 $scope.salvar = function () {
                     LoadModuloFactory.show();
@@ -44,7 +42,7 @@ angular.module('starter')
                                 $scope.btn_imagem = 1;
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                 LoadModuloFactory.hide();
-                                ExtraModuloFactory.console.success($scope, 'Todas as perguntas já foram respondidas.');
+                                ExtraModuloFactory.success($scope, 'Todas as perguntas já foram respondidas.');
                             });
                         } else {
                             resp.usuario_id = $scope.user.id;
@@ -59,7 +57,7 @@ angular.module('starter')
                                 $scope.btn_imagem = 1;
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                 LoadModuloFactory.hide();
-                                ExtraModuloFactory.console.success($scope, 'Todas as perguntas já foram respondidas.');
+                                ExtraModuloFactory.success($scope, 'Todas as perguntas já foram respondidas.');
 
                             });
                         }
@@ -73,9 +71,10 @@ angular.module('starter')
                             FotosCamerasTable.save({tabela: 'Ativacao52Table',
                                 id_referencia: $scope.ativacao.id_resposta,
                                 sequencia: id,
-                                imagem: img},
-                                    function (retorno) {});
-                            $scope.btn_ok['ok_' + id] = 'fa fa-check-square-o';
+                                imagem: img
+                            }, function (retorno) {
+                                $scope.btn_ok['ok_' + id] = 'fa fa-check-square-o';
+                            });
                         }
                     });
                 }

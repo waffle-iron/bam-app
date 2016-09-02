@@ -63,7 +63,7 @@
                     </div>
                     <div class="padding item-footer">
                         <div ng-if="btn_camera > 0" ng-repeat="(keyFoto, valueFoto) in qtd_btn_camera">
-                            <button class="button button-block button-royal" ng-click="tirarFoto(value, valueFoto.seq_foto)"><i class="{{valueFoto.tirado}}" aria-hidden="true"></i> Tirar Foto {{valueFoto.seq_foto}}</button>    
+                            <button class="button button-block button-royal" ng-click="tirarFoto(value, valueFoto.seq_foto, keyFoto)"><i class="{{valueFoto.tirado}}" aria-hidden="true"></i> Tirar Foto {{valueFoto.seq_foto}}</button>    
                         </div>
                         <button class="button button-block button-positive m-0" ng-click="proximo(value, key)">Próximo <i class="ion-arrow-right-c"></i></button>
                     </div>

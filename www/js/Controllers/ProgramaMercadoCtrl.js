@@ -13,6 +13,7 @@ angular.module('starter')
                 $scope.formularios = [];
                 $scope.qtd_btn_camera = [];
                 $scope.btn_camera = 0;
+                $scope.btn_camera_complete = 0;
                 $scope.valor_selecionado = null;
                 $scope.id_resposta = null;
                 $scope.perguntas = {
@@ -144,8 +145,9 @@ angular.module('starter')
                 };
 
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
+                    LoadModuloFactory.show();
                     $scope.btn_camera = 0;
-                    //LoadModuloFactory.show();
+
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
                         dados.valor = dados.opcoes[sequencia_dados];
@@ -191,8 +193,9 @@ angular.module('starter')
                         ignorado = parseInt(dados.atributos);
                     }
                     $scope.id_resposta = a.id;
-                    //LoadModuloFactory.hide();
+                    
                     $scope.btn_camera = 0;
+                    $scope.btn_camera_complete = 0;
                     $scope.qtd_btn_camera = [];
                     console.log($scope.qtd_btn_camera);
                     if (dados.value == dados.valor) {
@@ -216,10 +219,12 @@ angular.module('starter')
                     } else {
                         $scope.btn_camera = 0;
                     }
+                    LoadModuloFactory.hide();
                 }
 
-                $scope.tirarFoto = function (value, valueFoto) {
+                $scope.tirarFoto = function (value, valueFoto, index) {
                     CameraModuloFactory.capturarFoto(function (img) {
+                        LoadModuloFactory.show();
                         if (img !== null) {
                             FotosCamerasTable.save({
                                 tabela: 'FormulariosCamposValoresTable',
@@ -227,9 +232,21 @@ angular.module('starter')
                                 sequencia: valueFoto.seq_foto,
                                 imagem: img
                             }, function (retorno) {
-                                valueFoto.tirado = 'fa fa-check-square-o';
-                                $scope.btn_camera = 0;
+                                console.log(JSON.stringify($scope.qtd_btn_camera));
+                                console.log(JSON.stringify(valueFoto));
+                                console.log(index);
+                                $scope.qtd_btn_camera[index].tirado = 'fa fa-check-square-o';
+                                $scope.btn_camera_complete++;
+                                if ($scope.btn_camera_complete === $scope.btn_camera) {
+                                    $scope.btn_camera = 0;
+                                    ExtraModuloFactory.success($scope, 'Todas as fotos já tiradas.');
+                                    ExtraModuloFactory.top();
+                                }
+                                console.log(JSON.stringify($scope.qtd_btn_camera));
+                                LoadModuloFactory.hide();
                             });
+                        } else {
+                            LoadModuloFactory.hide();
                         }
                     });
                 }
