@@ -1,8 +1,12 @@
 angular.module('starter')
         .factory('ExtraModuloFactory',
-                function (ValidacaoModuloFactory) {
+                function (ValidacaoModuloFactory, $ionicScrollDelegate) {
 
                     var services = {};
+
+                    services.top = function () {
+                        $ionicScrollDelegate.scrollTop();
+                    };
 
                     services.color = function (key) {
                         if (key % 2 === 0) {
@@ -69,9 +73,9 @@ angular.module('starter')
                         else
                             return 'Boa noite';
                     };
-                    
-                    services.conversaoDeHistoricos = function (str){
-                        switch(str){
+
+                    services.conversaoDeHistoricos = function (str) {
+                        switch (str) {
                             case 'Rota BAM':
                                 return 1;
                                 break;
@@ -85,10 +89,10 @@ angular.module('starter')
                                 return 0;
                                 break;
                         }
-                    }
-                    
-                    services.desconversaoDeHistoricos = function (str){
-                        switch(parseInt(str)){
+                    };
+
+                    services.desconversaoDeHistoricos = function (str) {
+                        switch (parseInt(str)) {
                             case 1:
                                 return 'Rota BAM';
                                 break;
@@ -102,7 +106,7 @@ angular.module('starter')
                                 return 'Nome não localizado';
                                 break;
                         }
-                    }
+                    };
 
                     return services;
                 }
