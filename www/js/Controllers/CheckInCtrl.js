@@ -36,7 +36,7 @@ angular.module('starter')
 
                     if (ret === null) {
                         StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
-                        ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
+                        ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção sincronizar dados.');
                     } else {
                         angular.forEach(ret, function (v, k) {
                             var d = ExtraModuloFactory.calculaDistance(lat, lng, v.latitude, v.longitude);

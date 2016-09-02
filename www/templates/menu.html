@@ -17,7 +17,24 @@
             <h1 class="title purple">Menu</h1>
         </ion-header-bar>
         <ion-content class="purple">
+
+            <div class="list">
+                <div class="item item-avatar-right">
+                    <img src="{{user.url}}">
+                    <h2 style="color:#fff;">{{user.nome}}</h2>
+                    <p class="buttons" ng-click="doSomething()">
+                        <button class="button button-small" menu-close ng-click="go('app.usuario_edit')">
+                            <i class="fa fa-user" aria-hidden="true"></i> Perfil
+                        </button>
+                        <strong style="color: #fff; margin-top: 6px; display: inline-block; font-size: 10px;">{{user.documento}}</strong>
+                    </p>
+                </div>
+            </div>
+
             <ion-list>
+                <ion-item menu-close href="#/app/home">
+                    <i class="fa fa-home" aria-hidden="true"></i> Home
+                </ion-item>
                 <ion-item menu-close href="#/app/checkin">
                     <i class="fa fa-check-circle-o" aria-hidden="true"></i> Check-In
                 </ion-item>
@@ -27,9 +44,6 @@
                 <ion-item menu-close href="#/app/mapa_all">
                     <i class="fa fa-map" aria-hidden="true"></i> Mapa de cobertura
                 </ion-item>
-                <!-- ion-item menu-close href="#/app/checkin">
-                    <i class="fa fa-trophy" aria-hidden="true"></i> Ranking
-                </ion-item -->
                 <ion-item menu-close href="#/app/bibliotecas">
                     <i class="fa fa-book" aria-hidden="true"></i> Biblioteca
                 </ion-item>
@@ -39,35 +53,16 @@
                 <ion-item menu-close href="#/app/notificacoes">
                     <i class="fa fa-bell-o" aria-hidden="true"></i> Notificações
                 </ion-item>
-                <!-- ion-item menu-close href="#/app/cervejas">
-                    <i class="fa fa-beer" aria-hidden="true"></i> Cervejas
-                </ion-item>
-                <ion-item menu-close href="#/app/rota_bam">
-                   <i class="fa fa-th-list" aria-hidden="true"></i> Rota BAM
-                </ion-item>
-                <ion-item menu-close href="#/app/programa_mercado">
-                    <i class="fa fa-map-signs" aria-hidden="true"></i> Programa de mercado
-                </ion-item>
-                <ion-item menu-close href="#/app/ativacao_52">
-                    <i>52</i> Ativação 52
-                </ion-item>
-                <ion-item menu-close href="#/app/ocorrencias">
-                   <i class="fa fa-bell-o" aria-hidden="true"></i> Ocorrencias
-                </ion-item>
-                <ion-item menu-close href="#/app/bam">
-                    <i class="fa fa-file-text-o" aria-hidden="true"></i> Relatorio Minha Base
-                </ion-item -->
                 <ion-item menu-close href="#/app/upload">
                     <i class="fa fa-refresh" aria-hidden="true"></i> Sincronizar
                 </ion-item>
-                <ion-item menu-close href="#/app/usuario_edit">
-                    <i class="fa fa-user" aria-hidden="true"></i> Meu Perfil
-                </ion-item>
-                <ion-item menu-close href="#/app/logout">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
-                </ion-item>
-
             </ion-list>
         </ion-content>
+        <ion-footer-bar align-title="left" class="bar-royal">
+            <h1 class="title">Versão {{versaoApp}}</h1>
+            <div class="buttons" ng-click="doSomething()">
+                <button class="button" menu-close ng-click="go('app.logout')"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
+            </div>
+        </ion-footer-bar>
     </ion-side-menu>
 </ion-side-menus>

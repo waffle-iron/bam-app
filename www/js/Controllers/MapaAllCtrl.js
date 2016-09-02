@@ -13,7 +13,7 @@ angular.module('starter')
                 if (ret === null) {
                     LoadModuloFactory.hide();
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, '');
-                    ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção baixar dados.');
+                    ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção sincronizar dados.');
                 } else {
                     total = (ret.length - 1);
                     angular.forEach(ret, function (v, k) {

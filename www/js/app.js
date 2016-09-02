@@ -10,6 +10,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             //url: 'http://bptech.com.br/',
             //url: 'http://bptech.web1611.kinghost.net/',
             api: 'api/',
+            versaoApp: '01.00.01',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
@@ -18,7 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
-        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, Config) {
+        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config) {
             $ionicPlatform.ready(function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -37,6 +38,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             $rootScope.go = function (url) {
                 NavegacaoModuloFactory.go(url);
             };
+            $rootScope.versaoApp = Config.versaoApp;
+            $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
         })
 
@@ -307,7 +310,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                             }
                         }
                     })
-                    
+
                     .state('app.cliente_relatorio_historico_respostas', {
                         url: '/cliente_relatorio_historico_respostas/:id/:data/:tipo',
                         views: {
