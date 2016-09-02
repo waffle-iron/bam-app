@@ -73,7 +73,7 @@ angular.module('starter')
                             total: 100
                         };
                         v.dados = [
-                            {label: "", value: parseFloat((v.geral / v.total)).toFixed(1), color: "#5CB85C", suffix: "%"}
+                            {label: "", value: parseFloat((v.geral / v.total)).toFixed(0), color: "#5CB85C", suffix: "%"}
                         ];
                     }, $scope.dados.rota_bem);
                     LoadModuloFactory.hide();

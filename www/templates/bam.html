@@ -14,7 +14,7 @@
         <div class="padding">
             
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                <h4 class="padding text-center">Cobertura</h4>
+                <h4 class="padding text-center">Cobertura Mensal</h4>
                 <div class="item item-text-wrap pl-0 pr-0 cobertura-graph">
                     <div class="wp-32 d-iblock h-100">
                         <pie-chart data="total_pdv" options="options_pie"></pie-chart>
@@ -38,7 +38,7 @@
             </div>
 
             <div class="list list-inset borda-grey header-block">
-                <h4 class="padding text-center">Histórico</h4>
+                <h4 class="padding text-center">Histórico Geral</h4>
 
                 <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
@@ -62,7 +62,7 @@
             </div>
 
             <div class="list list-inset borda-grey header-block">
-                <h4 class="padding text-center">Rota BAM</h4>
+                <h4 class="padding text-center">Dashboard - Rota BAM</h4>
                 <div ng-repeat="(key,v) in dados.rota_bem">
                     <div class="item item-text-wrap row rota-graph">
                         <div class="wp-40 h-100">
@@ -92,8 +92,8 @@
                 <div class="item item-text-wrap ranking-head row padding-top padding-bottom bg-header">
                     <div class="wp-10 text-center">RKG</div>
                     <div class="wp-45 p-0">PDV</div>
-                    <div class="wp-20">Pontos</div>
-                    <div class="wp-25">Valor</div>
+                    <div class="wp-20">Média Pontos</div>
+                    <div class="wp-25">Valor TT Acumulado</div>
                 </div>
                 <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
                     <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
