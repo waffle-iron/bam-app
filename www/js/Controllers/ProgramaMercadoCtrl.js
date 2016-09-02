@@ -228,6 +228,7 @@ angular.module('starter')
                                 imagem: img
                             }, function (retorno) {
                                 valueFoto.tirado = 'fa fa-check-square-o';
+                                $scope.btn_camera = 0;
                             });
                         }
                     });
