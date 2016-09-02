@@ -16,7 +16,7 @@
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico</h4>
 
-                <a href="#/app/cliente_relatorio/{{v.cliente_id}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{v.tipo_id}}" ng-repeat="(k,v) in historico" class="item item-text-wrap m-0 p-0">
                     <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
                         &nbsp;
                     </div>
@@ -39,7 +39,6 @@
     <ion-infinite-scroll
         ng-if="proximo"
         on-infinite="loadMore()"
-        distance="50%">
+        distance="1%">
     </ion-infinite-scroll>
-
 </ion-view>

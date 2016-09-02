@@ -333,7 +333,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         views: {
                             'menuContent': {
                                 templateUrl: 'templates/bam_historico.html',
-                                controller: 'BamCtrl'
+                                controller: 'BamHistoricoCtrl'
                             }
                         }
                     })
