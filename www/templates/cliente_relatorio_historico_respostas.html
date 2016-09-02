@@ -11,43 +11,26 @@
     <ion-content class="fundo">
         <div class="padding">
             <header-logo-mini></header-logo-mini>
-
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">
                     {{tipo}}
-                    <small class="d-iblock text-center">{{data| date}}</small>
+                    <small class="d-block text-center">{{data| date}}</small>
                 </h4>
             </div>
-            
-            <div ng-repeat="(key, value) in formularios">
-                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                    <h4 class="padding text-center">
-                        {{value.nome}}
-                        <small ng-show="value.subtitulo" class="d-block text-center">{{value.subtitulo}}</small>
-                    </h4>
-                    <div>
-                        <div class="item item-text-wrap m-0">
-                            {{value.fcv_resposta}}
-                            <div ng-repeat="(keyImage, valueImage) in imagens" class="text-center">
-                                <img ng-src="{{valueImage.image}}" class="max-width: 95%" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div ng-repeat="(key, value) in cervejas">
-                <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
-                    <div class="padding">
-                        <div class="wp-70 d-iblock">
-                            {{value.nome}}    
-                        </div>
-                        <div class="wp-20 d-iblock text-right">
-                            {{value.valor}}    
-                        </div>
+            <div ng-repeat="(key, value) in perguntas" class="list list-inset borda-grey br-10 header-block">
+                <h4 class="padding text-center">
+                    {{value.formularios_campo.nome}}
+                    <small ng-show="value.formularios_campo_id" class="d-block text-center">{{value.formularios_campo.subtitulo}}</small>
+                </h4>
+                <div>
+                    <div class="item item-text-wrap m-0">
+                        {{value.value}}
                     </div>
                 </div>
             </div>
+            <msg></msg>
+
         </div>
     </ion-content>
 

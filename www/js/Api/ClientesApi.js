@@ -101,8 +101,8 @@ angular.module('starter')
                     });
                 };
 
-                services.detalhesHistorico = function (usuario_id, data, tipo, retorno) {
-                    RequestModuloFactory.get('clientes/detalhes-historico/' + usuario_id + '/' + data + '/' + tipo + '.json', null, function (response) {
+                services.detalhesHistorico = function (cliente_id, data, tipo, retorno) {
+                    RequestModuloFactory.get('clientes/detalhes-historico/' + cliente_id + '/' + data + '/' + tipo + '.json', null, function (response) {
                         retorno(response);
                     });
                 };

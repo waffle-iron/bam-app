@@ -14,7 +14,7 @@ angular.module('starter')
                     }, function (result) {
                 $scope.cliente = result;
                 $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
-                LoadModuloFactory.hide();
+                //LoadModuloFactory.hide();
 
             });
 
@@ -101,13 +101,13 @@ angular.module('starter')
                     return "#d9534f";
                 }
             }
-            
-            $scope.converteNome = function(str){
+
+            $scope.converteNome = function (str) {
                 return ExtraModuloFactory.conversaoDeHistoricos(str);
             }
 
         })
-        
+
         .controller('ClienteHistoricoCtrl', function (Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, ClientesApiFactory, $stateParams, ClientesTable) {
 
             $scope.cliente = {};
@@ -123,7 +123,7 @@ angular.module('starter')
                 LoadModuloFactory.hide();
 
             });
-            
+
             $scope.options = {
                 sort: 'created',
                 page: 1,
@@ -133,7 +133,7 @@ angular.module('starter')
             };
             $scope.proximo = true;
             $scope.historico = [];
-            
+
             var conteudo = function (retorno) {
                 $scope.proximo = true;
                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
@@ -153,14 +153,14 @@ angular.module('starter')
                 }
 
             }
-            
+
             $scope.loadMore = function () {
                 if ($scope.proximo) {
                     LoadModuloFactory.show();
                     ClientesApiFactory.historico($stateParams.id, $scope.options, conteudo);
                 }
             };
-            
+
             $scope.isTipo = function (value) {
                 if (value.tipo === 'Rota BAM') {
                     return 'green';
@@ -176,19 +176,21 @@ angular.module('starter')
             $scope.$on('$stateChangeComplete', function () {
                 $scope.loadMore();
             });
-            
-            var converteNome = function(str){
+
+            var converteNome = function (str) {
                 return ExtraModuloFactory.conversaoDeHistoricos(str);
             }
 
         })
-        
-        .controller('ClienteHistoricoRespostasCtrl', function (Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, ClientesApiFactory, $stateParams, ClientesTable) {
-            
+
+        .controller('ClienteHistoricoRespostasCtrl', function (ValidacaoModuloFactory, ExtraModuloFactory, $scope, LoadModuloFactory, ClientesApiFactory, $stateParams, ClientesTable) {
+
+            LoadModuloFactory.show();
+            $scope.perguntas = [];
             $scope.cliente = {};
-            $scope.tipo = '';
-            $scope.data = '';
-            
+            $scope.tipo = ExtraModuloFactory.desconversaoDeHistoricos($stateParams.tipo);
+            $scope.data = $stateParams.data;
+
             ClientesTable.first(
                     {
                         from: 'c.*, cd.cidade, e.estado',
@@ -198,11 +200,18 @@ angular.module('starter')
                     }, function (result) {
                 $scope.cliente = result;
                 $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
-                LoadModuloFactory.hide();
-
             });
             
-            $scope.tipo = ExtraModuloFactory.desconversaoDeHistoricos($stateParams.tipo);
-            $scope.data = $stateParams.data;
-            
+            ClientesApiFactory.detalhesHistorico($stateParams.id, $stateParams.data, $stateParams.tipo, function (resultado) {
+                console.log("Resultado da APi");
+                console.log(resultado);
+                if(ValidacaoModuloFactory.isOk(resultado.status)){
+                    $scope.perguntas = resultado.data.response.result;
+                }else{
+                    ExtraModuloFactory.info($scope,'Não foi localizado nenhum registro nesse Check-in');
+                }
+                    LoadModuloFactory.hide();
+            })
+
+
         });
