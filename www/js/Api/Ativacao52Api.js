@@ -38,6 +38,13 @@ angular.module('starter')
                         retorno(response);
                     });
                 };
+                
+                services.uploadImage = function (id, image, retorno) {
+                    RequestModuloFactory.post('ativacao52/upload-image/' + id + '.json', {image: image}, function (response) {
+                        retorno(response);
+                    });
+                };
+
 
                 return services;
             }

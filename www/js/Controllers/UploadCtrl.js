@@ -114,12 +114,10 @@ angular.module('starter')
                                 FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
-                                            FileModuloFactory.upload('ativacao52/upload.json', value.imagem, {params: {id: retorno.data.response.result.id}}, function (ret) {
-                                                FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                                            Ativacao52ApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                                FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
                                                 });
                                             });
-                                        });
-                                        FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
                                         });
                                     }
                                     Ativacao52Table.delete('id', v.id, function (exc) {
