@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="br.com.bammp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>BAMMP</name>
+<widget id="br.com.bammp" version="01.00.01" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+  <name>bammp</name>
   <description>
         Aplicativo para gerenciamento de BAMMP
     </description>
   <author email="bammp@bammp.com.br" href="http://bammp.com.br/">
-        BAMMP
+        bammp
     </author>
   <content src="index.html"/>
   <access origin="*"/>
