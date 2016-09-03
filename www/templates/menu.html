@@ -18,14 +18,11 @@
         </ion-header-bar>
         <ion-content class="purple">
 
-            <div class="list">
-                <div class="item item-avatar-right">
+            <div class="list m-0">
+                <div class="item item-avatar-right avatar-menu pt-0 pb-0" menu-close ng-click="go('app.usuario_edit')">
                     <img src="{{user.url}}">
                     <h2 style="color:#fff;">{{user.nome}}</h2>
                     <p class="buttons" ng-click="doSomething()">
-                        <button class="button button-small" menu-close ng-click="go('app.usuario_edit')">
-                            <i class="fa fa-user" aria-hidden="true"></i> Perfil
-                        </button>
                         <strong style="color: #fff; margin-top: 6px; display: inline-block; font-size: 10px;">{{user.documento}}</strong>
                     </p>
                 </div>
@@ -58,8 +55,8 @@
                 </ion-item>
             </ion-list>
         </ion-content>
-        <ion-footer-bar align-title="left" class="bar-royal">
-            <h1 class="title">Versão {{versaoApp}}</h1>
+        <ion-footer-bar align-title="left" class="bar-purple">
+            <h3 class="title">Versão {{versaoApp}}</h3>
             <div class="buttons" ng-click="doSomething()">
                 <button class="button" menu-close ng-click="go('app.logout')"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</button>
             </div>

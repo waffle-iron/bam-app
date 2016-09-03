@@ -12501,6 +12501,9 @@ progress::-moz-progress-bar {
 .pb-0 {
   padding-bottom: 0; }
 
+.pt-0 {
+  padding-top: 0; }
+
 .wp-1 {
   width: 1%; }
 
@@ -13830,3 +13833,25 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 
 .fw-b {
   font-weight: 500; }
+
+.btn-bar-footer {
+  height: 150px;
+  position: absolute;
+  background: transparent;
+  bottom: 0; }
+
+.btn-bar-footer button {
+  height: 55px; }
+
+.item-avatar-right.avatar-menu {
+  padding-right: 72px;
+  min-height: 47px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3); }
+
+.item-avatar-right.avatar-menu > img:first-child {
+  top: 0; }
+
+.bar.bar-royal.bar-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  background: #432461; }
