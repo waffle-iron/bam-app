@@ -715,5 +715,16 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 }
 .bar.bar-royal.bar-footer {
     border-top:1px solid rgba(0,0,0,.3);
-    background: $purple;
+    background: #715290;
+}
+.menu-footer-purple.bar.bar-footer{
+    background:#715290;
+}
+.menu-footer-purple.bar.bar-footer h3{
+    color:#fff;
+    font-weight: normal;
+    font-size:11px;
+}
+.menu-footer-purple.bar.bar-footer button{
+    color:#715290;
 }
