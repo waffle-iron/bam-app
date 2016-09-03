@@ -1,0 +1,32 @@
+<ion-view view-title="PDV - Resumo" view-cache="false">
+
+    <ion-nav-bar class="bar-stable bar-purple">
+        <ion-nav-buttons side="right">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
+        </ion-nav-buttons>
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+    </ion-nav-bar>
+
+    <ion-content class="fundo">
+        <div class="padding">
+
+            <header-logo></header-logo>
+
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+                <h4 class="padding text-center">PDV's</h4>
+
+                <div ng-repeat="(k,v) in pdvs" class="item item-text-wrap">
+                    <div>{{v.nome_cliente}}</div>
+                    <div class="text-right">{{v.created | date}}</div>
+                </div>
+            </div>
+        </div>
+
+    </ion-content>
+    <ion-infinite-scroll
+        ng-if="proximo"
+        on-infinite="loadMore()"
+        distance="1%">
+    </ion-infinite-scroll>
+</ion-view>

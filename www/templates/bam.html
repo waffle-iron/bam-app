@@ -63,7 +63,7 @@
 
             <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Dashboard - Rota BAM</h4>
-                <div ng-repeat="(key,v) in dados.rota_bem">
+                <a style="text-decoration: none;" ng-repeat="(key,v) in dados.rota_bem" href="#/app/bam_resposta_selecionada/{{v.formularios_campo_id}}">
                     <div class="item item-text-wrap row rota-graph">
                         <div class="wp-40 h-100">
                             <pie-chart data="v.dados" options="v.options"></pie-chart>
@@ -72,7 +72,7 @@
                             <h3>{{v.nome}}</h3>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div class="list list-inset borda-grey header-block">

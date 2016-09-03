@@ -350,6 +350,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
                         }
                     })
 
+                    .state('app.bam_resposta_selecionada', {
+                        url: '/bam_resposta_selecionada/:id',
+                        views: {
+                            'menuContent': {
+                                templateUrl: 'templates/bam_resposta_selecionada.html',
+                                controller: 'BamRespostaSelecionadaCtrl'
+                            }
+                        }
+                    })
+
             // if none of the above states are matched, use this as the fallback
             $urlRouterProvider.otherwise('/app/login');
         });
