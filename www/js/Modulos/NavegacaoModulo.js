@@ -13,7 +13,8 @@ angular.module('starter')
                             inicializacao: 'app.inicializacao',
                             ocorrencias: 'app.ocorrencias',
                             cervejas: 'app.cervejas',
-                            upload: 'app.upload'
+                            upload: 'app.upload',
+                            logout: 'app.logout'
                         }
                     };
 

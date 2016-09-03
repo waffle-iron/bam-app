@@ -1,5 +1,5 @@
 angular.module('starter')
 
-        .controller('AppCtrl', function ($scope) {
+        .controller('AppCtrl', function ($rootScope, $scope) {
 
         });

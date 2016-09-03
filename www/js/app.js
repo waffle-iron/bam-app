@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angularMoment', 'n3-pie-chart'])
         .constant('Config', {
+            //url: 'http://localhost/bam/',
             url: 'http://45.55.69.61/bam/',
             //url: 'http://bptech.com.br/',
             //url: 'http://bptech.web1611.kinghost.net/',

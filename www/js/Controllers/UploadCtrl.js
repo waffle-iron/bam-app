@@ -301,7 +301,12 @@ angular.module('starter')
             $scope._hide = function () {
                 if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
-                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
+                    if (StorageModuloFactory.local.get(StorageModuloFactory.enum.forceLogoutSincronizacao) > 0) {
+                        StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLogoutSincronizacao, 0);
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.logout);
+                    } else {
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
+                    }
                 } else {
                     $scope._atualizar();
                 }

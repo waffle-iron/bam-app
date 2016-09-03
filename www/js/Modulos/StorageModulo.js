@@ -12,7 +12,9 @@ angular.module('starter')
                             inicializacao: 'inicializacao',
                             upload: 'upload',
                             pdvAtivo: 'pdv_ativo',
-                            hasSincronizacao: 'has_sincronizacao'
+                            hasSincronizacao: 'has_sincronizacao',
+                            forceLoginSincronizacao: 'force_login_sincronizacao',
+                            forceLogoutSincronizacao: 'force_logout_sincronizacao'
                         }
                     };
 

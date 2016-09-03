@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('LoginCtrl', function ($scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
+        .controller('LoginCtrl', function ($rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
                 CheckinTable, ClientesTable, CidadesTable, EstadosTable, ProgramasTable, OcorrenciasTable, ProdutosTable, ProdutosClientesTable, Ativacao52Table,
                 FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable) {
 
@@ -20,10 +20,16 @@ angular.module('starter')
                                                                 Ativacao52Table.create(function (e) {
                                                                     FotosCamerasTable.create(function (e) {
                                                                         CheckinTable.create(function (e) {
+                                                                            $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
                                                                             LoadModuloFactory.hide();
                                                                             //NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
                                                                             StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
-                                                                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                                                                            if (StorageModuloFactory.local.get(StorageModuloFactory.enum.forceLoginSincronizacao) > 0) {
+                                                                                StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLoginSincronizacao, 0);
+                                                                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.inicializacao);
+                                                                            } else {
+                                                                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                                                                            }
                                                                         });
                                                                     });
 
@@ -107,6 +113,7 @@ angular.module('starter')
                             StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
                             LoadModuloFactory.show();
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLoginSincronizacao, 1);
                             drop();
                         } else {
 
