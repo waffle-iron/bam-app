@@ -64,6 +64,12 @@ angular.module('starter')
                     });
                 };
 
+                services.respostaSelecionada = function (id, retorno) {
+                    RequestModuloFactory.post('usuarios/resposta-selecionada/' + id + '.json', null, function (response) {
+                        retorno(response);
+                    });
+                };
+
                 return services;
             }
         ]);

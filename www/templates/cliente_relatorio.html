@@ -43,18 +43,19 @@
                         </h1>
 
                     </div>
-                    <div ng-repeat="(key, value) in dados.certificacoes" class="pl-10 pr-10">
+                    <a ng-repeat="(key, value) in dados.certificacoes" style="text-decoration: none;" class="pl-10 pr-10" href="#/app/cliente_relatorio_historico_respostas/{{cliente.id}}/{{value.data}}/2">
                         <h4 class="color-black row m-0 p-0">
+
                             <div class="col text-left">
-                                {{forceInt(value.total)}}pt.
+                                {{value.data| date}}
                             </div>
                             <div class="col text-right">
-                                1000pt.
+                                {{forceInt(value.total)}}pt.
                             </div>
+
                         </h4>
                         <progress class="m-0" max="1000" value="{{forceInt(value.total)}}"></progress>
-                        <span class="fs-10 d-block text-center">{{value.data| date}}</span>
-                    </div>
+                    </a>
 
                     <div ng-show="dados.gratificacao.total" class="padding">
                         <div class="bg-green margin padding">

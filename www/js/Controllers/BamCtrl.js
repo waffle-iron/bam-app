@@ -247,4 +247,68 @@ angular.module('starter')
                 return ExtraModuloFactory.conversaoDeHistoricos(str);
             }
 
+        })
+
+        .controller('BamRespostaSelecionadaCtrl', function (StorageModuloFactory, Config, ExtraModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory, UsuariosApiFactory, $stateParams) {
+
+            LoadModuloFactory.show();
+            $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+
+            $scope.options = {
+                sort: 'created',
+                page: 1,
+                tipo: 2,
+                limit: 5,
+                direction: 'desc'
+            };
+            $scope.proximo = true;
+            $scope.historico = [];
+
+            var conteudo = function (retorno) {
+                $scope.proximo = true;
+                if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                    $scope.proximo = retorno.data.response.paging.nextPage;
+                    $scope.options.page = (retorno.data.response.paging.page + 1);
+                    angular.forEach(retorno.data.response.result, function (v, k) {
+                        v.tipo_id = converteNome(v.tipo);
+                        $scope.historico.push(v);
+                    });
+                    $scope.$broadcast('scroll.infiniteScrollComplete');
+                    LoadModuloFactory.hide();
+                } else {
+                    LoadModuloFactory.hide();
+                    $scope.proximo = false;
+                    ExtraModuloFactory.console.error($scope, 'Nenhum item de histórico localizado.');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
+                }
+
+            }
+
+            $scope.loadMore = function () {
+                if ($scope.proximo) {
+                    LoadModuloFactory.show();
+                    UsuariosApiFactory.historico($scope.user.id, $scope.options, conteudo);
+                }
+            };
+
+            $scope.isTipo = function (value) {
+                if (value.tipo === 'Rota BAM') {
+                    return 'green';
+                } else if (value.tipo === 'Programa de Mercado - RAC') {
+                    return 'yellow';
+                } else if (value.tipo === 'Ativação 52 Semanas') {
+                    return 'grey';
+                } else if (value.tipo === 'Ocorrências') {
+                    return 'red';
+                }
+            }
+
+            $scope.$on('$stateChangeComplete', function () {
+                $scope.loadMore();
+            });
+
+            var converteNome = function (str) {
+                return ExtraModuloFactory.conversaoDeHistoricos(str);
+            }
+
         });

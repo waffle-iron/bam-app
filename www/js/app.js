@@ -40,7 +40,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             };
             $rootScope.versaoApp = Config.versaoApp;
             $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
-
         })
 
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {
