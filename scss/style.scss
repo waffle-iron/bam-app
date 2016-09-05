@@ -162,6 +162,9 @@ button.input-border{
 button.button-block+button.button-block{
     margin:5px 0 !important;
 }
+.list-atv button.button-block+button.button-block{
+    margin:10px 0 !important;
+}
 .text-form{
     border: 1px solid #ccc!important;
     background: #fff!important;
@@ -204,7 +207,7 @@ textarea{
     border-left:0!important;
     border-right:0!important;
 }
-.list-atv input:focus,.list-atv textarea:focus{
+input:focus,textarea:focus{
     background:#eee;
 }
 .row.item.item-input{
@@ -727,4 +730,7 @@ input[disabled], input[readonly]:not(.cloned-text-input), select[disabled], sele
 }
 .menu-footer-purple.bar.bar-footer button{
     color:#715290;
+}
+.input-label {
+    width: 40%;
 }

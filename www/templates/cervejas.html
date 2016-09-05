@@ -40,17 +40,17 @@
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">{{titulos}}</h4>
 
-                    <label class="item item-input" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
-                        <span class="input-label col table-pad">&nbsp;</span>
+                    <label class="item item-input m-0" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
+                        <span class="input-label col table-pad p-10">&nbsp;</span>
                         <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
                     </label>
 
-                    <label class="item item-input" ng-repeat="(key, value) in produtos_3">
-                        <span class="input-label" style="display: inline-block;">{{value.nome}}</span>
-                        <input type="number" string-to-number class="text-right" ng-model="value.produto_valor" value="{{value.valor| inputMoeda}}" ng-blur="atualizar(value)">
+                    <label class="item item-input m-0" ng-repeat="(key, value) in produtos_3">
+                        <span class="input-label p-10" style="display: inline-block;">{{value.nome}}</span>
+                        <input type="number" string-to-number class="text-right p-10 h-50" ng-model="value.produto_valor" value="{{value.valor| inputMoeda}}" ng-blur="atualizar(value)">
                     </label>
 
-                    <div class="padding item-footer">
+                    <div class="padding item-footer m-0">
                         <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="padding">
-            <a class="button button-block button-stable" ng-href="#/app/rota_bam_resumo"><i class="fa fa-check-square-o" aria-hidden="true"></i> Verificar dados</a>
+            <a class="button button-block button-balanced" ng-href="#/app/rota_bam_resumo"><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmar</a>
         </div>
 
     </ion-content>

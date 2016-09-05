@@ -12,6 +12,8 @@
         <div class="padding">
             <header-logo-mini></header-logo-mini>
             
+            <p class="title-page text-center m-0 mt-15">Confirme as Informações</p>
+            
             <div ng-repeat="(key, value) in formularios_respostas track by $index">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">
@@ -29,7 +31,12 @@
                 </div>
             </div>
 
-            <a class="button button-block button-royal" ng-href="#/app/cliente/{{cliente.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Concluir</a>
+            <div class="wp-50 pr-5 pull-left">
+                <a class="button button-block button-assertive" ng-href="#/app/programa_mercado"><i class="fa fa-undo" aria-hidden="true"></i> Refazer</a>
+            </div>
+            <div class="wp-50 pl-5 pull-right">
+                <a class="button button-block button-balanced" ng-href="#/app/cliente/{{cliente.id}}"><i class="fa fa-check-square-o" aria-hidden="true"></i> Finalizar</a>
+            </div>
         </div>
     </ion-content>
 
