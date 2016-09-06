@@ -1,26 +1,53 @@
 npm install
 npm update
+
 bower update --force
 ionic setup sass
 gulp
-ionic plugin add cordova-plugin-dialogs
-ionic plugin add cordova-plugin-globalization
-ionic plugin add cordova-plugin-media
-ionic plugin add cordova-plugin-file-transfer
-ionic plugin add cordova-plugin-media-capture
-ionic plugin add cordova-plugin-device-orientation
-ionic plugin add cordova-plugin-device
-ionic plugin add cordova-plugin-file
-ionic plugin add cordova-plugin-battery-status
-ionic plugin add cordova-plugin-camera
-ionic plugin add cordova-plugin-contacts
-ionic plugin add cordova-plugin-device-motion
-ionic plugin add cordova-plugin-geolocation
-ionic plugin add cordova-plugin-network-information
-ionic plugin add cordova-plugin-vibration
-ionic plugin add cordova-plugin-splashscreen
-ionic plugin add cordova-plugin-console
-ionic plugin add cordova-plugin-whitelist
+
+ionic plugin remove cordova-plugin-dialogs --force
+ionic plugin remove cordova-plugin-globalization --force
+ionic plugin remove cordova-plugin-media --force
+ionic plugin remove cordova-plugin-file-transfer --force
+ionic plugin remove cordova-plugin-media-capture --force
+ionic plugin remove cordova-plugin-device-orientation --force
+ionic plugin remove cordova-plugin-device --force
+ionic plugin remove cordova-plugin-file --force
+ionic plugin remove cordova-plugin-battery-status --force
+ionic plugin remove cordova-plugin-camera --force
+ionic plugin remove cordova-plugin-contacts --force
+ionic plugin remove cordova-plugin-device-motion --force
+ionic plugin remove cordova-plugin-geolocation --force
+ionic plugin remove cordova-plugin-network-information --force
+ionic plugin remove cordova-plugin-vibration --force
+ionic plugin remove cordova-plugin-splashscreen --force
+ionic plugin remove cordova-plugin-console --force
+ionic plugin remove cordova-plugin-whitelist --force
+ionic plugin remove cordova-plugin-statusbar --force
+ionic plugin remove ionic-plugin-keyboard --force
+
+
+ionic plugin add cordova-plugin-dialogs --save
+ionic plugin add cordova-plugin-globalization --save
+ionic plugin add cordova-plugin-media --save
+ionic plugin add cordova-plugin-file-transfer --save
+ionic plugin add cordova-plugin-media-capture --save
+ionic plugin add cordova-plugin-device-orientation --save
+ionic plugin add cordova-plugin-device --save
+ionic plugin add cordova-plugin-file --save
+ionic plugin add cordova-plugin-battery-status --save
+ionic plugin add cordova-plugin-camera --save
+ionic plugin add cordova-plugin-contacts --save
+ionic plugin add cordova-plugin-device-motion --save
+ionic plugin add cordova-plugin-geolocation --save
+ionic plugin add cordova-plugin-network-information --save
+ionic plugin add cordova-plugin-vibration --save
+ionic plugin add cordova-plugin-splashscreen --save
+ionic plugin add cordova-plugin-console --save
+ionic plugin add cordova-plugin-whitelist --save
+ionic plugin add cordova-plugin-statusbar --save
+ionic plugin add ionic-plugin-keyboard --save
+
 ionic platform rm android
 ionic platform add android
 ionic serve -cs
