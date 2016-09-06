@@ -47,7 +47,7 @@ angular.module('starter')
 
             $scope.serverSideChange = function (val) {
                 $scope.tipo_formulario = val;
-            }
+            };
 
             $scope.cliente = {};
             $scope.show_mapa = 1;
@@ -65,7 +65,7 @@ angular.module('starter')
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, result);
                 LoadModuloFactory.hide();
 
-                if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
+                //if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                     GoogleApiFactory.buscaEndereco(result, function (cliente) {
                         console.log(JSON.stringify(cliente));
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
@@ -83,6 +83,7 @@ angular.module('starter')
                                 status: 2
                             }, result.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                                $scope.show_mapa = 1;
                                 LoadModuloFactory.mapa(result, $scope);
                             });
                         } else {
@@ -90,9 +91,9 @@ angular.module('starter')
                             ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
                         }
                     });
-                } else {
+                /*} else {
                     LoadModuloFactory.mapa(result, $scope);
-                }
+                }*/
             });
         })
 
