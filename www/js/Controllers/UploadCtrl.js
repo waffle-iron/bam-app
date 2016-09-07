@@ -230,7 +230,7 @@ angular.module('starter')
 
             });
 
-            ClientesTable.all({where: 'status = 2'}, function (dados) {
+            ClientesTable.all({where: 'status > 1'}, function (dados) {
                 $scope.sincronizacao.clientes.start = true;
                 if (dados !== null) {
                     angular.forEach(dados, function (v, k) {
