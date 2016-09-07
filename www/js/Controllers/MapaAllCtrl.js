@@ -6,9 +6,9 @@ angular.module('starter')
             var total = 0;
             var sequencia = 0;
             ClientesTable.all({
-                order: 'c.nome asc',
-                alias: 'c',
-                from: 'c.*'
+                from: 'c.*, cd.cidade, e.estado',
+                        alias: 'c',
+                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
             }, function (ret) {
                 if (ret === null) {
                     LoadModuloFactory.hide();
@@ -31,7 +31,7 @@ angular.module('starter')
                             v.checkin_total = 0;
                         }
                         v.url = ExtraModuloFactory.img(v);
-                        if (!ValidacaoModuloFactory.isNotNull(v.latitude) || !ValidacaoModuloFactory.isNotNull(v.longitude)) {
+                        //if (!ValidacaoModuloFactory.isNotNull(v.latitude) || !ValidacaoModuloFactory.isNotNull(v.longitude)) {
                             GoogleApiFactory.buscaEndereco(v, function (cliente) {
                                 if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                                     v.latitude = cliente.latitude;
@@ -58,11 +58,11 @@ angular.module('starter')
                                     execMapa();
                                 }
                             });
-                        } else {
+                        /*} else {
                             listaClientes.push(v);
                             sequencia++;
                             execMapa();
-                        }
+                        }*/
 
                     });
                 }
