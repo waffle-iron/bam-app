@@ -9,16 +9,15 @@ angular.module('starter')
             var _clientes = [];
 
             if (!navigator) {
-                ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
+                //ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
                 listaClientes();
-
             } else {
                 navigator.geolocation.getCurrentPosition(function (position) {
                     lat = position.coords.latitude;
                     lng = position.coords.longitude;
                     listaClientes();
                 }, function () {
-                    ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
+                    //ValidacaoModuloFactory.alert(Config.avisoGpsInattivo);
                     listaClientes();
                 }, {
                     timeout: 10000,
@@ -49,7 +48,7 @@ angular.module('starter')
                             if (v.checkin >= 2) {
                                 v.checkin_total = 2;
                                 v.isShow2 = 1;
-                            } else if (v.checkin == 1) {
+                            } else if (v.checkin >= 1) {
                                 v.checkin_total = 1;
                                 v.isShow1 = 1;
                             } else {
@@ -59,15 +58,6 @@ angular.module('starter')
 
                             _clientes.push(v);
                         });
-                        /*if (lat !== 0) {
-                         _clientes.sort(function (a, b) {
-                         if (a.distance < b.distance)
-                         return -1;
-                         if (a.distance > b.distance)
-                         return 1;
-                         return 0;
-                         });
-                         }*/
                         $scope.clientes = $filter('orderBy')(_clientes, 'distance', false);
                     }
                     LoadModuloFactory.hide();
@@ -84,8 +74,7 @@ angular.module('starter')
                 } else if (value < 1) {
                     return value + ' m';
                 } else {
-                    //return parseFloat(value / 1000).toFixed(2) + ' km';
                     return value + ' km';
                 }
-            }
+            };
         });
