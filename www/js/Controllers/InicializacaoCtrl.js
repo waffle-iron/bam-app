@@ -341,7 +341,9 @@ angular.module('starter')
 
             };
             $scope._sincronizacao.requisicao.baixado++;
-            ClientesApiFactory.rotas({'data_hora_sincronizacao': StorageModuloFactory.local.get(StorageModuloFactory.enum.sincronizacaoInicial)}, rotas);
+            ClientesTable.query('DELETE FROM clientes', function (ret) {
+                ClientesApiFactory.rotas({}, rotas);
+            });
 
 
             $scope._atualizar = function () {
@@ -356,8 +358,10 @@ angular.module('starter')
             $scope._hide = function () {
                 if ($scope._sincronizacao.requisicao.atualizado === $scope._sincronizacao.requisicao.baixado && $scope._sincronizacao.geral.baixado === $scope._sincronizacao.geral.atualizado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, moment(new Date()).format("YYYY-MM-DD"));
-                    //LoadModuloFactory.hide();
-                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                    ClientesTable.query('DELETE FROM produtos_clientes WHERE cliente_id not in(SELECT id_integracao FROM clientes)', function (ret) {
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                    });
+
                 } else {
                     $scope._atualizar();
                 }

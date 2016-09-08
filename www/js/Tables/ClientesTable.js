@@ -75,6 +75,10 @@ angular.module('starter')
                     TableModuloFactory.query('SELECT nome, endereco, numero, foto, url, id, checkin, latitude, longitude, (6371 * acos(cos(deg2rad('  + latitude +  ')) * cos(deg2rad(latitude)) * cos(deg2rad('  + longitude +  ') - deg2rad(longitude)) + sin(deg2rad('  + latitude +  ')) * sin(deg2rad(latitude)))) as distance FROM clientes ORDER BY distance', retorno);
                 };
 
+                services.query = function (query, retorno, params) {
+                    TableModuloFactory.query(query, retorno, params);
+                };
+
                 return services;
             }
         ]);
