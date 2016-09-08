@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             //url: 'http://bptech.com.br/',
             //url: 'http://bptech.web1611.kinghost.net/',
             api: 'api/',
-            versaoApp: '01.00.06',
+            versaoApp: '01.00.07',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,

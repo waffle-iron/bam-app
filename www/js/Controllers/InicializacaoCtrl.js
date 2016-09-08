@@ -207,36 +207,37 @@ angular.module('starter')
                     angular.forEach(retorno.data.response.result, function (v, k) {
                         $scope.sincronizacao.clientes.baixado++;
                         $scope._sincronizacao.geral.baixado++;
-                        var dados = {
-                            id: parseInt(v.cliente.id),
-                            id_integracao: parseInt(v.cliente.id),
-                            nome: v.cliente.nome,
-                            foto: v.cliente.foto,
-                            status: parseInt(v.cliente.status),
-                            latitude: v.cliente.latitude,
-                            longitude: v.cliente.longitude,
-                            cep: v.cliente.cep,
-                            endereco: v.cliente.endereco,
-                            numero: v.cliente.numero,
-                            complemento: v.cliente.complemento,
-                            bairro: v.cliente.bairro,
-                            codigo_concatenado: v.cliente.codigo_concatenado,
-                            programa_id: parseInt(v.cliente.programa_id),
-                            cidade_id: parseInt(v.cliente.cidade_id),
-                            estado_id: parseInt(v.cliente.estado_id),
-                            razao_social: v.cliente.razao_social,
-                            modified: convertData(v.cliente.modified),
-                            created: convertData(v.cliente.created),
-                            url: v.cliente.url,
-                            checkin: v.cliente.checkin
-                        };
-                        ClientesTable.replace(dados, function (res) {
-                            if (res !== null) {
-                                $scope.sincronizacao.clientes.atualizado++;
-                                $scope._sincronizacao.geral.atualizado++;
-                            }
-                        });
-
+                        if (v.cliente !== null) {
+                            var dados = {
+                                id: parseInt(v.cliente.id),
+                                id_integracao: parseInt(v.cliente.id),
+                                nome: v.cliente.nome,
+                                foto: v.cliente.foto,
+                                status: parseInt(v.cliente.status),
+                                latitude: v.cliente.latitude,
+                                longitude: v.cliente.longitude,
+                                cep: v.cliente.cep,
+                                endereco: v.cliente.endereco,
+                                numero: v.cliente.numero,
+                                complemento: v.cliente.complemento,
+                                bairro: v.cliente.bairro,
+                                codigo_concatenado: v.cliente.codigo_concatenado,
+                                programa_id: parseInt(v.cliente.programa_id),
+                                cidade_id: parseInt(v.cliente.cidade_id),
+                                estado_id: parseInt(v.cliente.estado_id),
+                                razao_social: v.cliente.razao_social,
+                                modified: convertData(v.cliente.modified),
+                                created: convertData(v.cliente.created),
+                                url: v.cliente.url,
+                                checkin: v.cliente.checkin
+                            };
+                            ClientesTable.replace(dados, function (res) {
+                                if (res !== null) {
+                                    $scope.sincronizacao.clientes.atualizado++;
+                                    $scope._sincronizacao.geral.atualizado++;
+                                }
+                            });
+                        }
                     });
 
                     var formularios = function (retorno) {
