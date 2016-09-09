@@ -23,7 +23,8 @@ angular.module('starter')
                                 where: 'fcv.formulario_id = ' + v.id + ' AND fcv.cliente_id = ' + $scope.cliente.id,
                                 join: 'INNER JOIN formularios_campos AS fc ON fc.id = fcv.formularios_campo_id\n\
                                        LEFT JOIN fotos_cameras as ftc on ftc.id_referencia = fcv.id',
-                                order: 'fc.ordem ASC'
+                                order: 'fc.ordem ASC',
+                                group: 'fcv.formularios_campo_id'
                             }, function (retGrupo) {
                                 $scope.formularios_respostas = [];
                                 angular.forEach(retGrupo, function (v1, k1) {
@@ -45,13 +46,30 @@ angular.module('starter')
                                 console.log(_formularios_respostas);
                                 ExtraModuloFactory.top();
                                 LoadModuloFactory.hide();
-                                
+
                             });
                         });
                     });
                 }
 
                 loadRespostas();
+
+                $scope.confirmar = function () {
+                    ValidacaoModuloFactory.confirm('Confirma a conclusão do Programa de Mercado', {
+                        btOk: {
+                            text: '<b>Sim</b>'
+                        },
+                        btCancel: {
+                            text: '<b>Não</b>'
+                        }
+                    }, function (retorno, sucesso) {
+                        if (sucesso === true) {
+                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
+                        } else {
+                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.programaMercado);
+                        }
+                    });
+                };
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);

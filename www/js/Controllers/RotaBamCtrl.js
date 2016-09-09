@@ -145,36 +145,43 @@ angular.module('starter')
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
                     LoadModuloFactory.show();
                     $scope.btn_camera = 0;
+                    console.log(valor_selecionado);
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
                         dados.valor = dados.opcoes[sequencia_dados];
                     } else {
                         dados.valor = $scope.valor_selecionado;
                     }
+                    console.log(dados.valor);
                     dados.valor = ValidacaoModuloFactory.trim(dados.valor);
+                    console.log(dados.valor);
+
+                    var dados_save = {
+                        formulario_id: dados.formulario_id,
+                        formularios_campo_id: dados.id,
+                        value: dados.valor,
+                        cliente_id: $scope.cliente.id,
+                        usuario_id: $scope.user.id,
+                        status: 1,
+                        imagem: null,
+                        created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                        modified: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
+                    };
+
+                    console.log(JSON.stringify(dados_save));
+
                     FormulariosCamposValoresTable.first(
                             {where: 'cliente_id = ' + $scope.cliente.id + ' AND formularios_campo_id = ' + dados.id}
                     , function (resp) {
                         if (resp === null) {
-                            resp = {};
-                            resp.formulario_id = dados.formulario_id;
-                            resp.formularios_campo_id = dados.id;
-                            resp.value = dados.valor;
-                            resp.cliente_id = $scope.cliente.id;
-                            resp.usuario_id = $scope.user.id;
-                            resp.status = 1;
-                            resp.imagem = null;
-                            resp.created = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            FormulariosCamposValoresTable.insert(resp, function (a) {
+                            var ssss = angular.merge({}, dados_save);
+                            FormulariosCamposValoresTable.insert(ssss, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                 saveResposta(a, dados);
-
                             });
                         } else {
-                            resp.value = dados.valor;
-                            resp.modified = moment(new Date()).format("YYYY-MM-DD HH:mm:ss");
-                            FormulariosCamposValoresTable.update(resp, resp.id, function (a) {
+                            var ssss = angular.merge(resp, dados_save);
+                            FormulariosCamposValoresTable.update(ssss, resp.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                 saveResposta(a, dados);
                             });
@@ -190,7 +197,7 @@ angular.module('starter')
                         ignorado = parseInt(dados.atributos);
                     }
                     $scope.id_resposta = a.id;
-                    
+
                     $scope.btn_camera = 0;
                     $scope.btn_camera_complete = 0;
                     $scope.qtd_btn_camera = [];

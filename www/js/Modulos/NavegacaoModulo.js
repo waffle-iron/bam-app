@@ -14,12 +14,14 @@ angular.module('starter')
                             ocorrencias: 'app.ocorrencias',
                             cervejas: 'app.cervejas',
                             upload: 'app.upload',
-                            logout: 'app.logout'
+                            logout: 'app.logout',
+                            cliente: 'app.cliente'
                         }
                     };
 
-                    services.go = function (url) {
-                        $state.go(url);
+                    services.go = function (url, params) {
+                        params = angular.merge({}, params);
+                        $state.go(url, params);
                     };
 
                     return services;

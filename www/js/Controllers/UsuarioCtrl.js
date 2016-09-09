@@ -14,14 +14,14 @@ angular.module('starter')
                     ValidacaoModuloFactory.alert('Informe o seu sobrenome');
                     return;
                 }
-                if (!ValidacaoModuloFactory.isEmail(user.email)) {
+                /*if (!ValidacaoModuloFactory.isEmail(user.email)) {
                     ValidacaoModuloFactory.alert('Informe um endereço de e-mail valido');
                     return;
                 }
                 if (!ValidacaoModuloFactory.isNotNull(user.celular)) {
                     ValidacaoModuloFactory.alert('Informe o seu número de celular');
                     return;
-                }
+                }*/
                 if (!ValidacaoModuloFactory.isNotNull(user.login)) {
                     ValidacaoModuloFactory.alert('Informe o seu Login de usuário');
                     return;
