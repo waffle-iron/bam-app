@@ -100,7 +100,6 @@ angular.module('starter')
                 $scope.atualizar = function (produto) {
                     var produto_valor = $filter('inputMoeda')(produto.produto_valor);
                     produto.valor = produto.produto_valor = produto_valor;
-                    console.log(JSON.stringify($scope.cliente));
                     var _save = {
                         cliente_id: 0,
                         produto_id: produto.id,
@@ -110,27 +109,17 @@ angular.module('starter')
                         created: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
                     };
                     _save.cliente_id = $scope.cliente.id;
-                    console.log(JSON.stringify(_save));
 
                     ProdutosClientesTable.first(
                             {where: 'cliente_id = ' + $scope.cliente.id + ' AND produto_id = ' + produto.id}
                     , function (resp) {
-
-                        console.log('retorno SQL');
-                        console.log(produto_valor);
-                        console.log(JSON.stringify(produto));
-                        console.log(JSON.stringify(resp));
-                        console.log(JSON.stringify(_save));
-
                         if (resp === null) {
                             var save = angular.merge({}, _save);
-                            console.log(JSON.stringify(save));
                             ProdutosClientesTable.insert(save, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                             });
                         } else {
                             var save = angular.merge({}, resp, _save);
-                            console.log(JSON.stringify(save));
                             ProdutosClientesTable.update(save, resp.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                             });

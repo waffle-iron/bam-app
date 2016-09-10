@@ -29,7 +29,7 @@ angular.module('starter')
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.console.error($scope, 'Nenhuma notificação localizada.');
+                    ExtraModuloFactory.error($scope, 'Nenhuma notificação localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 

@@ -17,7 +17,6 @@ angular.module('starter')
                     };
 
                     services.img = function (dados) {
-                        console.log(dados);
                         if (ValidacaoModuloFactory.isNotNull(dados.foto)) {
                             return dados.url;
                         } else {

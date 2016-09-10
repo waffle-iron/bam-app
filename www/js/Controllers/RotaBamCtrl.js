@@ -69,7 +69,7 @@ angular.module('starter')
                     where: 'status = 1 AND tipo = 1 AND (sub_formulario_id is null OR sub_formulario_id = 0)'
                 }, function (ret) {
                     if (ret === null) {
-                        ExtraModuloFactory.console.error($scope, 'Nenhuma ocorrência localizada.');
+                        ExtraModuloFactory.error($scope, 'Nenhuma ocorrência localizada.');
                     } else {
                         angular.forEach(ret, function (v, k) {
                             FormulariosGruposTable.all({
@@ -145,16 +145,13 @@ angular.module('starter')
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
                     LoadModuloFactory.show();
                     $scope.btn_camera = 0;
-                    console.log(valor_selecionado);
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
                         dados.valor = dados.opcoes[sequencia_dados];
                     } else {
-                        dados.valor = $scope.valor_selecionado;
+                        dados.valor = valor_selecionado;
                     }
-                    console.log(dados.valor);
                     dados.valor = ValidacaoModuloFactory.trim(dados.valor);
-                    console.log(dados.valor);
 
                     var dados_save = {
                         formulario_id: dados.formulario_id,
@@ -168,8 +165,6 @@ angular.module('starter')
                         modified: moment(new Date()).format("YYYY-MM-DD HH:mm:ss")
                     };
 
-                    console.log(JSON.stringify(dados_save));
-
                     FormulariosCamposValoresTable.first(
                             {where: 'cliente_id = ' + $scope.cliente.id + ' AND formularios_campo_id = ' + dados.id}
                     , function (resp) {
@@ -180,7 +175,7 @@ angular.module('starter')
                                 saveResposta(a, dados);
                             });
                         } else {
-                            var ssss = angular.merge(resp, dados_save);
+                            var ssss = angular.merge({}, resp, dados_save);
                             FormulariosCamposValoresTable.update(ssss, resp.id, function (a) {
                                 StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                                 saveResposta(a, dados);
@@ -201,7 +196,6 @@ angular.module('starter')
                     $scope.btn_camera = 0;
                     $scope.btn_camera_complete = 0;
                     $scope.qtd_btn_camera = [];
-                    console.log($scope.qtd_btn_camera);
                     if (dados.value == dados.valor) {
                         $scope.btn_camera = dados.contem_imagem;
                         for (var i = 1; i <= dados.contem_imagem; i++) {
@@ -210,7 +204,6 @@ angular.module('starter')
                                 tirado: null
                             });
                         }
-                        console.log($scope.qtd_btn_camera);
                     } else if (dados.contem_imagem > 0 && !ValidacaoModuloFactory.isNotNull(dados.value)) {
                         $scope.btn_camera = dados.contem_imagem;
                         for (var i = 1; i <= dados.contem_imagem; i++) {
@@ -219,7 +212,6 @@ angular.module('starter')
                                 tirado: null
                             });
                         }
-                        console.log($scope.qtd_btn_camera);
                     } else {
                         $scope.btn_camera = 0;
                     }
@@ -227,7 +219,7 @@ angular.module('starter')
                 }
 
                 $scope.tirarFoto = function (value, valueFoto, index) {
-                    CameraModuloFactory.capturarFoto(function (img) {
+                    CameraModuloFactory.capturarFotoFile(function (img) {
                         LoadModuloFactory.show();
                         if (img !== null) {
                             FotosCamerasTable.save({
@@ -236,9 +228,6 @@ angular.module('starter')
                                 sequencia: valueFoto.seq_foto,
                                 imagem: img
                             }, function (retorno) {
-                                console.log(JSON.stringify($scope.qtd_btn_camera));
-                                console.log(JSON.stringify(valueFoto));
-                                console.log(index);
                                 $scope.qtd_btn_camera[index].tirado = 'fa fa-check-square-o';
                                 $scope.btn_camera_complete++;
                                 if ($scope.btn_camera_complete === $scope.btn_camera) {
@@ -246,7 +235,6 @@ angular.module('starter')
                                     ExtraModuloFactory.success($scope, 'Todas as fotos já tiradas.');
                                     ExtraModuloFactory.top();
                                 }
-                                console.log(JSON.stringify($scope.qtd_btn_camera));
                                 LoadModuloFactory.hide();
                             });
                         } else {

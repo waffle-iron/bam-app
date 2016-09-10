@@ -101,8 +101,6 @@ angular.module('starter')
                 services.update = function (table, options, id, retorno) {
                     var key = [];
                     var value = [];
-                    console.log('------------');
-                    console.log(JSON.stringify(options));
                     angular.forEach(options, function (v, k) {
                         if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k + '=?');
@@ -112,8 +110,6 @@ angular.module('starter')
                             value.push(null);
                         }
                     });
-                    console.log(JSON.stringify(value));
-                    console.log('------------');
                     var query = "UPDATE " + table + " SET " + key.join(', ') + " WHERE id = '" + id + "'";
                     services.query(query, function (res) {
                         if (res !== null) {
@@ -314,7 +310,6 @@ angular.module('starter')
                         } else {
                             console.log(val);
                         }
-                        //console.log(val);
                     }
                 };
 

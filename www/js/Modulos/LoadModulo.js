@@ -87,7 +87,7 @@ angular.module('starter')
 
                         } else {
                             scope.show_mapa = 0;
-                            ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
+                            //ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
                         }
                     }
                     services.mapaAll = function (clientes, scope) {
@@ -121,7 +121,6 @@ angular.module('starter')
                             markers.push(marker);
 
                             var selectIcon = function (total) {
-                                console.log(total);
                                 if (total >= 2) {
                                     return 'icon_green.png';
                                 } else if (total > 0) {

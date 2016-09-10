@@ -67,7 +67,6 @@ angular.module('starter')
 
                 //if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                     GoogleApiFactory.buscaEndereco(result, function (cliente) {
-                        console.log(JSON.stringify(cliente));
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             result.latitude = cliente.latitude;
                             result.longitude = cliente.longitude;
@@ -88,7 +87,7 @@ angular.module('starter')
                             });
                         } else {
                             $scope.show_mapa = 0;
-                            ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
+                            //ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
                         }
                     });
                 /*} else {
@@ -117,7 +116,6 @@ angular.module('starter')
 
             $scope.buscaCep = function (cep) {
                 CepApiFactory.busca(cep, function (ret) {
-                    console.log(JSON.stringify(ret));
                     if (ValidacaoModuloFactory.isNotNull(ret.data)) {
                         if (ret.data.retorno.status === 'OK') {
                             $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;

@@ -25,7 +25,7 @@ angular.module('starter')
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.console.error($scope, 'Nenhuma orientação localizada.');
+                    ExtraModuloFactory.error($scope, 'Nenhuma orientação localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 

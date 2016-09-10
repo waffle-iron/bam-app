@@ -113,13 +113,17 @@ angular.module('starter')
                                 FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
-                                            console.log('Ativacao52Table');
-                                            console.log(JSON.stringify(value));
-                                            Ativacao52ApiFactory.uploadImage(v.id, value.imagem, function (ret) {
-                                                console.log(JSON.stringify(ret));
-                                                FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
+                                            FileModuloFactory.upload('ativacao52/upload.json', value.imagem, {params: {id: retorno.data.response.result.id}}, function (ret) {
+                                                FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                                                    FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                                    });
                                                 });
                                             });
+                                            /*
+                                             Ativacao52ApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                             FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                             });
+                                             });*/
                                         });
                                     }
                                     Ativacao52Table.delete('id', v.id, function (exc) {
@@ -158,13 +162,18 @@ angular.module('starter')
                                 FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
-                                            console.log('FormulariosCamposValoresTable');
-                                            console.log(JSON.stringify(value));
-                                            FormulariosCamposValoresApiFactory.uploadImage(v.id, value.imagem, function (ret) {
-                                                console.log(JSON.stringify(ret));
-                                                FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
+
+                                            FileModuloFactory.upload('formularios-campos-valores/upload.json', value.imagem, {params: {id: retorno.data.response.result.id}}, function (ret) {
+                                                FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                                                    FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                                    });
                                                 });
                                             });
+
+
+                                            /*
+                                             FormulariosCamposValoresApiFactory.uploadImage(v.id, value.imagem, function (ret) {
+                                             });*/
                                         });
 
                                     }
@@ -252,11 +261,8 @@ angular.module('starter')
                                     FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                         if (retornoFotosCameras !== null) {
                                             angular.forEach(retornoFotosCameras, function (value, key) {
-                                                console.log('ClientesTable');
-                                                console.log(JSON.stringify(value));
                                                 ClientesApiFactory.uploadImage(v.id, value.imagem, function (ret) {
-                                                    console.log(JSON.stringify(ret));
-                                                    FotosCamerasTable.delete('id_referencia', v.id, function (retornoFotos) {
+                                                    FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
                                                     });
                                                 });
                                             });
@@ -275,11 +281,8 @@ angular.module('starter')
                 FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
                     if (retornoFotosCameras !== null) {
                         angular.forEach(retornoFotosCameras, function (value, key) {
-                            console.log('UsuariosTable');
-                            console.log(JSON.stringify(value));
                             UsuariosApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
-                                console.log(JSON.stringify(ret));
-                                FotosCamerasTable.delete('id_referencia', $scope.user.id, function (retornoFotos) {
+                                FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
                                 });
                             });
                         });

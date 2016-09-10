@@ -148,7 +148,7 @@ angular.module('starter')
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.console.error($scope, 'Nenhum item de histórico localizado.');
+                    ExtraModuloFactory.error($scope, 'Nenhum item de histórico localizado.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 
@@ -203,8 +203,6 @@ angular.module('starter')
             });
             
             ClientesApiFactory.detalhesHistorico($stateParams.id, $stateParams.data, $stateParams.tipo, function (resultado) {
-                console.log("Resultado da APi");
-                console.log(resultado);
                 if(ValidacaoModuloFactory.isOk(resultado.status)){
                     $scope.perguntas = resultado.data.response.result;
                 }else{

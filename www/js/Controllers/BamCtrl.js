@@ -170,7 +170,6 @@ angular.module('starter')
                         chart.draw(data, options);
                     }
                 } catch (e) {
-                    console.log(e);
                 }
 
             }
@@ -214,7 +213,7 @@ angular.module('starter')
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.console.error($scope, 'Nenhum item de histórico localizado.');
+                    ExtraModuloFactory.error($scope, 'Nenhum item de histórico localizado.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 
@@ -261,11 +260,10 @@ angular.module('starter')
                         v.created = moment(v.created).format('YYYY-MM-DD');
                         $scope.pdvs.push(v);
                     });
-                    console.log($scope.pdvs);
                     LoadModuloFactory.hide();
                 } else {
                     LoadModuloFactory.hide();
-                    ExtraModuloFactory.console.error($scope, 'Nenhum item de histórico localizado.');
+                    ExtraModuloFactory.error($scope, 'Nenhum item de histórico localizado.');
                 }
             };
 

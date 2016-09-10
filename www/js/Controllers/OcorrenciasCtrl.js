@@ -48,7 +48,7 @@ angular.module('starter')
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                 } else {
                     $scope.proximo = false;
-                    ExtraModuloFactory.console.error($scope, 'Nenhuma ocorrência localizada.');
+                    ExtraModuloFactory.error($scope, 'Nenhuma ocorrência localizada.');
                 }
                 LoadModuloFactory.hide();
             }

@@ -26,7 +26,8 @@ angular.module('starter')
                         targetHeight: 400,
                         popoverOptions: CameraPopoverOptions,
                         saveToPhotoAlbum: false,
-                        correctOrientation: true
+                        correctOrientation: true,
+                        cameraDirection: 1
                     }, options);
                     $cordovaCamera.getPicture(options).then(function (imageData) {
                         if (options.destinationType === Camera.DestinationType.DATA_URL) {
