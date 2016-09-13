@@ -187,6 +187,7 @@ angular.module('starter')
 
             LoadModuloFactory.show();
             $scope.perguntas = [];
+            $scope.produtos = [];
             $scope.cliente = {};
             $scope.tipo = ExtraModuloFactory.desconversaoDeHistoricos($stateParams.tipo);
             $scope.data = $stateParams.data;
@@ -204,7 +205,8 @@ angular.module('starter')
             
             ClientesApiFactory.detalhesHistorico($stateParams.id, $stateParams.data, $stateParams.tipo, function (resultado) {
                 if(ValidacaoModuloFactory.isOk(resultado.status)){
-                    $scope.perguntas = resultado.data.response.result;
+                    $scope.perguntas = resultado.data.response.result.perguntas;
+                    $scope.produtos = resultado.data.response.result.produtos;
                 }else{
                     ExtraModuloFactory.info($scope,'Não foi localizado nenhum registro nesse Check-in');
                 }

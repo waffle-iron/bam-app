@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('ProgramaMercadoResumoCtrl', function (ExtraModuloFactory, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
+        .controller('ProgramaMercadoResumoCtrl', function (CheckinTable, moment, ExtraModuloFactory, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
                 FormulariosTable, FormulariosCamposValoresTable, LoadModuloFactory) {
 
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
@@ -10,9 +10,9 @@ angular.module('starter')
                 LoadModuloFactory.show();
 
                 $scope.formularios_respostas = [];
-                var _formularios_respostas = [];
 
                 var loadRespostas = function () {
+                    $scope.formularios_respostas = [];
                     FormulariosTable.all({
                         where: ' status = 1 AND tipo = 2'
                     }, function (ret) {
@@ -25,7 +25,7 @@ angular.module('starter')
                                 order: 'fc.ordem ASC',
                                 group: 'fcv.formularios_campo_id'
                             }, function (retGrupo) {
-                                $scope.formularios_respostas = [];
+                                
                                 angular.forEach(retGrupo, function (v1, k1) {
                                     $scope.formularios_respostas.push({
                                         nome: v1.nome,
@@ -53,7 +53,20 @@ angular.module('starter')
                         }
                     }, function (retorno, sucesso) {
                         if (sucesso === true) {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
+                            CheckinTable.insert({
+                                usuario_id: null,
+                                cliente_id: $scope.cliente.id,
+                                status: 1,
+                                tipo: 'Programa de Mercado - RAC',
+                                data: moment(new Date).format('YYYY-MM-DD'),
+                                latitude: null,
+                                longitude: null,
+                                modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
+                                created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                            }, function (a) {
+                                StorageModuloFactory.setFlash('Programa de Mercado - RAC realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
+                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
+                            });
                         } else {
                             NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.programaMercado);
                         }

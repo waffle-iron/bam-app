@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             //url: 'http://bptech.com.br/',
             //url: 'http://bptech.web1611.kinghost.net/',
             api: 'api/',
-            versaoApp: '01.00.08',
+            versaoApp: '01.00.09',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
-        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config) {
+        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config, $cordovaAppVersion) {
             $ionicPlatform.ready(function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)

@@ -13,7 +13,7 @@
 
             <header-logo-mini></header-logo-mini>
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div ng-if="dados.respostas.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Rota BAM</h4>
                 <div ng-repeat="(key, value) in dados.respostas">
                     <div class="item item-text-wrap row">
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div ng-if="dados.certificacoes.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
                 <div class="item item-text-wrap">
@@ -113,7 +113,7 @@
                 </div>
             </div>-->
 
-            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div ng-if="dados.historicos.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
 
                 <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">

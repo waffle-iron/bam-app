@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey header-block">
+            <div ng-if="dados.historicos.length > 0" class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico Geral</h4>
 
                 <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
@@ -61,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="list list-inset borda-grey header-block">
+            <div ng-if="dados.rota_bem.length > 0" class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Dashboard - Rota BAM</h4>
                 <a style="text-decoration: none;" ng-repeat="(key,v) in dados.rota_bem" href="#/app/bam_resposta_selecionada/{{v.formularios_campo_id}}">
                     <div class="item item-text-wrap row rota-graph">
@@ -75,7 +75,7 @@
                 </a>
             </div>
 
-            <div class="list list-inset borda-grey header-block">
+            <div ng-if="dados.clientes_rac.length > 0" class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
                 <div ng-repeat="(key,v) in dados.legendas" class="item item-text-wrap" style="font-size: 12px;">

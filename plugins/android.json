@@ -72,6 +72,9 @@
         },
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "br.com.bammp"
+        },
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "br.com.bammp"
         }
     },
     "dependent_plugins": {

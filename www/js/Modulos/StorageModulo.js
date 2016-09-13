@@ -74,6 +74,17 @@ angular.module('starter')
                         return v;
                     };
 
+                    services.setFlash = function (v) {
+                        window.sessionStorage.setItem('hasFlash', v);
+                        return v;
+                    };
+
+                    services.getFlash = function () {
+                        var v = window.sessionStorage.getItem('hasFlash');
+                        window.sessionStorage.removeItem('hasFlash');
+                        return v || null;
+                    };
+
                     return services;
                 }
         );

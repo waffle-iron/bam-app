@@ -29,6 +29,17 @@
                     </div>
                 </div>
             </div>
+            
+            <div ng-repeat="(key, value) in produtos" class="list list-inset borda-grey br-10 header-block">
+                <h4 class="padding text-center">
+                    {{value.produto.nome}}
+                </h4>
+                <div>
+                    <div class="item item-text-wrap m-0">
+                        {{value.valor}}
+                    </div>
+                </div>
+            </div>
             <msg></msg>
 
         </div>

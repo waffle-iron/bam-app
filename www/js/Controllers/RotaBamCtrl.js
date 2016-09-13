@@ -117,6 +117,7 @@ angular.module('starter')
                 };
 
                 $scope.proximo = function (dados, key) {
+                    ExtraModuloFactory.clear($scope);
                     if ($scope.btn_camera > 0) {
                         ValidacaoModuloFactory.alert('Foto obrigatoria.');
                     } else {
@@ -143,10 +144,10 @@ angular.module('starter')
                 };
 
                 $scope.atualizar = function (dados, valor_selecionado, sequencia_dados) {
-                    LoadModuloFactory.show();
                     $scope.btn_camera = 0;
                     $scope.valor_selecionado = valor_selecionado;
                     if (angular.isNumber(sequencia_dados)) {
+                        LoadModuloFactory.show();
                         dados.valor = dados.opcoes[sequencia_dados];
                     } else {
                         dados.valor = valor_selecionado;

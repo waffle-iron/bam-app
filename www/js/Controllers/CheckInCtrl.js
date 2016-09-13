@@ -38,7 +38,10 @@ angular.module('starter')
                         ExtraModuloFactory.info($scope, 'Nenhum PDV localizado, por favor entre no menu lateral e selecione a opção sincronizar dados.');
                     } else {
                         angular.forEach(ret, function (v, k) {
-                            var d = ExtraModuloFactory.calculaDistance(lat, lng, v.latitude, v.longitude);
+                            var d = 0;
+                            if (lat !== 0 && lng !== 0) {
+                                d = ExtraModuloFactory.calculaDistance(lat, lng, v.latitude, v.longitude);
+                            }
                             v = angular.merge({
                                 isShow1: 0,
                                 isShow2: 0,

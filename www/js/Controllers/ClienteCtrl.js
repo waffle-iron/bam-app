@@ -1,9 +1,14 @@
 angular.module('starter')
 
-        .controller('ClienteCtrl', function (moment, CheckinTable, ValidacaoModuloFactory, GoogleApiFactory, $stateParams, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
+        .controller('ClienteCtrl', function (ValidacaoModuloFactory, GoogleApiFactory, $stateParams, ExtraModuloFactory, $scope, $rootScope, ClientesTable, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory) {
             LoadModuloFactory.show();
 
             $scope.tipo_formulario = null;
+
+            var flash = StorageModuloFactory.getFlash();
+            if (flash) {
+                ValidacaoModuloFactory.alert(flash);
+            }
 
             $scope.selecionado = function (cliente) {
                 if (ValidacaoModuloFactory.isNotNull($scope.tipo_formulario)) {
@@ -12,34 +17,37 @@ angular.module('starter')
                     LoadModuloFactory.show();
                     StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
                     StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, cliente);
-                    var tipo = '';
+                    /*var tipo = '';
+                     if ($scope.tipo_formulario === 1) {
+                     tipo = 'Rota BAM';
+                     } else if ($scope.tipo_formulario === 2) {
+                     tipo = 'Programa de Mercado - RAC';
+                     } else if ($scope.tipo_formulario === 3) {
+                     tipo = 'Ativação 52 Semanas';
+                     }
+                     CheckinTable.insert({
+                     usuario_id: null,
+                     cliente_id: cliente.id,
+                     status: 1,
+                     tipo: tipo,
+                     data: moment(new Date).format('YYYY-MM-DD'),
+                     latitude: null,
+                     longitude: null,
+                     modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
+                     created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                     }, function (a) {
+                     
+                     });*/
+
+                    LoadModuloFactory.hide();
                     if ($scope.tipo_formulario === 1) {
-                        tipo = 'Rota BAM';
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.rotaBam);
                     } else if ($scope.tipo_formulario === 2) {
-                        tipo = 'Programa de Mercado - RAC';
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.programaMercado);
                     } else if ($scope.tipo_formulario === 3) {
-                        tipo = 'Ativação 52 Semanas';
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.ativacao52);
                     }
-                    CheckinTable.insert({
-                        usuario_id: null,
-                        cliente_id: cliente.id,
-                        status: 1,
-                        tipo: tipo,
-                        data: moment(new Date).format('YYYY-MM-DD'),
-                        latitude: null,
-                        longitude: null,
-                        modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
-                        created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
-                    }, function (a) {
-                        LoadModuloFactory.hide();
-                        if ($scope.tipo_formulario === 1) {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.rotaBam);
-                        } else if ($scope.tipo_formulario === 2) {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.programaMercado);
-                        } else if ($scope.tipo_formulario === 3) {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.ativacao52);
-                        }
-                    });
+
                 } else {
                     ValidacaoModuloFactory.alert('Informe um tipo de Programa.');
                 }
@@ -66,33 +74,33 @@ angular.module('starter')
                 LoadModuloFactory.hide();
 
                 //if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
-                    GoogleApiFactory.buscaEndereco(result, function (cliente) {
-                        if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
-                            result.latitude = cliente.latitude;
-                            result.longitude = cliente.longitude;
-                            result.cep = cliente.cep;
-                            //result.endereco = cliente.endereco;
-                            //result.bairro = cliente.bairro;
-                            ClientesTable.update({
-                                latitude: result.latitude,
-                                longitude: result.longitude,
-                                cep: result.cep,
-                                //endereco: result.endereco,
-                                //bairro: result.bairro,
-                                status: 2
-                            }, result.id, function (a) {
-                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
-                                $scope.show_mapa = 1;
-                                LoadModuloFactory.mapa(result, $scope);
-                            });
-                        } else {
-                            $scope.show_mapa = 0;
-                            //ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
-                        }
-                    });
+                GoogleApiFactory.buscaEndereco(result, function (cliente) {
+                    if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
+                        result.latitude = cliente.latitude;
+                        result.longitude = cliente.longitude;
+                        result.cep = cliente.cep;
+                        //result.endereco = cliente.endereco;
+                        //result.bairro = cliente.bairro;
+                        ClientesTable.update({
+                            latitude: result.latitude,
+                            longitude: result.longitude,
+                            cep: result.cep,
+                            //endereco: result.endereco,
+                            //bairro: result.bairro,
+                            status: 2
+                        }, result.id, function (a) {
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                            $scope.show_mapa = 1;
+                            LoadModuloFactory.mapa(result, $scope);
+                        });
+                    } else {
+                        $scope.show_mapa = 0;
+                        //ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
+                    }
+                });
                 /*} else {
-                    LoadModuloFactory.mapa(result, $scope);
-                }*/
+                 LoadModuloFactory.mapa(result, $scope);
+                 }*/
             });
         })
 
@@ -115,14 +123,16 @@ angular.module('starter')
             loadClientes();
 
             $scope.buscaCep = function (cep) {
-                CepApiFactory.busca(cep, function (ret) {
-                    if (ValidacaoModuloFactory.isNotNull(ret.data)) {
-                        if (ret.data.retorno.status === 'OK') {
-                            $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;
-                            $scope.cliente.bairro = ret.data.retorno.Cep.bairro;
+                if (ValidacaoModuloFactory.trim(cep) !== '') {
+                    CepApiFactory.busca(cep, function (ret) {
+                        if (ValidacaoModuloFactory.isNotNull(ret.data)) {
+                            if (ret.data.retorno.status === 'OK') {
+                                $scope.cliente.endereco = ret.data.retorno.Cep.logradouro;
+                                $scope.cliente.bairro = ret.data.retorno.Cep.bairro;
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
 
             // Triggered on a button click, or some other target
@@ -188,10 +198,10 @@ angular.module('starter')
             };
 
             $scope.salvar = function (cliente) {
-                if (!ValidacaoModuloFactory.isNotNull(cliente.cep)) {
-                    ValidacaoModuloFactory.alert('Informe o seu CEP');
-                    return;
-                }
+                /*if (!ValidacaoModuloFactory.isNotNull(cliente.cep)) {
+                 ValidacaoModuloFactory.alert('Informe o seu CEP');
+                 return;
+                 }*/
                 cliente.url = $scope.cliente.url;
                 cliente.foto = $scope.cliente.foto;
                 var c = cliente;

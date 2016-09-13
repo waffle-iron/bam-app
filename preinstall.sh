@@ -47,6 +47,7 @@ ionic plugin add cordova-plugin-console --save
 ionic plugin add cordova-plugin-whitelist --save
 ionic plugin add cordova-plugin-statusbar --save
 ionic plugin add ionic-plugin-keyboard --save
+ionic plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
 
 ionic platform rm android
 ionic platform add android

@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('RotaBamResumoCtrl', function (ExtraModuloFactory, ProdutosClientesTable, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
+        .controller('RotaBamResumoCtrl', function (CheckinTable, moment, ExtraModuloFactory, ProdutosClientesTable, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
                 FormulariosTable, FormulariosCamposValoresTable, LoadModuloFactory) {
 
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
@@ -15,6 +15,7 @@ angular.module('starter')
 
 
                 var loadRespostas = function () {
+                    $scope.formularios_respostas = [];
                     FormulariosTable.all({
                         where: ' status = 1 AND tipo = 1'
                     }, function (ret) {
@@ -27,7 +28,6 @@ angular.module('starter')
                                 order: 'fc.ordem ASC',
                                 group: 'fcv.formularios_campo_id'
                             }, function (retGrupo) {
-                                $scope.formularios_respostas = [];
                                 angular.forEach(retGrupo, function (v1, k1) {
                                     $scope.formularios_respostas.push({
                                         nome: v1.nome,
@@ -46,7 +46,7 @@ angular.module('starter')
                     ProdutosClientesTable.all({
                         from: '*',
                         alias: 'pc',
-                        where: 'pc.cliente_id = ' + $scope.cliente.id + ' AND (pc.valor is not null OR pc.valor != "")',
+                        where: 'pc.cliente_id = ' + $scope.cliente.id + ' AND (pc.valor is not null OR pc.valor != "" OR pc.valor != "0.00")',
                         join: 'INNER JOIN produtos AS p ON p.id = pc.produto_id'
                     }, function (ret) {
                         $scope.cervejas = [];
@@ -69,7 +69,20 @@ angular.module('starter')
                         }
                     }, function (retorno, sucesso) {
                         if (sucesso === true) {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
+                            CheckinTable.insert({
+                                usuario_id: null,
+                                cliente_id: $scope.cliente.id,
+                                status: 1,
+                                tipo: 'Rota BAM',
+                                data: moment(new Date).format('YYYY-MM-DD'),
+                                latitude: null,
+                                longitude: null,
+                                modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
+                                created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                            }, function (a) {
+                                StorageModuloFactory.setFlash('Rota BAM realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
+                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
+                            });
                         } else {
                             NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.rotaBam);
                         }

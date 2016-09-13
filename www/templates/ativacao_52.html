@@ -1,11 +1,9 @@
-<ion-view view-title="Ativação 52 Semanas" view-cache="false">
+<ion-view view-title="Ativação 52 Semanas" view-cache="false" hide-back-button="true">
 
     <ion-nav-bar class="bar-stable bar-purple">
         <ion-nav-buttons side="right">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="right"></button>
         </ion-nav-buttons>
-        <ion-nav-back-button>
-        </ion-nav-back-button>
     </ion-nav-bar>
 
     <ion-content class="fundo">
@@ -33,12 +31,14 @@
                         </div>
                     </div>
 
-                    <button class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(1)"><i class="{{btn_ok.ok_1}}" aria-hidden="true"></i> Tirar Foto 1</button>
-                    <button class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(2)"><i class="{{btn_ok.ok_2}}" aria-hidden="true"></i> Tirar Foto 2</button>
-                    <button class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(3)"><i class="{{btn_ok.ok_3}}" aria-hidden="true"></i> Tirar Foto 3</button>
-                    
-                    <button class="button button-block button-balanced" ng-click="salvar()"><i class="fa fa-check-square-o" aria-hidden="true"></i> Finalizar</button>
+                    <button ng-if="btn_imagem < 1" class="button button-block button-balanced" ng-click="salvar()"><i class="fa fa-check-square-o" aria-hidden="true"></i> Salvar</button>
 
+                    <button ng-if="btn_imagem > 0" class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(1)"><i class="{{btn_ok.ok_1}}" aria-hidden="true"></i> Tirar Foto 1</button>
+                    <button ng-if="btn_imagem > 0" class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(2)"><i class="{{btn_ok.ok_2}}" aria-hidden="true"></i> Tirar Foto 2</button>
+                    <button ng-if="btn_imagem > 0" class="button button-block button-royal mt-10 mb-0" ng-click="tirarFoto(3)"><i class="{{btn_ok.ok_3}}" aria-hidden="true"></i> Tirar Foto 3</button>
+
+
+                    <button ng-if="btn_imagem > 0" class="button button-block button-balanced" ng-click="confirmar()"><i class="fa fa-check-square-o" aria-hidden="true"></i> Finalizar</button>
                 </div>
             </div>
         </div>
