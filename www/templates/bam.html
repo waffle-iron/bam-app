@@ -12,7 +12,7 @@
         <header-logo></header-logo>
 
         <div class="padding">
-            
+
             <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Cobertura Mensal</h4>
                 <div class="item item-text-wrap pl-0 pr-0 cobertura-graph">
@@ -37,75 +37,90 @@
                 </div>
             </div>
 
-            <div ng-if="dados.historicos.length > 0" class="list list-inset borda-grey header-block">
+            <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Histórico Geral</h4>
-
-                <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
-                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
-                        &nbsp;
-                    </div>
-                    <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
-                        <div class="d-iblock va-t wp-78">
-                            <strong class="d-block">{{v.tipo}}</strong>
-                            <span class="d-block">{{v.nome}}</span>
-                            <small class="d-block">{{v.data_final| date}}</small>
+                <div ng-if="dados.historicos.length > 0">
+                    <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap m-0 p-0">
+                        <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
+                            &nbsp;
                         </div>
-                        <div class="text-center d-iblock va-t wp-20">
-                            <i class="ion-chevron-right color-grey"></i>
+                        <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
+                            <div class="d-iblock va-t wp-78">
+                                <strong class="d-block">{{v.tipo}}</strong>
+                                <span class="d-block">{{v.nome}}</span>
+                                <small class="d-block">{{v.data_final| date}}</small>
+                            </div>
+                            <div class="text-center d-iblock va-t wp-20">
+                                <i class="ion-chevron-right color-grey"></i>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
 
-                <div class="padding item-footer">
-                    <a href="#/app/bam_historico" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                    <div class="padding item-footer">
+                        <a href="#/app/bam_historico" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="text-right" ng-if="dados.historicos.length < 1">
+                    Nenhum registro localizado.
                 </div>
             </div>
 
-            <div ng-if="dados.rota_bem.length > 0" class="list list-inset borda-grey header-block">
+            <div class="list list-inset borda-grey header-block">
                 <h4 class="padding text-center">Dashboard - Rota BAM</h4>
-                <a style="text-decoration: none;" ng-repeat="(key,v) in dados.rota_bem" href="#/app/bam_resposta_selecionada/{{v.formularios_campo_id}}">
-                    <div class="item item-text-wrap row rota-graph">
-                        <div class="wp-40 h-100">
-                            <pie-chart data="v.dados" options="v.options"></pie-chart>
+                <div ng-if="dados.rota_bem.length > 0">
+                    <a style="text-decoration: none;" ng-repeat="(key,v) in dados.rota_bem" href="#/app/bam_resposta_selecionada/{{v.formularios_campo_id}}">
+                        <div class="item item-text-wrap row rota-graph">
+                            <div class="wp-40 h-100">
+                                <pie-chart data="v.dados" options="v.options"></pie-chart>
+                            </div>
+                            <div class="wp-60 padding-top padding-bottom">
+                                <h3>{{v.nome}}</h3>
+                            </div>
                         </div>
-                        <div class="wp-60 padding-top padding-bottom">
-                            <h3>{{v.nome}}</h3>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div ng-if="dados.clientes_rac.length > 0" class="list list-inset borda-grey header-block">
-                <h4 class="padding text-center">Programa de Mercado - RAC</h4>
-
-                <div ng-repeat="(key,v) in dados.legendas" class="item item-text-wrap" style="font-size: 12px;">
-                    <h5 class="color-black"><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h5>
-                </div>
-
-                <div class="relative">
-                    <span class="absolute wp-100 text-center color-grey h-250 fw-b lh-250 z-10 fs-40">
-                        {{total_prog_rac}}
-                    </span>
-                    <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
-                </div>
-
-                <div class="item item-text-wrap ranking-head row padding-top padding-bottom bg-header">
-                    <div class="wp-10 text-center">RKG</div>
-                    <div class="wp-45 p-0">PDV</div>
-                    <div class="wp-20">Média Pontos</div>
-                    <div class="wp-25">Valor TT Acumulado</div>
-                </div>
-                <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
-                    <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
-                        <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
-                        <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
-                        <div class="wp-20 fs-12">{{v.pontuacao}}</div>
-                        <div class="wp-25 fs-12">{{v.total | currency:'R$ '}} </div>
                     </a>
                 </div>
-                <div class="padding item-footer mt-1">
-                    <a href="#/app/bam_rac_ranking" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                <div class="text-right" ng-if="dados.rota_bem.length < 1">
+                    Nenhum registro localizado.
                 </div>
+            </div>
+
+            <div class="list list-inset borda-grey header-block">
+                <h4 class="padding text-center">Programa de Mercado - RAC</h4>
+                <div ng-if="dados.clientes_rac.length > 0">
+                    <div ng-repeat="(key,v) in dados.legendas" class="item item-text-wrap" style="font-size: 12px;">
+                        <h5 class="color-black"><i class="ion-record color-{{v.color}}"></i> {{v.nome}}</h5>
+                    </div>
+
+                    <div class="relative">
+                        <span class="absolute wp-100 text-center color-grey h-250 fw-b lh-250 z-10 fs-40">
+                            {{total_prog_rac}}
+                        </span>
+                        <div id="donutchart" class="item item-text-wrap h-250 wp-100"></div>
+                    </div>
+
+                    <div class="item item-text-wrap ranking-head row padding-top padding-bottom bg-header">
+                        <div class="wp-10 text-center">RKG</div>
+                        <div class="wp-45 p-0">PDV</div>
+                        <div class="wp-20">Média Pontos</div>
+                        <div class="wp-25">Valor TT Acumulado</div>
+                    </div>
+                    <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
+                        <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
+                            <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
+                            <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
+                            <div class="wp-20 fs-12">{{v.pontuacao}}</div>
+                            <div class="wp-25 fs-12">{{v.total| currency:'R$ '}} </div>
+                        </a>
+                    </div>
+                    <div class="padding item-footer mt-1">
+                        <a href="#/app/bam_rac_ranking" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="text-right" ng-if="dados.clientes_rac.length < 1">
+                    Nenhum registro localizado.
+                </div>
+
             </div>
 
         </div>

@@ -18,6 +18,19 @@ angular.module('starter')
                 }, function (progress) {
                 });
             };
+
+
+            service.loadImg = function (filename, callback) {
+                $cordovaFile.readAsText(filename).then(function (result) {
+                    console.log('readAsText Success');
+                    items = JSON.parse(result);
+                    callback(items);
+                }, function () {
+                    console.log('readAsText Failed');
+                    callback({});
+                });
+            };
+
             service.remove = function (file, listener) {
                 var filename = file.substr(file.lastIndexOf('/') + 1);
                 var dir = file.replace(filename, '');
@@ -40,6 +53,9 @@ angular.module('starter')
                     fileEntry.file(function (file) {
                         var reader = new FileReader();
                         reader.onloadend = function (e) {
+                            console.log('gotFile');
+                            console.log(JSON.stringify(e));
+                            console.log(JSON.stringify(this.result));
                             var content = this.result;
                             callback(content);
                         };

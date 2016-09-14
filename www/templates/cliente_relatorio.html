@@ -13,27 +13,32 @@
 
             <header-logo-mini></header-logo-mini>
 
-            <div ng-if="dados.respostas.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Rota BAM</h4>
-                <div ng-repeat="(key, value) in dados.respostas">
-                    <div class="item item-text-wrap row">
-                        <div ng-if="isIcon(value)" class="col-25 padding-top padding-bottom">
-                            <div class="icon-rel text-center">
-                                <i class="{{isIcon(value)}} {{isColor(value)}}"></i>
+                <div ng-if="dados.respostas.length > 1">
+                    <div ng-repeat="(key, value) in dados.respostas">
+                        <div class="item item-text-wrap row">
+                            <div ng-if="isIcon(value)" class="col-25 padding-top padding-bottom">
+                                <div class="icon-rel text-center">
+                                    <i class="{{isIcon(value)}} {{isColor(value)}}"></i>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col padding-top padding-bottom">
-                            <h3>{{value.nome}}</h3>
-                            <p>{{value.resposta}}</p>
+                            <div class="col padding-top padding-bottom">
+                                <h3>{{value.nome}}</h3>
+                                <p>{{value.resposta}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="text-right" ng-if="dados.respostas.length < 1">
+                    Nenhum registro localizado.
+                </div>
             </div>
 
-            <div ng-if="dados.certificacoes.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Programa de Mercado - RAC</h4>
 
-                <div class="item item-text-wrap">
+                <div class="item item-text-wrap" ng-if="dados.certificacoes.length > 0">
                     <div class="text-center">
                         <div class="h-200 rac-graph">
                             <pie-chart id="rac-graph" data="total_pdv" options="options_pie"></pie-chart>
@@ -64,6 +69,9 @@
                         </div>
                     </div>
 
+                </div>
+                <div class="text-right" ng-if="dados.certificacoes.length < 1">
+                    Nenhum registro localizado.
                 </div>
             </div>
 
@@ -113,27 +121,31 @@
                 </div>
             </div>-->
 
-            <div ng-if="dados.historicos.length > 0" class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
+            <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                 <h4 class="padding text-center">Histórico</h4>
+                <div ng-if="dados.historicos.length > 0">
+                    <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
+                        <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
 
-                <a href="#/app/cliente_relatorio_historico_respostas/{{v.cliente_id}}/{{v.data_final}}/{{converteNome(v.tipo)}}" ng-repeat="(k,v) in dados.historicos" class="item item-text-wrap row m-0 p-0">
-                    <div class="timeline timeline-{{isTipo(v)}} d-iblock va-t wp-20">
-
-                    </div>
-                    <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
-                        <div class="d-iblock va-t wp-78">
-                            <strong class="d-block">{{v.tipo}}</strong>
-                            <span class="d-block">{{v.nome}}</span>
-                            <small class="d-block">{{v.data_final| date}}</small>
                         </div>
-                        <div class="text-center d-iblock va-t wp-20">
-                            <i class="ion-chevron-right color-grey"></i>
+                        <div class="timeline-details padding-top padding-bottom d-iblock va-t wp-78">
+                            <div class="d-iblock va-t wp-78">
+                                <strong class="d-block">{{v.tipo}}</strong>
+                                <span class="d-block">{{v.nome}}</span>
+                                <small class="d-block">{{v.data_final| date}}</small>
+                            </div>
+                            <div class="text-center d-iblock va-t wp-20">
+                                <i class="ion-chevron-right color-grey"></i>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
 
-                <div class="padding item-footer">
-                    <a href="#/app/cliente_relatorio_historico/{{cliente.id}}" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                    <div class="padding item-footer">
+                        <a href="#/app/cliente_relatorio_historico/{{cliente.id}}" class="button btn-vermais button-purple-o m-0">Ver Mais <i class="ion-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="text-right" ng-if="dados.historicos.length < 1">
+                    Nenhum registro localizado.
                 </div>
             </div>
         </div>

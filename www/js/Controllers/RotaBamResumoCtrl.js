@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('RotaBamResumoCtrl', function (CheckinTable, moment, ExtraModuloFactory, ProdutosClientesTable, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
+        .controller('RotaBamResumoCtrl', function (FileModuloFactory, FotosCamerasTable, CheckinTable, moment, ExtraModuloFactory, ProdutosClientesTable, NavegacaoModuloFactory, $scope, $rootScope, StorageModuloFactory, ValidacaoModuloFactory,
                 FormulariosTable, FormulariosCamposValoresTable, LoadModuloFactory) {
 
             $scope.cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
@@ -10,9 +10,7 @@ angular.module('starter')
                 LoadModuloFactory.show();
 
                 $scope.formularios_respostas = [];
-                var _formularios_respostas = [];
                 $scope.cervejas = [];
-
 
                 var loadRespostas = function () {
                     $scope.formularios_respostas = [];
@@ -29,15 +27,10 @@ angular.module('starter')
                                 group: 'fcv.formularios_campo_id'
                             }, function (retGrupo) {
                                 angular.forEach(retGrupo, function (v1, k1) {
-                                    $scope.formularios_respostas.push({
-                                        nome: v1.nome,
-                                        subtitulo: v1.subtitulo,
-                                        fcv_resposta: v1.fcv_resposta
-                                    });
+                                    listasFotos(v1);
                                 });
                                 ExtraModuloFactory.top();
                                 LoadModuloFactory.hide();
-
                             });
                         });
                     });
@@ -54,7 +47,7 @@ angular.module('starter')
                         LoadModuloFactory.hide();
                     });
 
-                    LoadModuloFactory.hide();
+
                 };
 
                 loadRespostas();
@@ -88,6 +81,46 @@ angular.module('starter')
                         }
                     });
                 };
+
+                var listasFotos = function (value) {
+                    LoadModuloFactory.show();
+                    console.log('----------');
+                    console.log('lista');
+                    console.log(JSON.stringify(value));
+                    value = angular.merge({imagens: []}, value);
+                    console.log(JSON.stringify(value));
+                    FotosCamerasTable.all({where: 'tabela = "FormulariosCamposValoresTable" AND id_referencia = ' + value.fcv_id}, function (ret) {
+                        console.log('lista dados imagens');
+                        console.log(JSON.stringify(ret));
+                        if (ret !== null) {
+                            var total = (ret.length - 1);
+                            var i = 0;
+                            angular.forEach(ret, function (v, k) {
+                                FileModuloFactory.asUrl(v.imagem, function (retImagem) {
+                                    i++;
+                                    value.imagens.push({img: retImagem});
+                                    if(total === i){
+                                        __saveFotoArray(value);
+                                    }
+                                });
+                            });
+                        } else {
+                            __saveFotoArray(value);
+                        }
+                    });
+                };
+
+                var __saveFotoArray = function (value) {
+                    console.log('lista com passagem de imagens');
+                    console.log(JSON.stringify(value));
+                    $scope.formularios_respostas.push({
+                        nome: value.nome,
+                        subtitulo: value.subtitulo,
+                        fcv_resposta: value.fcv_resposta,
+                        imagens: value.imagens
+                    });
+                    LoadModuloFactory.hide();
+                }
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);

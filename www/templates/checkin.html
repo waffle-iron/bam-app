@@ -16,7 +16,7 @@
             <label class="item item-input m-0 padding">
                 <input class="wp-100" type="text" ng-model="filtro_ckeckin" placeholder="Buscar PDV" >
             </label>
-
+            <p class="title-page text-right m-0">Total de registros {{clientes.length}}</p>
             <div class="list">
                 <a ng-repeat="(key, value) in clientes | filter:filtro_ckeckin" class="item item-icon-right item-avatar pt-9 pb-9" href="#/app/cliente/{{value.id}}">
                     <img ng-src="{{value.url}}">

@@ -11,9 +11,9 @@
     <ion-content class="fundo">
         <div class="padding">
             <header-logo-mini></header-logo-mini>
-            
+
             <p class="title-page text-center m-0 mt-15">Confirme as Informações</p>
-            
+
             <div ng-repeat="(key, value) in formularios_respostas track by $index">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">
@@ -23,8 +23,8 @@
                     <div>
                         <div class="item item-text-wrap m-0">
                             <div>{{value.fcv_resposta}}</div>
-                            <div ng-repeat="(kImage, vImage) in value.imagem" class="text-center">
-                                <img ng-src="{{vImage.image}}" class="max-width: 95%" />
+                            <div ng-repeat="(ki, vi) in value.imagens" class="text-center" style="max-width: 100%;">
+                                <img ng-src="{{vi.img}}" class="max-width: 95%; max-height: 95%;" />
                             </div>
                         </div>
                     </div>
@@ -43,11 +43,11 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="clearfix"></div>
             <div class="wp-50 pr-5 pull-left">
                 <a class="button button-block button-assertive" ng-href="#/app/rota_bam"><i class="fa fa-undo" aria-hidden="true"></i> Refazer</a>
             </div>
-            <div class="wp-50 pr-5 pull-left">
+            <div class="wp-50 pr-5 pull-right">
                 <a class="button button-block button-assertive" ng-href="#/app/cervejas"><i class="fa fa-undo" aria-hidden="true"></i> Produtos</a>
             </div>
             <div class="wp-100 pl-5">

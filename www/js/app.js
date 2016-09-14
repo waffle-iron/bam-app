@@ -6,12 +6,9 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angularMoment', 'n3-pie-chart', 'fcsa-number'])
         .constant('Config', {
-            //url: 'http://localhost/bam/',
             url: 'http://45.55.69.61/bam/',
-            //url: 'http://bptech.com.br/',
-            //url: 'http://bptech.web1611.kinghost.net/',
             api: 'api/',
-            versaoApp: '01.00.09',
+            versaoApp: '01.00.10',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
@@ -20,7 +17,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
-        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config, $cordovaAppVersion) {
+        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config, ClientesTable) {
             $ionicPlatform.ready(function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -41,6 +38,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             };
             $rootScope.versaoApp = Config.versaoApp;
             $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+            $rootScope.atualizarUser = function () {
+                $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+            };
+            $rootScope.atualizarPDV = function () {
+                var cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
+                ClientesTable.get(cliente.id, function (ret) {
+                    StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, ret);
+                });
+            };
         })
 
         .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $httpProvider) {

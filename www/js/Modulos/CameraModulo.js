@@ -1,5 +1,5 @@
 angular.module('starter')
-        .factory('CameraModuloFactory', function ($cordovaCamera) {
+        .factory('CameraModuloFactory', function ($cordovaCamera, $cordovaFile) {
             var service = {};
 
             service.loadCamera = function () {
@@ -37,6 +37,7 @@ angular.module('starter')
                                 listener("data:image/png;base64," + imageData);
                             }
                         } else {
+                            //service.moveToImage(imageData, listener);
                             listener(imageData);
                         }
                     }, function (err) {
@@ -97,5 +98,32 @@ angular.module('starter')
                     listener(null);
                 }
             };
+
+            service.moveToImage = function (imagePath, listener) {
+                console.log(imagePath);
+                console.log(JSON.stringify(cordova.file));
+                //Grab the file name of the photo in the temporary directory
+                var currentName = imagePath.replace(/^.*[\\\/]/, '');
+                console.log(currentName);
+
+                //Create a new name for the photo
+                var d = new Date(),
+                        n = d.getTime(),
+                        newFileName = n + ".jpg";
+
+                //Move the file to permanent storage
+                $cordovaFile.moveFile(cordova.file.externalCacheDirectory, currentName, cordova.file.dataDirectory, newFileName).then(function (success) {
+                    console.log('success');
+                    console.log(JSON.stringify(success));
+                    //success.nativeURL will contain the path to the photo in permanent storage, do whatever you wish with it, e.g:
+                    //createPhoto(success.nativeURL);
+                    listener(success.nativeURL);
+
+                }, function (error) {
+                    console.log('error');
+                    console.log(JSON.stringify(error));
+                    //an error occured
+                });
+            }
             return service;
         });

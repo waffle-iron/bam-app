@@ -25,6 +25,15 @@
         "is_top_level": false,
         "variables": {}
     },
+    "cordova-plugin-app-version": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
     "cordova-plugin-dialogs": {
         "source": {
             "type": "registry",
@@ -181,15 +190,6 @@
         "source": {
             "type": "registry",
             "id": "ionic-plugin-keyboard@~2.2.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-app-version": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
-            "subdir": "."
         },
         "is_top_level": true,
         "variables": {}

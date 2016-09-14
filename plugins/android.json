@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-app-version": {
+            "PACKAGE_NAME": "br.com.bammp"
+        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "br.com.bammp"
         },
@@ -71,9 +74,6 @@
             "PACKAGE_NAME": "br.com.bammp"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "br.com.bammp"
-        },
-        "cordova-plugin-app-version": {
             "PACKAGE_NAME": "br.com.bammp"
         }
     },

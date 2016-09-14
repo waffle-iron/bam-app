@@ -105,7 +105,7 @@ angular.module('starter')
         })
 
 
-        .controller('ClienteEditCtrl', function (GoogleApiFactory, StorageModuloFactory, CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
+        .controller('ClienteEditCtrl', function ($rootScope, GoogleApiFactory, StorageModuloFactory, CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
             $scope.cliente = {};
             var loadClientes = function () {
                 ClientesTable.first(
@@ -231,6 +231,7 @@ angular.module('starter')
                             status: 2
                         }, c.id, function (a) {
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                            $rootScope.atualizarPDV();
                             ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso', function (r) {
                                 $state.go('app.cliente', {id: $scope.cliente.id});
                             });

@@ -26,10 +26,13 @@
                 <div>
                     <div class="item item-text-wrap m-0">
                         {{value.value}}
+                        <div ng-repeat="(ki, vi) in value.formularios_campos_valores_imagens" class="text-center" style="max-width: 100%;">
+                            <img ng-src="{{vi.url}}" class="max-width: 95%; max-height: 95%;" />
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <div ng-repeat="(key, value) in produtos" class="list list-inset borda-grey br-10 header-block">
                 <h4 class="padding text-center">
                     {{value.produto.nome}}

@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('UsuarioCtrl', function (LoadModuloFactory, FileModuloFactory, FotosCamerasTable, NavegacaoModuloFactory, $scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
+        .controller('UsuarioCtrl', function (LoadModuloFactory, $rootScope, FotosCamerasTable, NavegacaoModuloFactory, $scope, ValidacaoModuloFactory, StorageModuloFactory, $ionicActionSheet, CameraModuloFactory) {
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             $scope.user.senha = "";
@@ -15,25 +15,26 @@ angular.module('starter')
                     return;
                 }
                 /*if (!ValidacaoModuloFactory.isEmail(user.email)) {
-                    ValidacaoModuloFactory.alert('Informe um endereço de e-mail valido');
-                    return;
-                }
-                if (!ValidacaoModuloFactory.isNotNull(user.celular)) {
-                    ValidacaoModuloFactory.alert('Informe o seu número de celular');
-                    return;
-                }*/
+                 ValidacaoModuloFactory.alert('Informe um endereço de e-mail valido');
+                 return;
+                 }
+                 if (!ValidacaoModuloFactory.isNotNull(user.celular)) {
+                 ValidacaoModuloFactory.alert('Informe o seu número de celular');
+                 return;
+                 }*/
                 if (!ValidacaoModuloFactory.isNotNull(user.login)) {
                     ValidacaoModuloFactory.alert('Informe o seu Login de usuário');
                     return;
                 }
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, user);
                 $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+                $rootScope.atualizarUser();
                 ValidacaoModuloFactory.alert('Dados de usuário alterados com sucesso.', 'Sucesso', function (r) {
                     NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
                 });
-            }
+            };
 
-            
+
             // Triggered on a button click, or some other target
             $scope.userFoto = function () {
 
