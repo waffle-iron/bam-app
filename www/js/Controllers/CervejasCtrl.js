@@ -136,13 +136,13 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.concluir = function () {
+                /*$scope.concluir = function () {
                     ValidacaoModuloFactory.alert('Rota BAM finalizada com sucesso.');
                     $timeout(function () {
                         $state.go('app.cliente', {id: $scope.cliente.id});
                         //NavegacaoModuloFactory.go('app.cliente/' + $scope.cliente.id);
                     }, 3000);
-                }
+                }*/
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);

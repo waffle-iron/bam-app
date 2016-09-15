@@ -66,32 +66,19 @@ angular.module('starter')
                 };
 
                 $scope.confirmar = function () {
-                    ValidacaoModuloFactory.confirm('Confirma a conclusão do Ativação 52 Semanas', {
-                        btOk: {
-                            text: '<b>Sim</b>'
-                        },
-                        btCancel: {
-                            text: '<b>Não</b>'
-                        }
-                    }, function (retorno, sucesso) {
-                        if (sucesso === true) {
-                            CheckinTable.insert({
-                                usuario_id: null,
-                                cliente_id: $scope.cliente.id,
-                                status: 1,
-                                tipo: 'Ativação 52 Semanas',
-                                data: moment(new Date).format('YYYY-MM-DD'),
-                                latitude: null,
-                                longitude: null,
-                                modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
-                                created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
-                            }, function (a) {
-                                StorageModuloFactory.setFlash('Ativação 52 Semanas realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
-                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
-                            });
-                        } else {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.programaMercado);
-                        }
+                    CheckinTable.insert({
+                        usuario_id: $scope.user.id,
+                        cliente_id: $scope.cliente.id,
+                        status: 1,
+                        tipo: 'Ativação 52 Semanas',
+                        data: moment(new Date).format('YYYY-MM-DD'),
+                        latitude: StorageModuloFactory.local.get(StorageModuloFactory.enum.latitude, null),
+                        longitude: StorageModuloFactory.local.get(StorageModuloFactory.enum.longitude, null),
+                        modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
+                        created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                    }, function (a) {
+                        StorageModuloFactory.setFlash('Ativação 52 Semanas realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
                     });
                 };
 

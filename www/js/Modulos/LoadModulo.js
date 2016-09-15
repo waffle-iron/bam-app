@@ -19,7 +19,8 @@ angular.module('starter')
                         if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                             scope.show_mapa = 1;
                             navigator.geolocation.getCurrentPosition(function (position) {
-
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.latitude, position.coords.latitude);
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.longitude, position.coords.longitude);
                                 var div = document.getElementById("map_canvas");
                                 // var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
                                 var mapOptions = {
@@ -64,6 +65,8 @@ angular.module('starter')
                                 scope.show_mapa = 1;
 
                             }, function (error) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.latitude, null);
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.longitude, null);
                                 var div = document.getElementById("map_canvas");
                                 var latLong = new google.maps.LatLng(cliente.latitude, cliente.longitude);
                                 var mapOptions = {
@@ -92,6 +95,8 @@ angular.module('starter')
                     }
                     services.mapaAll = function (clientes, scope) {
                         navigator.geolocation.getCurrentPosition(function (position) {
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.latitude, position.coords.latitude);
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.longitude, position.coords.longitude);
                             var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
                             var div = document.getElementById("map_canvas");
                             div.style.height = (($window.innerHeight - 80)) + 'px';
@@ -161,6 +166,8 @@ angular.module('starter')
                             scope.show_mapa = 1;
 
                         }, function (error) {
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.latitude, null);
+                            StorageModuloFactory.local.set(StorageModuloFactory.enum.longitude, null);
                             scope.show_mapa = 0;
                             ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa, Verifique se o GPS de seu aparelho esta ativo e com conexão com a Internet.');
                         },

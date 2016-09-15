@@ -299,31 +299,35 @@ angular.module('starter')
                             delete v.url;
                             delete v.foto;
                             ClientesApiFactory.edit(v.id_integracao, _v, function (retorno) {
-
-                                if (ValidacaoModuloFactory.isOk(retorno.status)) {
-                                    _v.status = 1;
-                                    ClientesTable.replace(_v, function (exc) {
-                                        FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
-                                            if (retornoFotosCameras !== null) {
-                                                angular.forEach(retornoFotosCameras, function (value, key) {
-                                                    ClientesApiFactory.uploadImage(v.id, value.imagem, function (ret) {
-                                                        FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
-                                                            $scope.sincronizacao.clientes.atualizado++;
-                                                            $scope._sincronizacao.geral.atualizado++;
-                                                            _clientes();
-                                                        });
+                                console.log('Cliente envio');
+                                console.log(JSON.stringify(retorno));
+                                //if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                                _v.status = 1;
+                                ClientesTable.replace(_v, function (exc) {
+                                    FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + _v.id}, function (retornoFotosCameras) {
+                                         console.log('Foto Cliente envio');
+                                         console.log(JSON.stringify(retornoFotosCameras));
+                                        if (retornoFotosCameras !== null) {
+                                            angular.forEach(retornoFotosCameras, function (value, key) {
+                                                ClientesApiFactory.uploadImage(_v.id, value.imagem, function (ret) {
+                                                    console.log(JSON.stringify(ret));
+                                                    FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                                        $scope.sincronizacao.clientes.atualizado++;
+                                                        $scope._sincronizacao.geral.atualizado++;
+                                                        _clientes();
                                                     });
                                                 });
-                                            } else {
-                                                $scope.sincronizacao.clientes.atualizado++;
-                                                $scope._sincronizacao.geral.atualizado++;
-                                                _clientes();
-                                            }
-                                        });
+                                            });
+                                        } else {
+                                            $scope.sincronizacao.clientes.atualizado++;
+                                            $scope._sincronizacao.geral.atualizado++;
+                                            _clientes();
+                                        }
                                     });
-                                } else {
-                                    _clientes();
-                                }
+                                });
+                                //} else {
+                                //    _clientes();
+                                //}
                             });
                         });
                     }

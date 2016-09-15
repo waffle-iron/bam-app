@@ -14,7 +14,9 @@ angular.module('starter')
                             pdvAtivo: 'pdv_ativo',
                             hasSincronizacao: 'has_sincronizacao',
                             forceLoginSincronizacao: 'force_login_sincronizacao',
-                            forceLogoutSincronizacao: 'force_logout_sincronizacao'
+                            forceLogoutSincronizacao: 'force_logout_sincronizacao',
+                            latitude: 'latitude',
+                            longitude: 'longitude'
                         }
                     };
 

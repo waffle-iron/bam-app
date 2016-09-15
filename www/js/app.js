@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             };
             $rootScope.atualizarPDV = function () {
                 var cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
-                ClientesTable.get(cliente.id, function (ret) {
+                ClientesTable.get('id', cliente.id, function (ret) {
                     StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, ret);
                 });
             };

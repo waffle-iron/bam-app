@@ -53,33 +53,21 @@ angular.module('starter')
                 loadRespostas();
 
                 $scope.confirmar = function () {
-                    ValidacaoModuloFactory.confirm('Confirma a conclusão da Rota BAM', {
-                        btOk: {
-                            text: '<b>Sim</b>'
-                        },
-                        btCancel: {
-                            text: '<b>Não</b>'
-                        }
-                    }, function (retorno, sucesso) {
-                        if (sucesso === true) {
-                            CheckinTable.insert({
-                                usuario_id: null,
-                                cliente_id: $scope.cliente.id,
-                                status: 1,
-                                tipo: 'Rota BAM',
-                                data: moment(new Date).format('YYYY-MM-DD'),
-                                latitude: null,
-                                longitude: null,
-                                modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
-                                created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
-                            }, function (a) {
-                                StorageModuloFactory.setFlash('Rota BAM realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
-                                NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
-                            });
-                        } else {
-                            NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.rotaBam);
-                        }
+                    CheckinTable.insert({
+                        usuario_id: $scope.user.id,
+                        cliente_id: $scope.cliente,
+                        status: 1,
+                        tipo: 'Rota BAM',
+                        data: moment(new Date).format('YYYY-MM-DD'),
+                        latitude: StorageModuloFactory.local.get(StorageModuloFactory.enum.latitude, null),
+                        longitude: StorageModuloFactory.local.get(StorageModuloFactory.enum.longitude, null),
+                        modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
+                        created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
+                    }, function (a) {
+                        StorageModuloFactory.setFlash('Rota BAM realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
+                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
                     });
+
                 };
 
                 var listasFotos = function (value) {
@@ -99,7 +87,7 @@ angular.module('starter')
                                 FileModuloFactory.asUrl(v.imagem, function (retImagem) {
                                     i++;
                                     value.imagens.push({img: retImagem});
-                                    if(total === i){
+                                    if (total === i) {
                                         __saveFotoArray(value);
                                     }
                                 });

@@ -198,46 +198,33 @@ angular.module('starter')
             };
 
             $scope.salvar = function (cliente) {
-                /*if (!ValidacaoModuloFactory.isNotNull(cliente.cep)) {
-                 ValidacaoModuloFactory.alert('Informe o seu CEP');
-                 return;
-                 }*/
+                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                 cliente.url = $scope.cliente.url;
                 cliente.foto = $scope.cliente.foto;
                 var c = cliente;
                 c.latitude = null;
                 c.longitude = null;
                 c.status = 2;
-                var id = c.id;
-                delete c.id;
                 delete c.cidade;
                 delete c.estado;
                 //delete c.url;
-                ClientesTable.update(c, id, function (a) {
-                    StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
-                    loadClientes();
-                    GoogleApiFactory.buscaEndereco(c, function (cliente) {
-                        c.latitude = cliente.latitude;
-                        c.longitude = cliente.longitude;
-                        c.cep = cliente.cep;
-                        c.endereco = cliente.endereco;
-                        //c.bairro = cliente.bairro;
-                        ClientesTable.update({
-                            latitude: c.latitude,
-                            longitude: c.longitude,
-                            cep: c.cep,
-                            //endereco: c.endereco,
-                            //bairro: c.bairro,
-                            status: 2
-                        }, c.id, function (a) {
-                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
-                            $rootScope.atualizarPDV();
-                            ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso', function (r) {
-                                $state.go('app.cliente', {id: $scope.cliente.id});
-                            });
+                GoogleApiFactory.buscaEndereco(c, function (cliente) {
+                    c.latitude = cliente.latitude;
+                    c.longitude = cliente.longitude;
+                    c.cep = cliente.cep;
+                    c.endereco = cliente.endereco;
+                    c.status = 2;
+                    //c.bairro = cliente.bairro;
+                    ClientesTable.replace(c, function (a) {
+                        StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                        $rootScope.atualizarPDV();
+                        loadClientes();
+                        ValidacaoModuloFactory.alert('Dados do cliente alterados com sucesso.', 'Sucesso', function (r) {
+                            $state.go('app.cliente', {id: $scope.cliente.id});
                         });
                     });
                 });
             }
+
 
         });
