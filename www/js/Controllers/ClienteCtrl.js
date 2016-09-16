@@ -17,27 +17,6 @@ angular.module('starter')
                     LoadModuloFactory.show();
                     StorageModuloFactory.local.delete(StorageModuloFactory.enum.pdvAtivo);
                     StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, cliente);
-                    /*var tipo = '';
-                     if ($scope.tipo_formulario === 1) {
-                     tipo = 'Rota BAM';
-                     } else if ($scope.tipo_formulario === 2) {
-                     tipo = 'Programa de Mercado - RAC';
-                     } else if ($scope.tipo_formulario === 3) {
-                     tipo = 'Ativação 52 Semanas';
-                     }
-                     CheckinTable.insert({
-                     usuario_id: null,
-                     cliente_id: cliente.id,
-                     status: 1,
-                     tipo: tipo,
-                     data: moment(new Date).format('YYYY-MM-DD'),
-                     latitude: null,
-                     longitude: null,
-                     modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
-                     created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
-                     }, function (a) {
-                     
-                     });*/
 
                     LoadModuloFactory.hide();
                     if ($scope.tipo_formulario === 1) {
@@ -73,20 +52,15 @@ angular.module('starter')
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, result);
                 LoadModuloFactory.hide();
 
-                //if (!ValidacaoModuloFactory.isNotNull(result.latitude) || !ValidacaoModuloFactory.isNotNull(result.longitude)) {
                 GoogleApiFactory.buscaEndereco(result, function (cliente) {
                     if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
                         result.latitude = cliente.latitude;
                         result.longitude = cliente.longitude;
                         result.cep = cliente.cep;
-                        //result.endereco = cliente.endereco;
-                        //result.bairro = cliente.bairro;
                         ClientesTable.update({
                             latitude: result.latitude,
                             longitude: result.longitude,
                             cep: result.cep,
-                            //endereco: result.endereco,
-                            //bairro: result.bairro,
                             status: 2
                         }, result.id, function (a) {
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
@@ -95,17 +69,13 @@ angular.module('starter')
                         });
                     } else {
                         $scope.show_mapa = 0;
-                        //ValidacaoModuloFactory.alert('Não foi possivel carregar o mapa.');
                     }
                 });
-                /*} else {
-                 LoadModuloFactory.mapa(result, $scope);
-                 }*/
             });
         })
 
 
-        .controller('ClienteEditCtrl', function ($rootScope, GoogleApiFactory, StorageModuloFactory, CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
+        .controller('ClienteEditCtrl', function (FileModuloFactory, $rootScope, GoogleApiFactory, StorageModuloFactory, CameraModuloFactory, FotosCamerasTable, CepApiFactory, ValidacaoModuloFactory, $scope, $stateParams, ClientesTable, ExtraModuloFactory, LoadModuloFactory, $ionicActionSheet, $timeout, $state) {
             $scope.cliente = {};
             var loadClientes = function () {
                 ClientesTable.first(
@@ -135,16 +105,13 @@ angular.module('starter')
                 }
             }
 
-            // Triggered on a button click, or some other target
             $scope.tirarFoto = function () {
 
-                // Show the action sheet
                 var hideSheet = $ionicActionSheet.show({
                     buttons: [
                         {text: '<i class="fa fa-camera"></i> Tirar nova foto'},
                         {text: '<i class="fa fa-photo"></i> Escolher na Galeria'}
                     ],
-                    //destructiveText: 'Delete',
                     titleText: 'Modifique a foto do PDV',
                     cancelText: 'Cancelar',
                     cancel: function () {
@@ -153,7 +120,7 @@ angular.module('starter')
                     buttonClicked: function (index) {
                         switch (index) {
                             case 0:
-                                CameraModuloFactory.capturarFoto(function (img) {
+                                CameraModuloFactory.capturarFotoFile(function (img) {
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
@@ -163,16 +130,18 @@ angular.module('starter')
                                             imagem: img
                                         },
                                                 function (retorno) {
-                                                    $scope.cliente.url = img;
-                                                    $scope.cliente.foto = 'img';
-                                                    LoadModuloFactory.hide();
+                                                    FileModuloFactory.asUrl(img, function (retImagem) {
+                                                        $scope.cliente.url = retImagem;
+                                                        $scope.cliente.foto = 'img';
+                                                        LoadModuloFactory.hide();
+                                                    });
                                                 }
                                         );
                                     }
                                 });
                                 break;
                             case 1:
-                                CameraModuloFactory.selecionarFoto(function (img) {
+                                CameraModuloFactory.selecionarFotoFile(function (img) {
                                     if (img !== null) {
                                         LoadModuloFactory.show();
                                         FotosCamerasTable.save({
@@ -182,9 +151,11 @@ angular.module('starter')
                                             imagem: img
                                         },
                                                 function (retorno) {
-                                                    $scope.cliente.url = img;
-                                                    $scope.cliente.foto = 'img';
-                                                    LoadModuloFactory.hide();
+                                                    FileModuloFactory.asUrl(img, function (retImagem) {
+                                                        $scope.cliente.url = retImagem;
+                                                        $scope.cliente.foto = 'img';
+                                                        LoadModuloFactory.hide();
+                                                    });
                                                 }
                                         );
                                     }
@@ -214,7 +185,6 @@ angular.module('starter')
                     c.cep = cliente.cep;
                     c.endereco = cliente.endereco;
                     c.status = 2;
-                    //c.bairro = cliente.bairro;
                     ClientesTable.replace(c, function (a) {
                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                         $rootScope.atualizarPDV();

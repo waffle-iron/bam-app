@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-device-motion",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Cordova Device Motion Plugin",
   "cordova": {
     "id": "cordova-plugin-device-motion",
@@ -47,6 +47,13 @@
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
   "devDependencies": {
     "jshint": "^2.6.0"
   }

@@ -60,12 +60,6 @@ angular.module('starter')
                     atualizado: 0,
                     concluido: false
                 },
-                produtos_clientes: {
-                    nome: 'Produtos Clientes',
-                    baixado: 0,
-                    atualizado: 0,
-                    concluido: false
-                },
                 formularios_campos: {
                     nome: 'Formularios Campos',
                     baixado: 0,

@@ -36,6 +36,29 @@ angular.module('starter')
                         TableModuloFactory.save('checkin', options, retorno, forceCreate);
                     });
                 };
+
+                services.save2 = function (options, retorno) {
+                    services.first({where: 'usuario_id = "' + options.usuario_id + '" AND cliente_id = "' + options.cliente_id + '" AND tipo = "' + options.tipo + '"'}, function (res) {
+                        var forceCreate = true;
+                        options = angular.merge({
+                            id: null,
+                            usuario_id: null,
+                            cliente_id: null,
+                            status: null,
+                            tipo: null,
+                            data: null,
+                            latitude: null,
+                            longitude: null,
+                            modified: null,
+                            created: null
+                        }, options);
+                        if (res !== null) {
+                            options.id = res.id;
+                            forceCreate = false;
+                        }
+                        TableModuloFactory.save('checkin', options, retorno, forceCreate);
+                    });
+                };
                 services.all = function (options, retorno) {
                     TableModuloFactory.all('checkin', options, retorno);
                 };

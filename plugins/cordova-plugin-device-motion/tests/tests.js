@@ -24,8 +24,8 @@
 
 exports.defineAutoTests = function () {
     var isWindows = (cordova.platformId === "windows") || (cordova.platformId === "windows8"),
-     // Checking existence of accelerometer for windows platform 
-     // Assumed that accelerometer always exists on other platforms. Extend 
+     // Checking existence of accelerometer for windows platform
+     // Assumed that accelerometer always exists on other platforms. Extend
      // condition to support accelerometer check on other platforms
      isAccelExist = isWindows ? Windows.Devices.Sensors.Accelerometer.getDefault() !== null : true;
 
@@ -123,8 +123,13 @@ exports.defineAutoTests = function () {
     describe("watchAcceleration", function() {
       var id;
 
-      afterEach(function() {
-          navigator.accelerometer.clearWatch(id);
+      afterEach(function(done) {
+          if (id) {
+            navigator.accelerometer.clearWatch(id);
+          }
+          // clearWatch implementation is async but doesn't accept a cllback
+          // so let's give it some time before starting next spec
+          setTimeout(done, 100);
       });
 
       it("accelerometer.spec.6 should exist", function() {
@@ -287,6 +292,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
+            document.getElementById('t').innerHTML = a.timestamp;
         };
 
         // Fail callback
@@ -318,6 +324,7 @@ exports.defineManualTests = function (contentEl, createActionButton) {
             document.getElementById('x').innerHTML = roundNumber(a.x);
             document.getElementById('y').innerHTML = roundNumber(a.y);
             document.getElementById('z').innerHTML = roundNumber(a.z);
+            document.getElementById('t').innerHTML = a.timestamp;
             console.log("getAccel success callback");
         };
 
@@ -344,9 +351,10 @@ exports.defineManualTests = function (contentEl, createActionButton) {
     contentEl.innerHTML = '<div id="info">' +
         'Status: <span id="accel_status">Stopped</span>' +
         '<table width="100%">' +
-        '<tr><td width="20%">X:</td><td id="x"> </td></tr>' +
-        '<tr><td width="20%">Y:</td><td id="y"> </td></tr>' +
-        '<tr><td width="20%">Z:</td><td id="z"> </td></tr>' +
+        '<tr><td width="30%">X:</td><td id="x"> </td></tr>' +
+        '<tr><td width="30%">Y:</td><td id="y"> </td></tr>' +
+        '<tr><td width="30%">Z:</td><td id="z"> </td></tr>' +
+        '<tr><td width="30%">Timestamp:</td><td id="t"> </td></tr>' +
         '</table></div>' +
         accelerometer_tests;
 

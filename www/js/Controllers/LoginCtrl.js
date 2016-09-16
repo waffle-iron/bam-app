@@ -90,6 +90,10 @@ angular.module('starter')
                 login: null,
                 senha: null
             };
+            
+            $scope.input_type = 'password';
+            
+           
 
             if (ValidacaoModuloFactory.isNotNull(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user))) {
                 LoadModuloFactory.show();
@@ -131,5 +135,13 @@ angular.module('starter')
                     });
                 }
             };
+            
+             $scope.mudarInputType = function(){
+                if($scope.input_type === 'password'){
+                    $scope.input_type = 'text';
+                } else {
+                    $scope.input_type = 'password';
+                }
+            }
 
         });

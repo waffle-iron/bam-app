@@ -20,11 +20,17 @@
 -->
 # Release Notes
 
+### 1.0.4 (Sep 08, 2016)
+* [CB-11795](https://issues.apache.org/jira/browse/CB-11795) Add 'protective' entry to cordovaDependencies
+* Add badges for paramedic builds on Jenkins
+* Add pull request template.
+* [CB-10996](https://issues.apache.org/jira/browse/CB-10996) Adding front matter to README.md
+
 ### 1.0.3 (Mar 09, 2016)
-* CB-10792 -Cannot install cordova-plugin-globalization with cordova-windows on Ubuntu
-* CB-10636 Add JSHint for plugins
+* [CB-10792](https://issues.apache.org/jira/browse/CB-10792) -Cannot install cordova-plugin-globalization with cordova-windows on Ubuntu
+* [CB-10636](https://issues.apache.org/jira/browse/CB-10636) Add JSHint for plugins
 * Minor changes to readme
-* CB-10605 fix deprecation warnings on ** iOS **
+* [CB-10605](https://issues.apache.org/jira/browse/CB-10605) fix deprecation warnings on **iOS**
 * chore: edit package.json license to match SPDX id
 
 ### 1.0.2 (Nov 18, 2015)

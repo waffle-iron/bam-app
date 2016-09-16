@@ -66,7 +66,7 @@ angular.module('starter')
                 };
 
                 $scope.confirmar = function () {
-                    CheckinTable.insert({
+                    CheckinTable.save2({
                         usuario_id: $scope.user.id,
                         cliente_id: $scope.cliente.id,
                         status: 1,
@@ -94,7 +94,7 @@ angular.module('starter')
                             });
                         }
                     });
-                }
+                };
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);

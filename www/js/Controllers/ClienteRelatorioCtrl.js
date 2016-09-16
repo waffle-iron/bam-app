@@ -47,13 +47,17 @@ angular.module('starter')
 
             $scope.isColor = function (value) {
                 if (value.tipo === 'radio') {
-                    if (value.selecionado == 1) {
-                        return 'color-green';
+                    if (value.verdadeiro !== null) {
+                        if (value.selecionado == 1) {
+                            return 'color-green';
+                        } else {
+                            return 'color-red';
+                        }
                     } else {
-                        return 'color-red';
+                        return 'color-grey';
                     }
                 } else {
-                    return 'color-grey';
+                   return 'color-grey';
                 }
             }
 
@@ -71,11 +75,17 @@ angular.module('starter')
 
             $scope.isIcon = function (value) {
                 if (value.tipo === 'radio') {
-                    if (value.selecionado == 1) {
-                        return 'ion-ios-checkmark-outline';
+                    if (value.verdadeiro !== null) {
+                        if (value.selecionado == 1) {
+                            return 'ion-ios-checkmark-outline';
+                        } else {
+                            return 'ion-ios-close-outline';
+                        }
                     } else {
-                        return 'ion-ios-close-outline';
+                        return 'ion-document-text';
                     }
+                } else {
+                    return 'ion-document-text';
                 }
             }
 
@@ -202,15 +212,15 @@ angular.module('starter')
                 $scope.cliente = result;
                 $scope.cliente.url = ExtraModuloFactory.img($scope.cliente);
             });
-            
+
             ClientesApiFactory.detalhesHistorico($stateParams.id, $stateParams.data, $stateParams.tipo, function (resultado) {
-                if(ValidacaoModuloFactory.isOk(resultado.status)){
+                if (ValidacaoModuloFactory.isOk(resultado.status)) {
                     $scope.perguntas = resultado.data.response.result.perguntas;
                     $scope.produtos = resultado.data.response.result.produtos;
-                }else{
-                    ExtraModuloFactory.info($scope,'Não foi localizado nenhum registro nesse Check-in');
+                } else {
+                    ExtraModuloFactory.info($scope, 'Não foi localizado nenhum registro nesse Check-in');
                 }
-                    LoadModuloFactory.hide();
+                LoadModuloFactory.hide();
             })
 
 

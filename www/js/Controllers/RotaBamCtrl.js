@@ -104,6 +104,7 @@ angular.module('starter')
                 };
 
                 $scope.sequencia = function (dados, key) {
+                    $scope.valor_selecionado = '';
                     if ($scope.perguntas.atual >= $scope.perguntas.total) {
                         NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cervejas);
                     }

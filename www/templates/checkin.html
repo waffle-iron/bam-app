@@ -13,9 +13,13 @@
         <div class="padding">
             <p class="title-page text-center m-0">Selecione um PDV abaixo para realizar o Check-in</p>
 
-            <label class="item item-input m-0 padding">
-                <input class="wp-100" type="text" ng-model="filtro_ckeckin" placeholder="Buscar PDV" >
+            <label class="item item-input" style="padding: 2px 10px 0px 2px;">
+                <i class="icon ion-search placeholder-icon"></i>
+                <input type="search" ng-model="filtro_ckeckin" placeholder="Busca de PDV">
             </label>
+
+
+
             <p class="title-page text-right m-0">Total de registros {{clientes.length}}</p>
             <div class="list">
                 <a ng-repeat="(key, value) in clientes | filter:filtro_ckeckin" class="item item-icon-right item-avatar pt-9 pb-9" href="#/app/cliente/{{value.id}}">

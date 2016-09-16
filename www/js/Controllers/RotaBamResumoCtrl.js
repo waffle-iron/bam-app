@@ -53,7 +53,7 @@ angular.module('starter')
                 loadRespostas();
 
                 $scope.confirmar = function () {
-                    CheckinTable.insert({
+                    CheckinTable.save2({
                         usuario_id: $scope.user.id,
                         cliente_id: $scope.cliente,
                         status: 1,

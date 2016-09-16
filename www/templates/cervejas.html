@@ -38,12 +38,17 @@
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">{{titulos}}</h4>
 
+                    <label class="item item-input" style="padding: 2px 10px 0px 2px;">
+                        <i class="icon ion-search placeholder-icon"></i>
+                        <input type="search" ng-model="filtro_ckeckin" placeholder="Busca de Produtos">
+                    </label>
+
                     <label class="item item-input m-0" style="position: relative; border-bottom: 1px solid #efe8e8; background: #fff; border:none;">
                         <span class="input-label col table-pad p-10">&nbsp;</span>
                         <span class="input-label col table-pad table-h" style="text-align: right; position: absolute; right: 0px; border: none; width: 35%; height: 50px;">Valor R$</span>
                     </label>
 
-                    <label class="item item-input m-0" ng-repeat="(key, value) in produtos_3">
+                    <label class="item item-input m-0" ng-repeat="(key, value) in produtos_3 | filter:filtro_ckeckin">
                         <span class="input-label p-10" style="display: inline-block;">{{value.nome}}</span>
                         <!-- input type="number" string-to-number class="text-right p-10 h-50" ng-model="value.produto_valor" value="{{value.valor| inputMoeda}}" ng-blur="atualizar(value)" -->
                         <input type="text" fcsa-number="{ maxDecimals: 2, preventInvalidInput: true }" class="text-right p-10 h-50" ng-model="value.produto_valor" placeholder="0.00" ng-blur="atualizar(value)">
@@ -53,7 +58,7 @@
                         <button class="button button-block button-positive m-0" ng-click="salvar()"><i class="fa fa-check-circle" aria-hidden="true"></i> Salvar</button>
                     </div>
                 </div>
-                <button class="button button-block button-stable m-0" ng-click="busca(0, 1, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
+                <button class="button button-block button-stable m-0" ng-click="busca(id_pai_selecionado, 2, false)"><i class="ion-android-arrow-back" aria-hidden="true"></i> Voltar</button>
             </div>
         </div>
 

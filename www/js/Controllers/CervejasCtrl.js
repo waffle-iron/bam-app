@@ -9,6 +9,7 @@ angular.module('starter')
                 $scope.produtos_2 = [];
                 $scope.produtos_3 = [];
                 $scope.produto_valor = null;
+                $scope.id_pai_selecionado = 0;
                 $scope.ativos = {
                     produtos_1: 1,
                     produtos_2: 0,
@@ -37,6 +38,7 @@ angular.module('starter')
                         });
                     }
                     if (valores !== true) {
+                        $scope.id_pai_selecionado = id_pai;
                         ProdutosTable.all({
                             where: 'id_pai = ' + id_pai
                         }, function (ret) {

@@ -22,12 +22,14 @@
                         <input type="text" placeholder="Login" ng-model="user.login">
                     </label>
                     <label class="item item-input input-border">
-                        <input type="password" placeholder="Senha" ng-model="user.senha">
+                        <input type="{{input_type}}" placeholder="Senha" ng-model="user.senha">
                     </label>
+                    <button type="button" class="button btn-purple button-small" style="height: 40px; position: absolute; right: 6px; width: 40px; top: 55px; z-index: 999" ng-click="mudarInputType()"><i class="fa fa-eye"></i></button>
                 </div>
                 <button type="submit" class="button button-full btn-purple input-border">
                     <i class="fa fa-sign-in" aria-hidden="true"></i> Entrar
                 </button>
+                
             </form>
         </div>
         

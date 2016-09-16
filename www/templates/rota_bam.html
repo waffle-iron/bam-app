@@ -48,12 +48,12 @@
                         <div class="clearfix"></div>
 
                         <div ng-if="value.tipo === 'text'" style="width: 100%">
-                            <input type="text" class="text-form" name="seq_text_{{value.id}}" ng-model="valor_selecionado" value="{{value.valor}}" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta">
+                            <input type="text" class="text-form" name="seq_text_{{value.id}}" ng-model="valor_selecionado" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta">
                         </div>
                         <div class="clearfix"></div>
 
                         <div ng-if="value.tipo === 'textarea'" style="width: 100%">
-                            <textarea ng-model="valor_selecionado" name="seq_textarea_{{value.id}}" rows="8" class="text-form" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta">{{value.valor}}</textarea>
+                            <textarea ng-model="valor_selecionado" name="seq_textarea_{{value.id}}" rows="8" class="text-form" ng-change="atualizar(value, valor_selecionado)" placeholder="Descreva aqui sua resposta"></textarea>
                         </div>
                         <div class="clearfix"></div>
 

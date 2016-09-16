@@ -18,7 +18,7 @@
                 <div ng-if="dados.respostas.length > 1">
                     <div ng-repeat="(key, value) in dados.respostas">
                         <div class="item item-text-wrap row">
-                            <div ng-if="isIcon(value)" class="col-25 padding-top padding-bottom">
+                            <div class="col-25 padding-top padding-bottom">
                                 <div class="icon-rel text-center">
                                     <i class="{{isIcon(value)}} {{isColor(value)}}"></i>
                                 </div>
@@ -31,7 +31,11 @@
                     </div>
                 </div>
                 <div class="text-right" ng-if="dados.respostas.length < 1">
-                    Nenhum registro localizado.
+                    <div class="list padding pl-0 pr-0">
+                        <div class="item item-text-wrap item-calm text-center bordas">
+                            Nenhum registro localizado.
+                        </div>
+                    </div>.
                 </div>
             </div>
 
@@ -71,7 +75,11 @@
 
                 </div>
                 <div class="text-right" ng-if="dados.certificacoes.length < 1">
-                    Nenhum registro localizado.
+                    <div class="list padding pl-0 pr-0">
+                        <div class="item item-text-wrap item-calm text-center bordas">
+                            Nenhum registro localizado.
+                        </div>
+                    </div>.
                 </div>
             </div>
 
@@ -145,7 +153,11 @@
                     </div>
                 </div>
                 <div class="text-right" ng-if="dados.historicos.length < 1">
-                    Nenhum registro localizado.
+                    <div class="list padding pl-0 pr-0">
+                        <div class="item item-text-wrap item-calm text-center bordas">
+                            Nenhum registro localizado.
+                        </div>
+                    </div>.
                 </div>
             </div>
         </div>

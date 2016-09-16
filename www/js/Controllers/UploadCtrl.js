@@ -57,11 +57,11 @@ angular.module('starter')
             };
 
             var convertData = function (data) {
-                if (ValidacaoModuloFactory.isNotNull(data)) {
-                    return moment(data).format('YYYY-MM-DD HH:mm:ss');
-                } else {
-                    return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-                }
+                //if (ValidacaoModuloFactory.isNotNull(data)) {
+                //     return moment(data).format('YYYY-MM-DD HH:mm:ss');
+                // } else {
+                return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+                // }
             };
 
             var _ocorrencias = function () {
@@ -78,8 +78,8 @@ angular.module('starter')
                                         tipo: null,
                                         tabela: null,
                                         id_referencia: null,
-                                        modified: convertData(v.modified),
-                                        created: convertData(v.created)
+                                        modified: convertData(new Date()),
+                                        created: convertData(new Date())
                                     }, function (retorno) {
                                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                     OcorrenciasTable.delete('id', v.id, function (exc) {
@@ -116,7 +116,7 @@ angular.module('starter')
                                 cliente_id: v.cliente_id,
                                 usuario_id: v.usuario_id,
                                 modified: convertData(new Date()),
-                                created: convertData(v.created)
+                                created: convertData(new Date())
                             }, function (retorno) {
                                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                     FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
@@ -176,7 +176,7 @@ angular.module('starter')
                                 imagem: imagem,
                                 status: v.status,
                                 modified: convertData(new Date()),
-                                created: convertData(v.created)
+                                created: convertData(new Date())
                             }, function (retorno) {
                                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                     FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
@@ -232,7 +232,7 @@ angular.module('starter')
                                 status: v.status,
                                 valor: v.valor,
                                 modified: convertData(new Date()),
-                                created: convertData(v.created)
+                                created: convertData(new Date())
                             }, function (retorno) {
                                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                     ProdutosClientesTable.update({status: 2}, v.id, function (exc) {
@@ -263,7 +263,7 @@ angular.module('starter')
                             $scope.sincronizacao.checkin.enviado++;
                             v.data = moment(new Date()).format('YYYY-MM-DD');
                             v.modified = convertData(new Date());
-                            v.created = convertData(v.created);
+                            v.created = convertData(new Date());
                             CheckinApiFactory.add(v, function (retorno) {
                                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                     CheckinTable.delete('id', v.id, function (exc) {
@@ -295,26 +295,22 @@ angular.module('starter')
                             _v.id = _v.id_integracao;
                             _v.status = 1;
                             _v.modified = convertData(new Date());
-                            _v.created = convertData(_v.created);
+                            _v.created = convertData(new Date());
                             delete v.url;
                             delete v.foto;
                             ClientesApiFactory.edit(v.id_integracao, _v, function (retorno) {
-                                console.log('Cliente envio');
-                                console.log(JSON.stringify(retorno));
-                                //if (ValidacaoModuloFactory.isOk(retorno.status)) {
                                 _v.status = 1;
                                 ClientesTable.replace(_v, function (exc) {
                                     FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + _v.id}, function (retornoFotosCameras) {
-                                         console.log('Foto Cliente envio');
-                                         console.log(JSON.stringify(retornoFotosCameras));
                                         if (retornoFotosCameras !== null) {
                                             angular.forEach(retornoFotosCameras, function (value, key) {
-                                                ClientesApiFactory.uploadImage(_v.id, value.imagem, function (ret) {
-                                                    console.log(JSON.stringify(ret));
-                                                    FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
-                                                        $scope.sincronizacao.clientes.atualizado++;
-                                                        $scope._sincronizacao.geral.atualizado++;
-                                                        _clientes();
+                                                FileModuloFactory.upload('clientes/upload.json', value.imagem, {params: {id: _v.id}}, function (ret) {
+                                                    FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                                                        FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                                            $scope.sincronizacao.clientes.atualizado++;
+                                                            $scope._sincronizacao.geral.atualizado++;
+                                                            _clientes();
+                                                        });
                                                     });
                                                 });
                                             });
@@ -325,14 +321,11 @@ angular.module('starter')
                                         }
                                     });
                                 });
-                                //} else {
-                                //    _clientes();
-                                //}
                             });
                         });
                     }
                 });
-            }
+            };
 
             ClientesTable.all({where: 'status > 1'}, function (dados) {
                 $scope.sincronizacao.clientes.start = true;
