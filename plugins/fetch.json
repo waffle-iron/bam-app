@@ -45,7 +45,7 @@
     "cordova-plugin-globalization": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-globalization@~1.0.3"
+            "id": "cordova-plugin-globalization@~1.0.4"
         },
         "is_top_level": true,
         "variables": {}
@@ -61,7 +61,7 @@
     "cordova-plugin-file": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file@~4.2.0"
+            "id": "cordova-plugin-file@~4.3.0"
         },
         "is_top_level": true,
         "variables": {}
@@ -85,7 +85,7 @@
     "cordova-plugin-device-orientation": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device-orientation@~1.0.3"
+            "id": "cordova-plugin-device-orientation@~1.0.4"
         },
         "is_top_level": true,
         "variables": {}
@@ -93,7 +93,7 @@
     "cordova-plugin-device": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device@~1.1.2"
+            "id": "cordova-plugin-device@~1.1.3"
         },
         "is_top_level": true,
         "variables": {}
@@ -125,7 +125,7 @@
     "cordova-plugin-device-motion": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-device-motion@~1.2.1"
+            "id": "cordova-plugin-device-motion@~1.2.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -149,7 +149,7 @@
     "cordova-plugin-vibration": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-vibration@~2.1.1"
+            "id": "cordova-plugin-vibration@~2.1.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -165,7 +165,7 @@
     "cordova-plugin-console": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-console@~1.0.3"
+            "id": "cordova-plugin-console@~1.0.4"
         },
         "is_top_level": true,
         "variables": {}

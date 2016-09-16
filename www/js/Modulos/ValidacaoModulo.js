@@ -18,6 +18,10 @@ angular.module('starter')
                     services.isOk = function (status) {
                         return (services.is('OK', status) || services.is('CREATE', status) || services.is('PARCIAL', status));
                     };
+                    
+                    services.isSuccess = function (status) {
+                        return (services.is('OK', status) || services.is('CREATE', status) || services.is('PARCIAL', status) || services.is('NOT', status));
+                    };
 
                     services.isCreate = function (status) {
                         return services.is('CREATE', status);

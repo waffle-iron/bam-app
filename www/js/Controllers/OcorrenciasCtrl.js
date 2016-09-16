@@ -46,11 +46,17 @@ angular.module('starter')
                         $scope.ocorrencias.push(v);
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
+                    LoadModuloFactory.hide();
+                } else if (ValidacaoModuloFactory.isNot(retorno.status)) {
+                    $scope.proximo = true;
+                    ExtraModuloFactory.error($scope, 'Nenhuma ocorrências localizada.');
+                    LoadModuloFactory.hide();
                 } else {
+                    LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.error($scope, 'Nenhuma ocorrência localizada.');
+                    ExtraModuloFactory.error($scope, 'Nenhuma ocorrências localizada.');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-                LoadModuloFactory.hide();
             }
 
             $scope.color = function (key) {

@@ -26,10 +26,14 @@ angular.module('starter')
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                     LoadModuloFactory.hide();
+                } else if (ValidacaoModuloFactory.isNot(retorno.status)) {
+                    $scope.proximo = true;
+                    ExtraModuloFactory.error($scope, 'Nenhuma notificações localizada.');
+                    LoadModuloFactory.hide();
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
-                    ExtraModuloFactory.error($scope, 'Nenhuma notificação localizada.');
+                    ExtraModuloFactory.error($scope, 'Nenhuma notificações localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
 

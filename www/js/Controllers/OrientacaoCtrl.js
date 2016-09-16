@@ -22,13 +22,16 @@ angular.module('starter')
                     });
                     $scope.$broadcast('scroll.infiniteScrollComplete');
                     LoadModuloFactory.hide();
+                } else if (ValidacaoModuloFactory.isNot(retorno.status)) {
+                    $scope.proximo = true;
+                    ExtraModuloFactory.error($scope, 'Nenhuma orientação localizada.');
+                    LoadModuloFactory.hide();
                 } else {
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.error($scope, 'Nenhuma orientação localizada.');
                     ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
                 }
-
             }
 
             $scope.color = function (key) {

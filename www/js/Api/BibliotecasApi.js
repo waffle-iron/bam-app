@@ -6,13 +6,13 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        nome: '',
-                        descricao: '',
-                        tipo: '',
+                        id: null,
+                        nome: null,
+                        descricao: null,
+                        tipo: null,
                         status: 1,
-                        modified: '',
-                        created: ''
+                        modified: null,
+                        created: null
                     }, options);
                     RequestModuloFactory.get('bibliotecas/index.json', options, function (response) {
                         retorno(response);
