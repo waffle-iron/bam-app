@@ -68,6 +68,7 @@ angular.module('starter')
                 OcorrenciasTable.all({limit: 1}, function (dados) {
                     if (dados !== null) {
                         angular.forEach(dados, function (v, k) {
+                            $scope._sincronizacao.geral.enviado++;
                             $scope.sincronizacao.ocorrencias.enviado++;
                             OcorrenciasApiFactory.add(
                                     {
@@ -97,7 +98,7 @@ angular.module('starter')
             OcorrenciasTable.all({}, function (dados) {
                 $scope.sincronizacao.ocorrencias.start = true;
                 if (dados !== null) {
-                    $scope._sincronizacao.geral.enviado += dados.length;
+
                     _ocorrencias();
                 }
             });
@@ -107,6 +108,7 @@ angular.module('starter')
                     $scope.sincronizacao.ativacao_52.start = true;
                     if (dados !== null) {
                         angular.forEach(dados, function (v, k) {
+                            $scope._sincronizacao.geral.enviado++;
                             $scope.sincronizacao.ativacao_52.enviado++;
                             Ativacao52ApiFactory.add({
                                 evento: v.evento,
@@ -154,7 +156,7 @@ angular.module('starter')
             Ativacao52Table.all({}, function (dados) {
                 $scope.sincronizacao.ativacao_52.start = true;
                 if (dados !== null) {
-                    $scope._sincronizacao.geral.enviado += dados.length;
+
                     _ativavao52semanas();
                 }
             });
@@ -163,6 +165,7 @@ angular.module('starter')
                 FormulariosCamposValoresTable.all({limit: 1}, function (dados) {
                     if (dados !== null) {
                         angular.forEach(dados, function (v, k) {
+                            $scope._sincronizacao.geral.enviado++;
                             $scope.sincronizacao.formularios_campos_valores.enviado++;
 
                             var imagem = StorageModuloFactory.local.get('foto.' + v.id, null);
@@ -215,7 +218,7 @@ angular.module('starter')
             FormulariosCamposValoresTable.all({}, function (dados) {
                 $scope.sincronizacao.formularios_campos_valores.start = true;
                 if (dados !== null) {
-                    $scope._sincronizacao.geral.enviado += dados.length;
+
                     _formulariosCamposValores();
                 }
             });
@@ -224,12 +227,13 @@ angular.module('starter')
                 ProdutosClientesTable.all({where: 'status != 2', limit: 1}, function (dados) {
                     if (dados !== null) {
                         angular.forEach(dados, function (v, k) {
+                            $scope._sincronizacao.geral.enviado++;
                             $scope.sincronizacao.produtos_clientes.enviado++;
                             ProdutosClientesApiFactory.add({
                                 cliente_id: v.cliente_id,
                                 usuario_id: $scope.user.id,
                                 produto_id: v.produto_id,
-                                status: v.status,
+                                //status: v.status,
                                 valor: v.valor,
                                 modified: convertData(new Date()),
                                 created: convertData(new Date())
@@ -240,6 +244,9 @@ angular.module('starter')
                                         $scope._sincronizacao.geral.atualizado++;
                                         _produtosClientes();
                                     });
+                                } else {
+                                    $scope.sincronizacao.produtos_clientes.atualizado++;
+                                    $scope._sincronizacao.geral.atualizado++;
                                 }
                             });
                         });
@@ -251,7 +258,7 @@ angular.module('starter')
             ProdutosClientesTable.all({where: 'status != 2'}, function (dados) {
                 $scope.sincronizacao.produtos_clientes.start = true;
                 if (dados !== null) {
-                    $scope._sincronizacao.geral.enviado += dados.length;
+
                     _produtosClientes();
                 }
             });
@@ -260,6 +267,7 @@ angular.module('starter')
                 CheckinTable.all({limit: 1}, function (dados) {
                     if (dados !== null) {
                         angular.forEach(dados, function (v, k) {
+                            $scope._sincronizacao.geral.enviado++;
                             $scope.sincronizacao.checkin.enviado++;
                             v.data = moment(new Date()).format('YYYY-MM-DD');
                             v.modified = convertData(new Date());
@@ -281,7 +289,7 @@ angular.module('starter')
             CheckinTable.all({}, function (dados) {
                 $scope.sincronizacao.checkin.start = true;
                 if (dados !== null) {
-                    $scope._sincronizacao.geral.enviado += dados.length;
+
                     _checkin();
                 }
             });

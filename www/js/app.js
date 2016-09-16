@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         .constant('Config', {
             url: 'http://45.55.69.61/bam/',
             api: 'api/',
-            versaoApp: '01.00.12',
+            versaoApp: '01.00.14',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             $ionicConfigProvider.backButton.previousTitleText(false);
             $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
             if (ionic.Platform.isAndroid()) {
-                $ionicConfigProvider.scrolling.jsScrolling(true);
+                //$ionicConfigProvider.scrolling.jsScrolling(true);
             }
             $ionicConfigProvider.views.forwardCache(false);
             $ionicConfigProvider.views.maxCache(0);

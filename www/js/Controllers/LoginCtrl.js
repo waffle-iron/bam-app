@@ -1,8 +1,11 @@
 angular.module('starter')
 
-        .controller('LoginCtrl', function ($rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
+        .controller('LoginCtrl', function ($ionicSideMenuDelegate, $rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
                 CheckinTable, ClientesTable, CidadesTable, EstadosTable, ProgramasTable, OcorrenciasTable, ProdutosTable, ProdutosClientesTable, Ativacao52Table,
                 FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable) {
+
+
+            $ionicSideMenuDelegate.canDragContent(false);
 
             var redirecionar = function () {
                 ClientesTable.create(function (e) {
@@ -90,10 +93,10 @@ angular.module('starter')
                 login: null,
                 senha: null
             };
-            
+
             $scope.input_type = 'password';
-            
-           
+
+
 
             if (ValidacaoModuloFactory.isNotNull(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user))) {
                 LoadModuloFactory.show();
@@ -135,9 +138,9 @@ angular.module('starter')
                     });
                 }
             };
-            
-             $scope.mudarInputType = function(){
-                if($scope.input_type === 'password'){
+
+            $scope.mudarInputType = function () {
+                if ($scope.input_type === 'password') {
                     $scope.input_type = 'text';
                 } else {
                     $scope.input_type = 'password';
