@@ -55,7 +55,7 @@ angular.module('starter')
                 $scope.confirmar = function () {
                     CheckinTable.save2({
                         usuario_id: $scope.user.id,
-                        cliente_id: $scope.cliente,
+                        cliente_id: $scope.cliente.id,
                         status: 1,
                         tipo: 'Rota BAM',
                         data: moment(new Date).format('YYYY-MM-DD'),
@@ -72,14 +72,8 @@ angular.module('starter')
 
                 var listasFotos = function (value) {
                     LoadModuloFactory.show();
-                    console.log('----------');
-                    console.log('lista');
-                    console.log(JSON.stringify(value));
                     value = angular.merge({imagens: []}, value);
-                    console.log(JSON.stringify(value));
                     FotosCamerasTable.all({where: 'tabela = "FormulariosCamposValoresTable" AND id_referencia = ' + value.fcv_id}, function (ret) {
-                        console.log('lista dados imagens');
-                        console.log(JSON.stringify(ret));
                         if (ret !== null) {
                             var total = (ret.length - 1);
                             var i = 0;
@@ -99,8 +93,6 @@ angular.module('starter')
                 };
 
                 var __saveFotoArray = function (value) {
-                    console.log('lista com passagem de imagens');
-                    console.log(JSON.stringify(value));
                     $scope.formularios_respostas.push({
                         nome: value.nome,
                         subtitulo: value.subtitulo,

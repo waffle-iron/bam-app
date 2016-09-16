@@ -8,12 +8,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         .constant('Config', {
             url: 'http://45.55.69.61/bam/',
             api: 'api/',
-            versaoApp: '01.00.14',
+            versaoApp: '01.00.15',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
             database: 'bam',
-            debug: true,
+            debug: false,
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
@@ -53,7 +53,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             $ionicConfigProvider.backButton.previousTitleText(false);
             $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
             if (ionic.Platform.isAndroid()) {
-                //$ionicConfigProvider.scrolling.jsScrolling(true);
+                $ionicConfigProvider.scrolling.jsScrolling(true);
             }
             $ionicConfigProvider.views.forwardCache(false);
             $ionicConfigProvider.views.maxCache(0);

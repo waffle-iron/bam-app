@@ -89,7 +89,15 @@ angular.module('starter')
 
                 services.debug = function (val) {
                     if (Config.debug === true) {
-                        console.log(val);
+                        if (Config.debug === true) {
+                            if (angular.isObject(val) !== null) {
+                                console.log(JSON.stringify(val));
+                            } else if (angular.isArray(val) !== null) {
+                                console.log(JSON.stringify(val));
+                            } else {
+                                console.log(val);
+                            }
+                        }
                     }
                 };
                 return services;
