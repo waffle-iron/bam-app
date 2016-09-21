@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-battery-status",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Cordova Battery Plugin",
   "cordova": {
     "id": "cordova-plugin-battery-status",
@@ -40,6 +40,13 @@
   },
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
+  "engines": {
+    "cordovaDependencies": {
+      "2.0.0": {
+        "cordova": ">100"
+      }
+    }
+  },
   "devDependencies": {
     "jshint": "^2.6.0"
   }

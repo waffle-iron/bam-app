@@ -41,9 +41,9 @@ angular.module('starter')
 
             ClientesTable.first(
                     {
-                        from: 'c.*, cd.cidade, e.estado',
+                        from: 'c.id, c.id_integracao, c.nome, c.foto, c.status, c.latitude, c.longitude, c.cep, c.endereco, c.numero, c.complemento, c.bairro, c.codigo_concatenado, c.programa_id, c.cidade_id, c.estado_id, c.razao_social, c.modified, c.created, c.url, c.sincronizado, c.checkin, cd.cidade, e.estado',
                         alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        join: 'LEFT JOIN cidades as cd ON c.cidade_id = cd.id LEFT JOIN estados as e ON c.estado_id = e.id',
                         where: 'c.id =' + $stateParams.id
                     }, function (result) {
                 $scope.cliente = result;
@@ -82,7 +82,7 @@ angular.module('starter')
                         {
                             from: 'c.*, cd.cidade, e.estado',
                             alias: 'c',
-                            join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                            join: 'LEFT JOIN cidades as cd ON c.cidade_id = cd.id LEFT JOIN estados as e ON c.estado_id = e.id',
                             where: 'c.id =' + $stateParams.id
                         }, function (result) {
                     $scope.cliente = angular.merge($scope.cliente, result);
@@ -185,7 +185,16 @@ angular.module('starter')
                     c.cep = cliente.cep;
                     c.endereco = cliente.endereco;
                     c.status = 2;
-                    ClientesTable.replace(c, function (a) {
+                    ClientesTable.update({
+                        latitude: cliente.latitude,
+                        longitude: cliente.longitude,
+                        cep: cliente.cep,
+                        endereco: cliente.endereco,
+                        numero: cliente.numero,
+                        url: cliente.url,
+                        foto: cliente.foto,
+                        status: 2
+                    }, c.id, function (a) {
                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                         $rootScope.atualizarPDV();
                         loadClientes();

@@ -45,7 +45,7 @@ angular.module('starter')
                         if (options.id !== null) {
                             services.update(table, options, options.id, retorno);
                         } else {
-                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null) {
+                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
                                 delete options.id;
                             }
                             services.insert(table, options, retorno);
@@ -60,8 +60,12 @@ angular.module('starter')
                     angular.forEach(options, function (v, k) {
                         if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k);
-                            //value.push('"' + ValidacaoModuloFactory.trim(v) + '"');
-                            value.push(ValidacaoModuloFactory.trim(v));
+                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                                value.push('');
+                            } else {
+                                value.push(ValidacaoModuloFactory.trim(v));
+                            }
+
                             _value.push('?');
                         }
                     });
@@ -84,8 +88,11 @@ angular.module('starter')
                     angular.forEach(options, function (v, k) {
                         if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k);
-                            //value.push('"' + ValidacaoModuloFactory.trim(v) + '"');
-                            value.push(ValidacaoModuloFactory.trim(v));
+                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                                value.push('');
+                            } else {
+                                value.push(ValidacaoModuloFactory.trim(v));
+                            }
                             _value.push('?');
                         }
                     });
@@ -103,12 +110,13 @@ angular.module('starter')
                     var key = [];
                     var value = [];
                     angular.forEach(options, function (v, k) {
-                        if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
-                            key.push(k + '=?');
-                            value.push(ValidacaoModuloFactory.trim(v));
-                        } else {
+                        if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
                             key.push(k + '=?');
                             value.push(null);
+                        } else {
+                            key.push(k + '=?');
+                            value.push(ValidacaoModuloFactory.trim(v));
+
                         }
                     });
                     var query = "UPDATE " + table + " SET " + key.join(', ') + " WHERE id = '" + id + "'";

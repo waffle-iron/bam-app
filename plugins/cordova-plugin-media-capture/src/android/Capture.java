@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import android.os.Build;
+import android.os.Bundle;
 
 import org.apache.cordova.file.FileUtils;
 import org.apache.cordova.file.LocalFilesystemURL;
@@ -53,7 +54,6 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 
 public class Capture extends CordovaPlugin {
 
@@ -162,7 +162,7 @@ public class Capture extends CordovaPlugin {
         if (mimeType == null || mimeType.equals("") || "null".equals(mimeType)) {
             mimeType = FileHelper.getMimeType(fileUrl, cordova);
         }
-        Log.d(LOG_TAG, "Mime type = " + mimeType);
+        LOG.d(LOG_TAG, "Mime type = " + mimeType);
 
         if (mimeType.equals(IMAGE_JPEG) || filePath.endsWith(".jpg")) {
             obj = getImageData(fileUrl, obj);
@@ -213,7 +213,7 @@ public class Capture extends CordovaPlugin {
                 obj.put("width", player.getVideoWidth());
             }
         } catch (IOException e) {
-            Log.d(LOG_TAG, "Error: loading video file");
+            LOG.d(LOG_TAG, "Error: loading video file");
         }
         return obj;
     }
@@ -222,9 +222,13 @@ public class Capture extends CordovaPlugin {
      * Sets up an intent to capture audio.  Result handled by onActivityResult()
      */
     private void captureAudio(Request req) {
-        Intent intent = new Intent(android.provider.MediaStore.Audio.Media.RECORD_SOUND_ACTION);
+      if (!PermissionHelper.hasPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+          PermissionHelper.requestPermission(this, req.requestCode, Manifest.permission.READ_EXTERNAL_STORAGE);
+      } else {
+          Intent intent = new Intent(android.provider.MediaStore.Audio.Media.RECORD_SOUND_ACTION);
 
-        this.cordova.startActivityForResult((CordovaPlugin) this, intent, req.requestCode);
+          this.cordova.startActivityForResult((CordovaPlugin) this, intent, req.requestCode);
+      }
     }
 
     private String getTempDirectoryPath() {
@@ -602,5 +606,13 @@ public class Capture extends CordovaPlugin {
                 pendingRequests.resolveWithFailure(req, createErrorObject(CAPTURE_PERMISSION_DENIED, "Permission denied."));
             }
         }
+    }
+
+    public Bundle onSaveInstanceState() {
+        return pendingRequests.toBundle();
+    }
+
+    public void onRestoreStateForActivityResult(Bundle state, CallbackContext callbackContext) {
+        pendingRequests.setLastSavedState(state, callbackContext);
     }
 }

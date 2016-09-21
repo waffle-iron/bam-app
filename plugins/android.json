@@ -73,10 +73,10 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "br.com.bammp"
         },
-        "ionic-plugin-keyboard": {
+        "cordova-sqlite-storage": {
             "PACKAGE_NAME": "br.com.bammp"
         },
-        "cordova-sqlite-storage": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "br.com.bammp"
         }
     },

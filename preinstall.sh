@@ -5,26 +5,26 @@ bower update --force
 ionic setup sass
 gulp
 
-ionic plugin remove cordova-plugin-dialogs --force
-ionic plugin remove cordova-plugin-globalization --force
-ionic plugin remove cordova-plugin-media --force
-ionic plugin remove cordova-plugin-file-transfer --force
-ionic plugin remove cordova-plugin-media-capture --force
-ionic plugin remove cordova-plugin-device-orientation --force
-ionic plugin remove cordova-plugin-device --force
-ionic plugin remove cordova-plugin-file --force
-ionic plugin remove cordova-plugin-battery-status --force
-ionic plugin remove cordova-plugin-camera --force
-ionic plugin remove cordova-plugin-contacts --force
-ionic plugin remove cordova-plugin-device-motion --force
-ionic plugin remove cordova-plugin-geolocation --force
-ionic plugin remove cordova-plugin-network-information --force
-ionic plugin remove cordova-plugin-vibration --force
-ionic plugin remove cordova-plugin-splashscreen --force
-ionic plugin remove cordova-plugin-console --force
-ionic plugin remove cordova-plugin-whitelist --force
-ionic plugin remove cordova-plugin-statusbar --force
-ionic plugin remove ionic-plugin-keyboard --force
+ionic plugin remove cordova-plugin-dialogs --force --save
+ionic plugin remove cordova-plugin-globalization --force --save
+ionic plugin remove cordova-plugin-media --force --save
+ionic plugin remove cordova-plugin-file-transfer --force --save
+ionic plugin remove cordova-plugin-media-capture --force --save
+ionic plugin remove cordova-plugin-device-orientation --force --save
+ionic plugin remove cordova-plugin-device --force --save
+ionic plugin remove cordova-plugin-file --force --save
+ionic plugin remove cordova-plugin-battery-status --force --save
+ionic plugin remove cordova-plugin-camera --force --save
+ionic plugin remove cordova-plugin-contacts --force --save
+ionic plugin remove cordova-plugin-device-motion --force --save
+ionic plugin remove cordova-plugin-geolocation --force --save
+ionic plugin remove cordova-plugin-network-information --force --save
+ionic plugin remove cordova-plugin-vibration --force --save
+ionic plugin remove cordova-plugin-splashscreen --force --save
+ionic plugin remove cordova-plugin-console --force --save
+ionic plugin remove cordova-plugin-whitelist --force --save
+ionic plugin remove cordova-plugin-statusbar --force --save
+ionic plugin remove ionic-plugin-keyboard --force --save
 
 
 ionic plugin add cordova-plugin-dialogs --save

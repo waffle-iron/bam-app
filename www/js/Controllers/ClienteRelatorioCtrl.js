@@ -9,7 +9,7 @@ angular.module('starter')
                     {
                         from: 'c.*, cd.cidade, e.estado',
                         alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        join: 'LEFT JOIN cidades as cd ON c.cidade_id = cd.id LEFT JOIN estados as e ON c.estado_id = e.id',
                         where: 'c.id =' + $stateParams.id
                     }, function (result) {
                 $scope.cliente = result;
@@ -125,7 +125,7 @@ angular.module('starter')
                     {
                         from: 'c.*, cd.cidade, e.estado',
                         alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        join: 'LEFT JOIN cidades as cd ON c.cidade_id = cd.id LEFT JOIN estados as e ON c.estado_id = e.id',
                         where: 'c.id =' + $stateParams.id
                     }, function (result) {
                 $scope.cliente = result;
@@ -206,7 +206,7 @@ angular.module('starter')
                     {
                         from: 'c.*, cd.cidade, e.estado',
                         alias: 'c',
-                        join: 'INNER JOIN cidades as cd ON c.cidade_id = cd.id INNER JOIN estados as e ON c.estado_id = e.id',
+                        join: 'LEFT JOIN cidades as cd ON c.cidade_id = cd.id LEFT JOIN estados as e ON c.estado_id = e.id',
                         where: 'c.id =' + $stateParams.id
                     }, function (result) {
                 $scope.cliente = result;

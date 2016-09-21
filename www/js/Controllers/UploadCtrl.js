@@ -290,7 +290,10 @@ angular.module('starter')
                         bairro: v.bairro
                     }, function (retorno) {
                         v.status = 1;
-                        ClientesTable.replace(v, function (exc) {
+                        ClientesTable.update({
+                            status : 1,
+                            foto : null
+                        }, v.id, function (exc) {
                             $scope.sincronizacao.clientes.atualizado++;
                             $scope._sincronizacao.geral.atualizado++;
                         });

@@ -50,6 +50,10 @@ angular.module('starter')
                                     ret.cep = (v.long_name.replace('-', '').toString() || ret.cep).toString();
                                     if (ret.cep.length > 0 && ret.cep.length < 8) {
                                         ret.cep = ret.cep + '000';
+                                    } else if (ret.cep.length > 7) {
+                                        ret.cep = ret.cep;
+                                    } else {
+                                        ret.cep = '';
                                     }
                                 }
 
