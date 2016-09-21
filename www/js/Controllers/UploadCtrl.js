@@ -24,6 +24,12 @@ angular.module('starter')
                     atualizado: 0,
                     start: false
                 },
+                clientes_fotos: {
+                    nome: 'Clientes Fotos',
+                    enviado: 0,
+                    atualizado: 0,
+                    start: false
+                },
                 ocorrencias: {
                     nome: 'Ocorrência',
                     enviado: 0,
@@ -273,6 +279,8 @@ angular.module('starter')
                     $scope.sincronizacao.clientes.enviado++;
                     $scope._sincronizacao.geral.enviado++;
                     ClientesApiFactory.edit(v.id_integracao, {
+                        id: v.id_integracao,
+                        nome: v.nome,
                         latitude: v.latitude,
                         longitude: v.longitude,
                         cep: v.cep,
@@ -283,32 +291,37 @@ angular.module('starter')
                     }, function (retorno) {
                         v.status = 1;
                         ClientesTable.replace(v, function (exc) {
-                            FotosCamerasTable.all({where: 'tabela="ClientesTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
-                                if (retornoFotosCameras !== null) {
-                                    angular.forEach(retornoFotosCameras, function (value, key) {
-                                        FileModuloFactory.upload('clientes/upload.json', value.imagem, {params: {id: v.id}}, function (ret) {
-                                            FileModuloFactory.remove(value.imagem, function (removeRetorno) {
-                                                FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
-                                                    $scope.sincronizacao.clientes.atualizado++;
-                                                    $scope._sincronizacao.geral.atualizado++;
-                                                });
-                                            });
-                                        });
-                                    });
-                                } else {
-                                    $scope.sincronizacao.clientes.atualizado++;
-                                    $scope._sincronizacao.geral.atualizado++;
-                                }
-                            });
+                            $scope.sincronizacao.clientes.atualizado++;
+                            $scope._sincronizacao.geral.atualizado++;
                         });
                     });
                 });
             };
 
-            ClientesTable.all({where: 'status > 1'}, function (dados) {
+            ClientesTable.all({where: 'status > 1', from: 'id_integracao, nome, latitude, longitude, cep, endereco, numero, complemento, bairro, status'}, function (dados) {
                 $scope.sincronizacao.clientes.start = true;
                 if (dados !== null) {
                     _clientes(dados);
+                }
+            });
+
+            FotosCamerasTable.all({where: 'tabela="ClientesTable"'}, function (retornoFotosCameras) {
+                $scope.sincronizacao.clientes_fotos.start = true;
+                if (retornoFotosCameras !== null) {
+                    angular.forEach(retornoFotosCameras, function (value, key) {
+                        console.log('Listage de fotos do cliente');
+                        console.log(JSON.stringify(value));
+                        FileModuloFactory.upload('clientes/upload.json', value.imagem, {params: {id: value.id_referencia}}, function (ret) {
+                            $scope.sincronizacao.clientes_fotos.enviado++;
+                            $scope._sincronizacao.geral.enviado++;
+                            FileModuloFactory.remove(value.imagem, function (removeRetorno) {
+                                FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                    $scope.sincronizacao.clientes_fotos.atualizado++;
+                                    $scope._sincronizacao.geral.atualizado++;
+                                });
+                            });
+                        });
+                    });
                 }
             });
 
@@ -339,7 +352,7 @@ angular.module('starter')
             $scope._atualizar();
 
             $scope._hide = function () {
-                if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
+                if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.clientes_fotos.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
                     LoadModuloFactory.hide();
                     if (StorageModuloFactory.local.get(StorageModuloFactory.enum.forceLogoutSincronizacao) > 0) {

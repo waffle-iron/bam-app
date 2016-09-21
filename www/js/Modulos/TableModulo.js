@@ -2,7 +2,8 @@ angular.module('starter')
         .factory('TableModuloFactory', ['Config', 'ValidacaoModuloFactory',
             function (Config, ValidacaoModuloFactory) {
                 var db = null;
-                db = openDatabase(Config.database + ".db", "1", "Test DB", 25 * 1024 * 1024);
+                //db = $cordovaSQLite.openDB({name: Config.database + ".db"});
+                db = window.openDatabase(Config.database + ".db", "1", Config.database + " DB", (25 * 1024 * 1024));
                 var services = {};
 
 
@@ -282,14 +283,6 @@ angular.module('starter')
                                     services.debug(tx);
                                     services.debug(params);
                                     retorno(result);
-                                    /*try {
-                                     services.debug(result);
-                                     retorno(result);
-                                     } catch (error) {
-                                     services.debug(error);
-                                     retorno(null);
-                                     }*/
-
                                 },
                                 function (error) {
                                     services.debug('ERRO DO SQL');
