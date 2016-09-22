@@ -45,7 +45,7 @@ angular.module('starter')
                         if (options.id !== null) {
                             services.update(table, options, options.id, retorno);
                         } else {
-                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                            if (ValidacaoModuloFactory.isNotNull(options.id)) {
                                 delete options.id;
                             }
                             services.insert(table, options, retorno);
@@ -60,12 +60,11 @@ angular.module('starter')
                     angular.forEach(options, function (v, k) {
                         if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k);
-                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                           if (ValidacaoModuloFactory.empty(v) && !ValidacaoModuloFactory.is_numeric(v)) {
                                 value.push('');
                             } else {
                                 value.push(ValidacaoModuloFactory.trim(v));
                             }
-
                             _value.push('?');
                         }
                     });
@@ -88,7 +87,7 @@ angular.module('starter')
                     angular.forEach(options, function (v, k) {
                         if (!ValidacaoModuloFactory.empty(v) || ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k);
-                            if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                             if (ValidacaoModuloFactory.empty(v) && !ValidacaoModuloFactory.is_numeric(v)) {
                                 value.push('');
                             } else {
                                 value.push(ValidacaoModuloFactory.trim(v));
@@ -110,7 +109,7 @@ angular.module('starter')
                     var key = [];
                     var value = [];
                     angular.forEach(options, function (v, k) {
-                        if (options.id === undefined || options.id === 'undefined' || options.id === '' || options.id === null || options.id === NaN || options.id === 'NaN') {
+                       if (ValidacaoModuloFactory.empty(v) && !ValidacaoModuloFactory.is_numeric(v)) {
                             key.push(k + '=?');
                             value.push(null);
                         } else {
@@ -131,21 +130,10 @@ angular.module('starter')
                 };
 
                 services.get = function (table, key, val, retorno) {
-                    var query = "SELECT * FROM " + table + " WHERE " + key + " = '" + val + "' LIMIT 1";
-                    services.query(query, function (res) {
-                        if (res !== null) {
-                            var len = res.rows.length;
-                            if (len > 0) {
-                                var obj = res.rows.item(0);
-                                retorno(obj);
-                            } else {
-                                retorno(null);
-                            }
-                        } else {
-                            retorno(null);
-                        }
+                    //var query = "SELECT * FROM " + table + " WHERE " + key + " = '" + val + "' LIMIT 1";
+                    services.first(table, {where:key + " = '" + val + "'"}, function(ret){
+                        retorno(ret);
                     });
-
                 };
 
                 services.first = function (table, options, retorno) {
@@ -214,11 +202,14 @@ angular.module('starter')
                                 for (var i = 0; i < len; i++) {
                                     obj.push(res.rows.item(i));
                                 }
+                                services.debug(obj);
                                 retorno(obj);
                             } else {
+                                services.debug(null);
                                 retorno(null);
                             }
                         } else {
+                            services.debug(null);
                             retorno(null);
                         }
                     });
@@ -290,6 +281,7 @@ angular.module('starter')
                                     services.debug(query);
                                     services.debug(tx);
                                     services.debug(params);
+                                    
                                     retorno(result);
                                 },
                                 function (error) {

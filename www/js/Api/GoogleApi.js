@@ -34,7 +34,7 @@ angular.module('starter')
                 var ret = {
                     latitude: cliente.latitude,
                     longitude: cliente.longitude,
-                    cep: cliente.cep,
+                    //cep: cliente.cep,
                     endereco: cliente.endereco,
                     bairro: cliente.bairro
                 };
@@ -46,7 +46,7 @@ angular.module('starter')
 
                         angular.forEach(r.results[0].address_components, function (v, k) {
                             angular.forEach(v.types, function (v1, k1) {
-                                if (v1 === 'postal_code') {
+                                /*if (v1 === 'postal_code') {
                                     ret.cep = (v.long_name.replace('-', '').toString() || ret.cep).toString();
                                     if (ret.cep.length > 0 && ret.cep.length < 8) {
                                         ret.cep = ret.cep + '000';
@@ -55,7 +55,7 @@ angular.module('starter')
                                     } else {
                                         ret.cep = '';
                                     }
-                                }
+                                }*/
 
                                 if (v1 === 'route') {
                                     ret.endereco = (v.long_name.toString() || ret.endereco);

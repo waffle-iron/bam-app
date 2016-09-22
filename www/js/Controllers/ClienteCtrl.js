@@ -173,6 +173,10 @@ angular.module('starter')
                 cliente.url = $scope.cliente.url;
                 cliente.foto = $scope.cliente.foto;
                 var c = cliente;
+                
+                console.log('Dados pra salvar o cliente.');
+                console.log(JSON.stringify(cliente));
+                
                 c.latitude = null;
                 c.longitude = null;
                 c.status = 2;
@@ -182,19 +186,10 @@ angular.module('starter')
                 GoogleApiFactory.buscaEndereco(c, function (cliente) {
                     c.latitude = cliente.latitude;
                     c.longitude = cliente.longitude;
-                    c.cep = cliente.cep;
+                    //c.cep = cliente.cep;
                     c.endereco = cliente.endereco;
                     c.status = 2;
-                    ClientesTable.update({
-                        latitude: cliente.latitude,
-                        longitude: cliente.longitude,
-                        cep: cliente.cep,
-                        endereco: cliente.endereco,
-                        numero: cliente.numero,
-                        url: cliente.url,
-                        foto: cliente.foto,
-                        status: 2
-                    }, c.id, function (a) {
+                    ClientesTable.update(c, $scope.cliente.id, function (a) {
                         StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
                         $rootScope.atualizarPDV();
                         loadClientes();

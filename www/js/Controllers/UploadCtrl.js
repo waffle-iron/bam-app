@@ -293,7 +293,7 @@ angular.module('starter')
                         ClientesTable.update({
                             status : 1,
                             foto : null
-                        }, v.id, function (exc) {
+                        }, v.id_integracao, function (exc) {
                             $scope.sincronizacao.clientes.atualizado++;
                             $scope._sincronizacao.geral.atualizado++;
                         });

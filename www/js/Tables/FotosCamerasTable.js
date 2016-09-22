@@ -30,6 +30,7 @@ angular.module('starter')
                             forceCreate = false;
                             options.id = res.id;
                         }
+                        TableModuloFactory.debug(options);
                         TableModuloFactory.save('fotos_cameras', options, retorno, forceCreate);
                     });
 

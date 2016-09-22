@@ -195,7 +195,8 @@ angular.module('starter')
                     };
 
                     services.is_numeric = function (mixedVar) {
-                        var whitespace = [
+                        return angular.isNumber(mixedVar);
+                        /*var whitespace = [
                             ' ',
                             '\n',
                             '\r',
@@ -225,7 +226,7 @@ angular.module('starter')
                                 (typeof mixedVar === 'string' &&
                                         whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
                                 mixedVar !== '' &&
-                                !isNaN(mixedVar)
+                                !isNaN(mixedVar)*/
                     };
 
                     services.trim = function (str, charlist) {
