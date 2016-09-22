@@ -10,6 +10,8 @@ angular.module('starter')
              } else {*/
             //LoadModuloFactory.show();
 
+            var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+
             var convertData = function (data) {
                 if (ValidacaoModuloFactory.isNotNull(data)) {
                     return moment(data).format('YYYY-MM-DD HH:mm:ss');
@@ -60,6 +62,12 @@ angular.module('starter')
                     atualizado: 0,
                     concluido: false
                 },
+                produtos_clientes: {
+                    nome: 'Produtos Clientes',
+                    baixado: 0,
+                    atualizado: 0,
+                    concluido: false
+                },
                 formularios_campos: {
                     nome: 'Formularios Campos',
                     baixado: 0,
@@ -86,6 +94,34 @@ angular.module('starter')
                 }
             };
 
+
+            var produtosClientes = function (retorno) {
+                $scope._sincronizacao.requisicao.atualizado++;
+                if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                    angular.forEach(retorno.data.response.result, function (v, k) {
+                        $scope.sincronizacao.produtos_clientes.baixado++;
+                        $scope._sincronizacao.geral.baixado++;
+
+                        var dados = {
+                            cliente_id: v.cliente_id,
+                            produto_id: v.produto_id,
+                            valor: v.valor,
+                            status: 1,
+                            modified: convertData(v.modified),
+                            created: convertData(v.created)
+                        };
+                        ProdutosClientesTable.saveImportacao(dados, function (res) {
+                            if (res !== null) {
+                                $scope.sincronizacao.produtos_clientes.atualizado++;
+                                $scope._sincronizacao.geral.atualizado++;
+                                //$scope._hide();
+                            }
+                        });
+                    });
+                }
+            };
+            $scope._sincronizacao.requisicao.baixado++;
+            ProdutosClientesApiFactory.index({'data_hora_sincronizacao': StorageModuloFactory.local.get(StorageModuloFactory.enum.sincronizacaoInicial), usuario_id: user.id}, produtosClientes);
 
             var cidades = function (retorno) {
                 $scope._sincronizacao.requisicao.atualizado++;

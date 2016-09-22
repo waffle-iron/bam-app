@@ -61,7 +61,7 @@ angular.module('starter')
                                 $scope._buscaProduto(id_pai, seq);
                             } else {
                                 angular.forEach(ret, function (v, k) {
-                                    //v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                    v.valor = $filter('inputMoeda')(parseFloat(v.valor));
                                     v.produto_valor = v.valor;
                                     $scope["produtos_" + seq].push(v);
                                 });
@@ -87,7 +87,7 @@ angular.module('starter')
                             ExtraModuloFactory.info($scope, 'Nenhum produto localizado.');
                         } else {
                             angular.forEach(ret, function (v, k) {
-                                //v.valor = $filter('inputMoeda')(parseFloat(v.valor));
+                                v.valor = $filter('inputMoeda')(parseFloat(v.valor));
                                 v.produto_valor = v.valor;
                                 $scope["produtos_" + seq].push(v);
                             });

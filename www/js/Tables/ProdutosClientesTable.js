@@ -60,6 +60,22 @@ angular.module('starter')
                     TableModuloFactory.update('produtos_clientes', options, id, retorno);
                 };
 
+                services.saveImportacao = function (options) {
+                    services.first({where: 'cliente_id = ' + options.cliente_id + ' AND produto_id = ' + options.produto_id}
+                    , function (resp) {
+                        if (resp === null) {
+                            var save = angular.merge({}, options);
+                            services.insert(save, function (a) {
+                            });
+                        } else {
+                            var save = angular.merge({}, resp, options);
+                            services.update(save, resp.id, function (a) {
+
+                            });
+                        }
+                    });
+                };
+
                 return services;
             }
         ]);

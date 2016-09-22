@@ -51,7 +51,7 @@
                     <label class="item item-input m-0" ng-repeat="(key, value) in produtos_3 | filter:filtro_ckeckin">
                         <span class="input-label p-10" style="display: inline-block;">{{value.nome}}</span>
                         <!-- input type="number" string-to-number class="text-right p-10 h-50" ng-model="value.produto_valor" value="{{value.valor| inputMoeda}}" ng-blur="atualizar(value)" -->
-                        <input type="text" fcsa-number="{ maxDecimals: 2, preventInvalidInput: true }" class="text-right p-10 h-50" value="{{value.valor}}" ng-model="value.produto_valor" placeholder="0.00" ng-blur="atualizar(value)">
+                        <input type="text" fcsa-number="{ maxDecimals: 2, preventInvalidInput: true }" class="text-right p-10 h-50" ng-model="value.produto_valor" placeholder="0.00" ng-blur="atualizar(value)">
                     </label>
 
                     <div class="padding item-footer m-0">
