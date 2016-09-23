@@ -60,6 +60,37 @@ angular.module('starter')
                         return d;
                     };
 
+
+                    /*services.calculaDistance = function (lat1, lon1, lat2, lon2) {
+                     console.log('calculaDistance')
+                     console.log(lat1)
+                     console.log(lon1)
+                     console.log(lat2)
+                     console.log(lon2)
+                     var R = 6371; // Radio del planeta tierra en km
+                     var phi1 = services.deg2rad(lat1);
+                     var phi2 = services.deg2rad(lat2);
+                     var deltaphi = services.deg2rad(lat2 - lat1);
+                     var deltalambda = services.deg2rad(lon2 - lon1);
+                     
+                     var a = Math.sin(deltaphi / 2) * Math.sin(deltaphi / 2) +
+                     Math.cos(phi1) * Math.cos(phi2) *
+                     Math.sin(deltalambda / 2) * Math.sin(deltalambda / 2);
+                     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                     
+                     var d = R * c
+                     return d;
+                     };
+                     
+                     services.deg2rad = function (deg) {
+                     var rad = deg * Math.PI / 180;
+                     return rad;
+                     };
+                     
+                     services.round = function (x) {
+                     return Math.round(x * 10) / 10;
+                     };*/
+
                     services.saudacao = function () {
                         var data = new Date();
                         var hora = data.getHours();

@@ -52,25 +52,32 @@ angular.module('starter')
                 StorageModuloFactory.local.setObject(StorageModuloFactory.enum.pdvAtivo, result);
                 LoadModuloFactory.hide();
 
-                GoogleApiFactory.buscaEndereco(result, function (cliente) {
-                    if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
-                        result.latitude = cliente.latitude;
-                        result.longitude = cliente.longitude;
-                        result.cep = cliente.cep;
-                        ClientesTable.update({
-                            latitude: result.latitude,
-                            longitude: result.longitude,
-                            cep: result.cep,
-                            status: 2
-                        }, result.id, function (a) {
-                            StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
-                            $scope.show_mapa = 1;
-                            LoadModuloFactory.mapa(result, $scope);
-                        });
-                    } else {
-                        $scope.show_mapa = 0;
-                    }
-                });
+                if (ValidacaoModuloFactory.isNotNull(result.latitude) && ValidacaoModuloFactory.isNotNull(result.longitude)) {
+                    $scope.show_mapa = 1;
+                    LoadModuloFactory.mapa(result, $scope);
+                } else {
+                    GoogleApiFactory.buscaEndereco(result, function (cliente) {
+                        if (ValidacaoModuloFactory.isNotNull(cliente.latitude) && ValidacaoModuloFactory.isNotNull(cliente.longitude)) {
+                            result.latitude = cliente.latitude;
+                            result.longitude = cliente.longitude;
+                            result.cep = cliente.cep;
+                            ClientesTable.update({
+                                latitude: result.latitude,
+                                longitude: result.longitude,
+                                cep: result.cep,
+                                status: 2
+                            }, result.id, function (a) {
+                                StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 1);
+                                $scope.show_mapa = 1;
+                                LoadModuloFactory.mapa(result, $scope);
+                            });
+                        } else {
+                            $scope.show_mapa = 0;
+                        }
+                    });
+                }
+
+
             });
         })
 
@@ -173,10 +180,10 @@ angular.module('starter')
                 cliente.url = $scope.cliente.url;
                 cliente.foto = $scope.cliente.foto;
                 var c = cliente;
-                
+
                 console.log('Dados pra salvar o cliente.');
                 console.log(JSON.stringify(cliente));
-                
+
                 c.latitude = null;
                 c.longitude = null;
                 c.status = 2;
