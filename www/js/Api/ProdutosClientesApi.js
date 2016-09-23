@@ -21,7 +21,6 @@ angular.module('starter')
 
                 services.add = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
                         cliente_id: '',
                         usuario_id: '',
                         produto_id: '',

@@ -52,6 +52,10 @@ angular.module('starter')
                     TableModuloFactory.get('produtos_clientes', key, val, retorno);
                 };
 
+                services.count = function (retorno) {
+                    TableModuloFactory.count('produtos_clientes', retorno);
+                };
+
                 services.insert = function (options, retorno) {
                     TableModuloFactory.insert('produtos_clientes', options, retorno);
                 };
@@ -60,17 +64,18 @@ angular.module('starter')
                     TableModuloFactory.update('produtos_clientes', options, id, retorno);
                 };
 
-                services.saveImportacao = function (options) {
+                services.saveImportacao = function (options, retorno) {
                     services.first({where: 'cliente_id = ' + options.cliente_id + ' AND produto_id = ' + options.produto_id}
                     , function (resp) {
                         if (resp === null) {
                             var save = angular.merge({}, options);
                             services.insert(save, function (a) {
+                                retorno(a);
                             });
                         } else {
                             var save = angular.merge({}, resp, options);
                             services.update(save, resp.id, function (a) {
-
+                                retorno(a);
                             });
                         }
                     });

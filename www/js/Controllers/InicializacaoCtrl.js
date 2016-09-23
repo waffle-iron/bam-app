@@ -1,6 +1,6 @@
 angular.module('starter')
 
-        .controller('InicializacaoCtrl', function ($timeout, moment, StorageModuloFactory, NavegacaoModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory,
+        .controller('InicializacaoCtrl', function (ExtraModuloFactory, $timeout, moment, StorageModuloFactory, NavegacaoModuloFactory, $scope, LoadModuloFactory, ValidacaoModuloFactory,
                 ClientesTable, CidadesTable, EstadosTable, ProgramasTable, ProdutosTable, ProdutosClientesTable,
                 FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable,
                 ClientesApiFactory, CidadesApiFactory, EstadosApiFactory, ProgramasApiFactory, ProdutosApiFactory, ProdutosClientesApiFactory, FormulariosApiFactory, FormulariosCamposValoresApiFactory) {
@@ -105,10 +105,10 @@ angular.module('starter')
                         var dados = {
                             cliente_id: v.cliente_id,
                             produto_id: v.produto_id,
-                            valor: v.valor,
-                            status: 1,
+                            status: 2,
                             modified: convertData(v.modified),
-                            created: convertData(v.created)
+                            created: convertData(v.created),
+                            valor: ExtraModuloFactory.moeda(v.valor)
                         };
                         ProdutosClientesTable.saveImportacao(dados, function (res) {
                             if (res !== null) {
@@ -121,7 +121,15 @@ angular.module('starter')
                 }
             };
             $scope._sincronizacao.requisicao.baixado++;
-            ProdutosClientesApiFactory.index({'data_hora_sincronizacao': StorageModuloFactory.local.get(StorageModuloFactory.enum.sincronizacaoInicial), usuario_id: user.id}, produtosClientes);
+            ProdutosClientesTable.count(function (ret) {
+                console.log(ret);
+                if (ret > 0) {
+                    ProdutosClientesApiFactory.index({'data_hora_sincronizacao': StorageModuloFactory.local.get(StorageModuloFactory.enum.sincronizacaoInicial), usuario_id: user.id}, produtosClientes);
+                } else {
+                    ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
+                }
+            });
+
 
             var cidades = function (retorno) {
                 $scope._sincronizacao.requisicao.atualizado++;

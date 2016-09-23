@@ -108,6 +108,21 @@ angular.module('starter')
                         }
                     };
 
+                    services.moeda = function (val) {
+                        console.log(val);
+                        if (val === '') {
+                            return null;
+                        } else {
+                            if (ValidacaoModuloFactory.empty(val)) {
+                                return null;
+                            } else if (val === '0.00') {
+                                return null;
+                            } else {
+                                return parseFloat(val).toFixed(2);
+                            }
+                        }
+                    }
+
                     return services;
                 }
         );
