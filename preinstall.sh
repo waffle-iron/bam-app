@@ -14,7 +14,8 @@ ionic plugin remove cordova-plugin-device-orientation --force --save
 ionic plugin remove cordova-plugin-device --force --save
 ionic plugin remove cordova-plugin-file --force --save
 ionic plugin remove cordova-plugin-battery-status --force --save
-ionic plugin remove cordova-plugin-camera --force --save
+ionic plugin add https://github.com/apache/cordova-plugin-camera.git --force --save
+ionic plugin add https://github.com/mWater/cordova-plugin-wezka-nativecamera.git --force --save
 ionic plugin remove cordova-plugin-contacts --force --save
 ionic plugin remove cordova-plugin-device-motion --force --save
 ionic plugin remove cordova-plugin-geolocation --force --save
@@ -36,7 +37,8 @@ ionic plugin add cordova-plugin-device-orientation --save
 ionic plugin add cordova-plugin-device --save
 ionic plugin add cordova-plugin-file --save
 ionic plugin add cordova-plugin-battery-status --save
-ionic plugin add cordova-plugin-camera --save
+ionic plugin add https://github.com/apache/cordova-plugin-camera.git --save
+ionic plugin add https://github.com/mWater/cordova-plugin-wezka-nativecamera.git --save
 ionic plugin add cordova-plugin-contacts --save
 ionic plugin add cordova-plugin-device-motion --save
 ionic plugin add cordova-plugin-geolocation --save

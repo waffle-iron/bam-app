@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "com.tmantman.nativecamera": {
+            "PACKAGE_NAME": "br.com.bammp"
+        },
         "cordova-plugin-app-version": {
             "PACKAGE_NAME": "br.com.bammp"
         },

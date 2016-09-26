@@ -14,10 +14,11 @@
   <allow-intent href="https://*/*"/>
   <allow-intent href="geo:*"/>
   <allow-intent href="*"/>
+  <preference name="loadUrlTimeoutValue" value="700000"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="SplashScreenDelay" value="2500"/>
-  <preference name="permissions" value="none"/>
+  <preference name="permissions" value="auto"/>
   <preference name="orientation" value="portrait"/>
   <preference name="target-device" value="universal"/>
   <preference name="fullscreen" value="false"/>
@@ -37,7 +38,7 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="FadeSplashScreen" value="false"/>
-  <preference name="loadUrlTimeoutValue" value="700000"/>
+  <preference name="android-minSdkVersion" value="15"/>
   <feature name="StatusBar">
     <param name="ios-package" onload="true" value="CDVStatusBar"/>
   </feature>
@@ -67,7 +68,8 @@
   <plugin name="cordova-plugin-device" spec="~1.1.3"/>
   <plugin name="cordova-plugin-file" spec="~4.3.0"/>
   <plugin name="cordova-plugin-battery-status" spec="~1.2.0"/>
-  <plugin name="cordova-plugin-camera" spec="~2.3.0"/>
+  <plugin name="cordova-plugin-camera" spec="https://github.com/apache/cordova-plugin-camera.git"/>
+  <plugin name="com.tmantman.nativecamera" spec="https://github.com/mWater/cordova-plugin-wezka-nativecamera.git"/>
   <plugin name="cordova-plugin-contacts" spec="~2.2.0"/>
   <plugin name="cordova-plugin-device-motion" spec="~1.2.2"/>
   <plugin name="cordova-plugin-geolocation" spec="~2.3.0"/>
