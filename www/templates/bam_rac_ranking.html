@@ -20,14 +20,14 @@
                     <div class="wp-10 text-center">RKG</div>
                     <div class="wp-45 p-0">PDV</div>
                     <div class="wp-20">Pontos</div>
-                    <div class="wp-25">Valor</div>
+                    <div class="wp-25">Valor R$</div>
                 </div>
                 <div class="m-0" ng-repeat="(k,v) in dados.clientes_rac">
                     <a href="#/app/cliente_relatorio/{{v.cliente_id}}" class="ranking-body item item-text-wrap row padding-top padding-bottom">
                         <div class="wp-10 fs-12 text-center">{{(k + 1)}}</div>
                         <div class="wp-45 fs-12 p-0">{{v.nome}}</div>
                         <div class="wp-20 fs-12">{{forceInt(v.pontuacao)}}</div>
-                        <div class="wp-25 fs-12">{{100| currency:'R$ '}} </div>
+                        <div class="wp-25 fs-12">{{100 | currency:"R$ "}} </div>
                     </a>
                 </div>
                 <div class="padding item-footer">

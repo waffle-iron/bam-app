@@ -61,7 +61,8 @@ angular.module('starter')
                                 $scope._buscaProduto(id_pai, seq);
                             } else {
                                 angular.forEach(ret, function (v, k) {
-                                    v.valor = ExtraModuloFactory.moeda(v.valor);
+                                    v.valor = $filter('inputMoeda')(v.valor);
+                                    //v.valor = ExtraModuloFactory.moeda(v.valor);
                                     v.produto_valor = v.valor;
                                     $scope["produtos_" + seq].push(v);
                                 });
@@ -73,8 +74,8 @@ angular.module('starter')
                 };
 
                 $scope.convertNumber = function (value, valor) {
-                    //return $filter('inputMoeda')(parseFloat(valor));
-                    return ExtraModuloFactory.moeda(valor);;
+                    return $filter('inputMoeda')(parseFloat(valor));
+                    //return ExtraModuloFactory.moeda(valor);
                 }
 
                 $scope._buscaProduto = function (id_pai, seq) {
@@ -88,7 +89,8 @@ angular.module('starter')
                             ExtraModuloFactory.info($scope, 'Nenhum produto localizado.');
                         } else {
                             angular.forEach(ret, function (v, k) {
-                                v.valor = ExtraModuloFactory.moeda(v.valor);
+                                //v.valor = ExtraModuloFactory.moeda(v.valor);
+                                v.valor = $filter('inputMoeda')(v.valor);
                                 v.produto_valor = v.valor;
                                 $scope["produtos_" + seq].push(v);
                             });
@@ -101,8 +103,8 @@ angular.module('starter')
                 $scope.busca(0, 1, false);
 
                 $scope.atualizar = function (produto) {
-                    //var produto_valor = $filter('inputMoeda')(produto.produto_valor);
-                    var produto_valor = ExtraModuloFactory.moeda(produto.produto_valor);
+                    var produto_valor = $filter('inputMoeda')(produto.produto_valor);
+                    //var produto_valor = ExtraModuloFactory.moeda(produto.produto_valor);
                     produto.valor = produto.produto_valor = produto_valor;
                     var _save = {
                         cliente_id: 0,
@@ -141,12 +143,12 @@ angular.module('starter')
                 };
 
                 /*$scope.concluir = function () {
-                    ValidacaoModuloFactory.alert('Rota BAM finalizada com sucesso.');
-                    $timeout(function () {
-                        $state.go('app.cliente', {id: $scope.cliente.id});
-                        //NavegacaoModuloFactory.go('app.cliente/' + $scope.cliente.id);
-                    }, 3000);
-                }*/
+                 ValidacaoModuloFactory.alert('Rota BAM finalizada com sucesso.');
+                 $timeout(function () {
+                 $state.go('app.cliente', {id: $scope.cliente.id});
+                 //NavegacaoModuloFactory.go('app.cliente/' + $scope.cliente.id);
+                 }, 3000);
+                 }*/
 
             } else {
                 NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.checkin);
