@@ -1,10 +1,9 @@
 angular.module('starter')
 
         .controller('UploadCtrl', function (LoadModuloFactory, $timeout, moment, FileModuloFactory, FormulariosCamposValoresApiFactory,
-                $scope, ValidacaoModuloFactory, StorageModuloFactory,
-                FormulariosCamposValoresTable, CheckinTable, ProdutosClientesApiFactory, ProdutosClientesTable,
-                NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable,
-                ClientesApiFactory, CheckinApiFactory, OcorrenciasTable, OcorrenciasApiFactory, UsuariosApiFactory) {
+                $scope, ValidacaoModuloFactory, StorageModuloFactory, FormulariosCamposValoresTable, CheckinTable, ProdutosClientesApiFactory,
+                ProdutosClientesTable, NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable,
+                ClientesApiFactory, CheckinApiFactory, OcorrenciasTable, OcorrenciasApiFactory, UsuariosApiFactory, Config) {
 
             LoadModuloFactory.show();
 

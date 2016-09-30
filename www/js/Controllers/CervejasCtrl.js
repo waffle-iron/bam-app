@@ -52,7 +52,7 @@ angular.module('starter')
                         });
                     } else {
                         ProdutosTable.all({
-                            from: 'p.*, coalesce(pc.valor, "") as valor',
+                            from: '*',
                             alias: 'p',
                             where: 'id_pai = ' + id_pai,
                             join: 'LEFT JOIN produtos_clientes AS pc ON (pc.produto_id = p.id AND pc.cliente_id = ' + $scope.cliente.id + ')'

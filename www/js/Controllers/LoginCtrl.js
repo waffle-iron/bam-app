@@ -2,7 +2,7 @@ angular.module('starter')
 
         .controller('LoginCtrl', function ($ionicSideMenuDelegate, $rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
                 CheckinTable, ClientesTable, CidadesTable, EstadosTable, ProgramasTable, OcorrenciasTable, ProdutosTable, ProdutosClientesTable, Ativacao52Table,
-                FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable) {
+                FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable, Config) {
 
 
             $ionicSideMenuDelegate.canDragContent(false);
@@ -99,6 +99,10 @@ angular.module('starter')
 
 
             if (ValidacaoModuloFactory.isNotNull(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user))) {
+                var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+                user.versao_app = Config.versaoApp
+                StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, user.result);
+
                 LoadModuloFactory.show();
                 redirecionar();
             }
@@ -117,17 +121,15 @@ angular.module('starter')
                         LoadModuloFactory.hide();
                         if (ValidacaoModuloFactory.is('OK', retorno.status)) {
                             retorno.data.response.result.senha = $scope.user.senha;
+                            retorno.data.response.result.versao_app = Config.versaoApp
                             StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
                             LoadModuloFactory.show();
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLoginSincronizacao, 1);
                             drop();
                         } else {
-
                             ValidacaoModuloFactory.alert('Não foi possivel fazer o login tente novamente.');
-
                         }
-
                     };
 
                     UsuariosApiFactory.login($scope.user, retornoLogin);
