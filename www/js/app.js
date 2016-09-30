@@ -8,12 +8,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         .constant('Config', {
             url: 'http://45.55.69.61/bam/',
             api: 'api/',
-            versaoApp: '01.00.22',
+            versaoApp: '01.00.23',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
             database: 'bam',
-            debug: true,
+            debug: false,
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
