@@ -249,7 +249,7 @@ angular.module('starter')
                         tipo: v.tipo,
                         data: moment(new Date()).format('YYYY-MM-DD'),
                         latitude: v.latitude,
-                        longitude: v.latitude,
+                        longitude: v.longitude,
                         modified: convertData(new Date()),
                         created: convertData(new Date())
                     }, function (retorno) {
