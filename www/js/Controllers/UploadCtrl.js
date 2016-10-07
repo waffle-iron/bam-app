@@ -65,6 +65,24 @@ angular.module('starter')
                 return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
             };
 
+
+            UsuariosApiFactory.edit($scope.user.id, $scope.user, function (e) {
+                $scope._sincronizacao.geral.enviado++;
+                FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
+                    if (retornoFotosCameras !== null) {
+                        angular.forEach(retornoFotosCameras, function (value, key) {
+                            UsuariosApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
+                                FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
+                                    $scope._sincronizacao.geral.atualizado++;
+                                });
+                            });
+                        });
+                    } else {
+                        $scope._sincronizacao.geral.atualizado++;
+                    }
+                });
+            });
+
             var _ocorrencias = function (dados) {
                 angular.forEach(dados, function (v, k) {
                     $scope._sincronizacao.geral.enviado++;
@@ -290,8 +308,8 @@ angular.module('starter')
                     }, function (retorno) {
                         v.status = 1;
                         ClientesTable.update({
-                            status : 1,
-                            foto : null
+                            status: 1,
+                            foto: null
                         }, v.id_integracao, function (exc) {
                             $scope.sincronizacao.clientes.atualizado++;
                             $scope._sincronizacao.geral.atualizado++;
@@ -327,22 +345,7 @@ angular.module('starter')
                 }
             });
 
-            UsuariosApiFactory.edit($scope.user.id, $scope.user, function (e) {
-                $scope._sincronizacao.geral.enviado++;
-                FotosCamerasTable.all({where: 'tabela="UsuariosTable"'}, function (retornoFotosCameras) {
-                    if (retornoFotosCameras !== null) {
-                        angular.forEach(retornoFotosCameras, function (value, key) {
-                            UsuariosApiFactory.uploadImage($scope.user.id, value.imagem, function (ret) {
-                                FotosCamerasTable.delete('id', value.id, function (retornoFotos) {
-                                    $scope._sincronizacao.geral.atualizado++;
-                                });
-                            });
-                        });
-                    } else {
-                        $scope._sincronizacao.geral.atualizado++;
-                    }
-                });
-            });
+
 
             $scope._atualizar = function () {
                 $timeout(function () {
