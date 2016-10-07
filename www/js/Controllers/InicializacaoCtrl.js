@@ -122,12 +122,7 @@ angular.module('starter')
             };
             $scope._sincronizacao.requisicao.baixado++;
             ProdutosClientesTable.count(function (ret) {
-                console.log(ret);
-                if (ret > 0) {
-                    ProdutosClientesApiFactory.index({'data_hora_sincronizacao': StorageModuloFactory.local.get(StorageModuloFactory.enum.sincronizacaoInicial), usuario_id: user.id}, produtosClientes);
-                } else {
-                    ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
-                }
+                ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
             });
 
 
