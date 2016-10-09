@@ -18,7 +18,11 @@ angular.module('starter')
 
                     services.img = function (dados) {
                         if (ValidacaoModuloFactory.isNotNull(dados.foto)) {
-                            return dados.url;
+                            if (dados.url.indexOf('?') > 0) {
+                                return 'img/ionic.jpg';
+                            } else {
+                                return dados.url;
+                            }
                         } else {
                             return 'img/ionic.jpg';
                         }

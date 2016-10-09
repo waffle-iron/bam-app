@@ -25,14 +25,17 @@ angular.module('starter')
                         var v = window.localStorage.getItem(k);
                         return v || d;
                     };
+                    
                     services.local.set = function (k, v) {
                         window.localStorage.setItem(k, v);
                         return v;
                     };
+                    
                     services.local.delete = function (k) {
                         window.localStorage.removeItem(k);
                         return null;
                     };
+                    
                     services.local.destroy = function () {
                         window.localStorage.clear();
                         return null;
@@ -43,6 +46,7 @@ angular.module('starter')
                         var v = JSON.parse(window.localStorage.getItem(k));
                         return v || d;
                     };
+                    
                     services.local.setObject = function (k, v) {
                         window.localStorage.setItem(k, JSON.stringify(v));
                         return v;
@@ -53,14 +57,17 @@ angular.module('starter')
                         var v = window.sessionStorage.getItem(k);
                         return v || d;
                     };
+                    
                     services.session.set = function (k, v) {
                         window.sessionStorage.setItem(k, v);
                         return v;
                     };
+                    
                     services.session.delete = function (k) {
                         window.sessionStorage.removeItem(k);
                         return null;
                     };
+                    
                     services.session.destroy = function () {
                         window.sessionStorage.clear();
                         return null;
@@ -71,6 +78,7 @@ angular.module('starter')
                         var v = JSON.parse(window.sessionStorage.getItem(k));
                         return v || d;
                     };
+                    
                     services.session.setObject = function (k, v) {
                         window.sessionStorage.setItem(k, JSON.stringify(v));
                         return v;

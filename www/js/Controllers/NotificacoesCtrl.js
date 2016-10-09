@@ -8,7 +8,6 @@ angular.module('starter')
             $scope.options = {
                 sort: 'created',
                 page: 1,
-                usuario_id: $scope.user.id,
                 limit: 10,
                 direction: 'desc'
             };
@@ -16,6 +15,7 @@ angular.module('starter')
             $scope.notificacoes = [];
 
             var conteudo = function (retorno) {
+                console.log(retorno)
                 $scope.proximo = true;
                 if (ValidacaoModuloFactory.isOk(retorno.status)) {
                     $scope.proximo = retorno.data.response.paging.nextPage;
@@ -46,7 +46,7 @@ angular.module('starter')
             $scope.loadMore = function () {
                 if ($scope.proximo) {
                     LoadModuloFactory.show();
-                    NotificacoesApiFactory.index($scope.options, conteudo);
+                    NotificacoesApiFactory.lista($scope.options, conteudo);
                 }
             };
 
@@ -62,11 +62,11 @@ angular.module('starter')
             NotificacoesApiFactory.view($stateParams.id, function (result) {
                 $scope.dados = result.data.response.result;
                 $scope.dados.created = moment($scope.dados.created).format('DD/MM/YYYY HH:mm:ss');
-                if ($scope.dados.notificaco.data_inicio !== null) {
-                    $scope.dados.notificaco.data_inicio = moment($scope.dados.notificaco.data_inicio).format('DD/MM/YYYY HH:mm:ss');
+                if ($scope.dados.data_inicio !== null) {
+                    $scope.dados.data_inicio = moment($scope.dados.data_inicio).format('DD/MM/YYYY HH:mm:ss');
                 }
-                if ($scope.dados.notificaco.data_fim !== null) {
-                    $scope.dados.notificaco.data_fim = moment($scope.dados.notificaco.data_fim).format('DD/MM/YYYY HH:mm:ss');
+                if ($scope.dados.data_fim !== null) {
+                    $scope.dados.data_fim = moment($scope.dados.data_fim).format('DD/MM/YYYY HH:mm:ss');
                 }
                 LoadModuloFactory.hide();
             });

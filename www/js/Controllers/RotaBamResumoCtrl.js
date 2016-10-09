@@ -39,9 +39,11 @@ angular.module('starter')
                     ProdutosClientesTable.all({
                         from: '*',
                         alias: 'pc',
-                        where: 'pc.cliente_id = ' + $scope.cliente.id + ' AND pc.status = 1 AND (pc.valor is not null AND pc.valor != "" AND pc.valor != "0.00")',
+                        where: 'pc.cliente_id = ' + $scope.cliente.id + ' AND pc.status != 2 AND (pc.valor is not null AND pc.valor != "" AND pc.valor != "0.00")',
                         join: 'INNER JOIN produtos AS p ON p.id = pc.produto_id'
                     }, function (ret) {
+                        console.log('cervejas');
+                        console.log(ret);
                         $scope.cervejas = [];
                         $scope.cervejas = ret;
                         LoadModuloFactory.hide();

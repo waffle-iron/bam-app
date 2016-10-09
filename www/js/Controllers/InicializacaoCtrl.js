@@ -121,9 +121,7 @@ angular.module('starter')
                 }
             };
             $scope._sincronizacao.requisicao.baixado++;
-            ProdutosClientesTable.count(function (ret) {
-                ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
-            });
+            ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
 
 
             var cidades = function (retorno) {

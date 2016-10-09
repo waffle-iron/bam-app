@@ -5,7 +5,7 @@ angular.module('starter')
                 ProdutosClientesTable, NavegacaoModuloFactory, Ativacao52Table, Ativacao52ApiFactory, FotosCamerasTable, ClientesTable,
                 ClientesApiFactory, CheckinApiFactory, OcorrenciasTable, OcorrenciasApiFactory, UsuariosApiFactory, Config) {
 
-            LoadModuloFactory.show();
+            //LoadModuloFactory.show();
 
             $scope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
 
@@ -359,7 +359,7 @@ angular.module('starter')
             $scope._hide = function () {
                 if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.clientes_fotos.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
-                    LoadModuloFactory.hide();
+                    //LoadModuloFactory.hide();
                     if (StorageModuloFactory.local.get(StorageModuloFactory.enum.forceLogoutSincronizacao) > 0) {
                         StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLogoutSincronizacao, 0);
                         NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.logout);

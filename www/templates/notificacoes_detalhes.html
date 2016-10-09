@@ -16,11 +16,10 @@
             <div class="list list-inset borda-grey br-10 header-block">
 
                 <div class="item item-text-wrap">
-                    <div class="color-purple">{{dados.notificaco.msg}}</div>
+                    <div class="color-purple">{{dados.titulo}}</div>
                 </div>
-
-                <div class="item item-text-wrap text-center">
-                    <small class="fs-12">{{dados.notificaco.data_inicio}}<!-- - {{dados.notificaco.data_fim}}--></small>
+                <div class="item item-text-wrap">
+                    <div class="color-purple" ng-bind-html="dados.msg"></div>
                 </div>
 
             </div>
