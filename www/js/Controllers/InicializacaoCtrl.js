@@ -120,8 +120,16 @@ angular.module('starter')
                     });
                 }
             };
+
             $scope._sincronizacao.requisicao.baixado++;
             ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
+
+            /*ProdutosClientesTable.count(function (ret) {
+             if (ret < 1) {
+             $scope._sincronizacao.requisicao.baixado++;
+             ProdutosClientesApiFactory.index({usuario_id: user.id}, produtosClientes);
+             }
+             });*/
 
 
             var cidades = function (retorno) {
@@ -398,7 +406,7 @@ angular.module('starter')
                 if ($scope._sincronizacao.requisicao.atualizado === $scope._sincronizacao.requisicao.baixado && $scope._sincronizacao.geral.baixado === $scope._sincronizacao.geral.atualizado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, moment(new Date()).format("YYYY-MM-DD"));
                     //ClientesTable.query('DELETE FROM produtos_clientes WHERE cliente_id not in(SELECT id_integracao FROM clientes)', function (ret) {
-                        NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
+                    NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
                     //});
 
                 } else {

@@ -72,9 +72,6 @@ angular.module('starter')
                 return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
             };
 
-
-
-
             var processaDados = function () {
 
                 UsuariosApiFactory.edit($scope.user.id, $scope.user, function (e) {
@@ -260,7 +257,7 @@ angular.module('starter')
                     });
                 }
 
-                ProdutosClientesTable.all({where: 'status != 2'}, function (dados) {
+                ProdutosClientesTable.all({where: 'status = 1'}, function (dados) {
                     $scope.sincronizacao.produtos_clientes.start = true;
                     if (dados !== null) {
                         _produtosClientes(dados);
@@ -364,24 +361,24 @@ angular.module('starter')
             }
 
             var retornoLogin = function (retorno) {
-                if (ValidacaoModuloFactory.is('OK', retorno.status)) {
+                if (ValidacaoModuloFactory.isOk(retorno.status)) {
                     retorno.data.response.result.senha = $scope.user.senha;
-                    $rootScope.setAtualizarUser(retorno.data.response.result);
+                    $rootScope.user.token = retorno.data.response.result.token;
+                    $rootScope.setAtualizarUser($rootScope.user);
                     processaDados();
                 } else {
-                    ValidacaoModuloFactory.alert('Não foi possivel fazer o login tente novamente.');
+                    ValidacaoModuloFactory.alert('Não foi possivel fazer o sincronização tente novamente, Verifique a conexão com a internet ou entre em contato com o administrador do sistema.' + ' | Código de erro: ' + retorno.status);
                 }
+                $scope._atualizar = function () {
+                    $timeout(function () {
+                        $scope._hide();
+
+                    }, 5000);
+                };
+                $scope._atualizar();
             };
 
             UsuariosApiFactory.validaLogin({login: $scope.user.login, id: $scope.user.id}, retornoLogin);
-            $scope._atualizar = function () {
-                $timeout(function () {
-                    $scope._hide();
-
-                }, 5000);
-            };
-
-            $scope._atualizar();
 
             $scope._hide = function () {
                 if ($scope.sincronizacao.ativacao_52.start === true && $scope.sincronizacao.checkin.start === true && $scope.sincronizacao.clientes.start === true && $scope.sincronizacao.clientes_fotos.start === true && $scope.sincronizacao.produtos_clientes.start === true && $scope.sincronizacao.formularios_campos_valores.start === true && $scope._sincronizacao.geral.atualizado >= $scope._sincronizacao.geral.enviado) {

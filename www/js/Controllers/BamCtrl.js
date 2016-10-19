@@ -73,14 +73,14 @@ angular.module('starter')
                             total: 100
                         };
                         v.dados = [
-                            {label: "", value: parseFloat((v.total / v.geral)*100).toFixed(0), color: "#5CB85C", suffix: "%"}
+                            {label: "", value: parseFloat((v.total / v.geral) * 100).toFixed(0), color: "#5CB85C", suffix: "%"}
                         ];
                     }, $scope.dados.rota_bem);
                     LoadModuloFactory.hide();
                     loadMapaGoogle();
                 } else {
                     LoadModuloFactory.hide();
-                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Código de erro: ' + result.status, 'Erro');
                 }
 
             });
@@ -214,7 +214,7 @@ angular.module('starter')
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.error($scope, 'Nenhum item de histórico localizado.');
-                    ValidacaoModuloFactory.alert(Config.avisoSemConexao, 'Erro');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Código de erro: ' + retorno.status, 'Erro');
                 }
 
             }
