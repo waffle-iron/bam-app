@@ -55,6 +55,10 @@ angular.module('starter')
                     TableModuloFactory.all('clientes', options, retorno);
                 };
 
+                services.delete = function (chave, valor, retorno) {
+                    TableModuloFactory.delete('clientes', chave, valor, retorno);
+                };
+
                 services.replace = function (options, retorno) {
                     TableModuloFactory.replace('clientes', options, retorno);
                 };

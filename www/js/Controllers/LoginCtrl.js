@@ -1,25 +1,11 @@
 angular.module('starter')
 
-        .controller('LoginCtrl', function ($cordovaDevice, $ionicSideMenuDelegate, $rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
+        .controller('LoginCtrl', function ($ionicSideMenuDelegate, $rootScope, $scope, UsuariosApiFactory, ValidacaoModuloFactory, LoadModuloFactory, StorageModuloFactory, NavegacaoModuloFactory,
                 CheckinTable, ClientesTable, CidadesTable, EstadosTable, ProgramasTable, OcorrenciasTable, ProdutosTable, ProdutosClientesTable, Ativacao52Table,
                 FormulariosCamposTable, FormulariosCamposValoresTable, FormulariosGruposCamposTable, FormulariosGruposTable, FormulariosTable, FotosCamerasTable, Config) {
 
 
-            var adicionais = function () {
-                document.addEventListener("deviceready", function () {
-                    var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
-                    user = angular.merge(user, {
-                        cordova: $cordovaDevice.getCordova(),
-                        model: $cordovaDevice.getModel(),
-                        platform: $cordovaDevice.getPlatform(),
-                        uuid: $cordovaDevice.getUUID(),
-                        version: $cordovaDevice.getVersion(),
-                        versao_app: Config.versaoApp
-                    });
-                    StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, user);
-                    console.log(JSON.stringify(user));
-                }, false);
-            }
+
 
 
             $ionicSideMenuDelegate.canDragContent(false);
@@ -114,10 +100,9 @@ angular.module('starter')
             $scope.input_type = 'password';
 
 
-
             if (ValidacaoModuloFactory.isNotNull(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user))) {
-                adicionais();
                 LoadModuloFactory.show();
+                $rootScope.setAtualizarUser(StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user));
                 redirecionar();
             }
 
@@ -135,8 +120,7 @@ angular.module('starter')
                         LoadModuloFactory.hide();
                         if (ValidacaoModuloFactory.is('OK', retorno.status)) {
                             retorno.data.response.result.senha = $scope.user.senha;
-                            StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, retorno.data.response.result);
-                            adicionais();
+                            $rootScope.setAtualizarUser(retorno.data.response.result);
                             LoadModuloFactory.show();
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.hasSincronizacao, 0);
                             StorageModuloFactory.local.set(StorageModuloFactory.enum.forceLoginSincronizacao, 1);

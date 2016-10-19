@@ -40,6 +40,7 @@ angular.module('starter')
                 loadRespostas();
 
                 $scope.confirmar = function () {
+                    LoadModuloFactory.show();
                     CheckinTable.save2({
                         usuario_id: $scope.user.id,
                         cliente_id: $scope.cliente.id,
@@ -51,6 +52,7 @@ angular.module('starter')
                         modified: moment(new Date).format('YYYY-MM-DD HH:mm:ss'),
                         created: moment(new Date).format('YYYY-MM-DD HH:mm:ss')
                     }, function (a) {
+                        LoadModuloFactory.hide();
                         StorageModuloFactory.setFlash('Programa de Mercado - RAC realizada com sucesso. Realize a Sincronização de dados através do Menu lateral');
                         NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.cliente, {id: $scope.cliente.id});
                     });

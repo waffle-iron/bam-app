@@ -56,7 +56,25 @@ angular.module('starter')
                             options.id = res.id;
                             forceCreate = false;
                         }
-                        TableModuloFactory.save('checkin', options, retorno, forceCreate);
+
+
+                        var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+                        options.usuario_id = user.id;
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                options.latitude = position.coords.latitude;
+                                options.longitude = position.coords.longitude;
+                                TableModuloFactory.insert('checkin', options, retorno);
+                            }, function (r) {
+                                //TableModuloFactory.insert('checkin', options, retorno);
+                                TableModuloFactory.save('checkin', options, retorno, forceCreate);
+                            }, {maximumAge: 3000, timeout: 5000, enableHighAccuracy: true});
+                        } else {
+                            options.latitude = null;
+                            options.longitude = null;
+                            //TableModuloFactory.insert('checkin', options, retorno);
+                            TableModuloFactory.save('checkin', options, retorno, forceCreate);
+                        }
                     });
                 };
                 services.all = function (options, retorno) {

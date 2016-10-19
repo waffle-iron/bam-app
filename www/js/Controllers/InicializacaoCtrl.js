@@ -239,35 +239,42 @@ angular.module('starter')
                         $scope.sincronizacao.clientes.baixado++;
                         $scope._sincronizacao.geral.baixado++;
                         if (v.cliente !== null) {
-                            var dados = {
-                                id: parseInt(v.cliente.id),
-                                id_integracao: parseInt(v.cliente.id),
-                                nome: v.cliente.nome,
-                                foto: v.cliente.foto,
-                                status: parseInt(v.cliente.status),
-                                latitude: v.cliente.latitude,
-                                longitude: v.cliente.longitude,
-                                cep: v.cliente.cep,
-                                endereco: v.cliente.endereco,
-                                numero: v.cliente.numero,
-                                complemento: v.cliente.complemento,
-                                bairro: v.cliente.bairro,
-                                codigo_concatenado: v.cliente.codigo_concatenado,
-                                programa_id: parseInt(v.cliente.programa_id),
-                                cidade_id: parseInt(v.cliente.cidade_id),
-                                estado_id: parseInt(v.cliente.estado_id),
-                                razao_social: v.cliente.razao_social,
-                                modified: convertData(v.cliente.modified),
-                                created: convertData(v.cliente.created),
-                                url: v.cliente.url,
-                                checkin: v.cliente.checkin
-                            };
-                            ClientesTable.replace(dados, function (res) {
-                                if (res !== null) {
+                            if (parseInt(v.cliente.status) === 1) {
+                                var dados = {
+                                    id: parseInt(v.cliente.id),
+                                    id_integracao: parseInt(v.cliente.id),
+                                    nome: v.cliente.nome,
+                                    foto: v.cliente.foto,
+                                    status: parseInt(v.cliente.status),
+                                    latitude: v.cliente.latitude,
+                                    longitude: v.cliente.longitude,
+                                    cep: v.cliente.cep,
+                                    endereco: v.cliente.endereco,
+                                    numero: v.cliente.numero,
+                                    complemento: v.cliente.complemento,
+                                    bairro: v.cliente.bairro,
+                                    codigo_concatenado: v.cliente.codigo_concatenado,
+                                    programa_id: parseInt(v.cliente.programa_id),
+                                    cidade_id: parseInt(v.cliente.cidade_id),
+                                    estado_id: parseInt(v.cliente.estado_id),
+                                    razao_social: v.cliente.razao_social,
+                                    modified: convertData(v.cliente.modified),
+                                    created: convertData(v.cliente.created),
+                                    url: v.cliente.url,
+                                    checkin: v.cliente.checkin
+                                };
+                                ClientesTable.replace(dados, function (res) {
+                                    if (res !== null) {
+                                        $scope.sincronizacao.clientes.atualizado++;
+                                        $scope._sincronizacao.geral.atualizado++;
+                                    }
+                                });
+                            } else {
+                                ClientesTable.delete('id', parseInt(v.cliente.id), function (res) {
                                     $scope.sincronizacao.clientes.atualizado++;
                                     $scope._sincronizacao.geral.atualizado++;
-                                }
-                            });
+                                });
+                            }
                         }
                     });
 
@@ -373,9 +380,9 @@ angular.module('starter')
 
             };
             $scope._sincronizacao.requisicao.baixado++;
-            ClientesTable.query('DELETE FROM clientes', function (ret) {
-                ClientesApiFactory.rotas({}, rotas);
-            });
+            //ClientesTable.query('DELETE FROM clientes', function (ret) {
+            ClientesApiFactory.rotas({}, rotas);
+            //});
 
 
             $scope._atualizar = function () {
@@ -390,9 +397,9 @@ angular.module('starter')
             $scope._hide = function () {
                 if ($scope._sincronizacao.requisicao.atualizado === $scope._sincronizacao.requisicao.baixado && $scope._sincronizacao.geral.baixado === $scope._sincronizacao.geral.atualizado) {
                     StorageModuloFactory.local.set(StorageModuloFactory.enum.sincronizacaoInicial, moment(new Date()).format("YYYY-MM-DD"));
-                    ClientesTable.query('DELETE FROM produtos_clientes WHERE cliente_id not in(SELECT id_integracao FROM clientes)', function (ret) {
+                    //ClientesTable.query('DELETE FROM produtos_clientes WHERE cliente_id not in(SELECT id_integracao FROM clientes)', function (ret) {
                         NavegacaoModuloFactory.go(NavegacaoModuloFactory.enum.home);
-                    });
+                    //});
 
                 } else {
                     $scope._atualizar();

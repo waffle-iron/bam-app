@@ -13,6 +13,15 @@ angular.module('starter')
                         retorno(response);
                     });
                 };
+                services.validaLogin = function (options, retorno) {
+                    options = angular.merge({
+                        login: '',
+                        id: ''
+                    }, options);
+                    RequestModuloFactory.post('usuarios/valida-login.json', options, function (response) {
+                        retorno(response);
+                    });
+                };
 
                 services.edit = function (id, options, retorno) {
                     options = angular.merge({

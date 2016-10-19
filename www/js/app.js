@@ -8,7 +8,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         .constant('Config', {
             url: 'http://45.55.69.61/bam/',
             api: 'api/',
-            versaoApp: '01.00.25',
+            versaoApp: '01.00.26',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 15000,
@@ -17,7 +17,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })
-        .run(function ($ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config, ClientesTable) {
+        .run(function ($cordovaDevice, $ionicPlatform, $rootScope, NavegacaoModuloFactory, StorageModuloFactory, Config, ClientesTable) {
             $ionicPlatform.ready(function () {
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
@@ -41,6 +41,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             $rootScope.atualizarUser = function () {
                 $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
             };
+
+            $rootScope.setAtualizarUser = function (result) {
+                StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, result);
+                var adicionais = function () {
+                    document.addEventListener("deviceready", function () {
+                        var user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+                        user = angular.merge(user, {
+                            cordova: $cordovaDevice.getCordova(),
+                            model: $cordovaDevice.getModel(),
+                            platform: $cordovaDevice.getPlatform(),
+                            uuid: $cordovaDevice.getUUID(),
+                            version: $cordovaDevice.getVersion(),
+                            versao_app: Config.versaoApp
+                        });
+                        StorageModuloFactory.local.setObject(StorageModuloFactory.enum.user, user);
+                        console.log(JSON.stringify(user));
+                    }, false);
+                }
+                adicionais();
+                $rootScope.user = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.user);
+            };
+
             $rootScope.atualizarPDV = function () {
                 var cliente = StorageModuloFactory.local.getObject(StorageModuloFactory.enum.pdvAtivo);
                 ClientesTable.get('id', cliente.id, function (ret) {
