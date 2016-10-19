@@ -107,7 +107,7 @@ angular.module('starter')
                     //var produto_valor = ExtraModuloFactory.moeda(produto.produto_valor);
                     produto.valor = produto.produto_valor = produto_valor;
                     var _save = {
-                        cliente_id: 0,
+                        cliente_id: $scope.cliente.id,
                         produto_id: produto.id,
                         valor: produto.produto_valor,
                         status: 1,
