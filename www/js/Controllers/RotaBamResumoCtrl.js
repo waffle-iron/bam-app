@@ -82,7 +82,7 @@ angular.module('starter')
                                 FileModuloFactory.asUrl(v.imagem, function (retImagem) {
                                     i++;
                                     value.imagens.push({img: retImagem});
-                                    if (total === i) {
+                                    if (i >= total) {
                                         __saveFotoArray(value);
                                     }
                                 });

@@ -55,7 +55,7 @@ angular.module('starter')
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.error($scope, 'Nenhuma ocorrências localizada.');
-                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Código de erro: ' + retorno.status, 'Erro');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Status da transação: ' + retorno.status);
                 }
             }
 

@@ -80,7 +80,7 @@ angular.module('starter')
                     loadMapaGoogle();
                 } else {
                     LoadModuloFactory.hide();
-                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Código de erro: ' + result.status, 'Erro');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Status da transação: ' + result.status);
                 }
 
             });
@@ -214,7 +214,7 @@ angular.module('starter')
                     LoadModuloFactory.hide();
                     $scope.proximo = false;
                     ExtraModuloFactory.error($scope, 'Nenhum item de histórico localizado.');
-                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Código de erro: ' + retorno.status, 'Erro');
+                    ValidacaoModuloFactory.alert(Config.avisoSemConexao + ' | Status da transação: ' + retorno.status);
                 }
 
             }

@@ -74,20 +74,6 @@ angular.module('starter')
                         return !!val;
                     };
 
-                    /*services.empty = function (val) {
-                     if(val === null){
-                     return true;
-                     } else if(val === ''){
-                     return true;
-                     } else if(val === 'undefined'){
-                     return true;
-                     } else if(val === undefined){
-                     return true;
-                     } else {
-                     return false;
-                     }
-                     };*/
-
                     services.alert = function (msg, title, callback) {
                         var alertPopup = $ionicPopup.alert({
                             title: title || 'Aviso!',
@@ -196,37 +182,6 @@ angular.module('starter')
 
                     services.is_numeric = function (mixedVar) {
                         return angular.isNumber(mixedVar);
-                        /*var whitespace = [
-                            ' ',
-                            '\n',
-                            '\r',
-                            '\t',
-                            '\f',
-                            '\x0b',
-                            '\xa0',
-                            '\u2000',
-                            '\u2001',
-                            '\u2002',
-                            '\u2003',
-                            '\u2004',
-                            '\u2005',
-                            '\u2006',
-                            '\u2007',
-                            '\u2008',
-                            '\u2009',
-                            '\u200a',
-                            '\u200b',
-                            '\u2028',
-                            '\u2029',
-                            '\u3000'
-                        ].join('')
-
-                        // @todo: Break this up using many single conditions with early returns
-                        return (typeof mixedVar === 'number' ||
-                                (typeof mixedVar === 'string' &&
-                                        whitespace.indexOf(mixedVar.slice(-1)) === -1)) &&
-                                mixedVar !== '' &&
-                                !isNaN(mixedVar)*/
                     };
 
                     services.trim = function (str, charlist) {

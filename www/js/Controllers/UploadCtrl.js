@@ -367,7 +367,7 @@ angular.module('starter')
                     $rootScope.setAtualizarUser($rootScope.user);
                     processaDados();
                 } else {
-                    ValidacaoModuloFactory.alert('Não foi possivel fazer o sincronização tente novamente, Verifique a conexão com a internet ou entre em contato com o administrador do sistema.' + ' | Código de erro: ' + retorno.status);
+                    ValidacaoModuloFactory.alert('Não foi possivel fazer o sincronização tente novamente, Verifique a conexão com a internet ou entre em contato com o administrador do sistema.' + ' | Status da transação: ' + retorno.status);
                 }
                 $scope._atualizar = function () {
                     $timeout(function () {
