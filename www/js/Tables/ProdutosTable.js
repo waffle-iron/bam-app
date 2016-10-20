@@ -51,6 +51,10 @@ angular.module('starter')
                 services.get = function (key, val, retorno) {
                     TableModuloFactory.get('produtos', key, val, retorno);
                 };
+                
+                services.delete = function (key, val, retorno) {
+                    TableModuloFactory.delete('produtos', key, val, retorno);
+                };
 
                 return services;
             }

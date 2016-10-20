@@ -226,13 +226,20 @@ angular.module('starter')
                             modified: convertData(v.modified),
                             created: convertData(v.created)
                         };
-                        ProdutosTable.replace(dados, function (res) {
-                            if (res !== null) {
+                        if (dados.status === 1) {
+                            ProdutosTable.replace(dados, function (res) {
+                                if (res !== null) {
+                                    $scope.sincronizacao.produtos.atualizado++;
+                                    $scope._sincronizacao.geral.atualizado++;
+                                    //$scope._hide();
+                                }
+                            });
+                        } else {
+                            ProdutosTable.delete('id', dados.id, function (res) {
                                 $scope.sincronizacao.produtos.atualizado++;
                                 $scope._sincronizacao.geral.atualizado++;
-                                //$scope._hide();
-                            }
-                        });
+                            });
+                        }
                     });
                 }
 
