@@ -9,6 +9,7 @@ angular.module('starter')
                     if (ValidacaoModuloFactory.isNotNull(user)) {
                         var token = user.token;
                         $http.defaults.headers.common['X-ApiToken'] = token;
+                        $http.defaults.headers.common['X-ApiDocumento'] = user.documento;
                     }
                     $http.defaults.headers.common['Content-Type'] = 'application/json;charset=UTF-8';
                     $http.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';

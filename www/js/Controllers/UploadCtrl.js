@@ -107,7 +107,7 @@ angular.module('starter')
                                     modified: convertData(new Date()),
                                     created: convertData(new Date())
                                 }, function (retorno) {
-                            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                            if (ValidacaoModuloFactory.isCreate(retorno.status)) {
                                 OcorrenciasTable.delete('id', v.id, function (exc) {
                                     $scope.sincronizacao.ocorrencias.atualizado++;
                                     $scope._sincronizacao.geral.atualizado++;
@@ -141,7 +141,7 @@ angular.module('starter')
                             modified: convertData(new Date()),
                             created: convertData(new Date())
                         }, function (retorno) {
-                            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                            if (ValidacaoModuloFactory.isCreate(retorno.status)) {
                                 FotosCamerasTable.all({where: 'tabela="Ativacao52Table" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
@@ -193,7 +193,7 @@ angular.module('starter')
                             modified: convertData(new Date()),
                             created: convertData(new Date())
                         }, function (retorno) {
-                            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                            if (ValidacaoModuloFactory.isCreate(retorno.status)) {
                                 FotosCamerasTable.all({where: 'tabela="FormulariosCamposValoresTable" AND id_referencia=' + v.id}, function (retornoFotosCameras) {
                                     if (retornoFotosCameras !== null) {
                                         angular.forEach(retornoFotosCameras, function (value, key) {
@@ -244,7 +244,7 @@ angular.module('starter')
                             modified: convertData(new Date()),
                             created: convertData(new Date())
                         }, function (retorno) {
-                            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                            if (ValidacaoModuloFactory.isCreate(retorno.status)) {
                                 ProdutosClientesTable.update({status: 2}, v.id, function (exc) {
                                     $scope.sincronizacao.produtos_clientes.atualizado++;
                                     $scope._sincronizacao.geral.atualizado++;
@@ -279,7 +279,7 @@ angular.module('starter')
                             modified: convertData(new Date()),
                             created: convertData(new Date())
                         }, function (retorno) {
-                            if (ValidacaoModuloFactory.isOk(retorno.status)) {
+                            if (ValidacaoModuloFactory.isCreate(retorno.status)) {
                                 CheckinTable.delete('id', v.id, function (exc) {
                                     $scope.sincronizacao.checkin.atualizado++;
                                     $scope._sincronizacao.geral.atualizado++;

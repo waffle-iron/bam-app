@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             versaoApp: '01.00.27',
             userLogin: 'admin',
             userSenha: '123456',
-            timeout: 15000,
+            timeout: 30000,
             database: 'bam',
             debug: true,
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
