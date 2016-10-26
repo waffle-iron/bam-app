@@ -5,9 +5,9 @@ angular.module('starter')
                 var latlng = latitude + "," + longitude;
                 var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latlng + '&language=br';
 
-                var cidade = '';
-                var estado = '';
-                var sigla = '';
+                var cidade = null;
+                var estado = null;
+                var sigla = null;
                 var continua = true;
 
                 $http.get(url, null).then(function (response) {
@@ -47,13 +47,13 @@ angular.module('starter')
                         angular.forEach(r.results[0].address_components, function (v, k) {
                             angular.forEach(v.types, function (v1, k1) {
                                 /*if (v1 === 'postal_code') {
-                                    ret.cep = (v.long_name.replace('-', '').toString() || ret.cep).toString();
+                                    ret.cep = (v.long_name.replace('-', null).toString() || ret.cep).toString();
                                     if (ret.cep.length > 0 && ret.cep.length < 8) {
                                         ret.cep = ret.cep + '000';
                                     } else if (ret.cep.length > 7) {
                                         ret.cep = ret.cep;
                                     } else {
-                                        ret.cep = '';
+                                        ret.cep = null;
                                     }
                                 }*/
 

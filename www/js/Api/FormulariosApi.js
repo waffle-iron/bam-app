@@ -6,17 +6,17 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        nome: '',
-                        status: '',
-                        css: '',
-                        js: '',
-                        tipo: '',
-                        sub_formulario_id: '',
-                        argumento: '',
-                        formularios_pergunta_id: '',
-                        modified: '',
-                        created: ''
+                        id: null,
+                        nome: null,
+                        status: null,
+                        css: null,
+                        js: null,
+                        tipo: null,
+                        sub_formulario_id: null,
+                        argumento: null,
+                        formularios_pergunta_id: null,
+                        modified: null,
+                        created: null
                     }, options);
                     RequestModuloFactory.get('formularios/index.json', options, function (response) {
                         retorno(response);

@@ -6,12 +6,12 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        notificacao_id: '',
-                        usuario_id: '',
+                        id: null,
+                        notificacao_id: null,
+                        usuario_id: null,
                         status: 1,
-                        modified: '',
-                        created: ''
+                        modified: null,
+                        created: null
                     }, options);
                     RequestModuloFactory.get('notificacoes-usuarios/index.json', options, function (response) {
                         retorno(response);

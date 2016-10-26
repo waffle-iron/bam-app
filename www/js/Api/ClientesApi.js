@@ -6,26 +6,26 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        id_integracao: '',
-                        nome: '',
-                        foto: '',
-                        status: '',
-                        latitude: '',
-                        longitude: '',
-                        cep: '',
-                        endereco: '',
-                        numero: '',
-                        complemento: '',
-                        bairro: '',
-                        codigo_concatenado: '',
-                        programa_id: '',
-                        cidade_id: '',
-                        estado_id: '',
-                        razao_social: '',
-                        modified: '',
-                        created: '',
-                        url: ''
+                        id: null,
+                        id_integracao: null,
+                        nome: null,
+                        foto: null,
+                        status: null,
+                        latitude: null,
+                        longitude: null,
+                        cep: null,
+                        endereco: null,
+                        numero: null,
+                        complemento: null,
+                        bairro: null,
+                        codigo_concatenado: null,
+                        programa_id: null,
+                        cidade_id: null,
+                        estado_id: null,
+                        razao_social: null,
+                        modified: null,
+                        created: null,
+                        url: null
                     }, options);
                     RequestModuloFactory.get('clientes/index.json', options, function (response) {
                         retorno(response);
@@ -34,26 +34,26 @@ angular.module('starter')
 
                 services.rotas = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        id_integracao: '',
-                        nome: '',
-                        foto: '',
-                        status: '',
-                        latitude: '',
-                        longitude: '',
-                        cep: '',
-                        endereco: '',
-                        numero: '',
-                        complemento: '',
-                        bairro: '',
-                        codigo_concatenado: '',
-                        programa_id: '',
-                        cidade_id: '',
-                        estado_id: '',
-                        razao_social: '',
-                        modified: '',
-                        created: '',
-                        url: ''
+                        id: null,
+                        id_integracao: null,
+                        nome: null,
+                        foto: null,
+                        status: null,
+                        latitude: null,
+                        longitude: null,
+                        cep: null,
+                        endereco: null,
+                        numero: null,
+                        complemento: null,
+                        bairro: null,
+                        codigo_concatenado: null,
+                        programa_id: null,
+                        cidade_id: null,
+                        estado_id: null,
+                        razao_social: null,
+                        modified: null,
+                        created: null,
+                        url: null
                     }, options);
                     RequestModuloFactory.get('clientes/rotas.json', options, function (response) {
                         retorno(response);
@@ -61,28 +61,28 @@ angular.module('starter')
                 };
 
                 services.edit = function (id, options, retorno) {
-                    options = angular.merge({
-                        id: '',
-                        id_integracao: '',
-                        nome: '',
-                        foto: '',
-                        status: '',
-                        latitude: '',
-                        longitude: '',
-                        cep: '',
-                        endereco: '',
-                        numero: '',
-                        complemento: '',
-                        bairro: '',
-                        codigo_concatenado: '',
-                        programa_id: '',
-                        cidade_id: '',
-                        estado_id: '',
-                        razao_social: '',
-                        modified: '',
-                        created: '',
-                        url: ''
-                    }, options);
+                    /*options = angular.merge({
+                        id: null,
+                        id_integracao: null,
+                        nome: null,
+                        foto: null,
+                        status: null,
+                        latitude: null,
+                        longitude: null,
+                        cep: null,
+                        endereco: null,
+                        numero: null,
+                        complemento: null,
+                        bairro: null,
+                        codigo_concatenado: null,
+                        programa_id: null,
+                        cidade_id: null,
+                        estado_id: null,
+                        razao_social: null,
+                        modified: null,
+                        created: null,
+                        url: null
+                    }, options);*/
                     RequestModuloFactory.post('clientes/edit/' + id + '.json', options, function (response) {
                         retorno(response);
                     });

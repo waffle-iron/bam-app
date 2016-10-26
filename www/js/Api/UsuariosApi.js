@@ -5,41 +5,45 @@ angular.module('starter')
                 var services = {};
 
                 services.login = function (options, retorno) {
-                    options = angular.merge({
-                        login: '',
-                        senha: ''
-                    }, options);
+                    /*options = angular.merge({
+                     login: null,
+                     senha: null
+                     }, options);*/
                     RequestModuloFactory.post('usuarios/login.json', options, function (response) {
                         retorno(response);
                     });
                 };
                 services.validaLogin = function (options, retorno) {
-                    options = angular.merge({
-                        login: '',
-                        id: ''
-                    }, options);
+                    /*options = angular.merge({
+                     login: null,
+                     id: null
+                     }, options);*/
                     RequestModuloFactory.post('usuarios/valida-login.json', options, function (response) {
                         retorno(response);
                     });
                 };
 
                 services.edit = function (id, options, retorno) {
+                    /*options = angular.merge({
+                     id: null,
+                     nome: null,
+                     sobrenome: null,
+                     email: null,
+                     celular: null,
+                     login: null,
+                     senha: null,
+                     status: null,
+                     token: null,
+                     documento: null,
+                     created: null,
+                     modified: null,
+                     tipo: null,
+                     foto: null,
+                     url: null
+                     }, options);*/
                     options = angular.merge({
-                        id: '',
-                        nome: '',
-                        sobrenome: '',
-                        email: '',
-                        celular: '',
-                        login: '',
-                        senha: '',
-                        status: '',
-                        token: '',
-                        documento: '',
-                        created: '',
-                        modified: '',
-                        tipo: '',
-                        foto: '',
-                        url: ''
+                        foto: null,
+                        url: null
                     }, options);
                     delete options.foto;
                     delete options.url;
@@ -60,7 +64,7 @@ angular.module('starter')
                         retorno(response);
                     });
                 };
-                
+
                 services.historicoRac = function (id, retorno) {
                     RequestModuloFactory.get('usuarios/range-all/' + id + '.json', null, function (response) {
                         retorno(response);

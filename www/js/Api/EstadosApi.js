@@ -6,10 +6,10 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        estado: '',
-                        modified: '',
-                        created: ''
+                        id: null,
+                        estado: null,
+                        modified: null,
+                        created: null
                     }, options);
                     RequestModuloFactory.get('estados/index.json', options, function (response) {
                         retorno(response);

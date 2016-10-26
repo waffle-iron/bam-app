@@ -6,13 +6,13 @@ angular.module('starter')
 
                 services.index = function (options, retorno) {
                     options = angular.merge({
-                        id: '',
-                        cliente_id: '',
-                        usuario_id: '',
-                        status: '',
-                        valor: '',
-                        modified: '',
-                        created: ''
+                        id: null,
+                        cliente_id: null,
+                        usuario_id: null,
+                        status: null,
+                        valor: null,
+                        modified: null,
+                        created: null
                     }, options);
                     RequestModuloFactory.get('produtos-clientes/index.json', options, function (response) {
                         retorno(response);
@@ -20,15 +20,15 @@ angular.module('starter')
                 };
 
                 services.add = function (options, retorno) {
-                    options = angular.merge({
-                        cliente_id: '',
-                        usuario_id: '',
-                        produto_id: '',
-                        status: '',
-                        valor: '',
-                        modified: '',
-                        created: ''
-                    }, options);
+                    /*options = angular.merge({
+                        cliente_id: null,
+                        usuario_id: null,
+                        produto_id: null,
+                        status: null,
+                        valor: null,
+                        modified: null,
+                        created: null
+                    }, options);*/
                     RequestModuloFactory.post('produtos-clientes/add.json', options, function (response) {
                         retorno(response);
                     });

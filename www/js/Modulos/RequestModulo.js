@@ -15,15 +15,15 @@ angular.module('starter')
                     $http.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
                     $http.defaults.headers.patch['Content-Type'] = 'application/json;charset=UTF-8';
                     $http.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
-                }
+                };
+
                 services.post = function (url, options, retorno) {
                     services.header();
                     options = angular.merge({
-                        timeout: Config.timeout,
-                        limit: null
+                        timeout: Config.timeout
                     }, options);
                     services.debug(options);
-                    $http.post(Config.url + Config.api + url, options).then(
+                    $http.post(Config.url + Config.api + url, options, {async: true, cache: false}).then(
                             function (response) {
                                 services.debug(response);
                                 retorno(response);
@@ -37,11 +37,10 @@ angular.module('starter')
                 services.put = function (url, options, retorno) {
                     services.header();
                     options = angular.merge({
-                        timeout: Config.timeout,
-                        limit: null
+                        timeout: Config.timeout
                     }, options);
                     services.debug(options);
-                    $http.put(Config.url + Config.api + url, options).then(
+                    $http.put(Config.url + Config.api + url, options, {async: true, cache: false}).then(
                             function (response) {
                                 services.debug(response);
                                 retorno(response);
@@ -59,7 +58,7 @@ angular.module('starter')
                         limit: 1000
                     }, options);
                     services.debug(options);
-                    $http.get(Config.url + Config.api + url, {params: options
+                    $http.get(Config.url + Config.api + url, {params: options, async: true, cache: false
                     }).then(function (response) {
                         services.debug(response);
                         retorno(response);
@@ -72,11 +71,10 @@ angular.module('starter')
                 services.delete = function (url, options, retorno) {
                     services.header();
                     options = angular.merge({
-                        timeout: Config.timeout,
-                        limit: null
+                        timeout: Config.timeout
                     }, options);
                     services.debug(options);
-                    $http.delete(Config.url + Config.api + url, options).then(
+                    $http.delete(Config.url + Config.api + url, options, {async: true, cache: false}).then(
                             function (response) {
                                 services.debug(response);
                                 retorno(response);
