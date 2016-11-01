@@ -1,6 +1,6 @@
 angular.module('starter')
-        .factory('FotosCamerasTable', ['TableModuloFactory',
-            function (TableModuloFactory) {
+        .factory('FotosCamerasTable', ['TableModuloFactory', 'FileModuloFactory',
+            function (TableModuloFactory, FileModuloFactory) {
                 var services = {};
 
                 services.drop = function (retorno) {
@@ -54,6 +54,15 @@ angular.module('starter')
 
                 services.delete = function (key, val, retorno) {
                     TableModuloFactory.delete('fotos_cameras', key, val, retorno);
+                };
+
+                services.delete2 = function (key, val, retorno) {
+                    TableModuloFactory.get('fotos_cameras', key, val, function (ret) {
+                        if (ret !== null) {
+                            TableModuloFactory.delete('fotos_cameras', key, val, retorno);
+                            FileModuloFactory.remove(ret.imagem, function (ret) {});
+                        }
+                    });
                 };
 
                 services.insert = function (options, retorno) {

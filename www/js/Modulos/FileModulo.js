@@ -38,7 +38,7 @@ angular.module('starter')
                         }, function (error) {
                             listener(false);
                         });
-            }
+            };
 
             service.asUrl = function (path, callback) {
                 window.resolveLocalFileSystemURL(path, gotFile, fail);
@@ -58,7 +58,7 @@ angular.module('starter')
                         reader.readAsDataURL(file);
                     });
                 }
-            }
+            };
 
             return service;
         });

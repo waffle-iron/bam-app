@@ -1,3 +1,6 @@
+var debug = function(str){
+    console.log(JSON.stringify(str));
+}
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
@@ -13,7 +16,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
             userSenha: '123456',
             timeout: 35000,
             database: 'bam',
-            debug: false,
+            debug: true,
             avisoSemConexao: 'Essa página necessita de conexão com a internet para ser exibida.',
             avisoGpsInattivo: 'Verifique se o seu GPS esta ativo e com conexão com a internet para trazer os clientes mais próximo à você.'
         })

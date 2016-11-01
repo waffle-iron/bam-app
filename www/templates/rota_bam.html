@@ -24,14 +24,14 @@
 
                         <div ng-if="value.tipo === 'radio'" style="width: 100%">
                             <ion-list>
-                                <ion-radio name="seq_radio_{{value.id}}"  ng-repeat="(k, v) in value.opcoes" value="" ng-model="value[k]" ng-change="atualizar(value, v, k)">{{v}}</ion-checkbox>
+                                <ion-radio name="seq_radio_{{value.id}}"  ng-repeat="(k, v) in value.opcoes" value="" ng-model="value[k]" ng-click="atualizar(value, v, k)">{{v}}</ion-checkbox>
                             </ion-list>
                         </div>
                         <div class="clearfix"></div>
 
                         <div ng-if="value.tipo === 'checkbox'" style="width: 100%">
                             <ion-list>
-                                <ion-checkbox ng-repeat="(k, v) in value.opcoes" ng-model="value[k]" value="" ng-change="atualizar(value, v, k)">{{v}}</ion-checkbox>
+                                <ion-checkbox ng-repeat="(k, v) in value.opcoes" ng-model="value[k]" value="" ng-click="atualizar(value, v, k)">{{v}}</ion-checkbox>
                             </ion-list>
                         </div>
                         <div class="clearfix"></div>

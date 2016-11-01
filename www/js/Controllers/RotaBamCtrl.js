@@ -111,9 +111,9 @@ angular.module('starter')
                     if (ignorado === dados.id) {
                         $scope.perguntas.atual++;
                         ignorado = null;
-                        return ((dados.sequencia + 1) === $scope.perguntas.atual ? 1 : 0);
+                        return ((dados.sequencia + 1) === ($scope.perguntas.atual ? 1 : 0));
                     } else {
-                        return (dados.sequencia === $scope.perguntas.atual ? 1 : 0);
+                        return (dados.sequencia === ($scope.perguntas.atual ? 1 : 0));
                     }
                 };
 
@@ -194,7 +194,7 @@ angular.module('starter')
                         ignorado = parseInt(dados.atributos);
                     }
                     $scope.id_resposta = a.id;
-
+                    FotosCamerasTable.delete2('id', a.id, function (retornoFotos) {});
                     $scope.btn_camera = 0;
                     $scope.btn_camera_complete = 0;
                     $scope.qtd_btn_camera = [];
@@ -218,7 +218,7 @@ angular.module('starter')
                         $scope.btn_camera = 0;
                     }
                     LoadModuloFactory.hide();
-                }
+                };
 
                 $scope.tirarFoto = function (value, valueFoto, index) {
                     CameraModuloFactory.capturarFotoFile(function (img) {

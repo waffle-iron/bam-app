@@ -14,6 +14,7 @@
     <allow-intent href="https://*/*" />
     <allow-intent href="geo:*" />
     <allow-intent href="*" />
+    <allow-navigation href="*" />
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

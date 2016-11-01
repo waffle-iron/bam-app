@@ -193,6 +193,7 @@ angular.module('starter')
                         ignorado = parseInt(dados.atributos);
                     }
                     $scope.id_resposta = a.id;
+                    FotosCamerasTable.delete2('id', a.id, function (retornoFotos) {});
 
                     $scope.btn_camera = 0;
                     $scope.btn_camera_complete = 0;
