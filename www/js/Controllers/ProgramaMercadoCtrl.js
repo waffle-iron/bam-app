@@ -19,7 +19,8 @@ angular.module('starter')
                 $scope.perguntas = {
                     atual: 0,
                     sequencia: 0,
-                    total: 0
+                    total: 0,
+                    hide: false
                 };
 
                 $scope.getSubFormulario = function (argumento, redireciona) {
@@ -41,8 +42,10 @@ angular.module('starter')
                                         angular.forEach(retGrupo, function (v1, k1) {
                                             $scope.perguntas.total++;
                                             v1 = angular.merge({
-                                                sequencia: $scope.perguntas.sequencia
+                                                sequencia: $scope.perguntas.sequencia,
+                                                hide: $scope.perguntas.hide
                                             }, v1);
+                                            $scope.perguntas.hide = true;
                                             $scope.perguntas.sequencia++;
                                             if (ValidacaoModuloFactory.isNotNull(v1.opcoes)) {
                                                 v1.opcoes = v1.opcoes.split(',');
@@ -84,8 +87,10 @@ angular.module('starter')
                                 angular.forEach(retGrupo, function (v1, k1) {
                                     $scope.perguntas.total++;
                                     v1 = angular.merge({
-                                        sequencia: $scope.perguntas.sequencia
+                                        sequencia: $scope.perguntas.sequencia,
+                                        hide: $scope.perguntas.hide
                                     }, v1);
+                                    $scope.perguntas.hide = true;
                                     $scope.perguntas.sequencia++;
                                     if (ValidacaoModuloFactory.isNotNull(v1.opcoes)) {
                                         v1.opcoes = v1.opcoes.split(',');
@@ -104,19 +109,25 @@ angular.module('starter')
                     return ExtraModuloFactory.color(key);
                 };
 
-                $scope.sequencia = function (dados, key) {
+                $scope.sequencia = function (dados) {
+                    LoadModuloFactory.show();
                     if ($scope.perguntas.atual >= $scope.perguntas.total) {
                         ExtraModuloFactory.success($scope, 'Todas as perguntas já foram respondidas.');
                     }
                     if (ignorado === dados.id) {
                         $scope.perguntas.atual++;
-                        return ((dados.sequencia + 1) === $scope.perguntas.atual ? 1 : 0);
-                    } else {
-                        return (dados.sequencia === $scope.perguntas.atual ? 1 : 0);
+                        ignorado = null;
                     }
+                    angular.forEach($scope.formularios, function (v, k) {
+                        $scope.formularios[k].hide = true;
+                        if ((v.sequencia) === $scope.perguntas.atual) {
+                            $scope.formularios[k].hide = false;
+                        }
+                    });
+                    LoadModuloFactory.hide();
                 };
 
-                $scope.proximo = function (dados, key) {
+                $scope.proximo = function (dados) {
                     ExtraModuloFactory.clear($scope);
                     if ($scope.btn_camera > 0) {
                         ValidacaoModuloFactory.alert('Foto obrigatoria.');
@@ -127,7 +138,7 @@ angular.module('starter')
                                     $scope.btn_camera = 0;
                                     $scope.valor_selecionado = null;
                                     $scope.perguntas.atual++;
-                                    $scope.sequencia(dados, key);
+                                    $scope.sequencia(dados);
                                 });
                             } else {
                                 ValidacaoModuloFactory.alert('Informe uma resposta.');
@@ -137,7 +148,7 @@ angular.module('starter')
                                 $scope.btn_camera = 0;
                                 $scope.valor_selecionado = null;
                                 $scope.perguntas.atual++;
-                                $scope.sequencia(dados, key);
+                                $scope.sequencia(dados);
                             });
                         }
                     }
@@ -189,12 +200,13 @@ angular.module('starter')
 
                 var saveResposta = function (a, dados) {
                     ignorado = null;
-                    if (dados.tipo === 'radio' && dados.valor != dados.value && dados.atributos > 0) {
-                        ignorado = parseInt(dados.atributos);
+                    if (dados.tipo === 'radio' && dados.valor != dados.value && parseInt(dados.atributos) > 0) {
+                        ignorado = a.id;
                     }
                     $scope.id_resposta = a.id;
-                    FotosCamerasTable.delete2('id', a.id, function (retornoFotos) {});
-
+                    if (dados.tipo === 'radio') {
+                        FotosCamerasTable.delete2('id_referencia', a.id, function (retornoFotos) {});
+                    }
                     $scope.btn_camera = 0;
                     $scope.btn_camera_complete = 0;
                     $scope.qtd_btn_camera = [];

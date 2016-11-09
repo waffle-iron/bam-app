@@ -15,7 +15,7 @@
 
             <a ng-show="msg" class="button button-block button-balanced" ng-href="#/app/programa_mercado_resumo"><i class="fa fa-check-square-o" aria-hidden="true"></i> Confirmar</a>
 
-            <div ng-repeat="(key, value) in formularios" ng-if="sequencia(value, key) > 0">
+            <div ng-repeat="(key, value) in formularios" ng-hide="value.hide">
                 <div class="list list-inset borda-grey" style="border-radius: 10px; margin: 6px 0; border: none; background: #eee;">
                     <h4 class="padding text-center">
                         {{value.nome}}
@@ -63,7 +63,7 @@
                         <div ng-if="btn_camera > 0" ng-repeat="(keyFoto, valueFoto) in qtd_btn_camera">
                             <button class="button button-block button-royal" ng-click="tirarFoto(value, valueFoto.seq_foto, keyFoto)"><i class="{{valueFoto.tirado}}" aria-hidden="true"></i> Tirar Foto {{valueFoto.seq_foto}}</button>    
                         </div>
-                        <button class="button button-block button-positive m-0" ng-click="proximo(value, key)">Próximo <i class="ion-arrow-right-c"></i></button>
+                        <button class="button button-block button-positive m-0" ng-click="proximo(value)">Próximo <i class="ion-arrow-right-c"></i></button>
                     </div>
                 </div>
             </div>
