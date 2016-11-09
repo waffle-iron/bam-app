@@ -64,6 +64,9 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "br.com.bammp"
         },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "br.com.bammp"
+        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "br.com.bammp"
         },
@@ -77,9 +80,6 @@
             "PACKAGE_NAME": "br.com.bammp"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "br.com.bammp"
-        },
-        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "br.com.bammp"
         }
     },

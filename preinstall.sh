@@ -53,4 +53,7 @@ ionic plugin add https://github.com/whiteoctober/cordova-plugin-app-version.git
 
 ionic platform rm android
 ionic platform add android
+
+cp res/* platforms/android/res/
+
 ionic serve -cs
