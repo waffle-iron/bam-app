@@ -28,7 +28,8 @@ angular.module('starter')
                     angular.forEach($scope.dados.checkins_realizados, function (v, k) {
                         if (v.qtd > 1) {
                             segunda++;
-                        } else {
+                        }
+                        if (v.qtd >= 1) {
                             primeira++;
                         }
                     });
