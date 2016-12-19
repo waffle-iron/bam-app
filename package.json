@@ -17,28 +17,34 @@
     "shelljs": "^0.7.4"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
-    "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
+    "cordova-plugin-camera",
+    {
+      "locator": "https://github.com/mWater/cordova-plugin-wezka-nativecamera.git",
+      "id": "com.tmantman.nativecamera"
+    },
     "cordova-plugin-dialogs",
     "cordova-plugin-globalization",
     "cordova-plugin-media",
     "cordova-plugin-file-transfer",
     "cordova-plugin-media-capture",
     "cordova-plugin-device-orientation",
+    "cordova-plugin-device",
     "cordova-plugin-file",
     "cordova-plugin-battery-status",
-    "cordova-plugin-camera",
     "cordova-plugin-contacts",
     "cordova-plugin-device-motion",
     "cordova-plugin-geolocation",
     "cordova-plugin-network-information",
-    "cordova-plugin-vibration"
+    "cordova-plugin-vibration",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard",
+    {
+      "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
+      "id": "cordova-plugin-app-version"
+    }
   ],
-  "cordovaPlatforms": [
-    "android"
-  ]
+  "cordovaPlatforms": []
 }
