@@ -11,7 +11,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'angular
         .constant('Config', {
             url: 'http://45.55.69.61/bam/',
             api: 'api/',
-            versaoApp: '01.00.28',
+            versaoApp: '01.00.29',
             userLogin: 'admin',
             userSenha: '123456',
             timeout: 35000,
